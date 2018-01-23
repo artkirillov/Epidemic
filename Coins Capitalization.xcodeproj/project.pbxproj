@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2173EC282017D4CD004BDECE /* Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2173EC272017D4CD004BDECE /* Ticker.swift */; };
+		2173EC2C2017E16B004BDECE /* TickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2173EC2B2017E16B004BDECE /* TickerTableViewCell.swift */; };
 		21BAD60720177F7A0065D700 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BAD60620177F7A0065D700 /* AppDelegate.swift */; };
-		21BAD60920177F7A0065D700 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BAD60820177F7A0065D700 /* FirstViewController.swift */; };
-		21BAD60B20177F7A0065D700 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BAD60A20177F7A0065D700 /* SecondViewController.swift */; };
+		21BAD60920177F7A0065D700 /* CoinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BAD60820177F7A0065D700 /* CoinsViewController.swift */; };
 		21BAD60E20177F7A0065D700 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21BAD60C20177F7A0065D700 /* Main.storyboard */; };
 		21BAD61020177F7A0065D700 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21BAD60F20177F7A0065D700 /* Assets.xcassets */; };
 		21BAD61320177F7A0065D700 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21BAD61120177F7A0065D700 /* LaunchScreen.storyboard */; };
@@ -19,10 +20,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2173EC272017D4CD004BDECE /* Ticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticker.swift; sourceTree = "<group>"; };
+		2173EC2B2017E16B004BDECE /* TickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerTableViewCell.swift; sourceTree = "<group>"; };
 		21BAD60320177F7A0065D700 /* Coins Capitalization.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Coins Capitalization.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21BAD60620177F7A0065D700 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		21BAD60820177F7A0065D700 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		21BAD60A20177F7A0065D700 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		21BAD60820177F7A0065D700 /* CoinsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsViewController.swift; sourceTree = "<group>"; };
 		21BAD60D20177F7A0065D700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		21BAD60F20177F7A0065D700 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		21BAD61220177F7A0065D700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -43,6 +45,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2173EC262017D32B004BDECE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2173EC272017D4CD004BDECE /* Ticker.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2173EC292017E144004BDECE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2173EC2A2017E14D004BDECE /* Cells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2173EC2A2017E14D004BDECE /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2173EC2B2017E16B004BDECE /* TickerTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		21BAD5FA20177F7A0065D700 = {
 			isa = PBXGroup;
 			children = (
@@ -65,8 +91,7 @@
 				21BAD61B201780430065D700 /* Resources */,
 				21BAD61A201780340065D700 /* Sources */,
 				21BAD60620177F7A0065D700 /* AppDelegate.swift */,
-				21BAD60820177F7A0065D700 /* FirstViewController.swift */,
-				21BAD60A20177F7A0065D700 /* SecondViewController.swift */,
+				21BAD60820177F7A0065D700 /* CoinsViewController.swift */,
 				21BAD60C20177F7A0065D700 /* Main.storyboard */,
 				21BAD60F20177F7A0065D700 /* Assets.xcassets */,
 				21BAD61120177F7A0065D700 /* LaunchScreen.storyboard */,
@@ -78,6 +103,8 @@
 		21BAD61A201780340065D700 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				2173EC292017E144004BDECE /* Views */,
+				2173EC262017D32B004BDECE /* Models */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -128,7 +155,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0920;
-				ORGANIZATIONNAME = ASK;
+				ORGANIZATIONNAME = "ASK LLC";
 				TargetAttributes = {
 					21BAD60220177F7A0065D700 = {
 						CreatedOnToolsVersion = 9.2;
@@ -175,9 +202,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21BAD60B20177F7A0065D700 /* SecondViewController.swift in Sources */,
 				21BAD60720177F7A0065D700 /* AppDelegate.swift in Sources */,
-				21BAD60920177F7A0065D700 /* FirstViewController.swift in Sources */,
+				2173EC2C2017E16B004BDECE /* TickerTableViewCell.swift in Sources */,
+				2173EC282017D4CD004BDECE /* Ticker.swift in Sources */,
+				21BAD60920177F7A0065D700 /* CoinsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

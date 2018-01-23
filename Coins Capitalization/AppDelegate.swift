@@ -3,7 +3,7 @@
 //  Coins Capitalization
 //
 //  Created by Artem Kirillov on 23.01.18.
-//  Copyright © 2018 ASK. All rights reserved.
+//  Copyright © 2018 ASK LLC. All rights reserved.
 //
 
 import UIKit
