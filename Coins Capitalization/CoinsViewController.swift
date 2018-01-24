@@ -26,8 +26,6 @@ class CoinsViewController: UIViewController {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
         tableView.refreshControl = refreshControl
-        
-        requestData()
     }
     
     override func viewWillAppear(_ animated: Bool) {

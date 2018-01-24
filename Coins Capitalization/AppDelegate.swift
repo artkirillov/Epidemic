@@ -30,7 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        if let tabBarController = window?.rootViewController as? UITabBarController {
+            if let coinsViewController = tabBarController.viewControllers?.first as? CoinsViewController {
+                coinsViewController.updateData()
+            }
+        }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
