@@ -23,7 +23,21 @@ class CoinsViewController: UIViewController {
         
         tableView.tableFooterView = UIView()
         
-        sendRequest()
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+        
+        requestData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        requestData()
+    }
+    
+    @objc func updateData() {
+        requestData()
     }
 
     // MARK: -
@@ -44,7 +58,7 @@ class CoinsViewController: UIViewController {
 
 fileprivate extension CoinsViewController {
     
-    func sendRequest() {
+    func requestData() {
         guard let url = URL(string: "https://api.coinmarketcap.com/v1/ticker/") else { return }
         
         let task = URLSession.shared.dataTask(with: url) { [weak self] data, request, error in
@@ -66,6 +80,7 @@ fileprivate extension CoinsViewController {
                 let tickers = try jsonDecoder.decode([Ticker].self, from: data)
                 DispatchQueue.main.async {
                     self?.items = tickers
+                    self?.tableView.refreshControl?.endRefreshing()
                 }
             } catch {
                 print("Decoding failed")
