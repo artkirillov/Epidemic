@@ -22,6 +22,7 @@ class CoinsViewController: UIViewController {
         super.viewDidLoad()
         
         tableView.tableFooterView = UIView()
+        tableViewHeader = tableView.tableHeaderView as? GlobalDataTableHeaderView
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
@@ -37,12 +38,19 @@ class CoinsViewController: UIViewController {
     @objc func updateData() {
         requestData()
     }
-
-    // MARK: -
+    
+    func reset() {
+        if !tableView.visibleCells.isEmpty {
+            tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+        }
+        
+        requestData()
+    }
     
     // MARK: - Private Properties
     
     @IBOutlet private var tableView: UITableView!
+    private var tableViewHeader: GlobalDataTableHeaderView!
     
     private var items: [Ticker] = [] {
         didSet {
@@ -57,38 +65,23 @@ class CoinsViewController: UIViewController {
 fileprivate extension CoinsViewController {
     
     func requestData() {
-        guard let url = URL(string: "https://api.coinmarketcap.com/v1/ticker/") else { return }
+        API.requestCoinsData(
+            success: { [weak self] tickers in
+                self?.items = tickers
+                self?.tableView.refreshControl?.endRefreshing()
+            },
+            failure: { error in
+        })
         
-        let task = URLSession.shared.dataTask(with: url) { [weak self] data, request, error in
-            guard error == nil else {
-                // handle error
-                print("ERROR: \(error!.localizedDescription)")
-                return
-            }
-            
-            guard let data = data else {
-                // handle error
-                print("NO DATA")
-                return
-            }
-            
-            let jsonDecoder = JSONDecoder()
-            
-            do {
-                let tickers = try jsonDecoder.decode([Ticker].self, from: data)
-                DispatchQueue.main.async {
-                    self?.items = tickers
-                    self?.tableView.refreshControl?.endRefreshing()
-                }
-            } catch {
-                print("Decoding failed")
-                print("ERROR: \(error)")
-            }
-        }
-        
-        task.resume()
-        
+        API.requestGlobalData(
+            success: { [weak self] globalData in
+                self?.tableViewHeader.configure(capitalization: globalData.totalMarketCapUSD)
+                self?.tableView.refreshControl?.endRefreshing()
+            },
+            failure: { error in
+        })
     }
+    
 }
 
 // MARK: - UITableViewDataSource
@@ -106,4 +99,3 @@ extension CoinsViewController: UITableViewDataSource {
     }
     
 }
-

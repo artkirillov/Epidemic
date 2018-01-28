@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(_ application: UIApplication) {
         if let tabBarController = window?.rootViewController as? UITabBarController {
             if let coinsViewController = tabBarController.viewControllers?.first as? CoinsViewController {
-                coinsViewController.updateData()
+                coinsViewController.reset()
             }
         }
     }

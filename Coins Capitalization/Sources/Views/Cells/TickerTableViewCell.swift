@@ -23,6 +23,10 @@ class TickerTableViewCell: UITableViewCell {
         percentChange1hLabel.text = "---"
         percentChange24hLabel.text = "---"
         percentChange7dLabel.text = "---"
+        
+        percentChange1hLabel.textColor = .lightGray
+        percentChange24hLabel.textColor = .lightGray
+        percentChange7dLabel.textColor = .lightGray
     }
     
     func configure(ticker: Ticker) {
@@ -35,7 +39,7 @@ class TickerTableViewCell: UITableViewCell {
         
         setNumber(label: marketCapUSDLabel, value: ticker.marketCapUSD, prefix: "$")
         setNumber(label: availableSupplyLabel, value: ticker.availableSupply, suffix: " \(ticker.symbol)")
-        setNumber(label: totalSupplyLabel, value: ticker.totalSupply, suffix: " \(ticker.symbol)")
+        //setNumber(label: totalSupplyLabel, value: ticker.totalSupply, suffix: " \(ticker.symbol)")
         
         setPercent(label: percentChange1hLabel, value: ticker.percentChange1h)
         setPercent(label: percentChange24hLabel, value: ticker.percentChange24h)

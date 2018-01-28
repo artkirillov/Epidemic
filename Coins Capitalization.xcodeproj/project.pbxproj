@@ -9,19 +9,22 @@
 /* Begin PBXBuildFile section */
 		2173EC282017D4CD004BDECE /* Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2173EC272017D4CD004BDECE /* Ticker.swift */; };
 		2173EC2C2017E16B004BDECE /* TickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2173EC2B2017E16B004BDECE /* TickerTableViewCell.swift */; };
+		219FA193201E444C00094B67 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219FA192201E444C00094B67 /* API.swift */; };
+		219FA195201E49F500094B67 /* GlobalDataTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219FA194201E49F500094B67 /* GlobalDataTableHeaderView.swift */; };
+		219FA197201E4C9600094B67 /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219FA196201E4C9600094B67 /* GlobalData.swift */; };
 		21BAD60720177F7A0065D700 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BAD60620177F7A0065D700 /* AppDelegate.swift */; };
 		21BAD60920177F7A0065D700 /* CoinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BAD60820177F7A0065D700 /* CoinsViewController.swift */; };
 		21BAD60E20177F7A0065D700 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21BAD60C20177F7A0065D700 /* Main.storyboard */; };
 		21BAD61020177F7A0065D700 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21BAD60F20177F7A0065D700 /* Assets.xcassets */; };
 		21BAD61320177F7A0065D700 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21BAD61120177F7A0065D700 /* LaunchScreen.storyboard */; };
-		21BAD61F201780A10065D700 /* global.json in Resources */ = {isa = PBXBuildFile; fileRef = 21BAD61E201780A10065D700 /* global.json */; };
-		21BAD621201781450065D700 /* ticker.json in Resources */ = {isa = PBXBuildFile; fileRef = 21BAD620201781450065D700 /* ticker.json */; };
-		21BAD623201781D60065D700 /* specificTicker.json in Resources */ = {isa = PBXBuildFile; fileRef = 21BAD622201781D60065D700 /* specificTicker.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2173EC272017D4CD004BDECE /* Ticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticker.swift; sourceTree = "<group>"; };
 		2173EC2B2017E16B004BDECE /* TickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerTableViewCell.swift; sourceTree = "<group>"; };
+		219FA192201E444C00094B67 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		219FA194201E49F500094B67 /* GlobalDataTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalDataTableHeaderView.swift; sourceTree = "<group>"; };
+		219FA196201E4C9600094B67 /* GlobalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalData.swift; sourceTree = "<group>"; };
 		21BAD60320177F7A0065D700 /* Coins Capitalization.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Coins Capitalization.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21BAD60620177F7A0065D700 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21BAD60820177F7A0065D700 /* CoinsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsViewController.swift; sourceTree = "<group>"; };
@@ -29,9 +32,6 @@
 		21BAD60F20177F7A0065D700 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		21BAD61220177F7A0065D700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		21BAD61420177F7A0065D700 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		21BAD61E201780A10065D700 /* global.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = global.json; sourceTree = "<group>"; };
-		21BAD620201781450065D700 /* ticker.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ticker.json; sourceTree = "<group>"; };
-		21BAD622201781D60065D700 /* specificTicker.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = specificTicker.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +49,7 @@
 			isa = PBXGroup;
 			children = (
 				2173EC272017D4CD004BDECE /* Ticker.swift */,
+				219FA196201E4C9600094B67 /* GlobalData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -56,6 +57,7 @@
 		2173EC292017E144004BDECE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				219FA194201E49F500094B67 /* GlobalDataTableHeaderView.swift */,
 				2173EC2A2017E14D004BDECE /* Cells */,
 			);
 			path = Views;
@@ -67,6 +69,22 @@
 				2173EC2B2017E16B004BDECE /* TickerTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		219FA198201E594600094B67 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				219FA192201E444C00094B67 /* API.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		219FA199201E597200094B67 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				21BAD60820177F7A0065D700 /* CoinsViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		21BAD5FA20177F7A0065D700 = {
@@ -90,12 +108,6 @@
 			children = (
 				21BAD61B201780430065D700 /* Resources */,
 				21BAD61A201780340065D700 /* Sources */,
-				21BAD60620177F7A0065D700 /* AppDelegate.swift */,
-				21BAD60820177F7A0065D700 /* CoinsViewController.swift */,
-				21BAD60C20177F7A0065D700 /* Main.storyboard */,
-				21BAD60F20177F7A0065D700 /* Assets.xcassets */,
-				21BAD61120177F7A0065D700 /* LaunchScreen.storyboard */,
-				21BAD61420177F7A0065D700 /* Info.plist */,
 			);
 			path = "Coins Capitalization";
 			sourceTree = "<group>";
@@ -103,8 +115,12 @@
 		21BAD61A201780340065D700 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				2173EC292017E144004BDECE /* Views */,
+				21BAD60620177F7A0065D700 /* AppDelegate.swift */,
+				21BAD61420177F7A0065D700 /* Info.plist */,
+				219FA198201E594600094B67 /* Services */,
 				2173EC262017D32B004BDECE /* Models */,
+				2173EC292017E144004BDECE /* Views */,
+				219FA199201E597200094B67 /* Controllers */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -112,19 +128,11 @@
 		21BAD61B201780430065D700 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				21BAD61D2017806E0065D700 /* Mocks */,
+				21BAD60F20177F7A0065D700 /* Assets.xcassets */,
+				21BAD60C20177F7A0065D700 /* Main.storyboard */,
+				21BAD61120177F7A0065D700 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		21BAD61D2017806E0065D700 /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
-				21BAD61E201780A10065D700 /* global.json */,
-				21BAD620201781450065D700 /* ticker.json */,
-				21BAD622201781D60065D700 /* specificTicker.json */,
-			);
-			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,12 +194,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21BAD61F201780A10065D700 /* global.json in Resources */,
-				21BAD621201781450065D700 /* ticker.json in Resources */,
 				21BAD61320177F7A0065D700 /* LaunchScreen.storyboard in Resources */,
 				21BAD61020177F7A0065D700 /* Assets.xcassets in Resources */,
 				21BAD60E20177F7A0065D700 /* Main.storyboard in Resources */,
-				21BAD623201781D60065D700 /* specificTicker.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,8 +209,11 @@
 			files = (
 				21BAD60720177F7A0065D700 /* AppDelegate.swift in Sources */,
 				2173EC2C2017E16B004BDECE /* TickerTableViewCell.swift in Sources */,
+				219FA193201E444C00094B67 /* API.swift in Sources */,
 				2173EC282017D4CD004BDECE /* Ticker.swift in Sources */,
+				219FA197201E4C9600094B67 /* GlobalData.swift in Sources */,
 				21BAD60920177F7A0065D700 /* CoinsViewController.swift in Sources */,
+				219FA195201E49F500094B67 /* GlobalDataTableHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,7 +352,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VQ53R95MLS;
-				INFOPLIST_FILE = "Coins Capitalization/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Coins Capitalization/Sources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.appsaucekitchen.Coins-Capitalization";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -359,7 +367,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VQ53R95MLS;
-				INFOPLIST_FILE = "Coins Capitalization/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Coins Capitalization/Sources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.appsaucekitchen.Coins-Capitalization";
 				PRODUCT_NAME = "$(TARGET_NAME)";
