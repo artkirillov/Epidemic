@@ -40,10 +40,7 @@ class CoinsViewController: UIViewController {
     }
     
     func reset() {
-        if !tableView.visibleCells.isEmpty {
-            tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
-        }
-        
+        tableView.setContentOffset(.zero, animated: false)
         requestData()
     }
     
