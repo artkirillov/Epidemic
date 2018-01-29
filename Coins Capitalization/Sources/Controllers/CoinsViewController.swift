@@ -70,7 +70,7 @@ fileprivate extension CoinsViewController {
                 self?.items = tickers
                 self?.tableView.refreshControl?.endRefreshing()
             },
-            failure: { error in
+            failure: { error in print("ERROR: \(error.localizedDescription)")
         })
         
         API.requestGlobalData(
@@ -78,7 +78,7 @@ fileprivate extension CoinsViewController {
                 self?.tableViewHeader.configure(capitalization: globalData.totalMarketCapUSD)
                 self?.tableView.refreshControl?.endRefreshing()
             },
-            failure: { error in
+            failure: { error in print("ERROR: \(error.localizedDescription)")
         })
     }
     

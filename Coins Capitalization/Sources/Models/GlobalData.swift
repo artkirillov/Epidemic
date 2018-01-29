@@ -10,7 +10,7 @@ struct GlobalData: Codable {
     
     var totalMarketCapUSD: Int
     var total24hVolumeUSD: Int
-    var bitcoinPercantageOfMarketCap: Double
+    var bitcoinPercentageOfMarketCap: Double
     var activeCurrencies: Int
     var activeAssets: Int
     var activeMarkets: Int
@@ -20,7 +20,7 @@ struct GlobalData: Codable {
         
         case totalMarketCapUSD            = "total_market_cap_usd"
         case total24hVolumeUSD            = "total_24h_volume_usd"
-        case bitcoinPercantageOfMarketCap = "bitcoin_percantage_of_market_cap"
+        case bitcoinPercentageOfMarketCap = "bitcoin_percentage_of_market_cap"
         case activeCurrencies             = "active_currencies"
         case activeAssets                 = "active_assets"
         case activeMarkets                = "active_markets"
