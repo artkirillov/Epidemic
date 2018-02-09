@@ -18,9 +18,9 @@ struct Ticker: Codable {
     var marketCapUSD: String
     var availableSupply: String
     var totalSupply: String
-    var percentChange1h: String
-    var percentChange24h: String
-    var percentChange7d: String
+    var percentChange1h: String?
+    var percentChange24h: String?
+    var percentChange7d: String?
     var lastUpdated: String
     
     private enum CodingKeys: String, CodingKey {

@@ -72,7 +72,7 @@ fileprivate extension CoinsViewController {
         
         API.requestGlobalData(
             success: { [weak self] globalData in
-                self?.tableViewHeader.configure(capitalization: globalData.totalMarketCapUSD)
+                self?.tableViewHeader.configure(capitalization: globalData.totalMarketCapUSD, dominance: globalData.bitcoinPercentageOfMarketCap)
                 self?.tableView.refreshControl?.endRefreshing()
             },
             failure: { error in print("ERROR: \(error.localizedDescription)")

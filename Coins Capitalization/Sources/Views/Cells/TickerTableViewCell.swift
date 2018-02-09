@@ -10,6 +10,10 @@ import UIKit
 
 class TickerTableViewCell: UITableViewCell {
     
+    struct Default {
+        static let percentChange = "no info"
+    }
+    
     // MARK: - Public Methods
     
     override func prepareForReuse() {
@@ -20,9 +24,9 @@ class TickerTableViewCell: UITableViewCell {
         marketCapUSDLabel.text = ""
         availableSupplyLabel.text = ""
         totalSupplyLabel.text = ""
-        percentChange1hLabel.text = "---"
-        percentChange24hLabel.text = "---"
-        percentChange7dLabel.text = "---"
+        percentChange1hLabel.text = Default.percentChange
+        percentChange24hLabel.text = Default.percentChange
+        percentChange7dLabel.text = Default.percentChange
         
         percentChange1hLabel.textColor = .lightGray
         percentChange24hLabel.textColor = .lightGray
@@ -41,9 +45,9 @@ class TickerTableViewCell: UITableViewCell {
         setNumber(label: availableSupplyLabel, value: ticker.availableSupply, suffix: " \(ticker.symbol)")
         //setNumber(label: totalSupplyLabel, value: ticker.totalSupply, suffix: " \(ticker.symbol)")
         
-        setPercent(label: percentChange1hLabel, value: ticker.percentChange1h)
-        setPercent(label: percentChange24hLabel, value: ticker.percentChange24h)
-        setPercent(label: percentChange7dLabel, value: ticker.percentChange7d)
+        setPercent(label: percentChange1hLabel, value: ticker.percentChange1h  ?? Default.percentChange)
+        setPercent(label: percentChange24hLabel, value: ticker.percentChange24h  ?? Default.percentChange)
+        setPercent(label: percentChange7dLabel, value: ticker.percentChange7d ?? Default.percentChange)
     }
     
     // MARK: - Private Properties
