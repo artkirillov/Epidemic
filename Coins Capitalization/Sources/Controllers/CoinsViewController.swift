@@ -24,6 +24,8 @@ class CoinsViewController: UIViewController {
         tableView.tableFooterView = UIView()
         tableViewHeader = tableView.tableHeaderView as? GlobalDataTableHeaderView
         
+        tableView.contentInset = UIEdgeInsets(top: 300, left: 0, bottom: 300, right: 0)
+        
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
         tableView.refreshControl = refreshControl
@@ -43,6 +45,12 @@ class CoinsViewController: UIViewController {
         tableView.setContentOffset(.zero, animated: false)
         requestData()
     }
+    
+    @IBAction func buttonTapped(_ sender: UIButton) {
+        
+        tableView.scrollToRow(at: IndexPath(item: 25, section: 0), at: .middle, animated: true)
+    }
+    
     
     // MARK: - Private Properties
     
