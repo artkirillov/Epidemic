@@ -22,22 +22,46 @@ class PortfolioViewController: UIViewController {
         super.viewDidLoad()
         
         tableView.tableFooterView = UIView()
+        updateInfo()
     }
     
     func reset() {
         tableView.setContentOffset(.zero, animated: false)
     }
     
+    @IBAction func addButtonTapped(_ sender: UIButton) {
+        print("--- Open screen to add new asset")
+    }
+    
+    
     // MARK: - Private Properties
     
     @IBOutlet private var tableView: UITableView!
     
-    private var items: [Ticker] = [] {
+    private var items: [Asset] = [] {
         didSet {
-            tableView.reloadData()
+            updateInfo()
         }
     }
     
+}
+
+fileprivate extension PortfolioViewController {
+    
+    // MARK: - Private Methods
+    
+    func updateInfo() {
+        if items.isEmpty {
+            let noItemsLabel = UILabel()
+            noItemsLabel.text = "You hasn't add any assets into portfolio"
+            noItemsLabel.textColor = .lightGray
+            noItemsLabel.textAlignment = .center
+            tableView.backgroundView = noItemsLabel
+        } else {
+            tableView.backgroundView = nil
+        }
+        tableView.reloadData()
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -45,12 +69,12 @@ class PortfolioViewController: UIViewController {
 extension PortfolioViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10 //items.count
+        return items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TickerCell", for: indexPath) as! TickerTableViewCell
-        //cell.configure(ticker: items[indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AssetCell", for: indexPath) as! AssetTableViewCell
+        //cell.configure(asset: items[indexPath.row])
         return cell
     }
     
