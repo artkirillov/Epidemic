@@ -46,7 +46,7 @@ class PortfolioViewController: UIViewController {
     
 }
 
-fileprivate extension PortfolioViewController {
+private extension PortfolioViewController {
     
     // MARK: - Private Methods
     

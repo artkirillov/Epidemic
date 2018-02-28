@@ -16,10 +16,17 @@ final class API {
         case ticker
         case globalData
         
-        var url: URL? {
+        var urlComponents: URLComponents? {
             switch self {
-            case .ticker: return URL(string: "https://api.coinmarketcap.com/v1/ticker/")
-            case .globalData: return URL(string: "https://api.coinmarketcap.com/v1/global/")
+            case .ticker: return URLComponents(string: "https://api.coinmarketcap.com/v1/ticker/")
+            case .globalData: return URLComponents(string: "https://api.coinmarketcap.com/v1/global/")
+            }
+        }
+        
+        var parameters: [String: String]? {
+            switch self {
+            case .ticker:     return ["limit": "0"]
+            case .globalData: return nil
             }
         }
     }
@@ -27,7 +34,7 @@ final class API {
     // MARK: - Public Methods
     
     static func requestCoinsData(success: @escaping ([Ticker]) -> Void, failure: @escaping (Error) -> Void) {
-        request(endpoint: .ticker, success: success, failure: failure)
+        request(endpoint: .ticker, parameters: EndPoint.ticker.parameters, success: success, failure: failure)
     }
     
     static func requestGlobalData(success: @escaping (GlobalData) -> Void, failure: @escaping (Error) -> Void) {
@@ -38,13 +45,20 @@ final class API {
     
     private static func request<T: Decodable>(
         endpoint: EndPoint,
+        parameters: [String: String]? = nil,
         success: @escaping (T) -> Void,
         failure: @escaping (Error) -> Void
         )
     {
-        guard let url = endpoint.url else { return }
+        guard var urlComponents = endpoint.urlComponents else { return }
         
-        let task = URLSession.shared.dataTask(with: url) { data, request, error in
+        if let parameters = parameters {
+            urlComponents.queryItems = parameters.map { URLQueryItem(name: $0.key, value: $0.value) }
+        }
+        
+        guard let url = urlComponents.url else { return }
+        
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
             guard error == nil else {
                 print("ERROR: \(error!.localizedDescription)")
                 failure(error!)

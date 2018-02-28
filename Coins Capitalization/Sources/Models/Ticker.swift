@@ -12,16 +12,16 @@ struct Ticker: Codable {
     var name: String
     var symbol: String
     var rank: String
-    var priceUSD: String
-    var priceBTC: String
-    var dayVolumeUSD: String
-    var marketCapUSD: String
-    var availableSupply: String
-    var totalSupply: String
+    var priceUSD: String?
+    var priceBTC: String?
+    var dayVolumeUSD: String?
+    var marketCapUSD: String?
+    var availableSupply: String?
+    var totalSupply: String?
     var percentChange1h: String?
     var percentChange24h: String?
     var percentChange7d: String?
-    var lastUpdated: String
+    var lastUpdated: String?
     
     private enum CodingKeys: String, CodingKey {
         case id

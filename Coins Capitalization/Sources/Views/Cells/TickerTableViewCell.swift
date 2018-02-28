@@ -11,7 +11,8 @@ import UIKit
 class TickerTableViewCell: UITableViewCell {
     
     struct Default {
-        static let percentChange = "no info"
+        static let noInfo = "no info"
+        static let dash   = "--.--"
     }
     
     // MARK: - Public Methods
@@ -24,9 +25,9 @@ class TickerTableViewCell: UITableViewCell {
         marketCapUSDLabel.text = ""
         availableSupplyLabel.text = ""
         totalSupplyLabel.text = ""
-        percentChange1hLabel.text = Default.percentChange
-        percentChange24hLabel.text = Default.percentChange
-        percentChange7dLabel.text = Default.percentChange
+        percentChange1hLabel.text = Default.noInfo
+        percentChange24hLabel.text = Default.noInfo
+        percentChange7dLabel.text = Default.noInfo
         
         percentChange1hLabel.textColor = .lightGray
         percentChange24hLabel.textColor = .lightGray
@@ -38,16 +39,16 @@ class TickerTableViewCell: UITableViewCell {
         nameLabel.text = ticker.name
         symbolLabel.text = ticker.symbol
         
-        setNumber(label: priceBTCLabel, value: ticker.priceBTC, suffix: " BTC", maximumFractionDigits: 7)
-        setNumber(label: priceUSDLabel, value: ticker.priceUSD, prefix: "$")
+        setNumber(label: priceBTCLabel, value: ticker.priceBTC ?? Default.dash, suffix: " BTC", maximumFractionDigits: 7)
+        setNumber(label: priceUSDLabel, value: ticker.priceUSD ?? Default.dash, prefix: "$")
         
-        setNumber(label: marketCapUSDLabel, value: ticker.marketCapUSD, prefix: "$")
-        setNumber(label: availableSupplyLabel, value: ticker.availableSupply, suffix: " \(ticker.symbol)")
+        setNumber(label: marketCapUSDLabel, value: ticker.marketCapUSD ?? Default.noInfo, prefix: "$")
+        setNumber(label: availableSupplyLabel, value: ticker.availableSupply ?? Default.noInfo, suffix: " \(ticker.symbol)")
         //setNumber(label: totalSupplyLabel, value: ticker.totalSupply, suffix: " \(ticker.symbol)")
         
-        setPercent(label: percentChange1hLabel, value: ticker.percentChange1h  ?? Default.percentChange)
-        setPercent(label: percentChange24hLabel, value: ticker.percentChange24h  ?? Default.percentChange)
-        setPercent(label: percentChange7dLabel, value: ticker.percentChange7d ?? Default.percentChange)
+        setPercent(label: percentChange1hLabel, value: ticker.percentChange1h ?? Default.noInfo)
+        setPercent(label: percentChange24hLabel, value: ticker.percentChange24h ?? Default.noInfo)
+        setPercent(label: percentChange7dLabel, value: ticker.percentChange7d ?? Default.noInfo)
     }
     
     // MARK: - Private Properties

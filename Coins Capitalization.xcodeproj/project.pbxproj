@@ -10,6 +10,8 @@
 		2101993E2030BE7000EA8D37 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2101993D2030BE7000EA8D37 /* Asset.swift */; };
 		210199402030C09900EA8D37 /* PortfolioSummaryTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2101993F2030C09900EA8D37 /* PortfolioSummaryTableHeaderView.swift */; };
 		210199422030CA2700EA8D37 /* AssetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210199412030CA2700EA8D37 /* AssetTableViewCell.swift */; };
+		210FB85B203A18F000AD4557 /* NewAssetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210FB85A203A18F000AD4557 /* NewAssetViewController.swift */; };
+		212F6D182042C83A0091B723 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 212F6D172042C83A0091B723 /* Assets.xcassets */; };
 		2173EC282017D4CD004BDECE /* Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2173EC272017D4CD004BDECE /* Ticker.swift */; };
 		2173EC2C2017E16B004BDECE /* TickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2173EC2B2017E16B004BDECE /* TickerTableViewCell.swift */; };
 		219FA193201E444C00094B67 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219FA192201E444C00094B67 /* API.swift */; };
@@ -19,7 +21,6 @@
 		21BAD60720177F7A0065D700 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BAD60620177F7A0065D700 /* AppDelegate.swift */; };
 		21BAD60920177F7A0065D700 /* CoinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BAD60820177F7A0065D700 /* CoinsViewController.swift */; };
 		21BAD60E20177F7A0065D700 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21BAD60C20177F7A0065D700 /* Main.storyboard */; };
-		21BAD61020177F7A0065D700 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21BAD60F20177F7A0065D700 /* Assets.xcassets */; };
 		21BAD61320177F7A0065D700 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21BAD61120177F7A0065D700 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,8 @@
 		2101993D2030BE7000EA8D37 /* Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
 		2101993F2030C09900EA8D37 /* PortfolioSummaryTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioSummaryTableHeaderView.swift; sourceTree = "<group>"; };
 		210199412030CA2700EA8D37 /* AssetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetTableViewCell.swift; sourceTree = "<group>"; };
+		210FB85A203A18F000AD4557 /* NewAssetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAssetViewController.swift; sourceTree = "<group>"; };
+		212F6D172042C83A0091B723 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2173EC272017D4CD004BDECE /* Ticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticker.swift; sourceTree = "<group>"; };
 		2173EC2B2017E16B004BDECE /* TickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerTableViewCell.swift; sourceTree = "<group>"; };
 		219FA192201E444C00094B67 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -37,7 +40,6 @@
 		21BAD60620177F7A0065D700 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21BAD60820177F7A0065D700 /* CoinsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsViewController.swift; sourceTree = "<group>"; };
 		21BAD60D20177F7A0065D700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		21BAD60F20177F7A0065D700 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		21BAD61220177F7A0065D700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		21BAD61420177F7A0065D700 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,8 +95,9 @@
 		219FA199201E597200094B67 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				21BAD60820177F7A0065D700 /* CoinsViewController.swift */,
 				219FBFCC202E340800A8771A /* PortfolioViewController.swift */,
+				21BAD60820177F7A0065D700 /* CoinsViewController.swift */,
+				210FB85A203A18F000AD4557 /* NewAssetViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -140,7 +143,7 @@
 		21BAD61B201780430065D700 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				21BAD60F20177F7A0065D700 /* Assets.xcassets */,
+				212F6D172042C83A0091B723 /* Assets.xcassets */,
 				21BAD60C20177F7A0065D700 /* Main.storyboard */,
 				21BAD61120177F7A0065D700 /* LaunchScreen.storyboard */,
 			);
@@ -207,7 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21BAD61320177F7A0065D700 /* LaunchScreen.storyboard in Resources */,
-				21BAD61020177F7A0065D700 /* Assets.xcassets in Resources */,
+				212F6D182042C83A0091B723 /* Assets.xcassets in Resources */,
 				21BAD60E20177F7A0065D700 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -227,6 +230,7 @@
 				2173EC282017D4CD004BDECE /* Ticker.swift in Sources */,
 				219FA197201E4C9600094B67 /* GlobalData.swift in Sources */,
 				219FBFCD202E340800A8771A /* PortfolioViewController.swift in Sources */,
+				210FB85B203A18F000AD4557 /* NewAssetViewController.swift in Sources */,
 				210199422030CA2700EA8D37 /* AssetTableViewCell.swift in Sources */,
 				21BAD60920177F7A0065D700 /* CoinsViewController.swift in Sources */,
 				219FA195201E49F500094B67 /* GlobalDataTableHeaderView.swift in Sources */,
