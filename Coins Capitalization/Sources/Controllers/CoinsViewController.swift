@@ -104,6 +104,11 @@ fileprivate extension CoinsViewController {
                 }
                 self?.tableView.refreshControl?.endRefreshing()
                 self?.activityIndicator?.stopAnimating()
+
+                DispatchQueue.global().async {
+                    let coins = tickers.map { Coin(id: $0.id, name: $0.name, symbol: $0.symbol) }
+                    Storage.save(coins: coins)
+                }
             },
             failure: { error in print("ERROR: \(error)")
         })

@@ -235,10 +235,10 @@
                                 <rect key="frame" x="0.0" y="59.5" width="375" height="50"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Filter" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="p0L-Xz-jRB">
-                                        <rect key="frame" x="20" y="12.5" width="335" height="25"/>
+                                        <rect key="frame" x="20" y="11" width="335" height="28"/>
                                         <color key="backgroundColor" red="0.086535856130000005" green="0.097661972050000004" blue="0.12561407690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="dJK-HT-Qc4"/>
+                                            <constraint firstAttribute="height" constant="28" id="dJK-HT-Qc4"/>
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
