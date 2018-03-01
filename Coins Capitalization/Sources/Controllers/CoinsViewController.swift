@@ -41,6 +41,11 @@ class CoinsViewController: UIViewController {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
         tableView.refreshControl = refreshControl
+        
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        if let activityIndicatorView = activityIndicator { view.addSubview(activityIndicatorView) }
+        activityIndicator?.center = view.center
+        activityIndicator?.startAnimating()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,12 +72,12 @@ class CoinsViewController: UIViewController {
     
     // MARK: - Private Properties
     
-    @IBOutlet weak var marketCapitalizationLabel: UILabel!
-    @IBOutlet weak var bitcoinDominanceLabel: UILabel!
-    
-    @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet private weak var marketCapitalizationLabel: UILabel!
+    @IBOutlet private weak var bitcoinDominanceLabel: UILabel!
+    @IBOutlet private weak var searchTextField: UITextField!
     @IBOutlet private var tableView: UITableView!
     private var searchTextFieldClearButton: UIButton?
+    private var activityIndicator: UIActivityIndicatorView?
     
     
     private var items: [Ticker] = []
@@ -98,6 +103,7 @@ fileprivate extension CoinsViewController {
                     self?.filteredItems = tickers
                 }
                 self?.tableView.refreshControl?.endRefreshing()
+                self?.activityIndicator?.stopAnimating()
             },
             failure: { error in print("ERROR: \(error)")
         })
