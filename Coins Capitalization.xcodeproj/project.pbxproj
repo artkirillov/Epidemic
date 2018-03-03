@@ -11,6 +11,7 @@
 		210199422030CA2700EA8D37 /* AssetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210199412030CA2700EA8D37 /* AssetTableViewCell.swift */; };
 		210FB85B203A18F000AD4557 /* NewDealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210FB85A203A18F000AD4557 /* NewDealViewController.swift */; };
 		2119D0C9204B2325000FE804 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2119D0C8204B2325000FE804 /* Colors.swift */; };
+		2119D0CB204B36A8000FE804 /* ConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2119D0CA204B36A8000FE804 /* ConverterViewController.swift */; };
 		212F6D182042C83A0091B723 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 212F6D172042C83A0091B723 /* Assets.xcassets */; };
 		215A1FFD2048009F005ABDB8 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1FFC2048009F005ABDB8 /* Coin.swift */; };
 		215A1FFF204804DA005ABDB8 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1FFE204804DA005ABDB8 /* Storage.swift */; };
@@ -34,6 +35,7 @@
 		210199412030CA2700EA8D37 /* AssetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetTableViewCell.swift; sourceTree = "<group>"; };
 		210FB85A203A18F000AD4557 /* NewDealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDealViewController.swift; sourceTree = "<group>"; };
 		2119D0C8204B2325000FE804 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		2119D0CA204B36A8000FE804 /* ConverterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterViewController.swift; sourceTree = "<group>"; };
 		212F6D172042C83A0091B723 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		215A1FFC2048009F005ABDB8 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		215A1FFE204804DA005ABDB8 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				219FBFCC202E340800A8771A /* PortfolioViewController.swift */,
 				210FB85A203A18F000AD4557 /* NewDealViewController.swift */,
 				21E78BC7204AC6B0000B7398 /* CoinsCatalogViewController.swift */,
+				2119D0CA204B36A8000FE804 /* ConverterViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				21E78BC6204AC5CB000B7398 /* CoinItemTableViewCell.swift in Sources */,
 				21BAD60920177F7A0065D700 /* CoinsViewController.swift in Sources */,
 				219FA195201E49F500094B67 /* GlobalDataTableHeaderView.swift in Sources */,
+				2119D0CB204B36A8000FE804 /* ConverterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

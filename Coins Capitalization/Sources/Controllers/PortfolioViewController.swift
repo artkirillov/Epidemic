@@ -99,6 +99,7 @@ private extension PortfolioViewController {
         if items.isEmpty {
             let noItemsLabel = UILabel()
             noItemsLabel.text = "You haven't add any assets to the portfolio"
+            noItemsLabel.numberOfLines = 0
             noItemsLabel.textColor = .lightGray
             noItemsLabel.textAlignment = .center
             tableView.backgroundView = noItemsLabel
@@ -115,7 +116,9 @@ private extension PortfolioViewController {
             currentValue += volume * price
             value += item.volume.reduce(0.0) { $0 + $1.amount * $1.price }
         }
-        tableHeaderView?.configure(total: currentValue, profit: currentValue / value)
+        if value != 0 {
+            tableHeaderView?.configure(total: currentValue, profit: currentValue / value)
+        }
         tableView.refreshControl?.endRefreshing()
     }
 }
