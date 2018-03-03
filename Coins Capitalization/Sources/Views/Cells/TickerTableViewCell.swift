@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TickerTableViewCell: UITableViewCell {
+final class TickerTableViewCell: UITableViewCell {
     
     struct Default {
         static let noInfo = "no info"

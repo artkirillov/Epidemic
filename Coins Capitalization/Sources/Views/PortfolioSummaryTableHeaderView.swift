@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PortfolioSummaryTableHeaderView: UIView {
+final class PortfolioSummaryTableHeaderView: UIView {
     
     // MARK: - Public Methods
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AssetTableViewCell: UITableViewCell {
+final class AssetTableViewCell: UITableViewCell {
     
     // MARK: - Public Methods
     

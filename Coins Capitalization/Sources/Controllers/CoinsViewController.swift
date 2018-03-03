@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CoinsViewController: UIViewController {
+final class CoinsViewController: UIViewController {
     
     // MARK: - Public Properties
     
@@ -169,7 +169,7 @@ extension CoinsViewController: UITextFieldDelegate {
             return true
         }
         
-        updateItems(withSearchText: textFieldText + string)
+        updateItems(withSearchText: string.isEmpty ? String(textFieldText.dropLast()) : textFieldText + string)
         searchTextFieldClearButton?.isHidden = (textFieldText + string).isEmpty
         return true
     }

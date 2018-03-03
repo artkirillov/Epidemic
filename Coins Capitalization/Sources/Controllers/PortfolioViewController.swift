@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PortfolioViewController: UIViewController {
+final class PortfolioViewController: UIViewController {
     
     // MARK: - Public Properties
     
@@ -30,7 +30,11 @@ class PortfolioViewController: UIViewController {
     }
     
     @IBAction func addButtonTapped(_ sender: UIButton) {
-        print("--- Open screen to add new asset")
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        if let controller = storyboard.instantiateViewController(withIdentifier: "NewDealViewController") as? NewDealViewController {
+            controller.delegate = self
+            present(controller, animated: true, completion: nil)
+        }
     }
     
     
@@ -64,6 +68,14 @@ private extension PortfolioViewController {
     }
 }
 
+// MARK: - NewDealViewControllerDelegate
+
+extension PortfolioViewController: NewDealViewControllerDelegate {
+    func newDealViewController(controller: NewDealViewController, didAdd asset: Asset) {
+        items.append(asset)
+    }
+}
+
 // MARK: - UITableViewDataSource
 
 extension PortfolioViewController: UITableViewDataSource {
@@ -74,7 +86,7 @@ extension PortfolioViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AssetCell", for: indexPath) as! AssetTableViewCell
-        //cell.configure(asset: items[indexPath.row])
+        cell.configure(asset: items[indexPath.row])
         return cell
     }
     

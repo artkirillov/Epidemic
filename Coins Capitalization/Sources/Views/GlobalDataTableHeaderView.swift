@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GlobalDataTableHeaderView: UIView {
+final class GlobalDataTableHeaderView: UIView {
 
     // MARK: - Public Methods
     
