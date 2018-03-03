@@ -14,13 +14,6 @@ protocol NewDealViewControllerDelegate: class {
 
 final class NewDealViewController: UIViewController {
     
-    // MARK: - Public Nested
-    
-    struct Colors {
-        static let controlEnabled = UIColor(red: 52/255, green: 120/255, blue: 246/255, alpha: 1.0)
-        static let controlDisabled = UIColor(red: 34/255, green: 75/255, blue: 143/255, alpha: 1.0)
-    }
-    
     // MARK: - Public Properties
     
     weak var delegate: NewDealViewControllerDelegate?
@@ -82,8 +75,8 @@ final class NewDealViewController: UIViewController {
         
         guard let amountText = amountTextField.text, let costText = costTextField.text,
             let amount = Double(amountText.replacingOccurrences(of: ",", with: ".")),
-            let price = Double(costText.replacingOccurrences(of: ",", with: ".")) else { return }
-        asset.volume.append((amount: amount, price: price))
+            let cost = Double(costText.replacingOccurrences(of: ",", with: ".")) else { return }
+        asset.volume.append(Volume(amount: amount, price: cost / amount))
         
         delegate?.newDealViewController(controller: self, didAdd: asset)
         dismiss(animated: true, completion: nil)
@@ -93,6 +86,7 @@ final class NewDealViewController: UIViewController {
     
     private var asset = Asset(name: "", symbol: "", volume: [], currentPrice: 0.0)
     private let animation = CATransition()
+    
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var costTextField: UITextField!
     @IBOutlet weak var chooseButton: UIButton!
@@ -109,6 +103,7 @@ extension NewDealViewController: CoinsCatalogViewControllerDelegate {
     func coinsCatalogViewController(controller: CoinsCatalogViewController, didSelect coin: Coin) {
         asset.name = coin.name
         asset.symbol = coin.symbol
+        asset.currentPrice = Double(coin.priceUSD ?? "")
         chooseButton.layer.add(animation, forKey: kCATransition)
         chooseButton.setTitle("\(asset.symbol) \(asset.name)", for: .normal)
         chooseButton.setTitleColor(.white, for: .normal)

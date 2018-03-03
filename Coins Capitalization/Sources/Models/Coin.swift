@@ -11,6 +11,7 @@ struct Coin: Codable {
     var id: String
     var name: String
     var symbol: String
-    
+    var priceUSD: String?
+
 }
 

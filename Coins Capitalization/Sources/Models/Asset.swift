@@ -6,11 +6,17 @@
 //  Copyright © 2018 ASK LLC. All rights reserved.
 //
 
-struct Asset {
+struct Asset: Codable {
     
     var name: String
     var symbol: String
-    var volume: [(amount: Double, price: Double)]
-    var currentPrice: Double
+    var volume: [Volume]
+    var currentPrice: Double?
     
+}
+
+struct Volume: Codable {
+    
+    var amount: Double
+    var price: Double
 }

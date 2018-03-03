@@ -83,9 +83,6 @@ extension CoinsCatalogViewController: UITableViewDataSource {
         cell.configure(coin: filteredItems[indexPath.row])
         return cell
     }
-    
-    
-    
 }
 
 // MARK: - UITableViewDataSource

@@ -76,10 +76,10 @@ fileprivate extension TickerTableViewCell {
         
         if val > 0 {
             setNumber(label: label, value: value, prefix: "+", suffix: "%")
-            label.textColor = UIColor(red: 148/255, green: 184/255, blue: 108/255, alpha: 1.0)
+            label.textColor = Colors.positiveGrow
         } else if val < 0 {
             setNumber(label: label, value: value, suffix: "%")
-            label.textColor = UIColor(red: 210/255, green: 80/255, blue: 78/255, alpha: 1.0)
+            label.textColor = Colors.negativeGrow
         }
     }
     

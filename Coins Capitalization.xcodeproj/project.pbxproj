@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2101993E2030BE7000EA8D37 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2101993D2030BE7000EA8D37 /* Asset.swift */; };
-		210199402030C09900EA8D37 /* PortfolioSummaryTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2101993F2030C09900EA8D37 /* PortfolioSummaryTableHeaderView.swift */; };
 		210199422030CA2700EA8D37 /* AssetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210199412030CA2700EA8D37 /* AssetTableViewCell.swift */; };
 		210FB85B203A18F000AD4557 /* NewDealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210FB85A203A18F000AD4557 /* NewDealViewController.swift */; };
+		2119D0C9204B2325000FE804 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2119D0C8204B2325000FE804 /* Colors.swift */; };
 		212F6D182042C83A0091B723 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 212F6D172042C83A0091B723 /* Assets.xcassets */; };
 		215A1FFD2048009F005ABDB8 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1FFC2048009F005ABDB8 /* Coin.swift */; };
 		215A1FFF204804DA005ABDB8 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1FFE204804DA005ABDB8 /* Storage.swift */; };
@@ -26,13 +26,14 @@
 		21BAD61320177F7A0065D700 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21BAD61120177F7A0065D700 /* LaunchScreen.storyboard */; };
 		21E78BC6204AC5CB000B7398 /* CoinItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E78BC5204AC5CB000B7398 /* CoinItemTableViewCell.swift */; };
 		21E78BC8204AC6B0000B7398 /* CoinsCatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E78BC7204AC6B0000B7398 /* CoinsCatalogViewController.swift */; };
+		21E78BCA204AE48D000B7398 /* PortfolioTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E78BC9204AE48D000B7398 /* PortfolioTableHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2101993D2030BE7000EA8D37 /* Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
-		2101993F2030C09900EA8D37 /* PortfolioSummaryTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioSummaryTableHeaderView.swift; sourceTree = "<group>"; };
 		210199412030CA2700EA8D37 /* AssetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetTableViewCell.swift; sourceTree = "<group>"; };
 		210FB85A203A18F000AD4557 /* NewDealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDealViewController.swift; sourceTree = "<group>"; };
+		2119D0C8204B2325000FE804 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		212F6D172042C83A0091B723 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		215A1FFC2048009F005ABDB8 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		215A1FFE204804DA005ABDB8 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
@@ -50,6 +51,7 @@
 		21BAD61420177F7A0065D700 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21E78BC5204AC5CB000B7398 /* CoinItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinItemTableViewCell.swift; sourceTree = "<group>"; };
 		21E78BC7204AC6B0000B7398 /* CoinsCatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsCatalogViewController.swift; sourceTree = "<group>"; };
+		21E78BC9204AE48D000B7398 /* PortfolioTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioTableHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2119D0C7204B2314000FE804 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				2119D0C8204B2325000FE804 /* Colors.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		2173EC262017D32B004BDECE /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -78,7 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				219FA194201E49F500094B67 /* GlobalDataTableHeaderView.swift */,
-				2101993F2030C09900EA8D37 /* PortfolioSummaryTableHeaderView.swift */,
+				21E78BC9204AE48D000B7398 /* PortfolioTableHeaderView.swift */,
 				2173EC2A2017E14D004BDECE /* Cells */,
 			);
 			path = Views;
@@ -142,6 +152,7 @@
 		21BAD61A201780340065D700 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				2119D0C7204B2314000FE804 /* Common */,
 				21BAD60620177F7A0065D700 /* AppDelegate.swift */,
 				21BAD61420177F7A0065D700 /* Info.plist */,
 				219FA198201E594600094B67 /* Services */,
@@ -234,11 +245,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21E78BCA204AE48D000B7398 /* PortfolioTableHeaderView.swift in Sources */,
 				2101993E2030BE7000EA8D37 /* Asset.swift in Sources */,
 				215A1FFF204804DA005ABDB8 /* Storage.swift in Sources */,
+				2119D0C9204B2325000FE804 /* Colors.swift in Sources */,
 				21E78BC8204AC6B0000B7398 /* CoinsCatalogViewController.swift in Sources */,
 				21BAD60720177F7A0065D700 /* AppDelegate.swift in Sources */,
-				210199402030C09900EA8D37 /* PortfolioSummaryTableHeaderView.swift in Sources */,
 				2173EC2C2017E16B004BDECE /* TickerTableViewCell.swift in Sources */,
 				219FA193201E444C00094B67 /* API.swift in Sources */,
 				2173EC282017D4CD004BDECE /* Ticker.swift in Sources */,

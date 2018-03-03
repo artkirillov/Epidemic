@@ -33,16 +33,19 @@ final class API {
     
     // MARK: - Public Methods
     
+    /// Requests coins data from Coin Market Cap API
     static func requestCoinsData(success: @escaping ([Ticker]) -> Void, failure: @escaping (Error) -> Void) {
         request(endpoint: .ticker, parameters: EndPoint.ticker.parameters, success: success, failure: failure)
     }
     
+    /// Requests global market info from Coin Market Cap API
     static func requestGlobalData(success: @escaping (GlobalData) -> Void, failure: @escaping (Error) -> Void) {
         request(endpoint: .globalData, success: success, failure: failure)
     }
     
     // MARK: - Private Methods
     
+    /// Generic request method
     private static func request<T: Decodable>(
         endpoint: EndPoint,
         parameters: [String: String]? = nil,
@@ -66,7 +69,6 @@ final class API {
             }
             
             guard let data = data else {
-                // handle error
                 print("NO DATA")
                 return
             }

@@ -22,11 +22,20 @@ final class PortfolioViewController: UIViewController {
         super.viewDidLoad()
         
         tableView.tableFooterView = UIView()
-        updateInfo()
+        tableHeaderView = tableView.tableHeaderView as? PortfolioTableHeaderView
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
+        tableView.refreshControl = refreshControl
     }
     
-    func reset() {
-        tableView.setContentOffset(.zero, animated: false)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+         updateInfo()
+    }
+    
+    @objc func updateData() {
+        updateInfo()
     }
     
     @IBAction func addButtonTapped(_ sender: UIButton) {
@@ -41,8 +50,9 @@ final class PortfolioViewController: UIViewController {
     // MARK: - Private Properties
     
     @IBOutlet private var tableView: UITableView!
+    private var tableHeaderView: PortfolioTableHeaderView?
     
-    private var items: [Asset] = [] {
+    private var items: [Asset] = Storage.assets() ?? [] {
         didSet {
             updateInfo()
         }
@@ -50,29 +60,16 @@ final class PortfolioViewController: UIViewController {
     
 }
 
-private extension PortfolioViewController {
-    
-    // MARK: - Private Methods
-    
-    func updateInfo() {
-        if items.isEmpty {
-            let noItemsLabel = UILabel()
-            noItemsLabel.text = "You hasn't add any assets into portfolio"
-            noItemsLabel.textColor = .lightGray
-            noItemsLabel.textAlignment = .center
-            tableView.backgroundView = noItemsLabel
-        } else {
-            tableView.backgroundView = nil
-        }
-        tableView.reloadData()
-    }
-}
-
 // MARK: - NewDealViewControllerDelegate
 
 extension PortfolioViewController: NewDealViewControllerDelegate {
     func newDealViewController(controller: NewDealViewController, didAdd asset: Asset) {
-        items.append(asset)
+        if let index = items.index(where: { $0.symbol == asset.symbol }) {
+            items[index].volume += asset.volume
+        } else {
+            items.append(asset)
+        }
+        Storage.save(assets: items)
     }
 }
 
@@ -90,4 +87,35 @@ extension PortfolioViewController: UITableViewDataSource {
         return cell
     }
     
+}
+
+// MARK: - Updating table
+
+private extension PortfolioViewController {
+    
+    // MARK: - Private Methods
+    
+    func updateInfo() {
+        if items.isEmpty {
+            let noItemsLabel = UILabel()
+            noItemsLabel.text = "You haven't add any assets to the portfolio"
+            noItemsLabel.textColor = .lightGray
+            noItemsLabel.textAlignment = .center
+            tableView.backgroundView = noItemsLabel
+        } else {
+            tableView.backgroundView = nil
+        }
+        tableView.reloadData()
+        
+        var currentValue: Double = 0.0
+        var value: Double = 0.0
+        for item in items {
+            let volume = item.volume.reduce(0.0) { $0 + $1.amount }
+            let price = item.currentPrice ?? 0
+            currentValue += volume * price
+            value += item.volume.reduce(0.0) { $0 + $1.amount * $1.price }
+        }
+        tableHeaderView?.configure(total: currentValue, profit: currentValue / value)
+        tableView.refreshControl?.endRefreshing()
+    }
 }

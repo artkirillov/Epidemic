@@ -89,60 +89,6 @@ final class CoinsViewController: UIViewController {
 
 }
 
-// MARK: - Network Requests
-
-fileprivate extension CoinsViewController {
-    
-    func requestData() {
-        API.requestCoinsData(
-            success: { [weak self] tickers in
-                self?.items = tickers
-                if let searchText = self?.searchTextField.text, !searchText.isEmpty {
-                    self?.updateItems(withSearchText: searchText)
-                } else {
-                    self?.filteredItems = tickers
-                }
-                self?.tableView.refreshControl?.endRefreshing()
-                self?.activityIndicator?.stopAnimating()
-
-                DispatchQueue.global().async {
-                    let coins = tickers.map { Coin(id: $0.id, name: $0.name, symbol: $0.symbol) }
-                    Storage.save(coins: coins)
-                }
-            },
-            failure: { error in print("ERROR: \(error)")
-        })
-        
-        API.requestGlobalData(
-            success: { [weak self] globalData in
-                
-                let numberFormatter = NumberFormatter()
-                numberFormatter.numberStyle = .decimal
-                numberFormatter.maximumFractionDigits = 0
-                
-                if let text = numberFormatter.string(from: globalData.totalMarketCapUSD as NSNumber) {
-                    self?.marketCapitalizationLabel.text = "Market Capitalization: $\(text)"
-                } else {
-                    self?.marketCapitalizationLabel.text = "Coins"
-                }
-                
-                numberFormatter.numberStyle = .decimal
-                numberFormatter.maximumFractionDigits = 2
-                
-                if let text = numberFormatter.string(from: globalData.bitcoinPercentageOfMarketCap as NSNumber) {
-                    self?.bitcoinDominanceLabel.text = "Bitcoin Dominance: \(text)%"
-                } else {
-                    self?.bitcoinDominanceLabel.text = nil
-                }
-                
-                self?.tableView.refreshControl?.endRefreshing()
-            },
-            failure: { error in print("ERROR: \(error)")
-        })
-    }
-    
-}
-
 // MARK: - UITableViewDataSource
 
 extension CoinsViewController: UITableViewDataSource {
@@ -199,3 +145,67 @@ extension CoinsViewController: UITextFieldDelegate {
     }
     
 }
+
+// MARK: - Network Requests
+
+private extension CoinsViewController {
+    
+    func requestData() {
+        API.requestCoinsData(
+            success: { [weak self] tickers in
+                self?.items = tickers
+                if let searchText = self?.searchTextField.text, !searchText.isEmpty {
+                    self?.updateItems(withSearchText: searchText)
+                } else {
+                    self?.filteredItems = tickers
+                }
+                self?.tableView.refreshControl?.endRefreshing()
+                self?.activityIndicator?.stopAnimating()
+                
+                DispatchQueue.global().async {
+                    let coins = tickers.map { Coin(id: $0.id, name: $0.name, symbol: $0.symbol, priceUSD: $0.priceUSD) }
+                    Storage.save(coins: coins)
+                    
+                    var assets = Storage.assets() ?? []
+                    assets.enumerated().forEach { index, asset in
+                        if let coin = coins.first(where: { coin in return coin.symbol == asset.symbol }),
+                            let priceUSD = coin.priceUSD {
+                            assets[index].currentPrice = Double(priceUSD)
+                        }
+                    }
+                    Storage.save(assets: assets)
+                }
+            },
+            failure: { error in print("ERROR: \(error)")
+        })
+        
+        API.requestGlobalData(
+            success: { [weak self] globalData in
+                
+                let numberFormatter = NumberFormatter()
+                numberFormatter.numberStyle = .decimal
+                numberFormatter.maximumFractionDigits = 0
+                
+                if let text = numberFormatter.string(from: globalData.totalMarketCapUSD as NSNumber) {
+                    self?.marketCapitalizationLabel.text = "Market Capitalization: $\(text)"
+                } else {
+                    self?.marketCapitalizationLabel.text = "Coins"
+                }
+                
+                numberFormatter.numberStyle = .decimal
+                numberFormatter.maximumFractionDigits = 2
+                
+                if let text = numberFormatter.string(from: globalData.bitcoinPercentageOfMarketCap as NSNumber) {
+                    self?.bitcoinDominanceLabel.text = "Bitcoin Dominance: \(text)%"
+                } else {
+                    self?.bitcoinDominanceLabel.text = nil
+                }
+                
+                self?.tableView.refreshControl?.endRefreshing()
+            },
+            failure: { error in print("ERROR: \(error)")
+        })
+    }
+    
+}
+
