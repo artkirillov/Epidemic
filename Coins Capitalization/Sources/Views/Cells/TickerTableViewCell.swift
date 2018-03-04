@@ -11,8 +11,7 @@ import UIKit
 final class TickerTableViewCell: UITableViewCell {
     
     struct Default {
-        static let noInfo = "no info"
-        static let dash   = "--.--"
+        static let noInfo = "No info"
     }
     
     // MARK: - Public Methods
@@ -39,8 +38,8 @@ final class TickerTableViewCell: UITableViewCell {
         nameLabel.text = ticker.name
         symbolLabel.text = ticker.symbol
         
-        setNumber(label: priceBTCLabel, value: ticker.priceBTC ?? Default.dash, suffix: " BTC", maximumFractionDigits: 7)
-        setNumber(label: priceUSDLabel, value: ticker.priceUSD ?? Default.dash, prefix: "$")
+        setNumber(label: priceBTCLabel, value: ticker.priceBTC ?? "", suffix: " BTC", maximumFractionDigits: 10)
+        setNumber(label: priceUSDLabel, value: ticker.priceUSD ?? "", prefix: "$")
         
         setNumber(label: marketCapUSDLabel, value: ticker.marketCapUSD ?? Default.noInfo, prefix: "$")
         setNumber(label: availableSupplyLabel, value: ticker.availableSupply ?? Default.noInfo, suffix: " \(ticker.symbol)")
@@ -70,7 +69,7 @@ fileprivate extension TickerTableViewCell {
     
     func setPercent(label: UILabel, value: String) {
         guard let val = Double(value) else {
-            label.text = ""
+            label.text = Default.noInfo
             return
         }
         
@@ -84,7 +83,10 @@ fileprivate extension TickerTableViewCell {
     }
     
     func setNumber(label: UILabel, value: String, prefix: String? = nil, suffix: String? = nil, maximumFractionDigits: Int = 5) {
-        guard let val = Double(value) else { return }
+        guard let val = Double(value) else {
+            label.text = Default.noInfo
+            return
+        }
         
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal

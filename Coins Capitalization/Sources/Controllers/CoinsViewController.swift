@@ -61,6 +61,7 @@ final class CoinsViewController: UIViewController {
     @objc func clearSearchTextField() {
         searchTextField.text = nil
         searchTextFieldClearButton?.isHidden = true
+        tableView.backgroundView = nil
         filteredItems = items
         view.endEditing(true)
     }

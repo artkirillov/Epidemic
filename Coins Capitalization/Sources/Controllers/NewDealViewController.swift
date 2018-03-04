@@ -26,6 +26,10 @@ final class NewDealViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let bitcoin = Storage.coins()?.first {
+            setAsset(with: bitcoin)
+        }
+        
         animation.duration = 0.2
         animation.type = kCATransitionFade
         
@@ -82,6 +86,13 @@ final class NewDealViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    func setAsset(with coin: Coin) {
+        asset.name = coin.name
+        asset.symbol = coin.symbol
+        asset.currentPrice = Double(coin.priceUSD ?? "")
+        chooseButton.setTitle("\(asset.symbol) \(asset.name)", for: .normal)
+    }
+    
     // MARK: - Private properties
     
     private var asset = Asset(name: "", symbol: "", volume: [], currentPrice: 0.0)
@@ -101,12 +112,7 @@ final class NewDealViewController: UIViewController {
 extension NewDealViewController: CoinsCatalogViewControllerDelegate {
     
     func coinsCatalogViewController(controller: CoinsCatalogViewController, didSelect coin: Coin) {
-        asset.name = coin.name
-        asset.symbol = coin.symbol
-        asset.currentPrice = Double(coin.priceUSD ?? "")
-        chooseButton.layer.add(animation, forKey: kCATransition)
-        chooseButton.setTitle("\(asset.symbol) \(asset.name)", for: .normal)
-        chooseButton.setTitleColor(.white, for: .normal)
+        setAsset(with: coin)
     }
 }
 
