@@ -23,15 +23,21 @@ final class AssetTableViewCell: UITableViewCell {
         
         nameLabel.text = asset.name
         
-        let totalAmount = asset.volume.reduce(0.0) { $0 + $1.amount }
+        let totalAmount = asset.totalAmount
         setNumber(label: amountLabel, value: totalAmount, suffix: " \(asset.symbol)", maximumFractionDigits: 6)
         
-        guard let currentPrice = asset.currentPrice else { return }
+        guard asset.currentPrice != nil else {
+            totalCostLabel.text = "No info"
+            profitLabel.text = "No info"
+            totalCostLabel.textColor = .lightGray
+            profitLabel.textColor = .lightGray
+            return
+        }
         
-        let currentTotalCost = totalAmount * currentPrice
+        let currentTotalCost = asset.currentTotalCost
         setNumber(label: totalCostLabel, value: currentTotalCost, prefix: "$")
         
-        let totalCost = asset.volume.reduce(0.0) { $0 + ($1.amount * $1.price) }
+        let totalCost = asset.totalCost
         setProfit(label: profitLabel, cost: totalCost, currentCost: currentTotalCost)
     }
     

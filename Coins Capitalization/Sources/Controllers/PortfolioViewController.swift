@@ -21,6 +21,8 @@ final class PortfolioViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        items.sort(by: {$0.currentTotalCost > $1.currentTotalCost })
+        
         tableView.tableFooterView = UIView()
         tableHeaderView = tableView.tableHeaderView as? PortfolioTableHeaderView
         
@@ -39,8 +41,7 @@ final class PortfolioViewController: UIViewController {
     }
     
     @IBAction func addButtonTapped(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        if let controller = storyboard.instantiateViewController(withIdentifier: "NewDealViewController") as? NewDealViewController {
+        if let controller = PortfolioViewController.storyboard.instantiateViewController(withIdentifier: "NewDealViewController") as? NewDealViewController {
             controller.delegate = self
             present(controller, animated: true, completion: nil)
         }
@@ -54,9 +55,12 @@ final class PortfolioViewController: UIViewController {
     
     private var items: [Asset] = Storage.assets() ?? [] {
         didSet {
+            items.sort(by: {$0.currentTotalCost > $1.currentTotalCost })
             updateInfo()
         }
     }
+    
+    private static let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
     
 }
 
@@ -73,6 +77,21 @@ extension PortfolioViewController: NewDealViewControllerDelegate {
     }
 }
 
+// MARK: - SellCoinViewControllerDelegate
+
+extension PortfolioViewController: SellCoinViewControllerDelegate {
+    func sellCoinViewController(controller: SellCoinViewController, didChange asset: Asset) {
+        guard let index = items.index(where: { $0.symbol == asset.symbol }) else { return }
+        if asset.totalAmount == 0 {
+            items.remove(at: index)
+        } else {
+            items[index].volume = asset.volume
+        }
+        tableView.reloadData()
+        Storage.save(assets: items)
+    }
+}
+
 // MARK: - UITableViewDataSource
 
 extension PortfolioViewController: UITableViewDataSource {
@@ -85,6 +104,21 @@ extension PortfolioViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AssetCell", for: indexPath) as! AssetTableViewCell
         cell.configure(asset: items[indexPath.row])
         return cell
+    }
+    
+}
+
+// MARK: - UITableViewDelegate
+
+extension PortfolioViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        if let controller = PortfolioViewController.storyboard.instantiateViewController(withIdentifier: "SellCoinViewController") as? SellCoinViewController {
+            controller.delegate = self
+            controller.asset = items[indexPath.row]
+            present(controller, animated: true, completion: nil)
+        }
     }
     
 }
@@ -110,15 +144,11 @@ private extension PortfolioViewController {
         
         var currentValue: Double = 0.0
         var value: Double = 0.0
-        for item in items {
-            let volume = item.volume.reduce(0.0) { $0 + $1.amount }
-            let price = item.currentPrice ?? 0
-            currentValue += volume * price
-            value += item.volume.reduce(0.0) { $0 + $1.amount * $1.price }
+        items.forEach {
+            currentValue += $0.currentTotalCost
+            value += $0.totalCost
         }
-        if value != 0 {
-            tableHeaderView?.configure(total: currentValue, profit: currentValue / value)
-        }
+        if value != 0 { tableHeaderView?.configure(total: currentValue, profit: currentValue / value) }
         tableView.refreshControl?.endRefreshing()
     }
 }

@@ -17,6 +17,7 @@
 		215A1FFF204804DA005ABDB8 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1FFE204804DA005ABDB8 /* Storage.swift */; };
 		2173EC282017D4CD004BDECE /* Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2173EC272017D4CD004BDECE /* Ticker.swift */; };
 		2173EC2C2017E16B004BDECE /* TickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2173EC2B2017E16B004BDECE /* TickerTableViewCell.swift */; };
+		2186E10E204C162C000374A6 /* SellCoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2186E10D204C162C000374A6 /* SellCoinViewController.swift */; };
 		219FA193201E444C00094B67 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219FA192201E444C00094B67 /* API.swift */; };
 		219FA195201E49F500094B67 /* GlobalDataTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219FA194201E49F500094B67 /* GlobalDataTableHeaderView.swift */; };
 		219FA197201E4C9600094B67 /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219FA196201E4C9600094B67 /* GlobalData.swift */; };
@@ -41,6 +42,7 @@
 		215A1FFE204804DA005ABDB8 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		2173EC272017D4CD004BDECE /* Ticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticker.swift; sourceTree = "<group>"; };
 		2173EC2B2017E16B004BDECE /* TickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerTableViewCell.swift; sourceTree = "<group>"; };
+		2186E10D204C162C000374A6 /* SellCoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellCoinViewController.swift; sourceTree = "<group>"; };
 		219FA192201E444C00094B67 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		219FA194201E49F500094B67 /* GlobalDataTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalDataTableHeaderView.swift; sourceTree = "<group>"; };
 		219FA196201E4C9600094B67 /* GlobalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalData.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				210FB85A203A18F000AD4557 /* NewDealViewController.swift */,
 				21E78BC7204AC6B0000B7398 /* CoinsCatalogViewController.swift */,
 				2119D0CA204B36A8000FE804 /* ConverterViewController.swift */,
+				2186E10D204C162C000374A6 /* SellCoinViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				219FA197201E4C9600094B67 /* GlobalData.swift in Sources */,
 				219FBFCD202E340800A8771A /* PortfolioViewController.swift in Sources */,
 				215A1FFD2048009F005ABDB8 /* Coin.swift in Sources */,
+				2186E10E204C162C000374A6 /* SellCoinViewController.swift in Sources */,
 				210FB85B203A18F000AD4557 /* NewDealViewController.swift in Sources */,
 				210199422030CA2700EA8D37 /* AssetTableViewCell.swift in Sources */,
 				21E78BC6204AC5CB000B7398 /* CoinItemTableViewCell.swift in Sources */,
