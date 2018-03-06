@@ -148,7 +148,7 @@ private extension PortfolioViewController {
             currentValue += $0.currentTotalCost
             value += $0.totalCost
         }
-        if value != 0 { tableHeaderView?.configure(total: currentValue, profit: currentValue / value) }
+        tableHeaderView?.configure(total: currentValue, value: value, currentValue: currentValue)
         tableView.refreshControl?.endRefreshing()
     }
 }

@@ -54,14 +54,12 @@ fileprivate extension AssetTableViewCell {
     
     func setProfit(label: UILabel, cost: Double, currentCost: Double) {
         let absoluteProfit = currentCost - cost
-        let relativeProfit = absoluteProfit / cost
+        let relativeProfit = absoluteProfit / cost * 100
         
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
-        numberFormatter.maximumFractionDigits = 0
-        let profitText = numberFormatter.string(from: abs(absoluteProfit) as NSNumber) ?? "---"
-        
         numberFormatter.maximumFractionDigits = 2
+        let profitText = numberFormatter.string(from: abs(absoluteProfit) as NSNumber) ?? "---"
         let percentText = numberFormatter.string(from: abs(relativeProfit) as NSNumber) ?? "---"
         
         if absoluteProfit > 0 {

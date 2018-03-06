@@ -12,22 +12,28 @@ final class PortfolioTableHeaderView: UIView {
     
     // MARK: - Public Methods
     
-    func configure(total: Double, profit: Double) {
+    func configure(total: Double, value: Double, currentValue: Double) {
+        let absoluteProfit = currentValue - value
+        let relativeProfit = absoluteProfit / value * 100
+        
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
         numberFormatter.maximumFractionDigits = 2
+        let profitText = numberFormatter.string(from: abs(absoluteProfit) as NSNumber) ?? "---"
+        let percentText = numberFormatter.string(from: abs(relativeProfit) as NSNumber) ?? "---"
         
-        if let text = numberFormatter.string(from: total as NSNumber) {
+        if absoluteProfit > 0 {
+            profitLabel.text = "↑ $\(profitText) (\(percentText)%)"
+            profitLabel.textColor = Colors.positiveGrow
+        } else if absoluteProfit < 0 {
+            profitLabel.text = "↓ $\(profitText) (\(percentText)%)"
+            profitLabel.textColor = Colors.negativeGrow
+        }
+        
+        if let text = numberFormatter.string(from: currentValue as NSNumber) {
             totalLabel.text = "$ \(text)"
         } else {
             totalLabel.text = nil
-        }
-        
-        if let text = numberFormatter.string(from: (profit > 1 ? abs(profit - 1) : abs(profit)) as NSNumber) {
-            profitLabel.text = "\(profit > 1 ? "↑" : "↓") \(text)%"
-            profitLabel.textColor = profit > 1 ? Colors.positiveGrow : Colors.negativeGrow
-        } else {
-            profitLabel.text = nil
         }
     }
     
