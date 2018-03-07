@@ -25,7 +25,6 @@ final class CoinDetailsViewController: UIViewController {
         super.viewDidLoad()
         
         nameLabel.text = name
-        requestData(for: .day)
         segmentedControl.selectedIndex = 0
         
         animation.duration = 0.2
@@ -34,6 +33,13 @@ final class CoinDetailsViewController: UIViewController {
         let swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
         swipeGestureRecognizer.direction = .down
         view.addGestureRecognizer(swipeGestureRecognizer)
+        
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        if let activityIndicatorView = activityIndicator { view.addSubview(activityIndicatorView) }
+        activityIndicator?.center = chartView.center
+        activityIndicator?.startAnimating()
+        
+        requestData(for: .day)
     }
     
     @objc func handleSwipe() {
@@ -45,6 +51,7 @@ final class CoinDetailsViewController: UIViewController {
     }
     
     @IBAction func changeChartType(_ sender: SegmentedControl) {
+        activityIndicator?.startAnimating()
         switch sender.selectedIndex {
         case 0: requestData(for: .day)
         case 1: requestData(for: .week)
@@ -65,6 +72,7 @@ final class CoinDetailsViewController: UIViewController {
     @IBOutlet private weak var changeLabel: UILabel!
     @IBOutlet private weak var chartView: ChartView!
     @IBOutlet private weak var segmentedControl: SegmentedControl!
+    private var activityIndicator: UIActivityIndicatorView?
 }
 
 // MARK: - Network Requests
@@ -79,6 +87,7 @@ private extension CoinDetailsViewController {
                                 slf.chartView.layer.add(slf.animation, forKey: kCATransition)
                                 slf.chartView.data = chartData.price.map { $0[1] }
                                 slf.setChangeValue(firstValue: chartData.price.first?[1], lastValue: chartData.price.last?[1])
+                                slf.activityIndicator?.stopAnimating()
             },
                              failure: { error in print("ERROR: \(error)")
         })
