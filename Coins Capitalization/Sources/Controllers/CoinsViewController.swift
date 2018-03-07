@@ -87,7 +87,6 @@ final class CoinsViewController: UIViewController {
             tableView.reloadData()
         }
     }
-
 }
 
 // MARK: - UITableViewDataSource
@@ -102,6 +101,21 @@ extension CoinsViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TickerCell", for: indexPath) as! TickerTableViewCell
         cell.configure(ticker: filteredItems[indexPath.row])
         return cell
+    }
+    
+}
+
+// MARK: - UITableViewDelegate
+
+extension CoinsViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "CoinDetailsViewController") as? CoinDetailsViewController {
+            controller.symbol = filteredItems[indexPath.row].symbol
+            controller.name = filteredItems[indexPath.row].name
+            present(controller, animated: true, completion: nil)
+        }
     }
     
 }

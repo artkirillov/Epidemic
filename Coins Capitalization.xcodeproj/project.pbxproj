@@ -18,6 +18,10 @@
 		2173EC282017D4CD004BDECE /* Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2173EC272017D4CD004BDECE /* Ticker.swift */; };
 		2173EC2C2017E16B004BDECE /* TickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2173EC2B2017E16B004BDECE /* TickerTableViewCell.swift */; };
 		2186E10E204C162C000374A6 /* SellCoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2186E10D204C162C000374A6 /* SellCoinViewController.swift */; };
+		218CB6CE204C513000EDF550 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218CB6CD204C513000EDF550 /* ChartData.swift */; };
+		218CB6D0204C555A00EDF550 /* CoinDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218CB6CF204C555A00EDF550 /* CoinDetailsViewController.swift */; };
+		218CB6D2204C58B100EDF550 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218CB6D1204C58B100EDF550 /* ChartView.swift */; };
+		218CB6D4204C5A8000EDF550 /* SegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218CB6D3204C5A8000EDF550 /* SegmentControl.swift */; };
 		219FA193201E444C00094B67 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219FA192201E444C00094B67 /* API.swift */; };
 		219FA195201E49F500094B67 /* GlobalDataTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219FA194201E49F500094B67 /* GlobalDataTableHeaderView.swift */; };
 		219FA197201E4C9600094B67 /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219FA196201E4C9600094B67 /* GlobalData.swift */; };
@@ -43,6 +47,10 @@
 		2173EC272017D4CD004BDECE /* Ticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticker.swift; sourceTree = "<group>"; };
 		2173EC2B2017E16B004BDECE /* TickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerTableViewCell.swift; sourceTree = "<group>"; };
 		2186E10D204C162C000374A6 /* SellCoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellCoinViewController.swift; sourceTree = "<group>"; };
+		218CB6CD204C513000EDF550 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
+		218CB6CF204C555A00EDF550 /* CoinDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailsViewController.swift; sourceTree = "<group>"; };
+		218CB6D1204C58B100EDF550 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		218CB6D3204C5A8000EDF550 /* SegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentControl.swift; sourceTree = "<group>"; };
 		219FA192201E444C00094B67 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		219FA194201E49F500094B67 /* GlobalDataTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalDataTableHeaderView.swift; sourceTree = "<group>"; };
 		219FA196201E4C9600094B67 /* GlobalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalData.swift; sourceTree = "<group>"; };
@@ -84,6 +92,7 @@
 				219FA196201E4C9600094B67 /* GlobalData.swift */,
 				2101993D2030BE7000EA8D37 /* Asset.swift */,
 				215A1FFC2048009F005ABDB8 /* Coin.swift */,
+				218CB6CD204C513000EDF550 /* ChartData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -94,6 +103,8 @@
 				219FA194201E49F500094B67 /* GlobalDataTableHeaderView.swift */,
 				21E78BC9204AE48D000B7398 /* PortfolioTableHeaderView.swift */,
 				2173EC2A2017E14D004BDECE /* Cells */,
+				218CB6D1204C58B100EDF550 /* ChartView.swift */,
+				218CB6D3204C5A8000EDF550 /* SegmentControl.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -121,11 +132,12 @@
 			isa = PBXGroup;
 			children = (
 				21BAD60820177F7A0065D700 /* CoinsViewController.swift */,
+				218CB6CF204C555A00EDF550 /* CoinDetailsViewController.swift */,
 				219FBFCC202E340800A8771A /* PortfolioViewController.swift */,
 				210FB85A203A18F000AD4557 /* NewDealViewController.swift */,
-				21E78BC7204AC6B0000B7398 /* CoinsCatalogViewController.swift */,
-				2119D0CA204B36A8000FE804 /* ConverterViewController.swift */,
 				2186E10D204C162C000374A6 /* SellCoinViewController.swift */,
+				2119D0CA204B36A8000FE804 /* ConverterViewController.swift */,
+				21E78BC7204AC6B0000B7398 /* CoinsCatalogViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -252,11 +264,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				21E78BCA204AE48D000B7398 /* PortfolioTableHeaderView.swift in Sources */,
+				218CB6D4204C5A8000EDF550 /* SegmentControl.swift in Sources */,
 				2101993E2030BE7000EA8D37 /* Asset.swift in Sources */,
+				218CB6D0204C555A00EDF550 /* CoinDetailsViewController.swift in Sources */,
 				215A1FFF204804DA005ABDB8 /* Storage.swift in Sources */,
 				2119D0C9204B2325000FE804 /* Colors.swift in Sources */,
 				21E78BC8204AC6B0000B7398 /* CoinsCatalogViewController.swift in Sources */,
 				21BAD60720177F7A0065D700 /* AppDelegate.swift in Sources */,
+				218CB6D2204C58B100EDF550 /* ChartView.swift in Sources */,
+				218CB6CE204C513000EDF550 /* ChartData.swift in Sources */,
 				2173EC2C2017E16B004BDECE /* TickerTableViewCell.swift in Sources */,
 				219FA193201E444C00094B67 /* API.swift in Sources */,
 				2173EC282017D4CD004BDECE /* Ticker.swift in Sources */,

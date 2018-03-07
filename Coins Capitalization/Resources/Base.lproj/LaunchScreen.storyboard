@@ -19,12 +19,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="EZ1-JB-Hju">
-                                <rect key="frame" x="87.5" y="233.5" width="200" height="200"/>
+                                <rect key="frame" x="87.5" y="183.5" width="200" height="200"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.082683280110359192" green="0.097412392497062683" blue="0.13737855851650238" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="EZ1-JB-Hju" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="ICM-ty-3WD"/>
+                            <constraint firstItem="EZ1-JB-Hju" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-50" id="ICM-ty-3WD"/>
                             <constraint firstItem="EZ1-JB-Hju" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="nxr-B0-pRY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
