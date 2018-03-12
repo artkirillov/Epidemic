@@ -54,8 +54,8 @@ final class API {
         
         var cacheExpirationInSeconds: Int {
             switch self {
-            case .ticker, .globalData:         return 10
-            case .chart(let type, let symbol): return 30
+            case .ticker, .globalData: return 10
+            case .chart:               return 30
             }
         }
     }

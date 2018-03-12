@@ -41,7 +41,7 @@ final class PortfolioViewController: UIViewController {
     }
     
     @IBAction func addButtonTapped(_ sender: UIButton) {
-        if let controller = PortfolioViewController.storyboard.instantiateViewController(withIdentifier: "NewDealViewController") as? NewDealViewController {
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "AddCoinViewController") as? AddCoinViewController {
             controller.delegate = self
             present(controller, animated: true, completion: nil)
         }
@@ -56,31 +56,23 @@ final class PortfolioViewController: UIViewController {
     private var items: [Asset] = Storage.assets() ?? [] {
         didSet {
             items.sort(by: {$0.currentTotalCost > $1.currentTotalCost })
-            updateInfo()
         }
     }
     
-    private static let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-    
 }
 
-// MARK: - NewDealViewControllerDelegate
+// MARK: - AddCoinViewControllerDelegate
 
-extension PortfolioViewController: NewDealViewControllerDelegate {
-    func newDealViewController(controller: NewDealViewController, didAdd asset: Asset) {
-        if let index = items.index(where: { $0.symbol == asset.symbol }) {
-            items[index].volume += asset.volume
-        } else {
-            items.append(asset)
-        }
-        Storage.save(assets: items)
+extension PortfolioViewController: AddCoinViewControllerDelegate {
+    func addCoinViewController(controller: AddCoinViewController, didAdd asset: Asset) {
+        updateInfo()
     }
 }
 
-// MARK: - SellCoinViewControllerDelegate
+// MARK: - ReduceCoinViewControllerDelegate
 
-extension PortfolioViewController: SellCoinViewControllerDelegate {
-    func sellCoinViewController(controller: SellCoinViewController, didChange asset: Asset) {
+extension PortfolioViewController: ReduceCoinViewControllerDelegate {
+    func reduceCoinViewController(controller: ReduceCoinViewController, didChange asset: Asset) {
         guard let index = items.index(where: { $0.symbol == asset.symbol }) else { return }
         if asset.totalAmount == 0 {
             items.remove(at: index)
@@ -105,7 +97,6 @@ extension PortfolioViewController: UITableViewDataSource {
         cell.configure(asset: items[indexPath.row])
         return cell
     }
-    
 }
 
 // MARK: - UITableViewDelegate
@@ -114,13 +105,12 @@ extension PortfolioViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        if let controller = PortfolioViewController.storyboard.instantiateViewController(withIdentifier: "SellCoinViewController") as? SellCoinViewController {
-            controller.delegate = self
-            controller.asset = items[indexPath.row]
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "CoinDetailsViewController") as? CoinDetailsViewController {
+            controller.symbol = items[indexPath.row].symbol
+            controller.name = items[indexPath.row].name
             present(controller, animated: true, completion: nil)
         }
     }
-    
 }
 
 // MARK: - Updating table
@@ -130,6 +120,9 @@ private extension PortfolioViewController {
     // MARK: - Private Methods
     
     func updateInfo() {
+        
+        items = Storage.assets() ?? []
+        
         if items.isEmpty {
             let noItemsLabel = UILabel()
             noItemsLabel.text = "You haven't add any assets to the portfolio"

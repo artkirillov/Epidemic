@@ -38,7 +38,7 @@ final class AssetTableViewCell: UITableViewCell {
         setNumber(label: totalCostLabel, value: currentTotalCost, prefix: "$")
         
         let totalCost = asset.totalCost
-        setProfit(label: profitLabel, cost: totalCost, currentCost: currentTotalCost)
+        Formatter.formatProfit(label: profitLabel, firstValue: totalCost, lastValue: currentTotalCost)
     }
     
     // MARK: - Private Properties
@@ -51,25 +51,6 @@ final class AssetTableViewCell: UITableViewCell {
 }
 
 fileprivate extension AssetTableViewCell {
-    
-    func setProfit(label: UILabel, cost: Double, currentCost: Double) {
-        let absoluteProfit = currentCost - cost
-        let relativeProfit = absoluteProfit / cost * 100
-        
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        numberFormatter.maximumFractionDigits = 2
-        let profitText = numberFormatter.string(from: abs(absoluteProfit) as NSNumber) ?? "---"
-        let percentText = numberFormatter.string(from: abs(relativeProfit) as NSNumber) ?? "---"
-        
-        if absoluteProfit > 0 {
-            label.text = "↑ $\(profitText) (\(percentText)%)"
-            label.textColor = Colors.positiveGrow
-        } else if absoluteProfit < 0 {
-            label.text = "↓ $\(profitText) (\(percentText)%)"
-            label.textColor = Colors.negativeGrow
-        }
-    }
     
     func setNumber(label: UILabel, value: Double, prefix: String? = nil, suffix: String? = nil, maximumFractionDigits: Int = 0) {
         

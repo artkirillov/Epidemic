@@ -1,5 +1,5 @@
 //
-//  NewDealViewController.swift
+//  AddCoinViewController.swift
 //  Coins Capitalization
 //
 //  Created by Artem Kirillov on 19.02.18.
@@ -8,15 +8,15 @@
 
 import UIKit
 
-protocol NewDealViewControllerDelegate: class {
-    func newDealViewController(controller: NewDealViewController, didAdd asset: Asset)
+protocol AddCoinViewControllerDelegate: class {
+    func addCoinViewController(controller: AddCoinViewController, didAdd asset: Asset)
 }
 
-final class NewDealViewController: UIViewController {
+final class AddCoinViewController: UIViewController {
     
     // MARK: - Public Properties
     
-    weak var delegate: NewDealViewControllerDelegate?
+    weak var delegate: AddCoinViewControllerDelegate?
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -82,7 +82,15 @@ final class NewDealViewController: UIViewController {
             let cost = Double(costText.replacingOccurrences(of: ",", with: ".")) else { return }
         asset.volume.append(Volume(amount: amount, price: cost / amount))
         
-        delegate?.newDealViewController(controller: self, didAdd: asset)
+        var assets = Storage.assets() ?? []
+        if let index = assets.index(where: { $0.symbol == asset.symbol }) {
+            assets[index].volume += asset.volume
+        } else {
+            assets.append(asset)
+        }
+        Storage.save(assets: assets)
+        
+        delegate?.addCoinViewController(controller: self, didAdd: asset)
         dismiss(animated: true, completion: nil)
     }
     
@@ -109,7 +117,7 @@ final class NewDealViewController: UIViewController {
 
 // MARK: - CoinsCatalogViewControllerDelegate
 
-extension NewDealViewController: CoinsCatalogViewControllerDelegate {
+extension AddCoinViewController: CoinsCatalogViewControllerDelegate {
     
     func coinsCatalogViewController(controller: CoinsCatalogViewController, didSelect coin: Coin) {
         setAsset(with: coin)
@@ -118,7 +126,7 @@ extension NewDealViewController: CoinsCatalogViewControllerDelegate {
 
 // MARK: - UITextFieldDelegate
 
-extension NewDealViewController: UITextFieldDelegate {
+extension AddCoinViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField === amountTextField {

@@ -14,7 +14,7 @@ final class CoinDetailsViewController: UIViewController {
     
     var symbol: String?
     var name: String?
-    weak var delegate: SellCoinViewControllerDelegate?
+    weak var delegate: ReduceCoinViewControllerDelegate?
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -26,6 +26,11 @@ final class CoinDetailsViewController: UIViewController {
         
         nameLabel.text = name
         segmentedControl.selectedIndex = 0
+        
+        addButton.layer.cornerRadius = 4.0
+        reduceButton.layer.cornerRadius = 4.0
+        reduceButton.setTitleColor(.white, for: .normal)
+        reduceButton.setTitleColor(.lightGray, for: .disabled)
         
         animation.duration = 0.2
         animation.type = kCATransitionFade
@@ -40,6 +45,7 @@ final class CoinDetailsViewController: UIViewController {
         activityIndicator?.startAnimating()
         
         requestData(for: .day)
+        updateAssetInfo()
     }
     
     @objc func handleSwipe() {
@@ -64,15 +70,58 @@ final class CoinDetailsViewController: UIViewController {
         }
     }
     
+    @IBAction func reduceButtonTapped(_ sender: UIButton) {
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "ReduceCoinViewController") as? ReduceCoinViewController,
+            let asset = asset {
+            controller.delegate = self
+            controller.asset = asset
+            present(controller, animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func addButtonTapped(_ sender: UIButton) {
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "AddCoinViewController") as? AddCoinViewController {
+            controller.delegate = self
+            present(controller, animated: true, completion: nil)
+        }
+    }
+    
     // MARK: - Private properties
     
+    private var asset: Asset?
     private let animation = CATransition()
     
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var changeLabel: UILabel!
     @IBOutlet private weak var chartView: ChartView!
     @IBOutlet private weak var segmentedControl: SegmentedControl!
+    @IBOutlet private weak var amountLabel: UILabel!
+    @IBOutlet private weak var costLabel: UILabel!
+    @IBOutlet private weak var profitLabel: UILabel!
+    @IBOutlet private weak var reduceButton: UIButton!
+    @IBOutlet private weak var addButton: UIButton!
+    
+    
+    @IBOutlet private weak var infoContainer: UIView!
+    @IBOutlet private weak var infoContainerHeightConstraint: NSLayoutConstraint!
+    
     private var activityIndicator: UIActivityIndicatorView?
+}
+
+// MARK: - AddCoinViewControllerDelegate
+
+extension CoinDetailsViewController: AddCoinViewControllerDelegate {
+    func addCoinViewController(controller: AddCoinViewController, didAdd asset: Asset) {
+        updateAssetInfo()
+    }
+}
+
+// MARK: - ReduceCoinViewControllerDelegate
+
+extension CoinDetailsViewController: ReduceCoinViewControllerDelegate {
+    func reduceCoinViewController(controller: ReduceCoinViewController, didChange asset: Asset) {
+        updateAssetInfo()
+    }
 }
 
 // MARK: - Network Requests
@@ -86,33 +135,37 @@ private extension CoinDetailsViewController {
                                 guard let slf = self else { return }
                                 slf.chartView.layer.add(slf.animation, forKey: kCATransition)
                                 slf.chartView.data = chartData.price.map { $0[1] }
-                                slf.setChangeValue(firstValue: chartData.price.first?[1], lastValue: chartData.price.last?[1])
                                 slf.activityIndicator?.stopAnimating()
+                                
+                                Formatter.formatProfit(label: slf.changeLabel, firstValue: chartData.price.first?[1], lastValue: chartData.price.last?[1])
             },
                              failure: { error in print("ERROR: \(error)")
         })
     }
     
-    func setChangeValue(firstValue: Double?, lastValue: Double?) {
-        if let firstValue = firstValue, let lastValue = lastValue {
-            let absoluteProfit = lastValue - firstValue
-            let relativeProfit = absoluteProfit / firstValue * 100
-            
-            let numberFormatter = NumberFormatter()
-            numberFormatter.numberStyle = .decimal
-            numberFormatter.maximumFractionDigits = 2
-            let profitText = numberFormatter.string(from: abs(absoluteProfit) as NSNumber) ?? "---"
-            let percentText = numberFormatter.string(from: abs(relativeProfit) as NSNumber) ?? "---"
-            
-            if absoluteProfit > 0 {
-                changeLabel.text = "↑ $\(profitText) (\(percentText)%)"
-                changeLabel.textColor = Colors.positiveGrow
-            } else if absoluteProfit < 0 {
-                changeLabel.text = "↓ $\(profitText) (\(percentText)%)"
-                changeLabel.textColor = Colors.negativeGrow
-            }
+    func updateAssetInfo() {
+        asset = Storage.assets()?.first(where: { $0.symbol == symbol } )
+        
+        guard let symbol = symbol, let asset = asset else {
+            showInfoContainer(false)
+            reduceButton.isEnabled = false
+            return
+        }
+        
+        Formatter.formatCost(label: costLabel, value: asset.currentTotalCost)
+        Formatter.formatAmount(label: amountLabel, value: asset.totalAmount, symbol: symbol)
+        Formatter.formatProfit(label: profitLabel, firstValue: asset.totalCost, lastValue: asset.currentTotalCost)
+        showInfoContainer(true)
+        reduceButton.isEnabled = true
+    }
+    
+    func showInfoContainer(_ show: Bool) {
+        if show {
+            infoContainer.isHidden = false
+            infoContainerHeightConstraint.constant = 70
         } else {
-            changeLabel.text = ""
+            infoContainer.isHidden = true
+            infoContainerHeightConstraint.constant = 0
         }
     }
 }

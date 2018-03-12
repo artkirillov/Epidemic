@@ -8,16 +8,16 @@
 
 import UIKit
 
-protocol SellCoinViewControllerDelegate: class {
-    func sellCoinViewController(controller: SellCoinViewController, didChange asset: Asset)
+protocol ReduceCoinViewControllerDelegate: class {
+    func reduceCoinViewController(controller: ReduceCoinViewController, didChange asset: Asset)
 }
 
-final class SellCoinViewController: UIViewController {
+final class ReduceCoinViewController: UIViewController {
     
     // MARK: - Public Properties
     
     var asset: Asset?
-    weak var delegate: SellCoinViewControllerDelegate?
+    weak var delegate: ReduceCoinViewControllerDelegate?
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -75,7 +75,7 @@ final class SellCoinViewController: UIViewController {
         var newVolume: [Volume] = []
         asset.volume.forEach { newVolume.append(Volume(amount: $0.amount - amount * $0.amount / totalAmount, price: $0.price)) }
         asset.volume = newVolume
-        delegate?.sellCoinViewController(controller: self, didChange: asset)
+        delegate?.reduceCoinViewController(controller: self, didChange: asset)
         dismiss(animated: true, completion: nil)
     }
     
@@ -93,7 +93,7 @@ final class SellCoinViewController: UIViewController {
 
 // MARK: - UITextFieldDelegate
 
-extension SellCoinViewController: UITextFieldDelegate {
+extension ReduceCoinViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         amountTextFieldBottomLine.layer.add(animation, forKey: kCATransition)
