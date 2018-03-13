@@ -16,6 +16,7 @@ final class AddCoinViewController: UIViewController {
     
     // MARK: - Public Properties
     
+    var coin: Coin?
     weak var delegate: AddCoinViewControllerDelegate?
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -26,8 +27,12 @@ final class AddCoinViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let bitcoin = Storage.coins()?.first {
+        if let coin = coin {
+            setAsset(with: coin)
+            chooseButton.isEnabled = false
+        } else if let bitcoin = Storage.coins()?.first {
             setAsset(with: bitcoin)
+            chooseButton.setTitleColor(Colors.controlEnabled, for: .normal)
         }
         
         animation.duration = 0.2
@@ -99,6 +104,7 @@ final class AddCoinViewController: UIViewController {
         asset.symbol = coin.symbol
         asset.currentPrice = Double(coin.priceUSD ?? "")
         chooseButton.setTitle("\(asset.symbol) \(asset.name)", for: .normal)
+        chooseButton.setTitleColor(.white, for: .normal)
     }
     
     // MARK: - Private properties
@@ -111,8 +117,6 @@ final class AddCoinViewController: UIViewController {
     @IBOutlet weak var chooseButton: UIButton!
     @IBOutlet private weak var cancelButton: UIButton!
     @IBOutlet private weak var doneButton: UIButton!
-    @IBOutlet weak var amountTextFieldBottomLine: UIView!
-    @IBOutlet weak var costTextFieldBottomLine: UIView!
 }
 
 // MARK: - CoinsCatalogViewControllerDelegate
@@ -127,26 +131,6 @@ extension AddCoinViewController: CoinsCatalogViewControllerDelegate {
 // MARK: - UITextFieldDelegate
 
 extension AddCoinViewController: UITextFieldDelegate {
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField === amountTextField {
-            amountTextFieldBottomLine.layer.add(animation, forKey: kCATransition)
-            amountTextFieldBottomLine.backgroundColor = .white
-        } else {
-            costTextFieldBottomLine.layer.add(animation, forKey: kCATransition)
-            costTextFieldBottomLine.backgroundColor = .white
-        }
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField === amountTextField {
-            amountTextFieldBottomLine.layer.add(animation, forKey: kCATransition)
-            amountTextFieldBottomLine.backgroundColor = Colors.controlEnabled
-        } else {
-            costTextFieldBottomLine.layer.add(animation, forKey: kCATransition)
-            costTextFieldBottomLine.backgroundColor = Colors.controlEnabled
-        }
-    }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if let text = textField.text, text == "", string == "," {

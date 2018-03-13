@@ -123,7 +123,9 @@ final class API {
                     success(object)
                 }
             } catch {
-                failure(error)
+                DispatchQueue.main.async {
+                    failure(error)
+                }
             }
         }
         

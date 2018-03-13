@@ -71,6 +71,7 @@ final class ConverterViewController: UIViewController {
     
     // MARK: - Private properties
     
+    private let numberFormatter = NumberFormatter()
     private let animation = CATransition()
     private var side = Side.left
     private var leftCoin: Coin?
@@ -81,8 +82,7 @@ final class ConverterViewController: UIViewController {
     @IBOutlet weak var rightButton: UIButton!
     @IBOutlet weak var leftTextField: UITextField!
     @IBOutlet weak var rightTextField: UITextField!
-    @IBOutlet weak var leftTextFieldBottomLine: UIView!
-    @IBOutlet weak var rightTextFieldBottomLine: UIView!
+    
 }
 
 // MARK: - CoinsCatalogViewControllerDelegate
@@ -107,22 +107,16 @@ extension ConverterViewController: CoinsCatalogViewControllerDelegate {
 extension ConverterViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField === leftTextField {
-            leftTextFieldBottomLine.layer.add(animation, forKey: kCATransition)
-            leftTextFieldBottomLine.backgroundColor = .white
-        } else {
-            rightTextFieldBottomLine.layer.add(animation, forKey: kCATransition)
-            rightTextFieldBottomLine.backgroundColor = .white
+        numberFormatter.numberStyle = .decimal
+        if let text = textField.text, let value = numberFormatter.number(from: text) as? Double {
+            setNumber(textField: textField, value: value, style: .none)
         }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField === leftTextField {
-            leftTextFieldBottomLine.layer.add(animation, forKey: kCATransition)
-            leftTextFieldBottomLine.backgroundColor = Colors.controlEnabled
-        } else {
-            rightTextFieldBottomLine.layer.add(animation, forKey: kCATransition)
-            rightTextFieldBottomLine.backgroundColor = Colors.controlEnabled
+        numberFormatter.numberStyle = .none
+        if let text = textField.text, let value = numberFormatter.number(from: text) as? Double {
+            setNumber(textField: textField, value: value, style: .decimal)
         }
     }
     
@@ -135,7 +129,7 @@ extension ConverterViewController: UITextFieldDelegate {
         side = textField === leftTextField ? .right : .left
         
         if let text = textField.text,
-            let number = Double((string.isEmpty ? String(text.dropLast()) : text + string).replacingOccurrences(of: ",", with: ".")),
+            let number = numberFormatter.number(from: (string.isEmpty ? String(text.dropLast()) : text + string)) as? Double,
             number > 0 {
             
             switch side {
@@ -169,9 +163,9 @@ private extension ConverterViewController {
         }
     }
     
-    func setNumber(textField: UITextField, value: Double, maximumFractionDigits: Int = 6) {
+    func setNumber(textField: UITextField, value: Double, maximumFractionDigits: Int = 6, style: NumberFormatter.Style = .decimal) {
         let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
+        numberFormatter.numberStyle = style
         numberFormatter.maximumFractionDigits = maximumFractionDigits
         
         guard let text = numberFormatter.string(from: value as NSNumber) else {

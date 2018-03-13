@@ -26,6 +26,7 @@ final class CoinDetailsViewController: UIViewController {
         
         nameLabel.text = name
         segmentedControl.selectedIndex = 0
+        noDataView.layer.cornerRadius = noDataView.bounds.height / 2
         
         addButton.layer.cornerRadius = 4.0
         reduceButton.layer.cornerRadius = 4.0
@@ -43,6 +44,7 @@ final class CoinDetailsViewController: UIViewController {
         if let activityIndicatorView = activityIndicator { view.addSubview(activityIndicatorView) }
         activityIndicator?.center = chartView.center
         activityIndicator?.startAnimating()
+        noDataView.isHidden = true
         
         requestData(for: .day)
         updateAssetInfo()
@@ -58,6 +60,7 @@ final class CoinDetailsViewController: UIViewController {
     
     @IBAction func changeChartType(_ sender: SegmentedControl) {
         activityIndicator?.startAnimating()
+        noDataView.isHidden = true
         switch sender.selectedIndex {
         case 0: requestData(for: .day)
         case 1: requestData(for: .week)
@@ -82,6 +85,7 @@ final class CoinDetailsViewController: UIViewController {
     @IBAction func addButtonTapped(_ sender: UIButton) {
         if let controller = storyboard?.instantiateViewController(withIdentifier: "AddCoinViewController") as? AddCoinViewController {
             controller.delegate = self
+            controller.coin = Storage.coins()?.first { $0.symbol == symbol }
             present(controller, animated: true, completion: nil)
         }
     }
@@ -94,13 +98,13 @@ final class CoinDetailsViewController: UIViewController {
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var changeLabel: UILabel!
     @IBOutlet private weak var chartView: ChartView!
+    @IBOutlet private weak var noDataView: UIView!
     @IBOutlet private weak var segmentedControl: SegmentedControl!
     @IBOutlet private weak var amountLabel: UILabel!
     @IBOutlet private weak var costLabel: UILabel!
     @IBOutlet private weak var profitLabel: UILabel!
     @IBOutlet private weak var reduceButton: UIButton!
     @IBOutlet private weak var addButton: UIButton!
-    
     
     @IBOutlet private weak var infoContainer: UIView!
     @IBOutlet private weak var infoContainerHeightConstraint: NSLayoutConstraint!
@@ -136,10 +140,16 @@ private extension CoinDetailsViewController {
                                 slf.chartView.layer.add(slf.animation, forKey: kCATransition)
                                 slf.chartView.data = chartData.price.map { $0[1] }
                                 slf.activityIndicator?.stopAnimating()
+                                slf.noDataView.isHidden = true
                                 
                                 Formatter.formatProfit(label: slf.changeLabel, firstValue: chartData.price.first?[1], lastValue: chartData.price.last?[1])
             },
-                             failure: { error in print("ERROR: \(error)")
+                             failure: { [weak self] error in
+                                guard let slf = self else { return }
+                                slf.activityIndicator?.stopAnimating()
+                                slf.noDataView.isHidden = false
+                                print("ERROR: \(error)")
+                                
         })
     }
     

@@ -69,21 +69,6 @@ extension PortfolioViewController: AddCoinViewControllerDelegate {
     }
 }
 
-// MARK: - ReduceCoinViewControllerDelegate
-
-extension PortfolioViewController: ReduceCoinViewControllerDelegate {
-    func reduceCoinViewController(controller: ReduceCoinViewController, didChange asset: Asset) {
-        guard let index = items.index(where: { $0.symbol == asset.symbol }) else { return }
-        if asset.totalAmount == 0 {
-            items.remove(at: index)
-        } else {
-            items[index].volume = asset.volume
-        }
-        tableView.reloadData()
-        Storage.save(assets: items)
-    }
-}
-
 // MARK: - UITableViewDataSource
 
 extension PortfolioViewController: UITableViewDataSource {

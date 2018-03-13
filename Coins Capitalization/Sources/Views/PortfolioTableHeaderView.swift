@@ -16,7 +16,7 @@ final class PortfolioTableHeaderView: UIView {
         Formatter.formatProfit(label: profitLabel, firstValue: value, lastValue: currentValue)
         
         if let text = Formatter.format(currentValue) {
-            totalLabel.text = "$ \(text)"
+            totalLabel.text = "$\(text)"
         } else {
             totalLabel.text = nil
         }

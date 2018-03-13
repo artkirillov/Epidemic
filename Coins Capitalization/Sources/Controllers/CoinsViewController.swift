@@ -22,7 +22,7 @@ final class CoinsViewController: UIViewController {
         super.viewDidLoad()
         
         searchTextField.leftViewMode = .always
-        searchTextField.leftView = UIImageView(image: #imageLiteral(resourceName: "filter"))
+        searchTextField.leftView = UIImageView(image: #imageLiteral(resourceName: "search"))
         
         let clearButton = UIButton(type: .custom)
         clearButton.setImage(#imageLiteral(resourceName: "clear"), for: .normal)
@@ -199,16 +199,14 @@ private extension CoinsViewController {
                 
                 let numberFormatter = NumberFormatter()
                 numberFormatter.numberStyle = .decimal
-                numberFormatter.maximumFractionDigits = 0
+                numberFormatter.maximumFractionDigits = 2
                 
-                if let text = numberFormatter.string(from: globalData.totalMarketCapUSD as NSNumber) {
-                    self?.marketCapitalizationLabel.text = "Market Capitalization: $\(text)"
+                if let text = numberFormatter.string(from: globalData.totalMarketCapUSD / 1000000000 as NSNumber) {
+                    self?.marketCapitalizationLabel.text = "Market Capitalization: $\(text)B"
+                    self?.marketCapitalizationLabel.textAlignment = .left
                 } else {
                     self?.marketCapitalizationLabel.text = "Coins"
                 }
-                
-                numberFormatter.numberStyle = .decimal
-                numberFormatter.maximumFractionDigits = 2
                 
                 if let text = numberFormatter.string(from: globalData.bitcoinPercentageOfMarketCap as NSNumber) {
                     self?.bitcoinDominanceLabel.text = "Bitcoin Dominance: \(text)%"

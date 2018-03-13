@@ -75,6 +75,18 @@ final class ReduceCoinViewController: UIViewController {
         var newVolume: [Volume] = []
         asset.volume.forEach { newVolume.append(Volume(amount: $0.amount - amount * $0.amount / totalAmount, price: $0.price)) }
         asset.volume = newVolume
+        
+        var assets = Storage.assets() ?? []
+        guard let index = assets.index(where: { $0.symbol == asset.symbol }) else { return }
+        
+        if asset.totalAmount == 0 {
+            assets.remove(at: index)
+        } else {
+            assets[index].volume = newVolume
+        }
+        
+        Storage.save(assets: assets)
+        
         delegate?.reduceCoinViewController(controller: self, didChange: asset)
         dismiss(animated: true, completion: nil)
     }
@@ -88,22 +100,12 @@ final class ReduceCoinViewController: UIViewController {
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet private weak var cancelButton: UIButton!
     @IBOutlet private weak var doneButton: UIButton!
-    @IBOutlet weak var amountTextFieldBottomLine: UIView!
+    
 }
 
 // MARK: - UITextFieldDelegate
 
 extension ReduceCoinViewController: UITextFieldDelegate {
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        amountTextFieldBottomLine.layer.add(animation, forKey: kCATransition)
-        amountTextFieldBottomLine.backgroundColor = .white
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        amountTextFieldBottomLine.layer.add(animation, forKey: kCATransition)
-        amountTextFieldBottomLine.backgroundColor = Colors.controlEnabled
-    }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if let text = textField.text, text == "", string == "," {
