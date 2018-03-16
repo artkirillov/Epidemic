@@ -172,7 +172,7 @@ private extension CoinDetailsViewController {
     func showInfoContainer(_ show: Bool) {
         if show {
             infoContainer.isHidden = false
-            infoContainerHeightConstraint.constant = 70
+            infoContainerHeightConstraint.constant = 90
         } else {
             infoContainer.isHidden = true
             infoContainerHeightConstraint.constant = 0

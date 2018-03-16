@@ -93,6 +93,7 @@ final class AddCoinViewController: UIViewController {
         } else {
             assets.append(asset)
         }
+        
         Storage.save(assets: assets)
         
         delegate?.addCoinViewController(controller: self, didAdd: asset)

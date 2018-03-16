@@ -17,7 +17,24 @@ final class Storage {
         static let assets = "Assets.txt"
     }
     
+    struct UserDefaultsKeys {
+        static let maxPortfolioVolume  = "maxPortfolioVolume"
+        static let appId               = "appId"
+    }
+    
     // MARK: - Public Methods
+    
+    /// Gets AppStore appId from storage
+    static func appId() -> Int? {
+        let appId = UserDefaults.standard.integer(forKey: UserDefaultsKeys.appId)
+        return appId != 0 ? appId : nil
+    }
+    
+    /// Gets max portfolio volume from storage
+    static func maxPortfolioVolume() -> Int {
+        let maxPortfolioVolume = UserDefaults.standard.integer(forKey: UserDefaultsKeys.maxPortfolioVolume)
+        return maxPortfolioVolume != 0 ? maxPortfolioVolume : 3
+    }
     
     /// Gets coins from storage
     static func coins() -> [Coin]? {
@@ -27,6 +44,16 @@ final class Storage {
     /// Gets assets from storage
     static func assets() -> [Asset]? {
         return get(from: Filename.assets)
+    }
+    
+    /// Saves AppStore appId to storage
+    static func save(appId: Int) {
+        UserDefaults.standard.set(appId, forKey: UserDefaultsKeys.appId)
+    }
+    
+    /// Saves max portfolio volume to storage
+    static func save(maxPortfolioVolume: Int) {
+        UserDefaults.standard.set(maxPortfolioVolume, forKey: UserDefaultsKeys.maxPortfolioVolume)
     }
     
     /// Saves coins to storage
@@ -133,6 +160,7 @@ final class Storage {
         case .ticker:     filename = "TickersCache.txt"
         case .globalData: filename = "GlobalDataCahce.txt"
         case .chart(let type, let symbol): filename = "\(type.rawValue)ChartDataCache\(symbol).txt"
+        case .appStore:   filename = "AppStoreLookUp.txt"
         }
         return filename
     }

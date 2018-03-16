@@ -23,15 +23,17 @@ final class Formatter {
     }
     
     static func formatAmount(label: UILabel, value: Double, symbol: String) {
+        numberFormatter.maximumFractionDigits = 10
         if let amount = Formatter.format(value) { label.text = "\(amount) \(symbol)" }
+        numberFormatter.maximumFractionDigits = 2
     }
     
     static func formatCost(label: UILabel, value: Double) {
-        if let cost = Formatter.format(value) { label.text = "$ \(cost)" }
+        if let cost = Formatter.format(value) { label.text = "$\(cost)" }
     }
     
     static func formatProfit(label: UILabel, firstValue: Double?, lastValue: Double?) {
-        guard let firstValue = firstValue, let lastValue = lastValue else {
+        guard let firstValue = firstValue, let lastValue = lastValue, firstValue != 0 || lastValue != 0 else {
             label.text = ""
             return
         }

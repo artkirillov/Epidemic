@@ -201,7 +201,7 @@ private extension CoinsViewController {
                 numberFormatter.numberStyle = .decimal
                 numberFormatter.maximumFractionDigits = 2
                 
-                if let text = numberFormatter.string(from: globalData.totalMarketCapUSD / 1000000000 as NSNumber) {
+                if let text = numberFormatter.string(from: ceil(Double(globalData.totalMarketCapUSD) / 1000000000) as NSNumber) {
                     self?.marketCapitalizationLabel.text = "Market Capitalization: $\(text)B"
                     self?.marketCapitalizationLabel.textAlignment = .left
                 } else {
@@ -217,6 +217,15 @@ private extension CoinsViewController {
                 self?.tableView.refreshControl?.endRefreshing()
             },
             failure: { error in print("ERROR: \(error)")
+        })
+        
+        API.requestAppStoreData(
+            success: { appStoreLookup in
+                guard let appId = appStoreLookup.results.first?.appID else { return }
+                Storage.save(appId: appId)
+        },
+            failure: {
+                error in print("ERROR: \(error)")
         })
     }
     

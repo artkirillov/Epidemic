@@ -1,5 +1,5 @@
 //
-//  SellCoinViewController.swift
+//  ReduceCoinViewController.swift
 //  Coins Capitalization
 //
 //  Created by Artem Kirillov on 04.03.18.
@@ -79,7 +79,7 @@ final class ReduceCoinViewController: UIViewController {
         var assets = Storage.assets() ?? []
         guard let index = assets.index(where: { $0.symbol == asset.symbol }) else { return }
         
-        if asset.totalAmount == 0 {
+        if asset.totalAmount < accuracy {
             assets.remove(at: index)
         } else {
             assets[index].volume = newVolume
@@ -94,6 +94,7 @@ final class ReduceCoinViewController: UIViewController {
     // MARK: - Private properties
     
     private var totalAmount: Double = 0.0
+    private let accuracy: Double = 10e-10
     private let animation = CATransition()
     
     @IBOutlet weak var assetLabel: UILabel!
@@ -114,7 +115,7 @@ extension ReduceCoinViewController: UITextFieldDelegate {
         
         if let text = textField.text,
             let amount = Double((string.isEmpty ? String(text.dropLast()) : text + string).replacingOccurrences(of: ",", with: ".")),
-            amount > 0, amount <= totalAmount {
+            amount > 0, totalAmount - amount >= -accuracy {
             doneButton.isEnabled = true
             doneButton.backgroundColor = Colors.controlEnabled
         } else {

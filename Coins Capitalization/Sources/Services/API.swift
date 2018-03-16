@@ -21,6 +21,7 @@ final class API {
         case ticker
         case globalData
         case chart(type: ChartType, symbol: String)
+        case appStore
         
         enum ChartType: String {
             case all         = ""
@@ -37,17 +38,16 @@ final class API {
             case .ticker:                      return URLComponents(string: "https://api.coinmarketcap.com/v1/ticker/")
             case .globalData:                  return URLComponents(string: "https://api.coinmarketcap.com/v1/global/")
             case .chart(let type, let symbol):
-                if type == .all {
-                    return URLComponents(string: "https://coincap.io/history/\(symbol)")
-                } else {
-                    return URLComponents(string: "https://coincap.io/history/\(type.rawValue)/\(symbol)")
-                }
+                if type == .all {              return URLComponents(string: "https://coincap.io/history/\(symbol)") }
+                else {                         return URLComponents(string: "https://coincap.io/history/\(type.rawValue)/\(symbol)") }
+            case .appStore:                    return URLComponents(string: "https://itunes.apple.com/lookup")
             }
         }
         
         var parameters: [String: String]? {
             switch self {
             case .ticker:     return ["limit": "0"]
+            case .appStore:   return ["bundleId": Bundle.main.bundleIdentifier ?? ""]
             default: return nil
             }
         }
@@ -56,6 +56,7 @@ final class API {
             switch self {
             case .ticker, .globalData: return 10
             case .chart:               return 30
+            case .appStore:            return Int.max
             }
         }
     }
@@ -76,6 +77,11 @@ final class API {
     static func requestChartData(type: EndPoint.ChartType, for symbol: String,
                                  success: @escaping (ChartData) -> Void, failure: @escaping (Error) -> Void) {
         request(endpoint: .chart(type: type, symbol: symbol), success: success, failure: failure)
+    }
+    
+    /// Requests AppStore appId
+    static func requestAppStoreData(success: @escaping (AppStoreLookup) -> Void, failure: @escaping (Error) -> Void) {
+        request(endpoint: .appStore, parameters: EndPoint.appStore.parameters, success: success, failure: failure)
     }
     
     // MARK: - Private Methods

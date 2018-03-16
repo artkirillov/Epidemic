@@ -41,9 +41,38 @@ final class PortfolioViewController: UIViewController {
     }
     
     @IBAction func addButtonTapped(_ sender: UIButton) {
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "AddCoinViewController") as? AddCoinViewController {
-            controller.delegate = self
-            present(controller, animated: true, completion: nil)
+        let maxFreeVolume = Storage.maxPortfolioVolume()
+        
+        if items.count < maxFreeVolume {
+            if let controller = storyboard?.instantiateViewController(withIdentifier: "AddCoinViewController") as? AddCoinViewController {
+                controller.delegate = self
+                present(controller, animated: true, completion: nil)
+            }
+        } else if maxFreeVolume == 3 {
+            let alertController = UIAlertController(title: "Free trial portoflio volume is three assets", message: "If you would like to track up to 5 coins for free, leave us a review in AppStore, please)", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Go to AppStore", style: .default, handler: { _ in
+                if let appId = Storage.appId(), let url = URL(string: "https://itunes.apple.com/app/id\(appId)") {
+                    UIApplication.shared.open(url, options: [:], completionHandler: { _ in Storage.save(maxPortfolioVolume: 6) })
+                } else if let url = URL(string: "https://www.apple.com/itunes/") {
+                    UIApplication.shared.open(url, options: [:], completionHandler: { _ in Storage.save(maxPortfolioVolume: 6) })
+                }
+            }))
+            
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { _ in alertController.dismiss(animated: true, completion: nil) }))
+            
+            present(alertController, animated: true, completion: nil)
+        } else {
+            let alertController = UIAlertController(title: "Seems you are like a pro!", message: "Thank you for using this app. Hope you enjoy it. For tracking coins without any limitations you can make a subscription.", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Go to subscription", style: .default, handler: { [weak self] _ in
+                if let parentViewController = self?.parent as? UITabBarController,
+                    let count = parentViewController.viewControllers?.count {
+                    parentViewController.selectedIndex = count - 1
+                }
+            }))
+            
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { _ in alertController.dismiss(animated: true, completion: nil) }))
+            
+            present(alertController, animated: true, completion: nil)
         }
     }
     

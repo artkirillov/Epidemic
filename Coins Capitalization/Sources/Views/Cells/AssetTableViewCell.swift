@@ -22,9 +22,7 @@ final class AssetTableViewCell: UITableViewCell {
     func configure(asset: Asset) {
         
         nameLabel.text = asset.name
-        
-        let totalAmount = asset.totalAmount
-        setNumber(label: amountLabel, value: totalAmount, suffix: " \(asset.symbol)", maximumFractionDigits: 6)
+        Formatter.formatAmount(label: amountLabel, value: asset.totalAmount, symbol: asset.symbol)
         
         guard asset.currentPrice != nil else {
             totalCostLabel.text = "No info"
@@ -35,10 +33,8 @@ final class AssetTableViewCell: UITableViewCell {
         }
         
         let currentTotalCost = asset.currentTotalCost
-        setNumber(label: totalCostLabel, value: currentTotalCost, prefix: "$")
-        
-        let totalCost = asset.totalCost
-        Formatter.formatProfit(label: profitLabel, firstValue: totalCost, lastValue: currentTotalCost)
+        Formatter.formatCost(label: totalCostLabel, value: currentTotalCost)
+        Formatter.formatProfit(label: profitLabel, firstValue: asset.totalCost, lastValue: currentTotalCost)
     }
     
     // MARK: - Private Properties

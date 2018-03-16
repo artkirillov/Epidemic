@@ -15,14 +15,9 @@ final class ChartView: UIView {
     var data: [Double] = [] {
         didSet {
             let numberOfPoints = Int(bounds.width)
-            let numberOfData = data.count
-            
-            if numberOfData >= numberOfPoints {
-                let k = Int(numberOfData / numberOfPoints)
-                points = data.enumerated().filter { $0.offset % k == 0 }.map { $0.element }
-            } else {
-                points = data
-            }
+            points = [Double](repeating: 0.0, count: numberOfPoints)
+            let k = Double(data.count) / Double(numberOfPoints)
+            for i in 0..<numberOfPoints { points[i] = data[Int(Double(i) * k)] }
         }
     }
     
