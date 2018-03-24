@@ -189,6 +189,14 @@ private extension CoinsViewController {
                         }
                     }
                     Storage.save(assets: assets)
+                    
+                    DispatchQueue.main.async {
+                        if let tabBarController = self?.parent as? UITabBarController,
+                            let portfolioViewController = tabBarController.viewControllers?[1] as? PortfolioViewController,
+                            portfolioViewController.isViewLoaded {
+                            portfolioViewController.updateData()
+                        }
+                    }
                 }
             },
             failure: { error in print("ERROR: \(error)")
@@ -201,7 +209,7 @@ private extension CoinsViewController {
                 numberFormatter.numberStyle = .decimal
                 numberFormatter.maximumFractionDigits = 2
                 
-                if let text = numberFormatter.string(from: ceil(Double(globalData.totalMarketCapUSD) / 1000000000) as NSNumber) {
+                if let text = numberFormatter.string(from: round(Double(globalData.totalMarketCapUSD) / 1000000000) as NSNumber) {
                     self?.marketCapitalizationLabel.text = "Market Capitalization: $\(text)B"
                     self?.marketCapitalizationLabel.textAlignment = .left
                 } else {

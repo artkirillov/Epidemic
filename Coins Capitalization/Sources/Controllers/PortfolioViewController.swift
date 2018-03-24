@@ -52,9 +52,9 @@ final class PortfolioViewController: UIViewController {
             let alertController = UIAlertController(title: "Free trial portoflio volume is three assets", message: "If you would like to track up to 5 coins for free, leave us a review in AppStore, please)", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "Go to AppStore", style: .default, handler: { _ in
                 if let appId = Storage.appId(), let url = URL(string: "https://itunes.apple.com/app/id\(appId)") {
-                    UIApplication.shared.open(url, options: [:], completionHandler: { _ in Storage.save(maxPortfolioVolume: 6) })
+                    UIApplication.shared.open(url, options: [:], completionHandler: { _ in Storage.save(maxPortfolioVolume: 5) })
                 } else if let url = URL(string: "https://www.apple.com/itunes/") {
-                    UIApplication.shared.open(url, options: [:], completionHandler: { _ in Storage.save(maxPortfolioVolume: 6) })
+                    UIApplication.shared.open(url, options: [:], completionHandler: { _ in Storage.save(maxPortfolioVolume: 5) })
                 }
             }))
             
@@ -62,12 +62,12 @@ final class PortfolioViewController: UIViewController {
             
             present(alertController, animated: true, completion: nil)
         } else {
-            let alertController = UIAlertController(title: "Seems you are like a pro!", message: "Thank you for using this app. Hope you enjoy it. For tracking coins without any limitations you can make a subscription.", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Go to subscription", style: .default, handler: { [weak self] _ in
-                if let parentViewController = self?.parent as? UITabBarController,
-                    let count = parentViewController.viewControllers?.count {
-                    parentViewController.selectedIndex = count - 1
-                }
+            let alertController = UIAlertController(title: "Seems you are like a pro!", message: "Thank you for using this app. Hope you enjoy it. For tracking coins without any limitations you can request an upgrade.", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
+//                if let parentViewController = self?.parent as? UITabBarController,
+//                    let count = parentViewController.viewControllers?.count {
+//                    parentViewController.selectedIndex = count - 1
+//                }
             }))
             
             alertController.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { _ in alertController.dismiss(animated: true, completion: nil) }))
