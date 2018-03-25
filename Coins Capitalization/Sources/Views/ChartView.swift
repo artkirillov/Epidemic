@@ -19,11 +19,14 @@ final class ChartView: UIView {
             yCoordinates = [CGFloat](repeating: 0.0, count: numberOfPoints)
             dates = [String](repeating: "", count: numberOfPoints)
             let k = Double(data.count) / Double(numberOfPoints)
-            for i in 0..<numberOfPoints {
+            
+            for i in 0..<points.count {
                 let index = Int(Double(i) * k)
                 points[i] = data[index][1]
                 dates[i] = dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(data[index][0] / 1000)))
             }
+            if k < 1 { points[points.count - 1] = data[data.count - 2][1] }
+            
             setNeedsDisplay()
         }
     }
@@ -50,7 +53,7 @@ final class ChartView: UIView {
         chartPath.move(to: CGPoint(x: 0, y: columnYPoint(points[0])))
         yCoordinates[0] = columnYPoint(points[0])
         
-        for i in 1..<points.count - 1 {
+        for i in 1..<points.count {
             let yCoordinate = columnYPoint(points[i])
             yCoordinates[i] = yCoordinate
             
