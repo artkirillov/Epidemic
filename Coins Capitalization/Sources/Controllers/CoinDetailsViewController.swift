@@ -138,7 +138,7 @@ private extension CoinDetailsViewController {
                              success: { [weak self] chartData in
                                 guard let slf = self else { return }
                                 slf.chartView.layer.add(slf.animation, forKey: kCATransition)
-                                slf.chartView.data = chartData.price.map { $0[1] }
+                                slf.chartView.data = chartData.price.map { $0 }
                                 slf.activityIndicator?.stopAnimating()
                                 slf.noDataView.isHidden = true
                                 

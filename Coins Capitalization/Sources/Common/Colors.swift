@@ -13,4 +13,5 @@ struct Colors {
     static let controlDisabled = UIColor(red: 34/255, green: 75/255, blue: 143/255, alpha: 1.0)
     static let positiveGrow = UIColor(red: 148/255, green: 184/255, blue: 108/255, alpha: 1.0)
     static let negativeGrow = UIColor(red: 210/255, green: 80/255, blue: 78/255, alpha: 1.0)
+    static let bubbleBackground = UIColor(red: 30/255, green: 47/255, blue: 83/255, alpha: 1.0)
 }
