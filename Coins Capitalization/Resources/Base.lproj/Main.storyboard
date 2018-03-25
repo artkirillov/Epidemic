@@ -1092,14 +1092,6 @@
                                     <constraint firstItem="cUg-yx-bhS" firstAttribute="centerX" secondItem="KFS-AW-kwP" secondAttribute="centerX" id="raJ-i4-gQh"/>
                                     <constraint firstItem="cUg-yx-bhS" firstAttribute="centerY" secondItem="KFS-AW-kwP" secondAttribute="centerY" id="z9i-Bc-Eml"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="startColor">
-                                        <color key="value" red="0.1414535791" green="0.1524185985" blue="0.18835155670000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="endColor">
-                                        <color key="value" red="0.1100897789" green="0.12103815380000001" blue="0.15698321160000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wug-2C-w5n" customClass="SegmentedControl" customModule="Coins_Capitalization" customModuleProvider="target">
                                 <rect key="frame" x="10" y="374.5" width="355" height="25"/>
@@ -1236,6 +1228,7 @@
                             <constraint firstItem="2bD-uV-Z05" firstAttribute="leading" secondItem="r6I-Mw-Vlh" secondAttribute="leading" id="oZZ-pC-jHi"/>
                             <constraint firstItem="QhE-Kn-zRG" firstAttribute="leading" secondItem="2bD-uV-Z05" secondAttribute="trailing" constant="10" id="pAt-Zd-Oyo"/>
                             <constraint firstItem="Rwa-WL-989" firstAttribute="leading" secondItem="r6I-Mw-Vlh" secondAttribute="leading" id="qvG-PM-ge6"/>
+                            <constraint firstItem="r6I-Mw-Vlh" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="aYM-JK-wCW" secondAttribute="bottom" constant="20" id="r4o-2Z-JmX"/>
                             <constraint firstItem="NbZ-Ke-2k1" firstAttribute="leading" secondItem="r6I-Mw-Vlh" secondAttribute="leading" id="uTn-DH-9ml"/>
                             <constraint firstItem="r6I-Mw-Vlh" firstAttribute="trailing" secondItem="jQv-Y4-50R" secondAttribute="trailing" id="usM-kT-vR4"/>
                             <constraint firstItem="aYM-JK-wCW" firstAttribute="leading" secondItem="QJ8-4u-Apf" secondAttribute="leading" constant="20" id="wJT-Rf-g47"/>
