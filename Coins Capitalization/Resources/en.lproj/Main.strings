@@ -1,0 +1,198 @@
+
+/* Class = "UILabel"; text = "Amount:"; ObjectID = "0BF-3D-diJ"; */
+"0BF-3D-diJ.text" = "Amount:";
+
+/* Class = "UITextField"; text = "10,5"; ObjectID = "0cT-1I-XcF"; */
+"0cT-1I-XcF.text" = "10,5";
+
+/* Class = "UILabel"; text = "   "; ObjectID = "2c4-hr-c2A"; */
+"2c4-hr-c2A.text" = "   ";
+
+/* Class = "UILabel"; text = "Reduce"; ObjectID = "34s-Pl-kme"; */
+"34s-Pl-kme.text" = "Reduce";
+
+/* Class = "UILabel"; text = "Coins Catalog"; ObjectID = "3YS-S6-u7s"; */
+"3YS-S6-u7s.text" = "Coins Catalog";
+
+/* Class = "UIButton"; normalTitle = "$1.50 / month"; ObjectID = "4dT-JY-yOZ"; */
+"4dT-JY-yOZ.normalTitle" = "$1.50 / month";
+
+/* Class = "UILabel"; text = "Your are using free trial version of the app. Now you can track up to five cryptocurrencies in portfolio and use all available functionality. If you don't need more keep to use it for free.  To have no limitations you can use it by subscription."; ObjectID = "4jQ-AF-fs5"; */
+"4jQ-AF-fs5.text" = "Your are using free trial version of the app. Now you can track up to five cryptocurrencies in portfolio and use all available functionality. If you don't need more keep to use it for free.  To have no limitations you can use it by subscription.";
+
+/* Class = "UITextField"; placeholder = "Search"; ObjectID = "5ig-HQ-hoK"; */
+"5ig-HQ-hoK.placeholder" = "Search";
+
+/* Class = "UILabel"; text = "Converter"; ObjectID = "ARe-XY-cM4"; */
+"ARe-XY-cM4.text" = "Converter";
+
+/* Class = "UIButton"; normalTitle = "BTC"; ObjectID = "Btg-ft-ng4"; */
+"Btg-ft-ng4.normalTitle" = "BTC";
+
+/* Class = "UILabel"; text = "Profit:"; ObjectID = "DIn-EC-JqG"; */
+"DIn-EC-JqG.text" = "Profit:";
+
+/* Class = "UIButton"; normalTitle = "Choose a coin"; ObjectID = "DPx-CJ-Ftt"; */
+"DPx-CJ-Ftt.normalTitle" = "Choose a coin";
+
+/* Class = "UILabel"; text = "$ 0"; ObjectID = "GA6-Lg-cKR"; */
+"GA6-Lg-cKR.text" = "$ 0";
+
+/* Class = "UILabel"; text = "$ 1 250"; ObjectID = "GyS-k0-LEu"; */
+"GyS-k0-LEu.text" = "$ 1 250";
+
+/* Class = "UILabel"; text = "BTC Bitcoin"; ObjectID = "J0W-Np-845"; */
+"J0W-Np-845.text" = "BTC Bitcoin";
+
+/* Class = "UILabel"; text = "Bitcoin"; ObjectID = "JtN-2T-A4w"; */
+"JtN-2T-A4w.text" = "Bitcoin";
+
+/* Class = "UIButton"; normalTitle = "+"; ObjectID = "Kxl-XC-5ud"; */
+"Kxl-XC-5ud.normalTitle" = "+";
+
+/* Class = "UILabel"; text = "+35.75%"; ObjectID = "MWk-Dh-dGk"; */
+"MWk-Dh-dGk.text" = "+35.75%";
+
+/* Class = "UIButton"; normalTitle = "ETH"; ObjectID = "McK-v4-prY"; */
+"McK-v4-prY.normalTitle" = "ETH";
+
+/* Class = "UILabel"; text = "Charging monthly:"; ObjectID = "NpQ-eV-Fx4"; */
+"NpQ-eV-Fx4.text" = "Charging monthly:";
+
+/* Class = "UILabel"; text = "Subscription"; ObjectID = "PUs-gr-khl"; */
+"PUs-gr-khl.text" = "Subscription";
+
+/* Class = "UILabel"; text = "Bitcoin"; ObjectID = "QhE-Kn-zRG"; */
+"QhE-Kn-zRG.text" = "Bitcoin";
+
+/* Class = "UILabel"; text = "0,02 BTC"; ObjectID = "RnB-K6-rrU"; */
+"RnB-K6-rrU.text" = "0,02 BTC";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "SVP-ZZ-sah"; */
+"SVP-ZZ-sah.normalTitle" = "Cancel";
+
+/* Class = "UILabel"; text = "1 BTC"; ObjectID = "Sd5-AS-CrQ"; */
+"Sd5-AS-CrQ.text" = "1 BTC";
+
+/* Class = "UITabBarItem"; title = "Coins"; ObjectID = "T6J-uU-jIe"; */
+"T6J-uU-jIe.title" = "Coins";
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "U93-uH-1QL"; */
+"U93-uH-1QL.normalTitle" = "Done";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "Uy4-vH-qEX"; */
+"Uy4-vH-qEX.normalTitle" = "Add";
+
+/* Class = "UILabel"; text = "Charging annually:"; ObjectID = "Wxv-6V-Ows"; */
+"Wxv-6V-Ows.text" = "Charging annually:";
+
+/* Class = "UILabel"; text = "- 3.7%"; ObjectID = "YLY-iV-t2B"; */
+"YLY-iV-t2B.text" = "- 3.7%";
+
+/* Class = "UILabel"; text = "Your iTunes Account will be charged once you confirm your payment. Your subscription automatically renews. When this happens, the same iTunes Account will be charged again with the same amount of money. You can cancel subscription at any time in your Apple ID Acount settings."; ObjectID = "Yut-Mj-1a6"; */
+"Yut-Mj-1a6.text" = "Your iTunes Account will be charged once you confirm your payment. Your subscription automatically renews. When this happens, the same iTunes Account will be charged again with the same amount of money. You can cancel subscription at any time in your Apple ID Acount settings.";
+
+/* Class = "UIButton"; normalTitle = "Reduce"; ObjectID = "aYM-JK-wCW"; */
+"aYM-JK-wCW.normalTitle" = "Reduce";
+
+/* Class = "UILabel"; text = "Version 1.0.0"; ObjectID = "aYz-3e-AjA"; */
+"aYz-3e-AjA.text" = "Version 1.0.0";
+
+/* Class = "UITabBarItem"; title = "Coins"; ObjectID = "acW-dT-cKf"; */
+"acW-dT-cKf.title" = "Coins";
+
+/* Class = "UILabel"; text = "16 000 000 BTC"; ObjectID = "atg-Ek-wBd"; */
+"atg-Ek-wBd.text" = "16 000 000 BTC";
+
+/* Class = "UITabBarItem"; title = "Converter"; ObjectID = "b4j-0M-X5r"; */
+"b4j-0M-X5r.title" = "Converter";
+
+/* Class = "UITabBarItem"; title = "Portfolio"; ObjectID = "cPa-gy-q4n"; */
+"cPa-gy-q4n.title" = "Portfolio";
+
+/* Class = "UILabel"; text = "↑ $250 (35.75%)"; ObjectID = "eSE-RY-RCe"; */
+"eSE-RY-RCe.text" = "↑ $250 (35.75%)";
+
+/* Class = "UILabel"; text = "↑ $ 240,10 (4,56%)"; ObjectID = "gPp-Oa-PH9"; */
+"gPp-Oa-PH9.text" = "↑ $ 240,10 (4,56%)";
+
+/* Class = "UILabel"; text = "Portfolio"; ObjectID = "gjA-tG-Baq"; */
+"gjA-tG-Baq.text" = "Portfolio";
+
+/* Class = "UITextField"; placeholder = "Cost, $"; ObjectID = "gqZ-nD-CaB"; */
+"gqZ-nD-CaB.placeholder" = "Cost, $";
+
+/* Class = "UITextField"; text = "1"; ObjectID = "hcv-t7-pTc"; */
+"hcv-t7-pTc.text" = "1";
+
+/* Class = "UILabel"; text = "$ 1020,40"; ObjectID = "ht8-D5-T0D"; */
+"ht8-D5-T0D.text" = "$ 1020,40";
+
+/* Class = "UILabel"; text = "No data avaiable"; ObjectID = "iNt-Mc-wji"; */
+"iNt-Mc-wji.text" = "No data avaiable";
+
+/* Class = "UIButton"; normalTitle = "$2.00 / month"; ObjectID = "jKh-Bw-YQc"; */
+"jKh-Bw-YQc.normalTitle" = "$2.00 / month";
+
+/* Class = "UILabel"; text = "Bitcoin"; ObjectID = "jW9-HJ-btT"; */
+"jW9-HJ-btT.text" = "Bitcoin";
+
+/* Class = "UILabel"; text = "BTC"; ObjectID = "jZX-UO-0sk"; */
+"jZX-UO-0sk.text" = "BTC";
+
+/* Class = "UILabel"; text = "BTC"; ObjectID = "kBS-0Y-crB"; */
+"kBS-0Y-crB.text" = "BTC";
+
+/* Class = "UITextField"; placeholder = "Amount"; ObjectID = "l29-H5-z0z"; */
+"l29-H5-z0z.placeholder" = "Amount";
+
+/* Class = "UILabel"; text = "0,02 BTC"; ObjectID = "lbA-QM-vvr"; */
+"lbA-QM-vvr.text" = "0,02 BTC";
+
+/* Class = "UILabel"; text = "for a week"; ObjectID = "lig-1e-LTv"; */
+"lig-1e-LTv.text" = "for a week";
+
+/* Class = "UILabel"; text = "Add"; ObjectID = "nAr-0B-IUu"; */
+"nAr-0B-IUu.text" = "Add";
+
+/* Class = "UITextField"; placeholder = "Search"; ObjectID = "p0L-Xz-jRB"; */
+"p0L-Xz-jRB.placeholder" = "Search";
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "pt6-rJ-4sE"; */
+"pt6-rJ-4sE.normalTitle" = "Done";
+
+/* Class = "UILabel"; text = "Coins"; ObjectID = "spm-kz-Ief"; */
+"spm-kz-Ief.text" = "Coins";
+
+/* Class = "UILabel"; text = "Bitcoin"; ObjectID = "tHX-ZR-PF8"; */
+"tHX-ZR-PF8.text" = "Bitcoin";
+
+/* Class = "UILabel"; text = "for 24 hours"; ObjectID = "tM7-pm-Gus"; */
+"tM7-pm-Gus.text" = "for 24 hours";
+
+/* Class = "UILabel"; text = "$ 10 000"; ObjectID = "tb4-VU-OXy"; */
+"tb4-VU-OXy.text" = "$ 10 000";
+
+/* Class = "UITabBarItem"; title = "Subscription"; ObjectID = "tdI-7z-lb4"; */
+"tdI-7z-lb4.title" = "Subscription";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "wS9-pH-97X"; */
+"wS9-pH-97X.normalTitle" = "Cancel";
+
+/* Class = "UILabel"; text = "Current cost:"; ObjectID = "y7k-gY-KAv"; */
+"y7k-gY-KAv.text" = "Current cost:";
+
+/* Class = "UILabel"; text = "for an hour"; ObjectID = "yGu-qG-ujs"; */
+"yGu-qG-ujs.text" = "for an hour";
+
+/* Class = "UILabel"; text = "$ 275 000 000 000"; ObjectID = "ybl-v2-gso"; */
+"ybl-v2-gso.text" = "$ 275 000 000 000";
+
+/* Class = "UITextField"; placeholder = "Amount"; ObjectID = "ydz-N8-GAx"; */
+"ydz-N8-GAx.placeholder" = "Amount";
+
+/* Class = "UILabel"; text = "0%"; ObjectID = "z0h-qJ-gMy"; */
+"z0h-qJ-gMy.text" = "0%";
+
+/* Class = "UILabel"; text = "+35.75%"; ObjectID = "zJv-Qk-Em0"; */
+"zJv-Qk-Em0.text" = "+35.75%";

@@ -127,7 +127,7 @@ extension CoinsCatalogViewController: UITextFieldDelegate {
         
         if filteredItems.isEmpty {
             let noItemsLabel = UILabel()
-            noItemsLabel.text = "Can't find any coins"
+            noItemsLabel.text = NSLocalizedString("Can't find any coins", comment: "")
             noItemsLabel.textColor = .lightGray
             noItemsLabel.textAlignment = .center
             tableView.backgroundView = noItemsLabel

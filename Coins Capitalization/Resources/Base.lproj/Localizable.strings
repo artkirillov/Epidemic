@@ -1,0 +1,28 @@
+/* 
+  Localizable.strings
+  Coins Capitalization
+
+  Created by Artem Kirillov on 25.03.18.
+  Copyright © 2018 ASK LLC. All rights reserved.
+*/
+
+/*  */
+"Market Capitalization" = "Market Capiralization";
+"Bitcoin Dominance" = "Bitcoin Dominance";
+"1D" = "1D";
+"1W" = "1W";
+"1M" = "1M";
+"3M" = "3M";
+"6M" = "6M";
+"1Y" = "1Y";
+"ALL" = "ALL";
+"Can't find any coins" = "Can't find any coins";
+"B" = "B";
+"Free trial alert" = "Free trial portoflio volume is three assets";
+"Free trial message" = "If you would like to track up to 5 coins for free, leave us a review in AppStore, please)";
+"Go to AppStore" = "Go to AppStore";
+"Cancel" = "Cancel";
+"Ok" = "Ok";
+"Pro alert" = "Seems you are like a pro!";
+"Pro message" = "Thank you for using this app. Hope you enjoy it. For tracking coins without any limitations you can request an upgrade.";
+"You haven't add any assets to the portfolio" = "You haven't add any assets to the portfolio";

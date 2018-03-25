@@ -49,8 +49,10 @@ final class PortfolioViewController: UIViewController {
                 present(controller, animated: true, completion: nil)
             }
         } else if maxFreeVolume == 3 {
-            let alertController = UIAlertController(title: "Free trial portoflio volume is three assets", message: "If you would like to track up to 5 coins for free, leave us a review in AppStore, please)", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Go to AppStore", style: .default, handler: { _ in
+            let alertController = UIAlertController(title: NSLocalizedString("Free trial alert", comment: ""),
+                                                    message: NSLocalizedString("Free trial message", comment: ""),
+                                                    preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("Go to AppStore", comment: ""), style: .default, handler: { _ in
                 if let appId = Storage.appId(), let url = URL(string: "https://itunes.apple.com/app/id\(appId)") {
                     UIApplication.shared.open(url, options: [:], completionHandler: { _ in Storage.save(maxPortfolioVolume: 5) })
                 } else if let url = URL(string: "https://www.apple.com/itunes/") {
@@ -58,19 +60,21 @@ final class PortfolioViewController: UIViewController {
                 }
             }))
             
-            alertController.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { _ in alertController.dismiss(animated: true, completion: nil) }))
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .destructive, handler: { _ in alertController.dismiss(animated: true, completion: nil) }))
             
             present(alertController, animated: true, completion: nil)
         } else {
-            let alertController = UIAlertController(title: "Seems you are like a pro!", message: "Thank you for using this app. Hope you enjoy it. For tracking coins without any limitations you can request an upgrade.", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
+            let alertController = UIAlertController(title: NSLocalizedString("Pro alert", comment: ""),
+                                                    message: NSLocalizedString("Pro message", comment: ""),
+                                                    preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .default, handler: { _ in
 //                if let parentViewController = self?.parent as? UITabBarController,
 //                    let count = parentViewController.viewControllers?.count {
 //                    parentViewController.selectedIndex = count - 1
 //                }
             }))
             
-            alertController.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { _ in alertController.dismiss(animated: true, completion: nil) }))
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .destructive, handler: { _ in alertController.dismiss(animated: true, completion: nil) }))
             
             present(alertController, animated: true, completion: nil)
         }
@@ -139,7 +143,7 @@ private extension PortfolioViewController {
         
         if items.isEmpty {
             let noItemsLabel = UILabel()
-            noItemsLabel.text = "You haven't add any assets to the portfolio"
+            noItemsLabel.text = NSLocalizedString("You haven't add any assets to the portfolio", comment: "")
             noItemsLabel.numberOfLines = 0
             noItemsLabel.textColor = .lightGray
             noItemsLabel.textAlignment = .center

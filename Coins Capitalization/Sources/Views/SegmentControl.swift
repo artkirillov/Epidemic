@@ -12,7 +12,13 @@ final class SegmentedControl: UIControl {
     
     // MARK: - Public Properties
     
-    var items: [String] = ["1D", "1W", "1M", "3M", "6M", "1Y", "ALL"] {
+    var items: [String] = [NSLocalizedString("1D", comment: ""),
+                           NSLocalizedString("1W", comment: ""),
+                           NSLocalizedString("1M", comment: ""),
+                           NSLocalizedString("3M", comment: ""),
+                           NSLocalizedString("6M", comment: ""),
+                           NSLocalizedString("1Y", comment: ""),
+                           NSLocalizedString("ALL", comment: "")] {
         didSet {
             setupLabels()
         }

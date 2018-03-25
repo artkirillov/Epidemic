@@ -210,14 +210,14 @@ private extension CoinsViewController {
                 numberFormatter.maximumFractionDigits = 2
                 
                 if let text = numberFormatter.string(from: round(Double(globalData.totalMarketCapUSD) / 1000000000) as NSNumber) {
-                    self?.marketCapitalizationLabel.text = "Market Capitalization: $\(text)B"
+                    self?.marketCapitalizationLabel.text = "\(NSLocalizedString("Market Capitalization", comment: "")): $\(text)\(NSLocalizedString("B", comment: ""))"
                     self?.marketCapitalizationLabel.textAlignment = .left
                 } else {
-                    self?.marketCapitalizationLabel.text = "Coins"
+                    self?.marketCapitalizationLabel.text = NSLocalizedString("Coins", comment: "")
                 }
                 
                 if let text = numberFormatter.string(from: globalData.bitcoinPercentageOfMarketCap as NSNumber) {
-                    self?.bitcoinDominanceLabel.text = "Bitcoin Dominance: \(text)%"
+                    self?.bitcoinDominanceLabel.text = "\(NSLocalizedString("Bitcoin Dominance", comment: "")): \(text)%"
                 } else {
                     self?.bitcoinDominanceLabel.text = nil
                 }
