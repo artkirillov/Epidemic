@@ -109,7 +109,7 @@ final class ReduceCoinViewController: UIViewController {
 extension ReduceCoinViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if let text = textField.text, text == "", string == "," {
+        if let text = textField.text, text == "", string == "," || string == "." {
             textField.text = "0"
         }
         
