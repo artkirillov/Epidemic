@@ -18,21 +18,22 @@ final class Formatter {
         return formatter
     }()
     
-    static func format(_ number: Double) -> String? {
+    static func format(_ number: Double, maximumFractionDigits: Int = 2) -> String? {
+        numberFormatter.maximumFractionDigits = maximumFractionDigits
         return numberFormatter.string(from: abs(number) as NSNumber)
     }
     
-    static func formatAmount(label: UILabel, value: Double, symbol: String) {
-        numberFormatter.maximumFractionDigits = 10
-        if let amount = Formatter.format(value) { label.text = "\(amount) \(symbol)" }
-        numberFormatter.maximumFractionDigits = 2
+    static func formatAmount(label: UILabel, value: Double, symbol: String, maximumFractionDigits: Int = 10) {
+        if let amount = Formatter.format(value, maximumFractionDigits: maximumFractionDigits) {
+            label.text = "\(amount) \(symbol)"
+        }
     }
     
-    static func formatCost(label: UILabel, value: Double) {
-        if let cost = Formatter.format(value) { label.text = "$\(cost)" }
+    static func formatCost(label: UILabel, value: Double, maximumFractionDigits: Int = 2) {
+        if let cost = Formatter.format(value, maximumFractionDigits: maximumFractionDigits) { label.text = "$\(cost)" }
     }
     
-    static func formatProfit(label: UILabel, firstValue: Double?, lastValue: Double?) {
+    static func formatProfit(label: UILabel, firstValue: Double?, lastValue: Double?, maximumFractionDigits: Int = 2) {
         guard let firstValue = firstValue, let lastValue = lastValue, firstValue != 0 || lastValue != 0 else {
             label.text = ""
             return
@@ -41,7 +42,8 @@ final class Formatter {
         let absoluteProfit = lastValue - firstValue
         let relativeProfit = absoluteProfit / firstValue * 100
         
-        guard let profitText = Formatter.format(absoluteProfit), let percentText = Formatter.format(relativeProfit) else {
+        guard let profitText = Formatter.format(absoluteProfit, maximumFractionDigits: maximumFractionDigits),
+            let percentText = Formatter.format(relativeProfit) else {
             label.text = ""
             return
         }

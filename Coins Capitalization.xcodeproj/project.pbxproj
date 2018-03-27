@@ -14,6 +14,8 @@
 		2119D0CB204B36A8000FE804 /* ConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2119D0CA204B36A8000FE804 /* ConverterViewController.swift */; };
 		2123173120590DF300F23540 /* AppStoreLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2123173020590DF300F23540 /* AppStoreLookup.swift */; };
 		212317332059169300F23540 /* SubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212317322059169300F23540 /* SubscriptionViewController.swift */; };
+		2125F5272067BA5B001EDACD /* CoinsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2125F5262067BA5B001EDACD /* CoinsUITests.swift */; };
+		2125F52F2067BB41001EDACD /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2125F52E2067BB41001EDACD /* SnapshotHelper.swift */; };
 		212F6D182042C83A0091B723 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 212F6D172042C83A0091B723 /* Assets.xcassets */; };
 		215A1FFD2048009F005ABDB8 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1FFC2048009F005ABDB8 /* Coin.swift */; };
 		215A1FFF204804DA005ABDB8 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1FFE204804DA005ABDB8 /* Storage.swift */; };
@@ -36,9 +38,20 @@
 		21E78BC6204AC5CB000B7398 /* CoinItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E78BC5204AC5CB000B7398 /* CoinItemTableViewCell.swift */; };
 		21E78BC8204AC6B0000B7398 /* CoinsCatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E78BC7204AC6B0000B7398 /* CoinsCatalogViewController.swift */; };
 		21E78BCA204AE48D000B7398 /* PortfolioTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E78BC9204AE48D000B7398 /* PortfolioTableHeaderView.swift */; };
+		21F0AD0D2068FD7800021E7B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21F4B013206729B600C37688 /* Localizable.strings */; };
 		21F4B0112067280F00C37688 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21F4B00F2067280F00C37688 /* InfoPlist.strings */; };
 		21F4B015206729B600C37688 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21F4B013206729B600C37688 /* Localizable.strings */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2125F5292067BA5B001EDACD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21BAD5FB20177F7A0065D700 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 21BAD60220177F7A0065D700;
+			remoteInfo = "Coins Capitalization";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2101993D2030BE7000EA8D37 /* Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
@@ -48,6 +61,10 @@
 		2119D0CA204B36A8000FE804 /* ConverterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterViewController.swift; sourceTree = "<group>"; };
 		2123173020590DF300F23540 /* AppStoreLookup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreLookup.swift; sourceTree = "<group>"; };
 		212317322059169300F23540 /* SubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionViewController.swift; sourceTree = "<group>"; };
+		2125F5242067BA5B001EDACD /* CoinsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoinsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2125F5262067BA5B001EDACD /* CoinsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsUITests.swift; sourceTree = "<group>"; };
+		2125F5282067BA5B001EDACD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2125F52E2067BB41001EDACD /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		212F6D172042C83A0091B723 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2157F75120671E9B00263AE0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		2157F75220671E9B00263AE0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -82,6 +99,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2125F5212067BA5B001EDACD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		21BAD60020177F7A0065D700 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -99,6 +123,16 @@
 				21B07FCA205650C400A09B48 /* Formatter.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		2125F5252067BA5B001EDACD /* CoinsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2125F5262067BA5B001EDACD /* CoinsUITests.swift */,
+				2125F52E2067BB41001EDACD /* SnapshotHelper.swift */,
+				2125F5282067BA5B001EDACD /* Info.plist */,
+			);
+			path = CoinsUITests;
 			sourceTree = "<group>";
 		};
 		2173EC262017D32B004BDECE /* Models */ = {
@@ -164,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				21BAD60520177F7A0065D700 /* Coins Capitalization */,
+				2125F5252067BA5B001EDACD /* CoinsUITests */,
 				21BAD60420177F7A0065D700 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -172,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				21BAD60320177F7A0065D700 /* Coins Capitalization.app */,
+				2125F5242067BA5B001EDACD /* CoinsUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -214,6 +250,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2125F5232067BA5B001EDACD /* CoinsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2125F52D2067BA5B001EDACD /* Build configuration list for PBXNativeTarget "CoinsUITests" */;
+			buildPhases = (
+				2125F5202067BA5B001EDACD /* Sources */,
+				2125F5212067BA5B001EDACD /* Frameworks */,
+				2125F5222067BA5B001EDACD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2125F52A2067BA5B001EDACD /* PBXTargetDependency */,
+			);
+			name = CoinsUITests;
+			productName = CoinsUITests;
+			productReference = 2125F5242067BA5B001EDACD /* CoinsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		21BAD60220177F7A0065D700 /* Coins Capitalization */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 21BAD61720177F7A0065D700 /* Build configuration list for PBXNativeTarget "Coins Capitalization" */;
@@ -241,6 +295,11 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "ASK LLC";
 				TargetAttributes = {
+					2125F5232067BA5B001EDACD = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 21BAD60220177F7A0065D700;
+					};
 					21BAD60220177F7A0065D700 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -262,11 +321,20 @@
 			projectRoot = "";
 			targets = (
 				21BAD60220177F7A0065D700 /* Coins Capitalization */,
+				2125F5232067BA5B001EDACD /* CoinsUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2125F5222067BA5B001EDACD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21F0AD0D2068FD7800021E7B /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		21BAD60120177F7A0065D700 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -282,6 +350,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2125F5202067BA5B001EDACD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2125F5272067BA5B001EDACD /* CoinsUITests.swift in Sources */,
+				2125F52F2067BB41001EDACD /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		21BAD5FF20177F7A0065D700 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -316,6 +393,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2125F52A2067BA5B001EDACD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 21BAD60220177F7A0065D700 /* Coins Capitalization */;
+			targetProxy = 2125F5292067BA5B001EDACD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		21BAD60C20177F7A0065D700 /* Main.storyboard */ = {
@@ -358,6 +443,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2125F52B2067BA5B001EDACD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VQ53R95MLS;
+				INFOPLIST_FILE = CoinsUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ru.appsaucekitchen.CoinsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Coins Capitalization";
+			};
+			name = Debug;
+		};
+		2125F52C2067BA5B001EDACD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VQ53R95MLS;
+				INFOPLIST_FILE = CoinsUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ru.appsaucekitchen.CoinsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Coins Capitalization";
+			};
+			name = Release;
+		};
 		21BAD61520177F7A0065D700 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -506,6 +621,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2125F52D2067BA5B001EDACD /* Build configuration list for PBXNativeTarget "CoinsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2125F52B2067BA5B001EDACD /* Debug */,
+				2125F52C2067BA5B001EDACD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		21BAD5FE20177F7A0065D700 /* Build configuration list for PBXProject "Coins Capitalization" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

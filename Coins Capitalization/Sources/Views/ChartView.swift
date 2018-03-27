@@ -184,12 +184,16 @@ private extension ChartView {
     }
     
     func handle(touches: Set<UITouch>) {
-        guard let touch = touches.first else { return }
+        guard let touch = touches.first, self.bounds.contains(touch.location(in: self)) else {
+            showBubble(false)
+            return
+        }
         let xPoint = touch.location(in: self).x
         let index = Int(round(xPoint))
         
         dateLabel.text = dates[index]
-        Formatter.formatCost(label: priceLabel, value: points[index])
+        let value = points[index]
+        Formatter.formatCost(label: priceLabel, value: value, maximumFractionDigits: value > 1.0 ? 2 : 5)
         
         pointViewconstraint?.constant = yCoordinates[index] - pointView.bounds.width / 2
         lineViewconstraint?.constant = xPoint - lineView.bounds.width / 2
@@ -202,6 +206,20 @@ private extension ChartView {
         } else {
             bubbleViewconstraint?.constant = xPoint - bubbleHalfWidth
         }
+    }
+    
+    func testHandle() {
+        guard !data.isEmpty else { return }
+        let xPoint: CGFloat = bounds.width / 3 * 2
+        let index = Int(round(xPoint))
+        
+        dateLabel.text = dates[index]
+        let value = points[index]
+        Formatter.formatCost(label: priceLabel, value: value, maximumFractionDigits: value > 1.0 ? 2 : 5)
+        layoutIfNeeded()
+        pointViewconstraint?.constant = yCoordinates[index] - pointView.bounds.width / 2
+        lineViewconstraint?.constant = xPoint - lineView.bounds.width / 2
+        bubbleViewconstraint?.constant = xPoint - bubbleView.bounds.width / 2
     }
     
 }
