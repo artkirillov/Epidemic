@@ -1085,10 +1085,15 @@
                                             <constraint firstAttribute="trailing" secondItem="iNt-Mc-wji" secondAttribute="trailing" constant="20" id="fcX-R6-cXc"/>
                                         </constraints>
                                     </view>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="ux6-lF-SjN">
+                                        <rect key="frame" x="177" y="115" width="20" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="Nlr-Kc-3qK"/>
+                                    <constraint firstItem="ux6-lF-SjN" firstAttribute="centerX" secondItem="KFS-AW-kwP" secondAttribute="centerX" id="dbW-bb-uLz"/>
+                                    <constraint firstItem="ux6-lF-SjN" firstAttribute="centerY" secondItem="KFS-AW-kwP" secondAttribute="centerY" id="et4-0J-Ocs"/>
                                     <constraint firstItem="cUg-yx-bhS" firstAttribute="centerX" secondItem="KFS-AW-kwP" secondAttribute="centerX" id="raJ-i4-gQh"/>
                                     <constraint firstItem="cUg-yx-bhS" firstAttribute="centerY" secondItem="KFS-AW-kwP" secondAttribute="centerY" id="z9i-Bc-Eml"/>
                                 </constraints>
@@ -1237,6 +1242,7 @@
                         <viewLayoutGuide key="safeArea" id="r6I-Mw-Vlh"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="ux6-lF-SjN" id="6Hh-7z-qMe"/>
                         <outlet property="addButton" destination="Uy4-vH-qEX" id="BzQ-YS-eaY"/>
                         <outlet property="amountLabel" destination="lbA-QM-vvr" id="DzH-yJ-Nxn"/>
                         <outlet property="changeLabel" destination="0MN-Fu-e4F" id="cW1-gE-D0K"/>

@@ -40,10 +40,8 @@ final class CoinDetailsViewController: UIViewController {
         swipeGestureRecognizer.direction = .down
         view.addGestureRecognizer(swipeGestureRecognizer)
         
-        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
-        if let activityIndicatorView = activityIndicator { view.addSubview(activityIndicatorView) }
-        activityIndicator?.center = chartView.center
-        activityIndicator?.startAnimating()
+        activityIndicator.startAnimating()
+        activityIndicator.isHidden = false
         noDataView.isHidden = true
         
         requestData(for: .day)
@@ -59,7 +57,8 @@ final class CoinDetailsViewController: UIViewController {
     }
     
     @IBAction func changeChartType(_ sender: SegmentedControl) {
-        activityIndicator?.startAnimating()
+        activityIndicator.startAnimating()
+        activityIndicator.isHidden = false
         noDataView.isHidden = true
         switch sender.selectedIndex {
         case 0: requestData(for: .day)
@@ -95,6 +94,8 @@ final class CoinDetailsViewController: UIViewController {
     private var asset: Asset?
     private let animation = CATransition()
     
+    
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var changeLabel: UILabel!
     @IBOutlet private weak var chartView: ChartView!
@@ -108,8 +109,6 @@ final class CoinDetailsViewController: UIViewController {
     
     @IBOutlet private weak var infoContainer: UIView!
     @IBOutlet private weak var infoContainerHeightConstraint: NSLayoutConstraint!
-    
-    private var activityIndicator: UIActivityIndicatorView?
 }
 
 // MARK: - AddCoinViewControllerDelegate
@@ -139,7 +138,8 @@ private extension CoinDetailsViewController {
                                 guard let slf = self else { return }
                                 slf.chartView.layer.add(slf.animation, forKey: kCATransition)
                                 slf.chartView.data = chartData.price.map { $0 }
-                                slf.activityIndicator?.stopAnimating()
+                                slf.activityIndicator.stopAnimating()
+                                slf.activityIndicator.isHidden = true
                                 slf.noDataView.isHidden = true
                                 
                                 let prices = chartData.price
@@ -151,7 +151,8 @@ private extension CoinDetailsViewController {
             },
                              failure: { [weak self] error in
                                 guard let slf = self else { return }
-                                slf.activityIndicator?.stopAnimating()
+                                slf.activityIndicator.stopAnimating()
+                                slf.activityIndicator.isHidden = true
                                 slf.noDataView.isHidden = false
                                 print("ERROR: \(error)")
                                 

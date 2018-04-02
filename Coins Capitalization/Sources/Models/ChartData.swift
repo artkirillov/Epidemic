@@ -10,7 +10,7 @@ struct ChartData: Codable {
     
     var marketCap: [[Double]]
     var price: [[Double]]
-    var volume: [[Int]]
+    var volume: [[Double]]
     
     private enum CodingKeys: String, CodingKey {
         case marketCap = "market_cap"

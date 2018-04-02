@@ -8,8 +8,8 @@
 
 struct GlobalData: Codable {
     
-    var totalMarketCapUSD: Int
-    var total24hVolumeUSD: Int
+    var totalMarketCapUSD: Double
+    var total24hVolumeUSD: Double
     var bitcoinPercentageOfMarketCap: Double
     var activeCurrencies: Int
     var activeAssets: Int
