@@ -19,6 +19,10 @@ final class CoinDetailsViewController: UIViewController {
         return .lightContent
     }
     
+    // Custom Transition parameters
+    
+    var originFrame = CGRect.zero
+    
     // MARK: Public Methods
     
     override func viewDidLoad() {
@@ -36,20 +40,14 @@ final class CoinDetailsViewController: UIViewController {
         animation.duration = 0.2
         animation.type = kCATransitionFade
         
-        let swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
-        swipeGestureRecognizer.direction = .down
-        view.addGestureRecognizer(swipeGestureRecognizer)
-        
         activityIndicator.startAnimating()
         activityIndicator.isHidden = false
         noDataView.isHidden = true
         
         requestData(for: .day)
         updateAssetInfo()
-    }
-    
-    @objc func handleSwipe() {
-        dismiss(animated: true, completion: nil)
+        
+        transitioningDelegate = self
     }
     
     @IBAction func backButtonTapped(_ sender: Any) {
@@ -183,5 +181,19 @@ private extension CoinDetailsViewController {
             infoContainer.isHidden = true
             infoContainerHeightConstraint.constant = 0
         }
+    }
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+
+extension CoinDetailsViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController)
+        -> UIViewControllerAnimatedTransitioning? {
+            return CustomViewControllerAnimator(duration: 0.2, isPresenting: true, originFrame: originFrame)
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return CustomViewControllerAnimator(duration: 0.2, isPresenting: false, originFrame: originFrame)
     }
 }

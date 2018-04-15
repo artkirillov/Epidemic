@@ -191,6 +191,8 @@ private extension ChartView {
         let xPoint = touch.location(in: self).x
         let index = Int(round(xPoint))
         
+        guard index < dates.count else { return }
+        
         dateLabel.text = dates[index]
         let value = points[index]
         Formatter.formatCost(label: priceLabel, value: value, maximumFractionDigits: value > 1.0 ? 2 : 5)

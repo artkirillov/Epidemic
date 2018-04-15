@@ -54,9 +54,9 @@ final class PortfolioViewController: UIViewController {
                                                     preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("Go to AppStore", comment: ""), style: .default, handler: { _ in
                 if let appId = Storage.appId(), let url = URL(string: "https://itunes.apple.com/app/id\(appId)") {
-                    UIApplication.shared.open(url, options: [:], completionHandler: { _ in Storage.save(maxPortfolioVolume: 5) })
+                    UIApplication.shared.open(url, options: [:], completionHandler: { _ in Storage.save(maxPortfolioVolume: 10) })
                 } else if let url = URL(string: "https://www.apple.com/itunes/") {
-                    UIApplication.shared.open(url, options: [:], completionHandler: { _ in Storage.save(maxPortfolioVolume: 5) })
+                    UIApplication.shared.open(url, options: [:], completionHandler: { _ in Storage.save(maxPortfolioVolume: 10) })
                 }
             }))
             
@@ -123,11 +123,26 @@ extension PortfolioViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "CoinDetailsViewController") as? CoinDetailsViewController {
+        
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "CoinDetailsViewController") as? CoinDetailsViewController, let cell = tableView.cellForRow(at: indexPath) {
             controller.symbol = items[indexPath.row].symbol
             controller.name = items[indexPath.row].name
+            
+            let height = cell.frame.height
+            let width = view.frame.width * height / view.frame.height
+            let origin = view.convert(cell.frame.origin, from: tableView)
+            let x = (cell.frame.width - width) / 2
+            let originFrame = CGRect(x: x, y: origin.y, width: width, height: height)
+            controller.originFrame = originFrame
+            
             present(controller, animated: true, completion: nil)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        items.remove(at: indexPath.row)
+        tableView.reloadData()
+        Storage.save(assets: items)
     }
 }
 

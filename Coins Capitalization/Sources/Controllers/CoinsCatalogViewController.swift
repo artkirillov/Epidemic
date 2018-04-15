@@ -55,6 +55,10 @@ final class CoinsCatalogViewController: UIViewController {
         view.endEditing(true)
     }
     
+    @IBAction func backButtonTapped(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     // MARK: - Private Properties
     
     @IBOutlet private weak var searchTextField: UITextField!

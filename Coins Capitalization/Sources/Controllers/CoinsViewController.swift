@@ -111,9 +111,18 @@ extension CoinsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "CoinDetailsViewController") as? CoinDetailsViewController {
+        
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "CoinDetailsViewController") as? CoinDetailsViewController, let cell = tableView.cellForRow(at: indexPath) {
             controller.symbol = filteredItems[indexPath.row].symbol
             controller.name = filteredItems[indexPath.row].name
+            
+            let height = cell.frame.height
+            let width = view.frame.width * height / view.frame.height
+            let origin = view.convert(cell.frame.origin, from: tableView)
+            let x = (cell.frame.width - width) / 2
+            let originFrame = CGRect(x: x, y: origin.y, width: width, height: height)
+            controller.originFrame = originFrame
+            
             present(controller, animated: true, completion: nil)
         }
     }

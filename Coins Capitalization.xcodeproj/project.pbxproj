@@ -38,6 +38,7 @@
 		21E78BC6204AC5CB000B7398 /* CoinItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E78BC5204AC5CB000B7398 /* CoinItemTableViewCell.swift */; };
 		21E78BC8204AC6B0000B7398 /* CoinsCatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E78BC7204AC6B0000B7398 /* CoinsCatalogViewController.swift */; };
 		21E78BCA204AE48D000B7398 /* PortfolioTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E78BC9204AE48D000B7398 /* PortfolioTableHeaderView.swift */; };
+		21ED700A208295E9002CD41E /* CustomViewControllerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ED7009208295E9002CD41E /* CustomViewControllerAnimator.swift */; };
 		21F0AD0D2068FD7800021E7B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21F4B013206729B600C37688 /* Localizable.strings */; };
 		21F4B0112067280F00C37688 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21F4B00F2067280F00C37688 /* InfoPlist.strings */; };
 		21F4B015206729B600C37688 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21F4B013206729B600C37688 /* Localizable.strings */; };
@@ -91,6 +92,7 @@
 		21E78BC5204AC5CB000B7398 /* CoinItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinItemTableViewCell.swift; sourceTree = "<group>"; };
 		21E78BC7204AC6B0000B7398 /* CoinsCatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsCatalogViewController.swift; sourceTree = "<group>"; };
 		21E78BC9204AE48D000B7398 /* PortfolioTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioTableHeaderView.swift; sourceTree = "<group>"; };
+		21ED7009208295E9002CD41E /* CustomViewControllerAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewControllerAnimator.swift; sourceTree = "<group>"; };
 		21F4B00E2067242B00C37688 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		21F4B0102067280F00C37688 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "Coins Capitalization/Resources/Base.lproj/InfoPlist.strings"; sourceTree = SOURCE_ROOT; };
 		21F4B0122067284000C37688 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ../../Resources/ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 		219FA199201E597200094B67 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				21ED70082082959A002CD41E /* Utils */,
 				21BAD60820177F7A0065D700 /* CoinsViewController.swift */,
 				218CB6CF204C555A00EDF550 /* CoinDetailsViewController.swift */,
 				219FBFCC202E340800A8771A /* PortfolioViewController.swift */,
@@ -245,6 +248,14 @@
 				21F4B013206729B600C37688 /* Localizable.strings */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		21ED70082082959A002CD41E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				21ED7009208295E9002CD41E /* CustomViewControllerAnimator.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -387,6 +398,7 @@
 				21E78BC6204AC5CB000B7398 /* CoinItemTableViewCell.swift in Sources */,
 				21BAD60920177F7A0065D700 /* CoinsViewController.swift in Sources */,
 				212317332059169300F23540 /* SubscriptionViewController.swift in Sources */,
+				21ED700A208295E9002CD41E /* CustomViewControllerAnimator.swift in Sources */,
 				219FA195201E49F500094B67 /* GlobalDataTableHeaderView.swift in Sources */,
 				2119D0CB204B36A8000FE804 /* ConverterViewController.swift in Sources */,
 			);
