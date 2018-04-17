@@ -27,6 +27,10 @@ final class ChartView: UIView {
             }
             if k < 1 { points[points.count - 1] = data[data.count - 2][1] }
             
+            // for layout bubble view
+            let value = points.first ?? 0
+            Formatter.formatCost(label: priceLabel, value: value, maximumFractionDigits: value > 1.0 ? 2 : 5)
+            
             setNeedsDisplay()
         }
     }
@@ -88,6 +92,8 @@ final class ChartView: UIView {
     override func didMoveToWindow() {
         super.didMoveToWindow()
         
+        guard needsSetViews else { return }
+        
         [lineView, bubbleView, pointView].forEach { addSubview($0) }
         [dateLabel, priceLabel].forEach {
             bubbleView.addSubview($0)
@@ -134,6 +140,8 @@ final class ChartView: UIView {
         pointViewconstraint?.isActive = true
         
         showBubble(false)
+        
+        needsSetViews = false
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -151,6 +159,7 @@ final class ChartView: UIView {
     
     // MARK: - Private Properties
     
+    private var needsSetViews = true
     private var points: [Double] = []
     private var dates: [String] = []
     private var yCoordinates: [CGFloat] = []
