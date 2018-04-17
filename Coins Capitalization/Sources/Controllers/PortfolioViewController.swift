@@ -142,6 +142,13 @@ extension PortfolioViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         items.remove(at: indexPath.row)
         tableView.reloadData()
+        var currentValue: Double = 0.0
+        var value: Double = 0.0
+        items.forEach {
+            currentValue += $0.currentTotalCost
+            value += $0.totalCost
+        }
+        tableHeaderView?.configure(total: currentValue, value: value, currentValue: currentValue)
         Storage.save(assets: items)
     }
 }
