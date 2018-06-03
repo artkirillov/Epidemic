@@ -43,7 +43,6 @@ final class TickerTableViewCell: UITableViewCell {
         
         setNumber(label: marketCapUSDLabel, value: ticker.marketCapUSD ?? Default.noInfo, prefix: "$")
         setNumber(label: availableSupplyLabel, value: ticker.availableSupply ?? Default.noInfo, suffix: " \(ticker.symbol)")
-        //setNumber(label: totalSupplyLabel, value: ticker.totalSupply, suffix: " \(ticker.symbol)")
         
         setPercent(label: percentChange1hLabel, value: ticker.percentChange1h ?? Default.noInfo)
         setPercent(label: percentChange24hLabel, value: ticker.percentChange24h ?? Default.noInfo)

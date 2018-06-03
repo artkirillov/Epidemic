@@ -27,7 +27,6 @@
 		218CB6D2204C58B100EDF550 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218CB6D1204C58B100EDF550 /* ChartView.swift */; };
 		218CB6D4204C5A8000EDF550 /* SegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218CB6D3204C5A8000EDF550 /* SegmentControl.swift */; };
 		219FA193201E444C00094B67 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219FA192201E444C00094B67 /* API.swift */; };
-		219FA195201E49F500094B67 /* GlobalDataTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219FA194201E49F500094B67 /* GlobalDataTableHeaderView.swift */; };
 		219FA197201E4C9600094B67 /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219FA196201E4C9600094B67 /* GlobalData.swift */; };
 		219FBFCD202E340800A8771A /* PortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219FBFCC202E340800A8771A /* PortfolioViewController.swift */; };
 		21B07FCB205650C400A09B48 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B07FCA205650C400A09B48 /* Formatter.swift */; };
@@ -79,7 +78,6 @@
 		218CB6D1204C58B100EDF550 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		218CB6D3204C5A8000EDF550 /* SegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentControl.swift; sourceTree = "<group>"; };
 		219FA192201E444C00094B67 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		219FA194201E49F500094B67 /* GlobalDataTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalDataTableHeaderView.swift; sourceTree = "<group>"; };
 		219FA196201E4C9600094B67 /* GlobalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalData.swift; sourceTree = "<group>"; };
 		219FBFCC202E340800A8771A /* PortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
 		21B07FCA205650C400A09B48 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
@@ -153,7 +151,6 @@
 		2173EC292017E144004BDECE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				219FA194201E49F500094B67 /* GlobalDataTableHeaderView.swift */,
 				21E78BC9204AE48D000B7398 /* PortfolioTableHeaderView.swift */,
 				2173EC2A2017E14D004BDECE /* Cells */,
 				218CB6D1204C58B100EDF550 /* ChartView.swift */,
@@ -399,7 +396,6 @@
 				21BAD60920177F7A0065D700 /* CoinsViewController.swift in Sources */,
 				212317332059169300F23540 /* SubscriptionViewController.swift in Sources */,
 				21ED700A208295E9002CD41E /* CustomViewControllerAnimator.swift in Sources */,
-				219FA195201E49F500094B67 /* GlobalDataTableHeaderView.swift in Sources */,
 				2119D0CB204B36A8000FE804 /* ConverterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
