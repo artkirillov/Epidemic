@@ -17,6 +17,11 @@
 		2125F5272067BA5B001EDACD /* CoinsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2125F5262067BA5B001EDACD /* CoinsUITests.swift */; };
 		2125F52F2067BB41001EDACD /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2125F52E2067BB41001EDACD /* SnapshotHelper.swift */; };
 		212F6D182042C83A0091B723 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 212F6D172042C83A0091B723 /* Assets.xcassets */; };
+		214B0D4520DCFF76007234C1 /* RSS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214B0D4420DCFF76007234C1 /* RSS.swift */; };
+		2154CD9020DA3C4D002FA475 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2154CD8F20DA3C4D002FA475 /* Article.swift */; };
+		2154CD9220DA45A5002FA475 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2154CD9120DA45A5002FA475 /* NewsViewController.swift */; };
+		2154CD9420DA4753002FA475 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2154CD9320DA4753002FA475 /* ArticleTableViewCell.swift */; };
+		2154CD9A20DA5543002FA475 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2154CD9920DA5543002FA475 /* ArticleViewController.swift */; };
 		215A1FFD2048009F005ABDB8 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1FFC2048009F005ABDB8 /* Coin.swift */; };
 		215A1FFF204804DA005ABDB8 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1FFE204804DA005ABDB8 /* Storage.swift */; };
 		2173EC282017D4CD004BDECE /* Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2173EC272017D4CD004BDECE /* Ticker.swift */; };
@@ -66,6 +71,12 @@
 		2125F5282067BA5B001EDACD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2125F52E2067BB41001EDACD /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		212F6D172042C83A0091B723 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		214B0D4420DCFF76007234C1 /* RSS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSS.swift; sourceTree = "<group>"; };
+		2154CD8F20DA3C4D002FA475 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		2154CD9120DA45A5002FA475 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		2154CD9320DA4753002FA475 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
+		2154CD9820DA502F002FA475 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		2154CD9920DA5543002FA475 /* ArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		2157F75120671E9B00263AE0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		2157F75220671E9B00263AE0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		215A1FFC2048009F005ABDB8 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
@@ -91,7 +102,6 @@
 		21E78BC7204AC6B0000B7398 /* CoinsCatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsCatalogViewController.swift; sourceTree = "<group>"; };
 		21E78BC9204AE48D000B7398 /* PortfolioTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioTableHeaderView.swift; sourceTree = "<group>"; };
 		21ED7009208295E9002CD41E /* CustomViewControllerAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewControllerAnimator.swift; sourceTree = "<group>"; };
-		21F4B00E2067242B00C37688 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		21F4B0102067280F00C37688 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "Coins Capitalization/Resources/Base.lproj/InfoPlist.strings"; sourceTree = SOURCE_ROOT; };
 		21F4B0122067284000C37688 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ../../Resources/ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		21F4B014206729B600C37688 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -144,6 +154,7 @@
 				215A1FFC2048009F005ABDB8 /* Coin.swift */,
 				218CB6CD204C513000EDF550 /* ChartData.swift */,
 				2123173020590DF300F23540 /* AppStoreLookup.swift */,
+				2154CD8F20DA3C4D002FA475 /* Article.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -165,6 +176,7 @@
 				2173EC2B2017E16B004BDECE /* TickerTableViewCell.swift */,
 				210199412030CA2700EA8D37 /* AssetTableViewCell.swift */,
 				21E78BC5204AC5CB000B7398 /* CoinItemTableViewCell.swift */,
+				2154CD9320DA4753002FA475 /* ArticleTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -173,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				219FA192201E444C00094B67 /* API.swift */,
+				214B0D4420DCFF76007234C1 /* RSS.swift */,
 				215A1FFE204804DA005ABDB8 /* Storage.swift */,
 			);
 			path = Services;
@@ -190,6 +203,8 @@
 				2119D0CA204B36A8000FE804 /* ConverterViewController.swift */,
 				21E78BC7204AC6B0000B7398 /* CoinsCatalogViewController.swift */,
 				212317322059169300F23540 /* SubscriptionViewController.swift */,
+				2154CD9120DA45A5002FA475 /* NewsViewController.swift */,
+				2154CD9920DA5543002FA475 /* ArticleViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -380,8 +395,11 @@
 				21B07FCB205650C400A09B48 /* Formatter.swift in Sources */,
 				21E78BC8204AC6B0000B7398 /* CoinsCatalogViewController.swift in Sources */,
 				21BAD60720177F7A0065D700 /* AppDelegate.swift in Sources */,
+				2154CD9420DA4753002FA475 /* ArticleTableViewCell.swift in Sources */,
 				218CB6D2204C58B100EDF550 /* ChartView.swift in Sources */,
+				2154CD9A20DA5543002FA475 /* ArticleViewController.swift in Sources */,
 				218CB6CE204C513000EDF550 /* ChartData.swift in Sources */,
+				2154CD9220DA45A5002FA475 /* NewsViewController.swift in Sources */,
 				2173EC2C2017E16B004BDECE /* TickerTableViewCell.swift in Sources */,
 				219FA193201E444C00094B67 /* API.swift in Sources */,
 				2173EC282017D4CD004BDECE /* Ticker.swift in Sources */,
@@ -392,8 +410,10 @@
 				210FB85B203A18F000AD4557 /* AddCoinViewController.swift in Sources */,
 				2123173120590DF300F23540 /* AppStoreLookup.swift in Sources */,
 				210199422030CA2700EA8D37 /* AssetTableViewCell.swift in Sources */,
+				2154CD9020DA3C4D002FA475 /* Article.swift in Sources */,
 				21E78BC6204AC5CB000B7398 /* CoinItemTableViewCell.swift in Sources */,
 				21BAD60920177F7A0065D700 /* CoinsViewController.swift in Sources */,
+				214B0D4520DCFF76007234C1 /* RSS.swift in Sources */,
 				212317332059169300F23540 /* SubscriptionViewController.swift in Sources */,
 				21ED700A208295E9002CD41E /* CustomViewControllerAnimator.swift in Sources */,
 				2119D0CB204B36A8000FE804 /* ConverterViewController.swift in Sources */,
@@ -416,7 +436,7 @@
 			children = (
 				21BAD60D20177F7A0065D700 /* Base */,
 				2157F75120671E9B00263AE0 /* ru */,
-				21F4B00E2067242B00C37688 /* en */,
+				2154CD9820DA502F002FA475 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

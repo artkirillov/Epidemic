@@ -11,12 +11,18 @@ import UIKit
 final class TickerTableViewCell: UITableViewCell {
     
     struct Default {
-        static let noInfo = "No info"
+        static let noInfo = NSLocalizedString("No info", comment: "")
     }
     
     // MARK: - Public Methods
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        containerView.layer.cornerRadius = 4.0
+    }
+    
     override func prepareForReuse() {
+        super.prepareForReuse()
         nameLabel.text = ""
         symbolLabel.text = ""
         priceUSDLabel.text = ""
@@ -51,6 +57,7 @@ final class TickerTableViewCell: UITableViewCell {
     
     // MARK: - Private Properties
     
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet private var nameLabel: UILabel!
     @IBOutlet private var symbolLabel: UILabel!
     @IBOutlet private var priceUSDLabel: UILabel!
@@ -96,4 +103,3 @@ fileprivate extension TickerTableViewCell {
     }
     
 }
-

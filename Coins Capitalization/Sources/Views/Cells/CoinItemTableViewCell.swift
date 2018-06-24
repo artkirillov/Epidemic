@@ -13,6 +13,7 @@ final class CoinItemTableViewCell: UITableViewCell {
     // MARK: - Public Methods
     
     override func prepareForReuse() {
+        super.prepareForReuse()
         symbolLabel.text = ""
         nameLabel.text = ""
     }

@@ -12,7 +12,13 @@ final class AssetTableViewCell: UITableViewCell {
     
     // MARK: - Public Methods
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        containerView.layer.cornerRadius = 4.0
+    }
+    
     override func prepareForReuse() {
+        super.prepareForReuse()
         nameLabel.text = ""
         amountLabel.text = ""
         totalCostLabel.text = ""
@@ -25,8 +31,8 @@ final class AssetTableViewCell: UITableViewCell {
         Formatter.formatAmount(label: amountLabel, value: asset.totalAmount, symbol: asset.symbol)
         
         guard asset.currentPrice != nil else {
-            totalCostLabel.text = "No info"
-            profitLabel.text = "No info"
+            totalCostLabel.text = NSLocalizedString("No info", comment: "")
+            profitLabel.text = NSLocalizedString("No info", comment: "")
             totalCostLabel.textColor = .lightGray
             profitLabel.textColor = .lightGray
             return
@@ -39,6 +45,7 @@ final class AssetTableViewCell: UITableViewCell {
     
     // MARK: - Private Properties
     
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet private var nameLabel: UILabel!
     @IBOutlet private var amountLabel: UILabel!
     @IBOutlet private var totalCostLabel: UILabel!
@@ -63,5 +70,3 @@ fileprivate extension AssetTableViewCell {
     }
     
 }
-
-

@@ -17,6 +17,7 @@
 "1Y" = "1Y";
 "ALL" = "ALL";
 "Can't find any coins" = "Can't find any coins";
+"No info" = "No info";
 "B" = "B";
 "Free trial alert" = "Free trial portoflio volume is three assets";
 "Free trial message" = "If you would like to track up to 10 coins for free, leave us a review in AppStore, please)";
@@ -33,3 +34,15 @@
 "Cost, $" = "Cost, $";
 "Portfolio" = "Portfolio";
 "Converter" = "Converter";
+"News" = "News";
+"Article" = "Article";
+"day" = "day";
+"severalDays" = "days";
+"manyDays" = "days";
+"hour" = "hour";
+"severalHours" = "hours";
+"manyHours" = "hours";
+"minute" = "minute";
+"severalMinutes" = "minutes";
+"manyMinutes" = "minutes";
+"ago" = "ago";

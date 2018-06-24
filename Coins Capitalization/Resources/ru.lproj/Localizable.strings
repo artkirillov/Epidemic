@@ -16,7 +16,8 @@
 "6M" = "6М";
 "1Y" = "1Г";
 "ALL" = "ВСЕ";
-"Can't find any coins" = "Нет соединения для поиска монет";
+"Can't find any coins" = "Поиск не дал результатов";
+"No info" = "Нет данных";
 "B" = " млрд.";
 "Free trial alert" = "Бесплатный объем портфеля - 3 монеты";
 "Free trial message" = "Если вы хотите отслеживать до 10 монет бесплатно, оставьте нам отзыв в AppStore, пожалуйста)";
@@ -33,3 +34,15 @@
 "Cost, $" = "Стоимость, $";
 "Portfolio" = "Портфель";
 "Converter" = "Конвертер";
+"News" = "Новости";
+"Article" = "Статья";
+"day" = "день";
+"severalDays" = "дня";
+"manyDays" = "дней";
+"hour" = "час";
+"severalHours" = "часа";
+"manyHours" = "часов";
+"minute" = "минута";
+"severalMinutes" = "минуты";
+"manyMinutes" = "минут";
+"ago" = "назад";

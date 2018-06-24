@@ -42,10 +42,6 @@ final class ConverterViewController: UIViewController {
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         view.addGestureRecognizer(tapGestureRecognizer)
-        
-        let swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleTap))
-        swipeGestureRecognizer.direction = .down
-        view.addGestureRecognizer(swipeGestureRecognizer)
     }
     
     @objc func handleTap() {

@@ -56,4 +56,25 @@ final class Formatter {
             label.textColor = Colors.negativeGrow
         }
     }
+    
+    static func days(for number: Int) -> String {
+        return localizedNumber(for: number, keys: ("day", "severalDays", "manyDays"))
+    }
+    
+    static func hours(for number: Int) -> String {
+        return localizedNumber(for: number, keys: ("hour", "severalHours", "manyHours"))
+    }
+    
+    static func minutes(for number: Int) -> String {
+        return localizedNumber(for: number, keys: ("minute", "severalMinutes", "manyMinutes"))
+    }
+    
+    static func localizedNumber(for number: Int, keys: (one: String, several: String, many: String)) -> String {
+        switch number % 10 {
+        case 1: return NSLocalizedString(keys.one, comment: "")
+        case 2, 3, 4: return NSLocalizedString(keys.several, comment: "")
+        default: return NSLocalizedString(keys.many, comment: "")
+        }
+    }
+    
 }

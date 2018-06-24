@@ -158,7 +158,7 @@ extension CoinsViewController: UITextFieldDelegate {
         
         if filteredItems.isEmpty {
             let noItemsLabel = UILabel()
-            noItemsLabel.text = "Can't find any coins"
+            noItemsLabel.text = NSLocalizedString("Can't find any coins", comment: "")
             noItemsLabel.textColor = .lightGray
             noItemsLabel.textAlignment = .center
             tableView.backgroundView = noItemsLabel
@@ -208,7 +208,7 @@ private extension CoinsViewController {
                     }
                 }
             },
-            failure: { error in print("ERROR: \(error)")
+            failure: { error in print("ERROR: \(error.localizedDescription)")
         })
         
         API.requestGlobalData(
@@ -233,7 +233,7 @@ private extension CoinsViewController {
                 
                 self?.tableView.refreshControl?.endRefreshing()
             },
-            failure: { error in print("ERROR: \(error)")
+            failure: { error in print("ERROR: \(error.localizedDescription)")
         })
         
         API.requestAppStoreData(
@@ -242,7 +242,7 @@ private extension CoinsViewController {
                 Storage.save(appId: appId)
         },
             failure: {
-                error in print("ERROR: \(error)")
+                error in print("ERROR: \(error.localizedDescription)")
         })
     }
     
