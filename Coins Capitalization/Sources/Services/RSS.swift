@@ -19,12 +19,11 @@ final class RSS: NSObject {
         case bitcoinMagazine    = "https://bitcoinmagazine.com/feed/"
         case ccn                = "https://www.ccn.com/feed/"
         case coinDesk           = "https://www.coindesk.com/feed/"
-        case cryptoInsider      = "https://cryptoinsider.com/content/feed/"
         case ethereumWorldNews  = "https://ethereumworldnews.com/feed/"
         case newsBTC            = "https://www.newsbtc.com/feed/"
         
         static var en: [Feed] {
-            return [.bitcoinMagazine, .ccn, .coinDesk, .cryptoInsider, .ethereumWorldNews, .newsBTC]
+            return [.bitcoinMagazine, .ccn, .coinDesk, .ethereumWorldNews, .newsBTC]
         }
         
         // Russian
@@ -32,10 +31,9 @@ final class RSS: NSObject {
         case coinspot           = "https://coinspot.io/feed/"
         case cryptocurrencyTech = "https://cryptocurrency.tech/feed"
         case forklog            = "https://forklog.com/news/feed/"
-        case chaining           = "https://chaining.ru/l/ru/feed/"
         
         static var ru: [Feed] {
-            return [.cryptocurrencyTech, .forklog, .chaining]
+            return [.coinspot, .cryptocurrencyTech, .forklog]
         }
         
         var url: URL? {

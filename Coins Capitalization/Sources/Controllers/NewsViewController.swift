@@ -48,6 +48,7 @@ final class NewsViewController: UIViewController {
     private var activityIndicator: UIActivityIndicatorView?
     private var rssServices: [RSS] = []
     private var items: [Article] = []
+    private var itemsNeedReset: Bool = false
     
 }
 
@@ -88,15 +89,18 @@ extension NewsViewController: UITableViewDelegate {
 
 private extension NewsViewController {
     func requestData() {
+        itemsNeedReset = true
         DispatchQueue.global(qos: .userInteractive).async { [weak self] in
-            guard let slf = self else { return }
-            slf.items = []
             for feed in RSS.feeds {
                 let rss = RSS()
                 rss.requestNewsArticles(from: feed,
                                         completion: { articles in
                                             DispatchQueue.main.async { [weak self] in
                                                 guard let slf = self else { return }
+                                                
+                                                if slf.itemsNeedReset { slf.items = [] }
+                                                slf.itemsNeedReset = false
+                                                
                                                 slf.items = (slf.items + articles)
                                                     .sorted { ($0.publishedAt ?? Date()) > ($1.publishedAt ?? Date()) }
                                                 slf.tableView.reloadData()
