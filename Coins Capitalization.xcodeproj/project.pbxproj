@@ -34,6 +34,7 @@
 		219FA193201E444C00094B67 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219FA192201E444C00094B67 /* API.swift */; };
 		219FA197201E4C9600094B67 /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219FA196201E4C9600094B67 /* GlobalData.swift */; };
 		219FBFCD202E340800A8771A /* PortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219FBFCC202E340800A8771A /* PortfolioViewController.swift */; };
+		21AA7BD82101C051009967E0 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AA7BD72101C051009967E0 /* AlertViewController.swift */; };
 		21B07FCB205650C400A09B48 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B07FCA205650C400A09B48 /* Formatter.swift */; };
 		21BAD60720177F7A0065D700 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BAD60620177F7A0065D700 /* AppDelegate.swift */; };
 		21BAD60920177F7A0065D700 /* CoinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BAD60820177F7A0065D700 /* CoinsViewController.swift */; };
@@ -91,6 +92,7 @@
 		219FA192201E444C00094B67 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		219FA196201E4C9600094B67 /* GlobalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalData.swift; sourceTree = "<group>"; };
 		219FBFCC202E340800A8771A /* PortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
+		21AA7BD72101C051009967E0 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		21B07FCA205650C400A09B48 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		21BAD60320177F7A0065D700 /* Coins Capitalization.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Coins Capitalization.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21BAD60620177F7A0065D700 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				21ED70082082959A002CD41E /* Utils */,
+				21AA7BD72101C051009967E0 /* AlertViewController.swift */,
 				21BAD60820177F7A0065D700 /* CoinsViewController.swift */,
 				218CB6CF204C555A00EDF550 /* CoinDetailsViewController.swift */,
 				219FBFCC202E340800A8771A /* PortfolioViewController.swift */,
@@ -398,6 +401,7 @@
 				2154CD9420DA4753002FA475 /* ArticleTableViewCell.swift in Sources */,
 				218CB6D2204C58B100EDF550 /* ChartView.swift in Sources */,
 				2154CD9A20DA5543002FA475 /* ArticleViewController.swift in Sources */,
+				21AA7BD82101C051009967E0 /* AlertViewController.swift in Sources */,
 				218CB6CE204C513000EDF550 /* ChartData.swift in Sources */,
 				2154CD9220DA45A5002FA475 /* NewsViewController.swift in Sources */,
 				2173EC2C2017E16B004BDECE /* TickerTableViewCell.swift in Sources */,

@@ -152,8 +152,7 @@ private extension CoinDetailsViewController {
                                 slf.activityIndicator.stopAnimating()
                                 slf.activityIndicator.isHidden = true
                                 slf.noDataView.isHidden = false
-                                print("ERROR: \(error.localizedDescription)")
-                                
+                                slf.showAlert(error: error)
         })
     }
     

@@ -8,30 +8,6 @@
 
 import UIKit
 
-class Source {
-    
-    // MARK: - Public Properties
-    
-    var name: String
-    var logo: String {
-        didSet {
-            guard let url = URL(string: logo) else { return }
-            URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) -> Void in
-                guard let data = data, let image = UIImage(data: data), error == nil else { return }
-                DispatchQueue.main.async { [weak self] in self?.image = image }
-            }).resume()
-        }
-    }
-    var image: UIImage?
-    
-    // MARK: - Constructors
-    
-    init(name: String = "", logo: String = "") {
-        self.name = name
-        self.logo = logo
-    }
-}
-
 struct Article {
     
     // MARK: - Public Properties
@@ -92,4 +68,28 @@ struct Article {
         publishedAt = nil
     }
     
+}
+
+class Source {
+    
+    // MARK: - Public Properties
+    
+    var name: String
+    var logo: String {
+        didSet {
+            guard let url = URL(string: logo) else { return }
+            URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) -> Void in
+                guard let data = data, let image = UIImage(data: data), error == nil else { return }
+                DispatchQueue.main.async { [weak self] in self?.image = image }
+            }).resume()
+        }
+    }
+    var image: UIImage?
+    
+    // MARK: - Constructors
+    
+    init(name: String = "", logo: String = "") {
+        self.name = name
+        self.logo = logo
+    }
 }

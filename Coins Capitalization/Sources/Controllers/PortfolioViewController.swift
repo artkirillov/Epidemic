@@ -33,7 +33,9 @@ final class PortfolioViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-         updateInfo()
+        
+        tableView.refreshControl?.endRefreshing()
+        updateInfo()
     }
     
     @objc func updateData() {

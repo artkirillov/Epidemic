@@ -6,8 +6,6 @@
 //  Copyright © 2018 ASK LLC. All rights reserved.
 //
 
-import Foundation
-
 struct AppStoreLookup: Decodable {
     
     struct Results: Decodable {

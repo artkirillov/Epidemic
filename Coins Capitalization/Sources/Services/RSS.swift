@@ -28,12 +28,11 @@ final class RSS: NSObject {
         
         // Russian
         
-        case coinspot           = "https://coinspot.io/feed/"
         case cryptocurrencyTech = "https://cryptocurrency.tech/feed"
         case forklog            = "https://forklog.com/news/feed/"
         
         static var ru: [Feed] {
-            return [.coinspot, .cryptocurrencyTech, .forklog]
+            return [.cryptocurrencyTech, .forklog]
         }
         
         var url: URL? {
@@ -57,9 +56,10 @@ final class RSS: NSObject {
     // MARK: - Public Methods
     
     /// Requests news articles from RSS
-    func requestNewsArticles(from feed: Feed, completion: @escaping ([Article]) -> Void) {
+    func requestNewsArticles(from feed: Feed, success: @escaping ([Article]) -> Void, failure: @escaping (Error) -> Void) {
         if let url = feed.url {
-            self.completion = completion
+            self.success = success
+            self.failure = failure
             xmlParser = XMLParser(contentsOf: url)
             xmlParser?.delegate = self
             xmlParser?.parse()
@@ -82,7 +82,8 @@ final class RSS: NSObject {
         return dateFormatter
     }()
     
-    private var completion: (([Article]) -> Void)?
+    private var success: (([Article]) -> Void)?
+    private var failure: ((Error) -> Void)?
     
 }
     
@@ -117,7 +118,6 @@ extension RSS: XMLParserDelegate {
         let string = string.replacingOccurrences(of: "\r", with: "")
             .replacingOccurrences(of: "\n", with: "")
             .replacingOccurrences(of: "\t", with: "")
-            .trimmingCharacters(in: .whitespaces)
         
         let count = elementsStack.count
         
@@ -162,9 +162,13 @@ extension RSS: XMLParserDelegate {
     }
     
     func parserDidEndDocument(_ parser: XMLParser) {
-        completion?(items)
+        success?(items)
     }
     
+    func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
+        failure?(parseError)
+    }
+
 }
 
 extension String {

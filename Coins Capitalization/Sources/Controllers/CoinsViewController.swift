@@ -51,6 +51,7 @@ final class CoinsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        tableView.refreshControl?.endRefreshing()
         requestData()
     }
     
@@ -79,7 +80,6 @@ final class CoinsViewController: UIViewController {
     @IBOutlet private var tableView: UITableView!
     private var searchTextFieldClearButton: UIButton?
     private var activityIndicator: UIActivityIndicatorView?
-    
     
     private var items: [Ticker] = []
     private var filteredItems: [Ticker] = [] {
@@ -208,7 +208,9 @@ private extension CoinsViewController {
                     }
                 }
             },
-            failure: { error in print("ERROR: \(error.localizedDescription)")
+            failure: { [weak self] error in
+                self?.stopAnimateActivity()
+                self?.showAlert(error: error)
         })
         
         API.requestGlobalData(
@@ -233,7 +235,9 @@ private extension CoinsViewController {
                 
                 self?.tableView.refreshControl?.endRefreshing()
             },
-            failure: { error in print("ERROR: \(error.localizedDescription)")
+            failure: { [weak self] error in
+                self?.stopAnimateActivity()
+                self?.showAlert(error: error)
         })
         
         API.requestAppStoreData(
@@ -241,10 +245,21 @@ private extension CoinsViewController {
                 guard let appId = appStoreLookup.results.first?.appID else { return }
                 Storage.save(appId: appId)
         },
-            failure: {
-                error in print("ERROR: \(error.localizedDescription)")
+            failure: { [weak self] error in
+                self?.stopAnimateActivity()
+                self?.showAlert(error: error)
         })
     }
     
+}
+
+private extension CoinsViewController {
+    
+    func stopAnimateActivity() {
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.refreshControl?.endRefreshing()
+            self?.activityIndicator?.stopAnimating()
+        }
+    }
 }
 

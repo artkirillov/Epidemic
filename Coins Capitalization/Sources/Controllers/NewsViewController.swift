@@ -49,6 +49,7 @@ final class NewsViewController: UIViewController {
     private var rssServices: [RSS] = []
     private var items: [Article] = []
     private var itemsNeedReset: Bool = false
+    private var requestedAt: Date = Date()
     
 }
 
@@ -88,27 +89,52 @@ extension NewsViewController: UITableViewDelegate {
 // MARK: - Network Requests
 
 private extension NewsViewController {
+    
     func requestData() {
+        
+        guard items.isEmpty || DateInterval(start: requestedAt, end: Date()).duration > TimeInterval(floatLiteral: 60)
+        else {
+            stopAnimateActivity()
+            return
+        }
+        
         itemsNeedReset = true
         DispatchQueue.global(qos: .userInteractive).async { [weak self] in
             for feed in RSS.feeds {
                 let rss = RSS()
                 rss.requestNewsArticles(from: feed,
-                                        completion: { articles in
+                                        success: { articles in
                                             DispatchQueue.main.async { [weak self] in
                                                 guard let slf = self else { return }
+
+                                                if slf.itemsNeedReset {
+                                                    slf.items = []
+                                                    slf.requestedAt = Date()
+                                                }
                                                 
-                                                if slf.itemsNeedReset { slf.items = [] }
                                                 slf.itemsNeedReset = false
                                                 
                                                 slf.items = (slf.items + articles)
                                                     .sorted { ($0.publishedAt ?? Date()) > ($1.publishedAt ?? Date()) }
                                                 slf.tableView.reloadData()
-                                                slf.tableView.refreshControl?.endRefreshing()
-                                                slf.activityIndicator?.stopAnimating()
+                                                slf.stopAnimateActivity()
                                             }
+                },
+                                        failure: { [weak self] error in
+                                            self?.stopAnimateActivity()
+                                            self?.showAlert(error: error)
                 })
             }
+        }
+    }
+}
+
+private extension NewsViewController {
+    
+    func stopAnimateActivity() {
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.refreshControl?.endRefreshing()
+            self?.activityIndicator?.stopAnimating()
         }
     }
 }
