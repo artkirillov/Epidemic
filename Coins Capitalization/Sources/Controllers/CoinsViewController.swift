@@ -210,7 +210,7 @@ private extension CoinsViewController {
             },
             failure: { [weak self] error in
                 self?.stopAnimateActivity()
-                self?.showAlert(error: error)
+                self?.showErrorAlert(error)
         })
         
         API.requestGlobalData(
@@ -237,7 +237,7 @@ private extension CoinsViewController {
             },
             failure: { [weak self] error in
                 self?.stopAnimateActivity()
-                self?.showAlert(error: error)
+                self?.showErrorAlert(error)
         })
         
         API.requestAppStoreData(
@@ -247,7 +247,7 @@ private extension CoinsViewController {
         },
             failure: { [weak self] error in
                 self?.stopAnimateActivity()
-                self?.showAlert(error: error)
+                self?.showErrorAlert(error)
         })
     }
     

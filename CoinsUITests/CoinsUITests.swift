@@ -32,24 +32,21 @@ class CoinsUITests: XCTestCase {
         snapshot("02")
         app.buttons.element(boundBy: 0).tap()
         
-//        let normalized = app.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0))
-//        let coordinate = normalized.withOffset(CGVector(dx: 200, dy: 150))
-//        coordinate.press(forDuration: 2.0)
-//        snapshot("03")
-//        app.buttons.element(boundBy: 0).tap()
-        
         tabBar.buttons.element(boundBy: 1).tap()
-        snapshot("04")
-        app.buttons.element(boundBy: 3).tap()
-        snapshot("05")
+        snapshot("03")
         
-        app.buttons.element(boundBy: 0).tap()
-        snapshot("06")
-        app.tables.element.cells.element(boundBy: 0).tap()
+        app.buttons.element(boundBy: 4).tap()
+        snapshot("07")
         app.buttons.element(boundBy: 1).tap()
         
         tabBar.buttons.element(boundBy: 2).tap()
-        snapshot("07")
+        snapshot("04")
+        
+        tabBar.buttons.element(boundBy: 3).tap()
+        snapshot("05")
+        
+        app.buttons.element(boundBy: 4).tap()
+        snapshot("06")
     }
     
 }

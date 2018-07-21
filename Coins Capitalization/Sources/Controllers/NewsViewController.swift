@@ -98,6 +98,13 @@ private extension NewsViewController {
             return
         }
         
+        guard Reachability.isConnectedToNetwork() else {
+            stopAnimateActivity()
+            showErrorAlert(title: NSLocalizedString("Something has gone wrong", comment: ""),
+                           message: NSLocalizedString("The Internet connection appears to be offline", comment: ""))
+            return
+        }
+        
         itemsNeedReset = true
         DispatchQueue.global(qos: .userInteractive).async { [weak self] in
             for feed in RSS.feeds {
@@ -122,7 +129,7 @@ private extension NewsViewController {
                 },
                                         failure: { [weak self] error in
                                             self?.stopAnimateActivity()
-                                            self?.showAlert(error: error)
+                                            self?.showErrorAlert(error)
                 })
             }
         }

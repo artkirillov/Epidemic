@@ -2,8 +2,8 @@
 /* Class = "UILabel"; text = "Amount:"; ObjectID = "0BF-3D-diJ"; */
 "0BF-3D-diJ.text" = "Количество:";
 
-/* Class = "UILabel"; text = "Reduce"; ObjectID = "34s-Pl-kme"; */
-"34s-Pl-kme.text" = "Уменьшить";
+/* Class = "UILabel"; text = "Sell"; ObjectID = "34s-Pl-kme"; */
+"34s-Pl-kme.text" = "Продажа";
 
 /* Class = "UILabel"; text = " Coins Catalog"; ObjectID = "3YS-S6-u7s"; */
 "3YS-S6-u7s.text" = "Каталог монет";
@@ -44,8 +44,8 @@
 /* Class = "UIButton"; normalTitle = "Done"; ObjectID = "U93-uH-1QL"; */
 "U93-uH-1QL.normalTitle" = "Готово";
 
-/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "Uy4-vH-qEX"; */
-"Uy4-vH-qEX.normalTitle" = "Добавить";
+/* Class = "UIButton"; normalTitle = "Buy"; ObjectID = "Uy4-vH-qEX"; */
+"Uy4-vH-qEX.normalTitle" = "Покупка";
 
 /* Class = "UILabel"; text = "Charging annually:"; ObjectID = "Wxv-6V-Ows"; */
 "Wxv-6V-Ows.text" = "Снятие ежегодно:";
@@ -53,8 +53,8 @@
 /* Class = "UILabel"; text = "Your iTunes Account will be charged once you confirm your payment. Your subscription automatically renews. When this happens, the same iTunes Account will be charged again with the same amount of money. You can cancel subscription at any time in your Apple ID Acount settings."; ObjectID = "Yut-Mj-1a6"; */
 "Yut-Mj-1a6.text" = "Оплата спишется с карты, которая привязана к вашему аккаунту iTunes, как только вы подтвердите оплату. Ваша подписка будет обновляться автоматически. Каждый раз оплата будет производиться с карты, которая привязана к тому же аккаунту iTunes. Вы можете отменить подписку в любое время в настройках вашего Apple ID Acount.";
 
-/* Class = "UIButton"; normalTitle = "Reduce"; ObjectID = "aYM-JK-wCW"; */
-"aYM-JK-wCW.normalTitle" = "Уменьшить";
+/* Class = "UIButton"; normalTitle = "Sell"; ObjectID = "aYM-JK-wCW"; */
+"aYM-JK-wCW.normalTitle" = "Продажа";
 
 /* Class = "UILabel"; text = "Version 1.0.0"; ObjectID = "aYz-3e-AjA"; */
 "aYz-3e-AjA.text" = "Version 1.0.0";
@@ -86,8 +86,8 @@
 /* Class = "UILabel"; text = "for a week"; ObjectID = "lig-1e-LTv"; */
 "lig-1e-LTv.text" = "за неделю";
 
-/* Class = "UILabel"; text = "Add"; ObjectID = "nAr-0B-IUu"; */
-"nAr-0B-IUu.text" = "Добавить";
+/* Class = "UILabel"; text = "Buy"; ObjectID = "nAr-0B-IUu"; */
+"nAr-0B-IUu.text" = "Покупка";
 
 /* Class = "UITextField"; placeholder = "Search"; ObjectID = "p0L-Xz-jRB"; */
 "p0L-Xz-jRB.placeholder" = "Поиск";

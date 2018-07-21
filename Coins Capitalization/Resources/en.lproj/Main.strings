@@ -2,8 +2,8 @@
 /* Class = "UILabel"; text = "Amount:"; ObjectID = "0BF-3D-diJ"; */
 "0BF-3D-diJ.text" = "Amount:";
 
-/* Class = "UILabel"; text = "Reduce"; ObjectID = "34s-Pl-kme"; */
-"34s-Pl-kme.text" = "Reduce";
+/* Class = "UILabel"; text = "Sell"; ObjectID = "34s-Pl-kme"; */
+"34s-Pl-kme.text" = "Sell";
 
 /* Class = "UILabel"; text = "Coins Catalog"; ObjectID = "3YS-S6-u7s"; */
 "3YS-S6-u7s.text" = "Coins Catalog";
@@ -44,8 +44,8 @@
 /* Class = "UIButton"; normalTitle = "Done"; ObjectID = "U93-uH-1QL"; */
 "U93-uH-1QL.normalTitle" = "Done";
 
-/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "Uy4-vH-qEX"; */
-"Uy4-vH-qEX.normalTitle" = "Add";
+/* Class = "UIButton"; normalTitle = "Buy"; ObjectID = "Uy4-vH-qEX"; */
+"Uy4-vH-qEX.normalTitle" = "Buy";
 
 /* Class = "UILabel"; text = "Charging annually:"; ObjectID = "Wxv-6V-Ows"; */
 "Wxv-6V-Ows.text" = "Charging annually:";
@@ -53,8 +53,8 @@
 /* Class = "UILabel"; text = "Your iTunes Account will be charged once you confirm your payment. Your subscription automatically renews. When this happens, the same iTunes Account will be charged again with the same amount of money. You can cancel subscription at any time in your Apple ID Acount settings."; ObjectID = "Yut-Mj-1a6"; */
 "Yut-Mj-1a6.text" = "Your iTunes Account will be charged once you confirm your payment. Your subscription automatically renews. When this happens, the same iTunes Account will be charged again with the same amount of money. You can cancel subscription at any time in your Apple ID Acount settings.";
 
-/* Class = "UIButton"; normalTitle = "Reduce"; ObjectID = "aYM-JK-wCW"; */
-"aYM-JK-wCW.normalTitle" = "Reduce";
+/* Class = "UIButton"; normalTitle = "Sell"; ObjectID = "aYM-JK-wCW"; */
+"aYM-JK-wCW.normalTitle" = "Sell";
 
 /* Class = "UILabel"; text = "Version 1.0.0"; ObjectID = "aYz-3e-AjA"; */
 "aYz-3e-AjA.text" = "Version 1.0.0";
@@ -86,8 +86,8 @@
 /* Class = "UILabel"; text = "for a week"; ObjectID = "lig-1e-LTv"; */
 "lig-1e-LTv.text" = "for a week";
 
-/* Class = "UILabel"; text = "Add"; ObjectID = "nAr-0B-IUu"; */
-"nAr-0B-IUu.text" = "Add";
+/* Class = "UILabel"; text = "Buy"; ObjectID = "nAr-0B-IUu"; */
+"nAr-0B-IUu.text" = "Buy";
 
 /* Class = "UITextField"; placeholder = "Search"; ObjectID = "p0L-Xz-jRB"; */
 "p0L-Xz-jRB.placeholder" = "Search";

@@ -51,37 +51,61 @@ final class PortfolioViewController: UIViewController {
                 present(controller, animated: true, completion: nil)
             }
         } else if maxFreeVolume == 3 {
-            let alertController = UIAlertController(title: NSLocalizedString("Free trial alert", comment: ""),
-                                                    message: NSLocalizedString("Free trial message", comment: ""),
-                                                    preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("Go to AppStore", comment: ""), style: .default, handler: { _ in
-                if let appId = Storage.appId(), let url = URL(string: "https://itunes.apple.com/app/id\(appId)") {
-                    UIApplication.shared.open(url, options: [:], completionHandler: { _ in Storage.save(maxPortfolioVolume: 10) })
-                } else if let url = URL(string: "https://www.apple.com/itunes/") {
-                    UIApplication.shared.open(url, options: [:], completionHandler: { _ in Storage.save(maxPortfolioVolume: 10) })
-                }
-            }))
-            
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .destructive, handler: { _ in alertController.dismiss(animated: true, completion: nil) }))
-            
-            present(alertController, animated: true, completion: nil)
+            if let controller = storyboard?.instantiateViewController(withIdentifier: "AlertViewController") as? AlertViewController {
+                controller.header = NSLocalizedString("Free trial alert", comment: "")
+                controller.message = NSLocalizedString("Free trial message", comment: "")
+                controller.image = #imageLiteral(resourceName: "review")
+                
+                controller.addAction(
+                    title: NSLocalizedString("Go to AppStore", comment: ""),
+                    handler: { [weak controller] in
+                        if let appId = Storage.appId(), let url = URL(string: "https://itunes.apple.com/app/id\(appId)") {
+                            print(url)
+                            UIApplication.shared.open(url, options: [:], completionHandler: { _ in
+                                Storage.save(maxPortfolioVolume: 10)
+                                controller?.dismiss(animated: true, completion: nil)
+                            })
+                        } else if let url = URL(string: "https://www.apple.com/itunes/") {
+                            UIApplication.shared.open(url, options: [:], completionHandler: { _ in
+                                Storage.save(maxPortfolioVolume: 10)
+                                controller?.dismiss(animated: true, completion: nil)
+                            })
+                        }
+                })
+                
+                controller.addAction(
+                    title: NSLocalizedString("Cancel", comment: ""),
+                    handler: { [weak controller] in controller?.dismiss(animated: true, completion: nil) })
+                
+                present(controller, animated: true, completion: nil)
+            }
         } else {
-            let alertController = UIAlertController(title: NSLocalizedString("Pro alert", comment: ""),
-                                                    message: NSLocalizedString("Pro message", comment: ""),
-                                                    preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .default, handler: { _ in
-//                if let parentViewController = self?.parent as? UITabBarController,
-//                    let count = parentViewController.viewControllers?.count {
-//                    parentViewController.selectedIndex = count - 1
-//                }
-            }))
-            
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .destructive, handler: { _ in alertController.dismiss(animated: true, completion: nil) }))
-            
-            present(alertController, animated: true, completion: nil)
+            if let controller = storyboard?.instantiateViewController(withIdentifier: "AlertViewController") as? AlertViewController {
+                controller.header = NSLocalizedString("Pro alert", comment: "")
+                controller.message = NSLocalizedString("Pro message", comment: "")
+                controller.image = #imageLiteral(resourceName: "check")
+                
+                controller.addAction(
+                    title: NSLocalizedString("Ok", comment: ""),
+                    handler: { [weak controller] in controller?.dismiss(animated: true, completion: nil) })
+                
+                controller.addAction(
+                    title: NSLocalizedString("Cancel", comment: ""),
+                    handler: { [weak controller] in
+                        controller?.dismiss(animated: true, completion: nil)
+                        
+                        // Redirection to the last tab with subscription
+                        //
+                        // if let parentViewController = self?.parent as? UITabBarController,
+                        //     let count = parentViewController.viewControllers?.count {
+                        //     parentViewController.selectedIndex = count - 1
+                        // }
+                })
+                
+                present(controller, animated: true, completion: nil)
+            }
         }
     }
-    
     
     // MARK: - Private Properties
     
@@ -167,7 +191,7 @@ private extension PortfolioViewController {
         
         if items.isEmpty {
             let noItemsLabel = UILabel()
-            noItemsLabel.text = NSLocalizedString("You haven't add any assets to the portfolio", comment: "")
+            noItemsLabel.text = NSLocalizedString("You haven't added any assets to the portfolio", comment: "")
             noItemsLabel.numberOfLines = 0
             noItemsLabel.textColor = .lightGray
             noItemsLabel.textAlignment = .center

@@ -87,6 +87,9 @@ final class ChartView: UIView {
                                   locations: colorLocations)!
         
         context.drawLinearGradient(gradient, start: graphStartPoint, end: graphEndPoint, options: [])
+        
+//        testHandle()
+//        showBubble(true)
     }
     
     override func didMoveToWindow() {
