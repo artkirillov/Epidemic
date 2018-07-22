@@ -96,7 +96,7 @@
 		219FBFCC202E340800A8771A /* PortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
 		21AA7BD72101C051009967E0 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		21B07FCA205650C400A09B48 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
-		21BAD60320177F7A0065D700 /* Coins Capitalization.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Coins Capitalization.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		21BAD60320177F7A0065D700 /* Coins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Coins.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21BAD60620177F7A0065D700 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21BAD60820177F7A0065D700 /* CoinsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsViewController.swift; sourceTree = "<group>"; };
 		21BAD60D20177F7A0065D700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -227,7 +227,7 @@
 		21BAD60420177F7A0065D700 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				21BAD60320177F7A0065D700 /* Coins Capitalization.app */,
+				21BAD60320177F7A0065D700 /* Coins.app */,
 				2125F5242067BA5B001EDACD /* CoinsUITests.xctest */,
 			);
 			name = Products;
@@ -297,9 +297,9 @@
 			productReference = 2125F5242067BA5B001EDACD /* CoinsUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		21BAD60220177F7A0065D700 /* Coins Capitalization */ = {
+		21BAD60220177F7A0065D700 /* Coins */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 21BAD61720177F7A0065D700 /* Build configuration list for PBXNativeTarget "Coins Capitalization" */;
+			buildConfigurationList = 21BAD61720177F7A0065D700 /* Build configuration list for PBXNativeTarget "Coins" */;
 			buildPhases = (
 				21BAD5FF20177F7A0065D700 /* Sources */,
 				21BAD60020177F7A0065D700 /* Frameworks */,
@@ -309,9 +309,9 @@
 			);
 			dependencies = (
 			);
-			name = "Coins Capitalization";
+			name = Coins;
 			productName = "Coins Capitalization";
-			productReference = 21BAD60320177F7A0065D700 /* Coins Capitalization.app */;
+			productReference = 21BAD60320177F7A0065D700 /* Coins.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -335,7 +335,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 21BAD5FE20177F7A0065D700 /* Build configuration list for PBXProject "Coins Capitalization" */;
+			buildConfigurationList = 21BAD5FE20177F7A0065D700 /* Build configuration list for PBXProject "Coins" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -349,7 +349,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				21BAD60220177F7A0065D700 /* Coins Capitalization */,
+				21BAD60220177F7A0065D700 /* Coins */,
 				2125F5232067BA5B001EDACD /* CoinsUITests */,
 			);
 		};
@@ -433,7 +433,7 @@
 /* Begin PBXTargetDependency section */
 		2125F52A2067BA5B001EDACD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 21BAD60220177F7A0065D700 /* Coins Capitalization */;
+			target = 21BAD60220177F7A0065D700 /* Coins */;
 			targetProxy = 2125F5292067BA5B001EDACD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -670,7 +670,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		21BAD5FE20177F7A0065D700 /* Build configuration list for PBXProject "Coins Capitalization" */ = {
+		21BAD5FE20177F7A0065D700 /* Build configuration list for PBXProject "Coins" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				21BAD61520177F7A0065D700 /* Debug */,
@@ -679,7 +679,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		21BAD61720177F7A0065D700 /* Build configuration list for PBXNativeTarget "Coins Capitalization" */ = {
+		21BAD61720177F7A0065D700 /* Build configuration list for PBXNativeTarget "Coins" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				21BAD61820177F7A0065D700 /* Debug */,

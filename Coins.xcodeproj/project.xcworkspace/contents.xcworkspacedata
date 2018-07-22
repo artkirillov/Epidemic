@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Coins Capitalization.xcodeproj">
+      location = "self:/Users/artemkirillov/Documents/coins/app/Coins.xcodeproj">
    </FileRef>
 </Workspace>
