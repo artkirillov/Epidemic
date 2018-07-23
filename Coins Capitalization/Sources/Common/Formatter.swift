@@ -70,6 +70,9 @@ final class Formatter {
     }
     
     static func localizedNumber(for number: Int, keys: (one: String, several: String, many: String)) -> String {
+        
+        if (11...14).contains(number) { return NSLocalizedString(keys.many, comment: "") }
+        
         switch number % 10 {
         case 1: return NSLocalizedString(keys.one, comment: "")
         case 2, 3, 4: return NSLocalizedString(keys.several, comment: "")
