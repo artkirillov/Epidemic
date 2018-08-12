@@ -20,6 +20,7 @@ final class Storage {
     struct UserDefaultsKeys {
         static let maxPortfolioVolume  = "maxPortfolioVolume"
         static let appId               = "appId"
+        static let favoriteCoins       = "favoriteCoins"
     }
     
     // MARK: - Public Methods
@@ -34,6 +35,15 @@ final class Storage {
     static func maxPortfolioVolume() -> Int {
         let maxPortfolioVolume = UserDefaults.standard.integer(forKey: UserDefaultsKeys.maxPortfolioVolume)
         return maxPortfolioVolume != 0 ? maxPortfolioVolume : 3
+    }
+    
+    /// Gets favorite coins from storage
+    static func favoriteCoins() -> [String] {
+        if let favoriteCoins = UserDefaults.standard.array(forKey: UserDefaultsKeys.favoriteCoins) as? [String] {
+            return favoriteCoins
+        } else {
+            return []
+        }
     }
     
     /// Gets coins from storage
@@ -54,6 +64,11 @@ final class Storage {
     /// Saves max portfolio volume to storage
     static func save(maxPortfolioVolume: Int) {
         UserDefaults.standard.set(maxPortfolioVolume, forKey: UserDefaultsKeys.maxPortfolioVolume)
+    }
+    
+    /// Saves new favorite coins to storage
+    static func save(favoriteCoins: [String]) {
+        UserDefaults.standard.set(favoriteCoins, forKey: UserDefaultsKeys.favoriteCoins)
     }
     
     /// Saves coins to storage

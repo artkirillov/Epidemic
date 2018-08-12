@@ -10,6 +10,13 @@ import UIKit
 
 final class SegmentedControl: UIControl {
     
+    // MARK: - Public Nested
+    
+    enum Thumb {
+        case line
+        case rectangle
+    }
+    
     // MARK: - Public Properties
     
     var items: [String] = [NSLocalizedString("1D", comment: ""),
@@ -18,23 +25,40 @@ final class SegmentedControl: UIControl {
                            NSLocalizedString("3M", comment: ""),
                            NSLocalizedString("6M", comment: ""),
                            NSLocalizedString("1Y", comment: ""),
-                           NSLocalizedString("ALL", comment: "")] {
+                           NSLocalizedString("ALL", comment: "")]
+        {
         didSet {
             setupLabels()
         }
     }
     
-    var selectedIndex: Int = 0 {
+    var itemsFont = UIFont.systemFont(ofSize: 12) {
         didSet {
-            displayNewSelectedItem()
+            labels.forEach { $0.font = itemsFont }
         }
     }
-    var lastSelectedIndex: Int = 0
     
+    var thumbProgress: CGFloat = 0.0 {
+        didSet {
+            let maxX = bounds.width - thumbView.bounds.width
+            thumbView.frame.origin.x = min(max(0, thumbProgress * maxX), maxX)
+            
+            for index in 0..<labels.count {
+                if labels[index].frame.origin.x == thumbView.frame.origin.x {
+                    lastSelectedIndex = selectedIndex
+                    selectedIndex = index
+                    displayNewSelectedItem(animated: false)
+                }
+            }
+        }
+    }
+    
+    var thumb: Thumb = .rectangle
+    var lastSelectedIndex: Int = 0
+    var selectedIndex: Int = 0
     var selectedTextColor = UIColor.white
     var unselectedTextColor = UIColor.lightGray
     var thumbColor = Colors.controlDisabled
-    var itemsFont = UIFont.systemFont(ofSize: 12)
     
     // MARK: - Constructors
     
@@ -79,9 +103,20 @@ final class SegmentedControl: UIControl {
         var selectFrame = self.bounds
         let newWidth = selectFrame.width / CGFloat(items.count)
         selectFrame.size.width = newWidth
-        thumbView.frame = selectFrame
-        thumbView.backgroundColor = thumbColor
-        thumbView.layer.cornerRadius = thumbView.frame.height / 2
+        
+        switch thumb {
+        case .line:
+            var frame = selectFrame
+            frame.size.height = 2.0
+            frame.origin.y = selectFrame.maxY - frame.size.height
+            thumbView.frame = frame
+            thumbView.backgroundColor = thumbColor
+            thumbView.layer.cornerRadius = thumbView.frame.height / 2
+        case .rectangle:
+            thumbView.frame = selectFrame
+            thumbView.backgroundColor = thumbColor
+            thumbView.layer.cornerRadius = thumbView.frame.height / 2
+        }
         
         let labelHeight = bounds.height
         let labelWidth = bounds.width / CGFloat(labels.count)
@@ -109,19 +144,20 @@ final class SegmentedControl: UIControl {
         if let index = calculatedIndex {
             lastSelectedIndex = selectedIndex
             selectedIndex = index
+            displayNewSelectedItem(animated: true)
             sendActions(for: .valueChanged)
         }
         
         return false
     }
     
-    func displayNewSelectedItem() {
+    func displayNewSelectedItem(animated: Bool) {
         let label = labels[selectedIndex]
-        
-        UIView.animate(withDuration: 0.3,
+        let duration = animated ? 0.3 : 0.0
+        UIView.animate(withDuration: duration,
                        delay: 0.0,
                        animations: {
-                        self.thumbView.frame = label.frame
+                        self.thumbView.frame.origin.x = label.frame.origin.x
                         self.labels[self.lastSelectedIndex].textColor = self.unselectedTextColor },
                        completion: { _ in
                         self.labels[self.selectedIndex].textColor = self.selectedTextColor }

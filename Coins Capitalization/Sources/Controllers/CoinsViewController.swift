@@ -17,7 +17,7 @@ final class CoinsViewController: UIViewController {
     }
     
     // MARK: - Public Methods
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,24 +34,22 @@ final class CoinsViewController: UIViewController {
         searchTextFieldClearButton = clearButton
         searchTextFieldClearButton?.isHidden = true
         
-        tableView.tableFooterView = UIView()
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 110.0
-        
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
-        tableView.refreshControl = refreshControl
-        
-        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
-        if let activityIndicatorView = activityIndicator { view.addSubview(activityIndicatorView) }
+        let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        view.addSubview(activityIndicatorView)
+        activityIndicator = activityIndicatorView
         activityIndicator?.center = view.center
         activityIndicator?.startAnimating()
+        
+        collectionView.register(TickerListCollectionViewCell.self, forCellWithReuseIdentifier: "TickerListCollectionViewCell")
+        
+        segmentControl.items = [NSLocalizedString("All", comment: ""), NSLocalizedString("Favorite", comment: "")]
+        segmentControl.thumb = .line
+        segmentControl.thumbColor = .lightGray
+        segmentControl.itemsFont = UIFont.systemFont(ofSize: 12)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        tableView.refreshControl?.endRefreshing()
         requestData()
     }
     
@@ -62,13 +60,34 @@ final class CoinsViewController: UIViewController {
     @objc func clearSearchTextField() {
         searchTextField.text = nil
         searchTextFieldClearButton?.isHidden = true
-        tableView.backgroundView = nil
         filteredItems = items
+        filteredFavoriteItems = favoriteItems
+        collectionView.reloadData()
         view.endEditing(true)
     }
     
+    @IBAction func changeCoinList(_ sender: SegmentedControl) {
+        collectionView.scrollToItem(at: IndexPath(row: sender.selectedIndex, section: 0), at: .centeredHorizontally, animated: true)
+    }
+    
+    func updateItems(withSearchText searchText: String) {
+        
+        guard !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+            filteredItems = items
+            filteredFavoriteItems = favoriteItems
+            collectionView.reloadData()
+            return
+        }
+        
+        filteredItems = items
+            .filter { $0.name.lowercased().range(of: searchText.lowercased()) != nil || $0.symbol.lowercased().range(of: searchText.lowercased()) != nil }
+        filteredFavoriteItems = favoriteItems
+            .filter { $0.name.lowercased().range(of: searchText.lowercased()) != nil || $0.symbol.lowercased().range(of: searchText.lowercased()) != nil }
+        
+        collectionView.reloadData()
+    }
+    
     func reset() {
-        tableView.setContentOffset(.zero, animated: false)
         requestData()
     }
     
@@ -77,56 +96,19 @@ final class CoinsViewController: UIViewController {
     @IBOutlet private weak var marketCapitalizationLabel: UILabel!
     @IBOutlet private weak var bitcoinDominanceLabel: UILabel!
     @IBOutlet private weak var searchTextField: UITextField!
-    @IBOutlet private var tableView: UITableView!
+    @IBOutlet private weak var segmentControl: SegmentedControl!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    
     private var searchTextFieldClearButton: UIButton?
     private var activityIndicator: UIActivityIndicatorView?
     
     private var items: [Ticker] = []
-    private var filteredItems: [Ticker] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
-}
-
-// MARK: - UITableViewDataSource
-
-extension CoinsViewController: UITableViewDataSource {
+    private var filteredItems: [Ticker] = []
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredItems.count
-    }
+    private var favoriteItems: [Ticker] = []
+    private var filteredFavoriteItems: [Ticker] = []
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TickerCell", for: indexPath) as! TickerTableViewCell
-        cell.configure(ticker: filteredItems[indexPath.row])
-        return cell
-    }
-    
-}
-
-// MARK: - UITableViewDelegate
-
-extension CoinsViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
-        
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "CoinDetailsViewController") as? CoinDetailsViewController, let cell = tableView.cellForRow(at: indexPath) {
-            controller.symbol = filteredItems[indexPath.row].symbol
-            controller.name = filteredItems[indexPath.row].name
-            
-            let height = cell.frame.height
-            let width = view.frame.width * height / view.frame.height
-            let origin = view.convert(cell.frame.origin, from: tableView)
-            let x = (cell.frame.width - width) / 2
-            let originFrame = CGRect(x: x, y: origin.y, width: width, height: height)
-            controller.originFrame = originFrame
-            
-            present(controller, animated: true, completion: nil)
-        }
-    }
-    
+    private var searchText = ""
 }
 
 // MARK: - UITextFieldDelegate
@@ -134,15 +116,20 @@ extension CoinsViewController: UITableViewDelegate {
 extension CoinsViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
         guard let textFieldText = textField.text else {
-            self.filteredItems = self.items
+            updateItems(withSearchText: "")
             return true
         }
         
-        updateItems(withSearchText: string.isEmpty ? String(textFieldText.dropLast()) : textFieldText + string)
+        searchText = string.isEmpty ? String(textFieldText.dropLast()) : textFieldText + string
+        
+        updateItems(withSearchText: searchText)
         searchTextFieldClearButton?.isHidden = (textFieldText + string).isEmpty
         return true
     }
+    
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
@@ -153,19 +140,80 @@ extension CoinsViewController: UITextFieldDelegate {
         searchTextFieldClearButton?.isHidden = textField.text?.isEmpty ?? true
     }
     
-    private func updateItems(withSearchText searchText: String) {
-        let filteredItems = items.filter { $0.name.lowercased().range(of: searchText.lowercased()) != nil || $0.symbol.lowercased().range(of: searchText.lowercased()) != nil }
+}
+
+// MARK: - UICollectionViewDataSource
+
+extension CoinsViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TickerListCollectionViewCell", for: indexPath) as! TickerListCollectionViewCell
+        let emptyResultsText = !searchText.isEmpty ? NSLocalizedString("Can't find any coins", comment: "") : ""
         
-        if filteredItems.isEmpty {
-            let noItemsLabel = UILabel()
-            noItemsLabel.text = NSLocalizedString("Can't find any coins", comment: "")
-            noItemsLabel.textColor = .lightGray
-            noItemsLabel.textAlignment = .center
-            tableView.backgroundView = noItemsLabel
-        } else {
-            tableView.backgroundView = nil
+        if indexPath.row == 0 {
+            cell.configure(items: filteredItems, noItemsText: emptyResultsText)
+        } else if indexPath.row == 1 {
+            let noItemsText = favoriteItems.isEmpty ?
+                NSLocalizedString("You haven't added any coins to favorites", comment: "") :
+                emptyResultsText
+            cell.configure(items: filteredFavoriteItems, noItemsText: noItemsText)
         }
-        self.filteredItems = filteredItems
+        cell.delegate = self
+        return cell
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+
+extension CoinsViewController {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        segmentControl.thumbProgress = scrollView.contentOffset.x / (scrollView.contentSize.width - collectionView.bounds.width)
+    }
+    
+}
+
+// MARK: - UICollectionViewDelegate
+
+extension CoinsViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return collectionView.bounds.size
+    }
+    
+}
+
+// MARK: - TickerListCollectionViewCellDelegate
+
+extension CoinsViewController: TickerListCollectionViewCellDelegate {
+    
+    func tickerListCollectionViewCellDidRequestUpdate(cell: TickerListCollectionViewCell) {
+        requestData()
+    }
+    
+    func tickerListCollectionViewCell(cell: TickerListCollectionViewCell, didSelectRowAt index: Int, frame: CGRect) {
+        if let row = collectionView.indexPath(for: cell)?.row,
+            let controller = storyboard?.instantiateViewController(withIdentifier: "CoinDetailsViewController") as? CoinDetailsViewController {
+            let tickers = row == 0 ? filteredItems : filteredFavoriteItems
+            
+            controller.symbol = tickers[index].symbol
+            controller.name = tickers[index].name
+            
+            let height = frame.height
+            let width = view.frame.width * height / view.frame.height
+            let origin = view.convert(frame.origin, from: cell)
+            let x = (frame.width - width) / 2
+            let originFrame = CGRect(x: x, y: origin.y, width: width, height: height)
+            controller.originFrame = originFrame
+            
+            present(controller, animated: true, completion: nil)
+        }
     }
     
 }
@@ -177,13 +225,20 @@ private extension CoinsViewController {
     func requestData() {
         API.requestCoinsData(
             success: { [weak self] tickers in
+                let favoriteCoins = Storage.favoriteCoins()
+                let favoriteTickers = tickers.filter { favoriteCoins.contains($0.symbol) }
+                
                 self?.items = tickers
+                self?.favoriteItems = favoriteTickers
+                
                 if let searchText = self?.searchTextField.text, !searchText.isEmpty {
                     self?.updateItems(withSearchText: searchText)
                 } else {
                     self?.filteredItems = tickers
+                    self?.filteredFavoriteItems = favoriteTickers
                 }
-                self?.tableView.refreshControl?.endRefreshing()
+                
+                self?.collectionView.reloadData()
                 self?.activityIndicator?.stopAnimating()
                 
                 DispatchQueue.global().async {
@@ -232,8 +287,6 @@ private extension CoinsViewController {
                 } else {
                     self?.bitcoinDominanceLabel.text = nil
                 }
-                
-                self?.tableView.refreshControl?.endRefreshing()
             },
             failure: { [weak self] error in
                 self?.stopAnimateActivity()
@@ -257,8 +310,10 @@ private extension CoinsViewController {
     
     func stopAnimateActivity() {
         DispatchQueue.main.async { [weak self] in
-            self?.tableView.refreshControl?.endRefreshing()
             self?.activityIndicator?.stopAnimating()
+            self?.collectionView.visibleCells.forEach {
+                if let tableCell = $0 as? TickerListCollectionViewCell { tableCell.stopRefreshing() }
+            }
         }
     }
 }

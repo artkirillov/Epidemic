@@ -41,6 +41,9 @@ final class TickerTableViewCell: UITableViewCell {
     
     func configure(ticker: Ticker) {
         
+        selectionStyle = .none
+        backgroundColor = .clear
+        
         nameLabel.text = ticker.name
         symbolLabel.text = ticker.symbol
         

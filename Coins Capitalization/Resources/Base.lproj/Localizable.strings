@@ -27,6 +27,7 @@
 "Pro alert" = "Seems you are like a pro!";
 "Pro message" = "Thank you for using this app. Hope you enjoy it. For tracking coins without any limitations you can request an upgrade.";
 "You haven't added any assets to the portfolio" = "You haven't added any assets to the portfolio";
+"You haven't added any coins to favorites" = "You haven't added any coins to favorites";
 "Coins" = "Coins";
 "Buy" = "Buy";
 "Sell" = "Sell";
@@ -48,3 +49,5 @@
 "ago" = "ago";
 "Something has gone wrong" = "Something has gone wrong";
 "The Internet connection appears to be offline" = "The Internet connection appears to be offline.";
+"All" = "All";
+"Favorite" = "Favorites";

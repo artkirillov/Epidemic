@@ -14,6 +14,12 @@ final class CoinDetailsViewController: UIViewController {
     
     var symbol: String?
     var name: String?
+    var isFavorite: Bool = false {
+        didSet {
+            favoriteButton.setImage(isFavorite ? #imageLiteral(resourceName: "heart_full") : #imageLiteral(resourceName: "heart_empty"), for: .normal)
+        }
+    }
+    
     weak var delegate: ReduceCoinViewControllerDelegate?
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -44,6 +50,8 @@ final class CoinDetailsViewController: UIViewController {
         activityIndicator.isHidden = false
         noDataView.isHidden = true
         
+        isFavorite = Storage.favoriteCoins().contains(symbol ?? "")
+        
         requestData(for: .day)
         updateAssetInfo()
         
@@ -52,6 +60,20 @@ final class CoinDetailsViewController: UIViewController {
     
     @IBAction func backButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func favoriteButtonTapped(_ sender: UIButton) {
+        isFavorite = !isFavorite
+        
+        var favoriteCoins = Storage.favoriteCoins()
+        
+        if isFavorite {
+            symbol.flatMap { favoriteCoins.append($0) }
+        } else {
+            favoriteCoins = favoriteCoins.filter { $0 != symbol }
+        }
+        
+        Storage.save(favoriteCoins: favoriteCoins)
     }
     
     @IBAction func changeChartType(_ sender: SegmentedControl) {
@@ -92,7 +114,7 @@ final class CoinDetailsViewController: UIViewController {
     private var asset: Asset?
     private let animation = CATransition()
     
-    
+    @IBOutlet private weak var favoriteButton: UIButton!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var changeLabel: UILabel!
