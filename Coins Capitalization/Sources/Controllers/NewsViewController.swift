@@ -46,7 +46,6 @@ final class NewsViewController: UIViewController {
     
     @IBOutlet private var tableView: UITableView!
     private var activityIndicator: UIActivityIndicatorView?
-    private var rssServices: [RSS] = []
     private var items: [Article] = []
     private var itemsNeedReset: Bool = false
     private var requestedAt: Date = Date()
