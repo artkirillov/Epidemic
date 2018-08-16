@@ -19,10 +19,6 @@ final class ArticleViewController: UIViewController {
     var host: String?
     var urlString: String?
     
-    // Custom Transition parameters
-    
-    var originFrame = CGRect.zero
-    
     // MARK: - Public Methods
     
     override func viewDidLoad() {
