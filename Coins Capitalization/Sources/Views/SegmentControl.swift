@@ -40,6 +40,8 @@ final class SegmentedControl: UIControl {
     
     var thumbProgress: CGFloat = 0.0 {
         didSet {
+            guard !isHandlingTap else { return }
+            
             let maxX = bounds.width - thumbView.bounds.width
             thumbView.frame.origin.x = min(max(0, thumbProgress * maxX), maxX)
             
@@ -60,6 +62,12 @@ final class SegmentedControl: UIControl {
     var unselectedTextColor = UIColor.lightGray
     var thumbColor = Colors.controlDisabled
     
+    var feedbackGeneratorIsOn = true {
+        didSet {
+            feedBackGenerator = feedbackGeneratorIsOn ? UISelectionFeedbackGenerator() : nil
+        }
+    }
+    
     // MARK: - Constructors
     
     override init(frame: CGRect) {
@@ -79,6 +87,7 @@ final class SegmentedControl: UIControl {
         setupLabels()
         addSubview(thumbView)
         sendSubview(toBack: thumbView)
+        feedBackGenerator = feedbackGeneratorIsOn ? UISelectionFeedbackGenerator() : nil
     }
     
     func setupLabels() {
@@ -130,6 +139,8 @@ final class SegmentedControl: UIControl {
     }
     
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        isHandlingTap = true
+        
         let location = touch.location(in: self)
         
         var calculatedIndex: Int?
@@ -145,6 +156,7 @@ final class SegmentedControl: UIControl {
             lastSelectedIndex = selectedIndex
             selectedIndex = index
             displayNewSelectedItem(animated: true)
+            feedBackGenerator?.selectionChanged()
             sendActions(for: .valueChanged)
         }
         
@@ -160,7 +172,9 @@ final class SegmentedControl: UIControl {
                         self.thumbView.frame.origin.x = label.frame.origin.x
                         self.labels[self.lastSelectedIndex].textColor = self.unselectedTextColor },
                        completion: { _ in
-                        self.labels[self.selectedIndex].textColor = self.selectedTextColor }
+                        self.labels[self.selectedIndex].textColor = self.selectedTextColor
+                        self.isHandlingTap = false
+        }
         )
     }
     
@@ -168,4 +182,6 @@ final class SegmentedControl: UIControl {
     
     private var labels = [UILabel]()
     private var thumbView = UIView()
+    private var feedBackGenerator: UISelectionFeedbackGenerator?
+    private var isHandlingTap = false
 }

@@ -42,7 +42,8 @@ final class CoinsViewController: UIViewController {
         
         collectionView.register(TickerListCollectionViewCell.self, forCellWithReuseIdentifier: "TickerListCollectionViewCell")
         
-        segmentControl.items = [NSLocalizedString("All", comment: ""), NSLocalizedString("Favorite", comment: "")]
+        segmentControl.items = [NSLocalizedString("All", comment: "").uppercased(),
+                                NSLocalizedString("Favorite", comment: "").uppercased()]
         segmentControl.thumb = .line
         segmentControl.thumbColor = .lightGray
         segmentControl.itemsFont = UIFont.systemFont(ofSize: 12)
