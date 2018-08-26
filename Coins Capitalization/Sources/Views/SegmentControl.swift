@@ -42,6 +42,12 @@ final class SegmentedControl: UIControl {
         didSet {
             guard !isHandlingTap else { return }
             
+            if (lastThumbProgress - 0.5) * (thumbProgress - 0.5) < 0 {
+                feedBackGenerator?.selectionChanged()
+            }
+            
+            lastThumbProgress = thumbProgress
+            
             let maxX = bounds.width - thumbView.bounds.width
             thumbView.frame.origin.x = min(max(0, thumbProgress * maxX), maxX)
             
@@ -184,4 +190,5 @@ final class SegmentedControl: UIControl {
     private var thumbView = UIView()
     private var feedBackGenerator: UISelectionFeedbackGenerator?
     private var isHandlingTap = false
+    private var lastThumbProgress: CGFloat = 0.0
 }

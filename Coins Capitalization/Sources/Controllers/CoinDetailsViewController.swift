@@ -64,6 +64,7 @@ final class CoinDetailsViewController: UIViewController {
     
     @IBAction func favoriteButtonTapped(_ sender: UIButton) {
         isFavorite = !isFavorite
+        feedBackGenerator.impactOccurred()
         
         var favoriteCoins = Storage.favoriteCoins()
         
@@ -113,6 +114,7 @@ final class CoinDetailsViewController: UIViewController {
     
     private var asset: Asset?
     private let animation = CATransition()
+    private let feedBackGenerator = UIImpactFeedbackGenerator()
     
     @IBOutlet private weak var favoriteButton: UIButton!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
@@ -126,7 +128,6 @@ final class CoinDetailsViewController: UIViewController {
     @IBOutlet private weak var profitLabel: UILabel!
     @IBOutlet private weak var reduceButton: UIButton!
     @IBOutlet private weak var addButton: UIButton!
-    
     @IBOutlet private weak var infoContainer: UIView!
     @IBOutlet private weak var infoContainerHeightConstraint: NSLayoutConstraint!
 }
