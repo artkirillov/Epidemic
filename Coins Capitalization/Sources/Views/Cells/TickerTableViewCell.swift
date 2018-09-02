@@ -27,9 +27,6 @@ final class TickerTableViewCell: UITableViewCell {
         symbolLabel.text = ""
         priceUSDLabel.text = ""
         priceBTCLabel.text = ""
-        marketCapUSDLabel.text = ""
-        availableSupplyLabel.text = ""
-        totalSupplyLabel.text = ""
         percentChange1hLabel.text = Default.noInfo
         percentChange24hLabel.text = Default.noInfo
         percentChange7dLabel.text = Default.noInfo
@@ -50,9 +47,6 @@ final class TickerTableViewCell: UITableViewCell {
         setNumber(label: priceBTCLabel, value: ticker.priceBTC ?? "", suffix: " BTC", maximumFractionDigits: 10)
         setNumber(label: priceUSDLabel, value: ticker.priceUSD ?? "", prefix: "$")
         
-        setNumber(label: marketCapUSDLabel, value: ticker.marketCapUSD ?? Default.noInfo, prefix: "$")
-        setNumber(label: availableSupplyLabel, value: ticker.availableSupply ?? Default.noInfo, suffix: " \(ticker.symbol)")
-        
         setPercent(label: percentChange1hLabel, value: ticker.percentChange1h ?? Default.noInfo)
         setPercent(label: percentChange24hLabel, value: ticker.percentChange24h ?? Default.noInfo)
         setPercent(label: percentChange7dLabel, value: ticker.percentChange7d ?? Default.noInfo)
@@ -68,9 +62,6 @@ final class TickerTableViewCell: UITableViewCell {
     @IBOutlet private var percentChange24hLabel: UILabel!
     @IBOutlet private var percentChange7dLabel: UILabel!
     @IBOutlet private var priceBTCLabel: UILabel!
-    @IBOutlet private var marketCapUSDLabel: UILabel!
-    @IBOutlet private var availableSupplyLabel: UILabel!
-    @IBOutlet private var totalSupplyLabel: UILabel!
     
 }
 
