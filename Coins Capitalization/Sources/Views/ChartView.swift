@@ -48,8 +48,8 @@ final class ChartView: UIView {
             return height - y + topPadding
         }
         
-        Colors.controlEnabled.setFill()
-        Colors.controlEnabled.setStroke()
+        Colors.chartLine.setFill()
+        Colors.chartLine.setStroke()
         
         // Line
         
@@ -79,9 +79,9 @@ final class ChartView: UIView {
         let graphStartPoint = CGPoint(x: 0, y: 0)
         let graphEndPoint = CGPoint(x: 0, y: height)
         let context = UIGraphicsGetCurrentContext()!
-        let colors = [Colors.controlDisabled.cgColor, UIColor.clear.cgColor]
+        let colors = [Colors.controlEnabled.cgColor, Colors.controlDisabled.cgColor, UIColor.clear.cgColor]
         let colorSpace = CGColorSpaceCreateDeviceRGB()
-        let colorLocations: [CGFloat] = [0.0, 1.0]
+        let colorLocations: [CGFloat] = [0.0, 0.2, 1.0]
         let gradient = CGGradient(colorsSpace: colorSpace,
                                   colors: colors as CFArray,
                                   locations: colorLocations)!

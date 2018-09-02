@@ -20,12 +20,14 @@
 "No info" = "No info";
 "B" = "B";
 "Free trial alert" = "Trial portoflio volume is three assets";
-"Free trial message" = "If you would like to track up to 10 coins for free, leave us a review in AppStore, please)";
+"Free trial message" = "If you would like to track up to 5 coins for free, leave us a review in AppStore.";
 "Go to AppStore" = "Go to AppStore";
 "Cancel" = "Cancel";
 "Ok" = "Ok";
-"Pro alert" = "Seems you are like a pro!";
-"Pro message" = "Thank you for using this app. Hope you enjoy it. For tracking coins without any limitations you can request an upgrade.";
+"Let's try it" = "Let's try it";
+"Pro alert" = "Seems you're pro!";
+"Pro message" = "Thank you for using this app. Hope you enjoy it. For tracking coins without any limitations you can buy unlimited portfolio.";
+"Pro message and payment" = "Thank you for using this app. Hope you enjoy it. For tracking coins without any limitations you can buy unlimited portfolio for";
 "You haven't added any assets to the portfolio" = "You haven't added any assets to the portfolio";
 "You haven't added any coins to favorites" = "You haven't added any coins to favorites";
 "Coins" = "Coins";

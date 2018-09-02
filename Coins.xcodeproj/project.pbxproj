@@ -38,11 +38,13 @@
 		219FA197201E4C9600094B67 /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219FA196201E4C9600094B67 /* GlobalData.swift */; };
 		219FBFCD202E340800A8771A /* PortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219FBFCC202E340800A8771A /* PortfolioViewController.swift */; };
 		21AA7BD82101C051009967E0 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AA7BD72101C051009967E0 /* AlertViewController.swift */; };
+		21AA82D7213AFB34003872AC /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AA82D6213AFB34003872AC /* StoreManager.swift */; };
 		21B07FCB205650C400A09B48 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B07FCA205650C400A09B48 /* Formatter.swift */; };
 		21BAD60720177F7A0065D700 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BAD60620177F7A0065D700 /* AppDelegate.swift */; };
 		21BAD60920177F7A0065D700 /* CoinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BAD60820177F7A0065D700 /* CoinsViewController.swift */; };
 		21BAD60E20177F7A0065D700 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21BAD60C20177F7A0065D700 /* Main.storyboard */; };
 		21BAD61320177F7A0065D700 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21BAD61120177F7A0065D700 /* LaunchScreen.storyboard */; };
+		21D4D2A42137E65A0071B3FB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D4D2A32137E65A0071B3FB /* StoreKit.framework */; };
 		21E78BC6204AC5CB000B7398 /* CoinItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E78BC5204AC5CB000B7398 /* CoinItemTableViewCell.swift */; };
 		21E78BC8204AC6B0000B7398 /* CoinsCatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E78BC7204AC6B0000B7398 /* CoinsCatalogViewController.swift */; };
 		21E78BCA204AE48D000B7398 /* PortfolioTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E78BC9204AE48D000B7398 /* PortfolioTableHeaderView.swift */; };
@@ -101,6 +103,7 @@
 		219FA196201E4C9600094B67 /* GlobalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalData.swift; sourceTree = "<group>"; };
 		219FBFCC202E340800A8771A /* PortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
 		21AA7BD72101C051009967E0 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		21AA82D6213AFB34003872AC /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
 		21B07FCA205650C400A09B48 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		21BAD60320177F7A0065D700 /* Coins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Coins.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21BAD60620177F7A0065D700 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +111,7 @@
 		21BAD60D20177F7A0065D700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		21BAD61220177F7A0065D700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		21BAD61420177F7A0065D700 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		21D4D2A32137E65A0071B3FB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		21E78BC5204AC5CB000B7398 /* CoinItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinItemTableViewCell.swift; sourceTree = "<group>"; };
 		21E78BC7204AC6B0000B7398 /* CoinsCatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsCatalogViewController.swift; sourceTree = "<group>"; };
 		21E78BC9204AE48D000B7398 /* PortfolioTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioTableHeaderView.swift; sourceTree = "<group>"; };
@@ -130,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21D4D2A42137E65A0071B3FB /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +221,7 @@
 				214B0D4420DCFF76007234C1 /* RSS.swift */,
 				215A1FFE204804DA005ABDB8 /* Storage.swift */,
 				2135FB8421031F3400234E31 /* Reachability.swift */,
+				21AA82D6213AFB34003872AC /* StoreManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -245,6 +251,7 @@
 				21BAD60520177F7A0065D700 /* Coins Capitalization */,
 				2125F5252067BA5B001EDACD /* CoinsUITests */,
 				21BAD60420177F7A0065D700 /* Products */,
+				21D4D2A22137E65A0071B3FB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -290,6 +297,14 @@
 				210B3567211EFFC4000B1CB0 /* Views */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		21D4D2A22137E65A0071B3FB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				21D4D2A32137E65A0071B3FB /* StoreKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		21ED70082082959A002CD41E /* Utils */ = {
@@ -356,6 +371,11 @@
 					21BAD60220177F7A0065D700 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -439,6 +459,7 @@
 				219FA197201E4C9600094B67 /* GlobalData.swift in Sources */,
 				219FBFCD202E340800A8771A /* PortfolioViewController.swift in Sources */,
 				215A1FFD2048009F005ABDB8 /* Coin.swift in Sources */,
+				21AA82D7213AFB34003872AC /* StoreManager.swift in Sources */,
 				2186E10E204C162C000374A6 /* ReduceCoinViewController.swift in Sources */,
 				210FB85B203A18F000AD4557 /* AddCoinViewController.swift in Sources */,
 				2123173120590DF300F23540 /* AppStoreLookup.swift in Sources */,

@@ -42,8 +42,8 @@ final class AddCoinViewController: UIViewController {
         
         doneButton.isEnabled = false
         doneButton.layer.cornerRadius = 4.0
-        doneButton.setTitleColor(.white, for: .normal)
-        doneButton.setTitleColor(.lightGray, for: .disabled)
+        doneButton.setTitleColor(Colors.controlTextEnabled, for: .normal)
+        doneButton.setTitleColor(Colors.controlTextDisabled, for: .disabled)
         doneButton.backgroundColor = Colors.controlDisabled
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
@@ -105,7 +105,7 @@ final class AddCoinViewController: UIViewController {
         asset.symbol = coin.symbol
         asset.currentPrice = Double(coin.priceUSD ?? "")
         chooseButton.setTitle("\(asset.symbol) \(asset.name)", for: .normal)
-        chooseButton.setTitleColor(.white, for: .normal)
+        chooseButton.setTitleColor(Colors.controlTextEnabled, for: .normal)
     }
     
     // MARK: - Private properties

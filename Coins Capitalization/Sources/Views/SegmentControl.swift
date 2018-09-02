@@ -66,7 +66,7 @@ final class SegmentedControl: UIControl {
     var selectedIndex: Int = 0
     var selectedTextColor = UIColor.white
     var unselectedTextColor = UIColor.lightGray
-    var thumbColor = Colors.controlDisabled
+    var thumbColor = Colors.controlEnabled
     
     var feedbackGeneratorIsOn = true {
         didSet {

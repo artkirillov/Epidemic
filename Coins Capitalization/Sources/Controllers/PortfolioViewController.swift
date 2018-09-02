@@ -60,14 +60,13 @@ final class PortfolioViewController: UIViewController {
                     title: NSLocalizedString("Go to AppStore", comment: ""),
                     handler: { [weak controller] in
                         if let appId = Storage.appId(), let url = URL(string: "https://itunes.apple.com/app/id\(appId)") {
-                            print(url)
                             UIApplication.shared.open(url, options: [:], completionHandler: { _ in
-                                Storage.save(maxPortfolioVolume: 10)
+                                Storage.save(maxPortfolioVolume: 5)
                                 controller?.dismiss(animated: true, completion: nil)
                             })
                         } else if let url = URL(string: "https://www.apple.com/itunes/") {
                             UIApplication.shared.open(url, options: [:], completionHandler: { _ in
-                                Storage.save(maxPortfolioVolume: 10)
+                                Storage.save(maxPortfolioVolume: 5)
                                 controller?.dismiss(animated: true, completion: nil)
                             })
                         }
@@ -82,24 +81,36 @@ final class PortfolioViewController: UIViewController {
         } else {
             if let controller = storyboard?.instantiateViewController(withIdentifier: "AlertViewController") as? AlertViewController {
                 controller.header = NSLocalizedString("Pro alert", comment: "")
-                controller.message = NSLocalizedString("Pro message", comment: "")
                 controller.image = #imageLiteral(resourceName: "check")
                 
+                var message: String = ""
+                var okButtonTitle: String = ""
+                if let product = storeManager.unlimitedPortfolioProduct, storeManager.canMakePayments() {
+                    let numberFormatter = NumberFormatter()
+                    numberFormatter.numberStyle = .currency
+                    numberFormatter.locale = product.priceLocale
+                    let formattedPrice = numberFormatter.string(from: product.price) ?? "\(product.price)"
+                    
+                    message = NSLocalizedString("Pro message and payment", comment: "") + " \(formattedPrice)."
+                    okButtonTitle = NSLocalizedString("Let's try it", comment: "")
+                } else {
+                    message = NSLocalizedString("Pro message", comment: "")
+                    okButtonTitle = NSLocalizedString("Ok", comment: "")
+                }
+                
+                controller.message = message
+                
                 controller.addAction(
-                    title: NSLocalizedString("Ok", comment: ""),
-                    handler: { [weak controller] in controller?.dismiss(animated: true, completion: nil) })
+                    title: okButtonTitle,
+                    handler: { [weak self, weak controller] in
+                        self?.storeManager.unlimitedPortfolioProduct.flatMap { self?.storeManager.makePayment(with: $0) }
+                        controller?.dismiss(animated: true, completion: nil)
+                })
                 
                 controller.addAction(
                     title: NSLocalizedString("Cancel", comment: ""),
                     handler: { [weak controller] in
                         controller?.dismiss(animated: true, completion: nil)
-                        
-                        // Redirection to the last tab with subscription
-                        //
-                        // if let parentViewController = self?.parent as? UITabBarController,
-                        //     let count = parentViewController.viewControllers?.count {
-                        //     parentViewController.selectedIndex = count - 1
-                        // }
                 })
                 
                 present(controller, animated: true, completion: nil)
@@ -117,6 +128,8 @@ final class PortfolioViewController: UIViewController {
             items.sort(by: {$0.currentTotalCost > $1.currentTotalCost })
         }
     }
+    
+    private let storeManager = StoreManager()
     
 }
 

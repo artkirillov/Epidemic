@@ -40,8 +40,8 @@ final class CoinDetailsViewController: UIViewController {
         
         addButton.layer.cornerRadius = 4.0
         reduceButton.layer.cornerRadius = 4.0
-        reduceButton.setTitleColor(.white, for: .normal)
-        reduceButton.setTitleColor(.lightGray, for: .disabled)
+        reduceButton.setTitleColor(Colors.controlTextEnabled, for: .normal)
+        reduceButton.setTitleColor(Colors.controlTextDisabled, for: .disabled)
         
         animation.duration = 0.2
         animation.type = kCATransitionFade
