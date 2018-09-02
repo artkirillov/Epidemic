@@ -9,7 +9,7 @@
 import UIKit
 
 struct Colors {
-    static let chartLine = UIColor(red: 0/255, green: 145/255, blue: 130/255, alpha: 1.0)
+    static let controlHighlighted = UIColor(red: 0/255, green: 145/255, blue: 130/255, alpha: 1.0)
     static let controlEnabled = UIColor(red: 0/255, green: 125/255, blue: 110/255, alpha: 1.0)
     static let controlDisabled = UIColor(red: 0/255, green: 105/255, blue: 90/255, alpha: 1.0)
     static let controlTextEnabled = UIColor.white

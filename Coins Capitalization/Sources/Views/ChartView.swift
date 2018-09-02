@@ -48,8 +48,8 @@ final class ChartView: UIView {
             return height - y + topPadding
         }
         
-        Colors.chartLine.setFill()
-        Colors.chartLine.setStroke()
+        Colors.controlHighlighted.setFill()
+        Colors.controlHighlighted.setStroke()
         
         // Line
         
@@ -88,8 +88,8 @@ final class ChartView: UIView {
         
         context.drawLinearGradient(gradient, start: graphStartPoint, end: graphEndPoint, options: [])
         
-//        testHandle()
-//        showBubble(true)
+        testHandle()
+        showBubble(true)
     }
     
     override func didMoveToWindow() {

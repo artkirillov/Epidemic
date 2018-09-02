@@ -32,7 +32,7 @@ final class AddCoinViewController: UIViewController {
             chooseButton.isEnabled = false
         } else if let bitcoin = Storage.coins()?.first {
             setAsset(with: bitcoin)
-            chooseButton.setTitleColor(Colors.controlEnabled, for: .normal)
+            chooseButton.setTitleColor(Colors.controlHighlighted, for: .normal)
         }
         
         animation.duration = 0.2
