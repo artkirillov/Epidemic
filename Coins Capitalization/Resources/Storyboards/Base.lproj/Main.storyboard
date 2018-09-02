@@ -134,7 +134,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Mki-lM-seR">
-                                <rect key="frame" x="0.0" y="159" width="375" height="459"/>
+                                <rect key="frame" x="0.0" y="161" width="375" height="457"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="uDy-oT-BSK">
                                     <size key="itemSize" width="375" height="509"/>
@@ -159,7 +159,7 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WGv-Fd-N9b">
-                                <rect key="frame" x="0.0" y="109" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="111" width="375" height="50"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="p0L-Xz-jRB">
                                         <rect key="frame" x="20" y="11" width="335" height="28"/>
@@ -192,7 +192,7 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shadow" translatesAutoresizingMaskIntoConstraints="NO" id="e1u-ak-6Yw">
-                                <rect key="frame" x="0.0" y="104" width="375" height="5"/>
+                                <rect key="frame" x="0.0" y="104" width="375" height="7"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.1100897789" green="0.12103815380000001" blue="0.15698321160000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -591,7 +591,7 @@
                                 </constraints>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hcv-t7-pTc">
-                                <rect key="frame" x="30" y="171" width="152.5" height="50"/>
+                                <rect key="frame" x="30" y="166" width="142.5" height="50"/>
                                 <color key="backgroundColor" red="0.086535856130000005" green="0.097661972050000004" blue="0.12561407690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -604,12 +604,12 @@
                                     <outlet property="delegate" destination="5x3-SJ-cxt" id="nd1-bh-dNi"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Btg-ft-ng4">
-                                <rect key="frame" x="30" y="110" width="152.5" height="41"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Btg-ft-ng4">
+                                <rect key="frame" x="30" y="110" width="142.5" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="TK2-R6-mjf"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                 <state key="normal" title="BTC">
                                     <color key="titleColor" red="0.0" green="0.64705882349999999" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
@@ -618,7 +618,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="10,5" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0cT-1I-XcF">
-                                <rect key="frame" x="202.5" y="172" width="152.5" height="50"/>
+                                <rect key="frame" x="212.5" y="166" width="142.5" height="50"/>
                                 <color key="backgroundColor" red="0.086535856130000005" green="0.097661972050000004" blue="0.12561407690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -632,8 +632,8 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="McK-v4-prY">
-                                <rect key="frame" x="202.5" y="110" width="152.5" height="42"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                <rect key="frame" x="212.5" y="110" width="142.5" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                 <state key="normal" title="ETH">
                                     <color key="titleColor" red="0.0" green="0.64705882349999999" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
@@ -647,7 +647,7 @@
                         <constraints>
                             <constraint firstItem="QfN-m2-PSp" firstAttribute="top" secondItem="r4A-eQ-pBi" secondAttribute="top" id="3aD-va-rSB"/>
                             <constraint firstItem="McK-v4-prY" firstAttribute="top" secondItem="QfN-m2-PSp" secondAttribute="bottom" constant="30" id="7Ot-Yt-mzF"/>
-                            <constraint firstItem="McK-v4-prY" firstAttribute="leading" secondItem="Btg-ft-ng4" secondAttribute="trailing" constant="20" id="EXf-Br-1la"/>
+                            <constraint firstItem="McK-v4-prY" firstAttribute="leading" secondItem="Btg-ft-ng4" secondAttribute="trailing" constant="40" id="EXf-Br-1la"/>
                             <constraint firstItem="0cT-1I-XcF" firstAttribute="leading" secondItem="McK-v4-prY" secondAttribute="leading" id="G7m-eL-w8o"/>
                             <constraint firstItem="Btg-ft-ng4" firstAttribute="top" secondItem="QfN-m2-PSp" secondAttribute="bottom" constant="30" id="I8j-h8-1Bt"/>
                             <constraint firstItem="Btg-ft-ng4" firstAttribute="leading" secondItem="r4A-eQ-pBi" secondAttribute="leading" constant="30" id="J2c-rT-np2"/>
@@ -1570,7 +1570,7 @@
         <image name="heart_empty" width="48" height="48"/>
         <image name="news" width="22" height="22"/>
         <image name="portfolio" width="22" height="19"/>
-        <image name="shadow" width="1" height="5"/>
+        <image name="shadow" width="1" height="7"/>
         <image name="subscription" width="22" height="22"/>
         <image name="warning" width="365" height="365"/>
     </resources>

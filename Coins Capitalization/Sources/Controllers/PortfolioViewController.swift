@@ -85,6 +85,7 @@ final class PortfolioViewController: UIViewController {
                 
                 var message: String = ""
                 var okButtonTitle: String = ""
+                var cancelButtonTitle: String = ""
                 if let product = storeManager.unlimitedPortfolioProduct, storeManager.canMakePayments() {
                     let numberFormatter = NumberFormatter()
                     numberFormatter.numberStyle = .currency
@@ -93,9 +94,11 @@ final class PortfolioViewController: UIViewController {
                     
                     message = NSLocalizedString("Pro message and payment", comment: "") + " \(formattedPrice)."
                     okButtonTitle = NSLocalizedString("Let's try it", comment: "")
+                    cancelButtonTitle = NSLocalizedString("No, thanks", comment: "")
                 } else {
                     message = NSLocalizedString("Pro message", comment: "")
                     okButtonTitle = NSLocalizedString("Ok", comment: "")
+                    cancelButtonTitle = NSLocalizedString("Cancel", comment: "")
                 }
                 
                 controller.message = message
@@ -108,7 +111,7 @@ final class PortfolioViewController: UIViewController {
                 })
                 
                 controller.addAction(
-                    title: NSLocalizedString("Cancel", comment: ""),
+                    title: cancelButtonTitle,
                     handler: { [weak controller] in
                         controller?.dismiss(animated: true, completion: nil)
                 })
