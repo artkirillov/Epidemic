@@ -27,6 +27,8 @@ final class ReduceCoinViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = Colors.backgroundColor
+        
         totalAmount = asset?.totalAmount ?? 0.0
         assetLabel.text = "\(asset?.symbol ?? "") \(asset?.name ?? "")"
         

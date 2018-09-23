@@ -34,6 +34,8 @@ final class CoinDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = Colors.backgroundColor
+        
         nameLabel.text = name
         segmentedControl.selectedIndex = 0
         noDataView.layer.cornerRadius = noDataView.bounds.height / 2

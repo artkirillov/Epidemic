@@ -21,6 +21,8 @@ final class SubscriptionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = Colors.backgroundColor
+        
         billedMonthlyButton.layer.cornerRadius = 4.0
         billedAnnuallyButton.layer.cornerRadius = 4.0
         

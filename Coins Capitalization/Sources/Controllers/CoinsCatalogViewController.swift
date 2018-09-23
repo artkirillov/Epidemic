@@ -26,6 +26,8 @@ final class CoinsCatalogViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = Colors.backgroundColor
+        
         let coins = Storage.coins() ?? []
         items = coins.sorted(by: { $0.symbol < $1.symbol })
         filteredItems = items

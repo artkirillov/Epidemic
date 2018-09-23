@@ -21,6 +21,8 @@ final class PortfolioViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = Colors.backgroundColor
+        
         items.sort(by: {$0.currentTotalCost > $1.currentTotalCost })
         
         tableView.tableFooterView = UIView()

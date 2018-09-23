@@ -18,7 +18,9 @@ final class TickerTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        containerView.layer.cornerRadius = 4.0
+        
+        containerView.backgroundColor = Colors.cellBackgroundColor
+        containerView.layer.cornerRadius = 14.0
     }
     
     override func prepareForReuse() {

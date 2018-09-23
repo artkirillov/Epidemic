@@ -27,6 +27,8 @@ final class AddCoinViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = Colors.backgroundColor
+        
         if let coin = coin {
             setAsset(with: coin)
             chooseButton.isEnabled = false

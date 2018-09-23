@@ -28,6 +28,8 @@ final class ConverterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = Colors.backgroundColor
+        
         if let coins = Storage.coins(), coins.count > 1 {
             leftCoin = coins[0]
             rightCoin = coins[1]

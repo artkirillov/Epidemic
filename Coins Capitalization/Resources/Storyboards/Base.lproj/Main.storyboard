@@ -98,12 +98,12 @@
             </objects>
             <point key="canvasLocation" x="448.80000000000001" y="-1309.2953523238382"/>
         </scene>
-        <!--Coins-->
+        <!--Coins View Controller-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="9pv-A4-QxB" customClass="CoinsViewController" customModule="Coins" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EiZ-yE-ioA">
@@ -183,7 +183,7 @@
                                         </connections>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" red="0.1100897789" green="0.12103815380000001" blue="0.15698321160000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="p0L-Xz-jRB" firstAttribute="centerY" secondItem="WGv-Fd-N9b" secondAttribute="centerY" id="L7c-xv-GZY"/>
                                     <constraint firstItem="p0L-Xz-jRB" firstAttribute="leading" secondItem="WGv-Fd-N9b" secondAttribute="leading" constant="20" id="Ou5-fF-35n"/>
@@ -217,7 +217,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Coins" image="coins" id="acW-dT-cKf">
+                    <tabBarItem key="tabBarItem" title="" image="coins" id="acW-dT-cKf">
                         <color key="badgeColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tabBarItem>
                     <connections>
@@ -232,12 +232,12 @@
             </objects>
             <point key="canvasLocation" x="448.80000000000001" y="-608.54572713643188"/>
         </scene>
-        <!--Portfolio-->
+        <!--Portfolio View Controller-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="PortfolioViewController" customModule="Coins" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="oui-7t-U1r">
@@ -283,7 +283,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ccv-Se-jaf">
-                                                    <rect key="frame" x="5" y="2" width="365" height="86"/>
+                                                    <rect key="frame" x="5" y="2" width="365" height="87"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bCA-GA-4gf">
                                                             <rect key="frame" x="15" y="15" width="55.5" height="43.5"/>
@@ -338,7 +338,7 @@
                                                             </constraints>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.1414535791" green="0.1524185985" blue="0.18835155670000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="backgroundColor" red="0.10588235294117647" green="0.12156862745098039" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Q9H-nr-hNM" secondAttribute="bottom" constant="15" id="EiP-tZ-s9a"/>
                                                         <constraint firstAttribute="trailing" secondItem="Q9H-nr-hNM" secondAttribute="trailing" constant="20" id="KZR-Wc-fV4"/>
@@ -353,7 +353,7 @@
                                                 <constraint firstItem="Ccv-Se-jaf" firstAttribute="leading" secondItem="5jZ-74-kDE" secondAttribute="leading" constant="5" id="3Jc-tu-UiO"/>
                                                 <constraint firstAttribute="trailing" secondItem="Ccv-Se-jaf" secondAttribute="trailing" constant="5" id="D27-s3-2hu"/>
                                                 <constraint firstItem="Ccv-Se-jaf" firstAttribute="top" secondItem="5jZ-74-kDE" secondAttribute="top" constant="2" id="Uuf-tV-RZ6"/>
-                                                <constraint firstAttribute="bottom" secondItem="Ccv-Se-jaf" secondAttribute="bottom" constant="3" id="bT8-1c-QCL"/>
+                                                <constraint firstAttribute="bottom" secondItem="Ccv-Se-jaf" secondAttribute="bottom" constant="2" id="bT8-1c-QCL"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -416,7 +416,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Portfolio" image="portfolio" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="" image="portfolio" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="tableView" destination="oui-7t-U1r" id="ID5-2u-2cb"/>
                     </connections>
@@ -565,12 +565,12 @@
             </objects>
             <point key="canvasLocation" x="1170" y="81"/>
         </scene>
-        <!--Converter-->
+        <!--Converter View Controller-->
         <scene sceneID="XnK-N6-QBB">
             <objects>
                 <viewController id="5x3-SJ-cxt" customClass="ConverterViewController" customModule="Coins" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uCp-oL-tWE">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QfN-m2-PSp">
@@ -663,7 +663,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="r4A-eQ-pBi"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Converter" image="converter" id="b4j-0M-X5r"/>
+                    <tabBarItem key="tabBarItem" title="" image="converter" id="b4j-0M-X5r"/>
                     <connections>
                         <outlet property="leftButton" destination="Btg-ft-ng4" id="brh-4k-wOd"/>
                         <outlet property="leftTextField" destination="hcv-t7-pTc" id="Rn0-ik-CTx"/>
@@ -679,11 +679,11 @@
         <scene sceneID="yl2-sM-qoP">
             <objects>
                 <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="W28-zg-YXA">
+                    <tabBar key="tabBar" contentMode="scaleAspectFill" translucent="NO" itemPositioning="centered" itemSpacing="60" itemWidth="24" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="barTintColor" red="0.1100897789" green="0.12103815380000001" blue="0.15698321160000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="barTintColor" red="0.086274509803921567" green="0.10588235294117647" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
@@ -1360,12 +1360,12 @@
             </objects>
             <point key="canvasLocation" x="449" y="2221"/>
         </scene>
-        <!--News-->
+        <!--News View Controller-->
         <scene sceneID="qi0-Vt-dmj">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="ua0-z9-V1L" customClass="NewsViewController" customModule="Coins" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mPn-hS-WMh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Wz6-Sb-tQe">
@@ -1409,7 +1409,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.1414535791" green="0.1524185985" blue="0.18835155670000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="backgroundColor" red="0.10588235294117647" green="0.12103815380000001" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="XeA-AX-xuj" secondAttribute="bottom" constant="10" id="6Ae-dl-KoI"/>
                                                         <constraint firstItem="q1h-Eg-aah" firstAttribute="top" secondItem="YoC-we-Suv" secondAttribute="bottom" constant="5" id="6XO-Kg-txk"/>
@@ -1480,7 +1480,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eOV-Vy-Txb"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="News" image="news" id="i7V-qG-GpW">
+                    <tabBarItem key="tabBarItem" title="" image="news" id="i7V-qG-GpW">
                         <color key="badgeColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tabBarItem>
                     <connections>

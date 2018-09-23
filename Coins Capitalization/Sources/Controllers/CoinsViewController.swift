@@ -21,6 +21,8 @@ final class CoinsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = Colors.backgroundColor
+        
         searchTextField.leftViewMode = .always
         searchTextField.leftView = UIImageView(image: #imageLiteral(resourceName: "search"))
         
@@ -45,7 +47,7 @@ final class CoinsViewController: UIViewController {
         segmentControl.items = [NSLocalizedString("All", comment: "").uppercased(),
                                 NSLocalizedString("Favorite", comment: "").uppercased()]
         segmentControl.thumb = .line
-        segmentControl.thumbColor = .lightGray
+        segmentControl.thumbColor = Colors.lightBlueColor
         segmentControl.itemsFont = UIFont.systemFont(ofSize: 12)
     }
     

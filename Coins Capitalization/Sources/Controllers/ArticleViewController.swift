@@ -24,6 +24,8 @@ final class ArticleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = Colors.backgroundColor
+        
         headerLabel.text = host ?? NSLocalizedString("Article", comment: "")
         
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
