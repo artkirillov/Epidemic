@@ -15,7 +15,19 @@ final class ArticleTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         reset()
+        
+        titleLabel.textColor = Colors.majorTextColor
+        titleLabel.font = Fonts.title
+        
+        descriptionLabel.textColor = Colors.minorTextColor
+        descriptionLabel.font = Fonts.subtitle
+        
+        updatedLabel.textColor = Colors.majorTextColor
+        updatedLabel.font = Fonts.smallDescription
+        
         logoView.layer.cornerRadius = 4.0
+        
+        containerView.backgroundColor = Colors.cellBackgroundColor
         containerView.layer.cornerRadius = 14.0
     }
     

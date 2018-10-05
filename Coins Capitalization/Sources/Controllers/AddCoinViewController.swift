@@ -37,9 +37,6 @@ final class AddCoinViewController: UIViewController {
             chooseButton.setTitleColor(Colors.controlHighlighted, for: .normal)
         }
         
-        animation.duration = 0.2
-        animation.type = kCATransitionFade
-        
         cancelButton.layer.cornerRadius = 4.0
         
         doneButton.isEnabled = false
@@ -113,7 +110,6 @@ final class AddCoinViewController: UIViewController {
     // MARK: - Private properties
     
     private var asset = Asset(name: "", symbol: "", volume: [], currentPrice: 0.0)
-    private let animation = CATransition()
     
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var costTextField: UITextField!

@@ -32,7 +32,7 @@ final class SegmentedControl: UIControl {
         }
     }
     
-    var itemsFont = UIFont.systemFont(ofSize: 12) {
+    var itemsFont = Fonts.subtitle {
         didSet {
             labels.forEach { $0.font = itemsFont }
         }
@@ -64,9 +64,9 @@ final class SegmentedControl: UIControl {
     var thumb: Thumb = .rectangle
     var lastSelectedIndex: Int = 0
     var selectedIndex: Int = 0
-    var selectedTextColor = UIColor.white
-    var unselectedTextColor = UIColor.lightGray
-    var thumbColor = Colors.controlEnabled
+    var selectedTextColor = Colors.majorTextColor
+    var unselectedTextColor = Colors.minorTextColor
+    var thumbColor = Colors.lightBlueColor
     
     var feedbackGeneratorIsOn = true {
         didSet {

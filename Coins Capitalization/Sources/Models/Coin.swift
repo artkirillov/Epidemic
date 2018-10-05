@@ -12,6 +12,17 @@ struct Coin: Codable {
     var name: String
     var symbol: String
     var priceUSD: String?
+    
+    init(id: String, name: String, symbol: String, priceUSD: String?) {
+        self.id = id
+        self.name = name
+        self.symbol = symbol
+        self.priceUSD = priceUSD
+    }
+    
+    init(ticker: Ticker) {
+        self.init(id: ticker.id, name: ticker.name, symbol: ticker.symbol, priceUSD: ticker.priceUSD)
+    }
 
 }
 

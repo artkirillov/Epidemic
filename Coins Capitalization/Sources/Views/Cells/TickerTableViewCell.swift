@@ -21,6 +21,25 @@ final class TickerTableViewCell: UITableViewCell {
         
         containerView.backgroundColor = Colors.cellBackgroundColor
         containerView.layer.cornerRadius = 14.0
+        
+        symbolLabel.textColor = Colors.majorTextColor
+        symbolLabel.font = Fonts.title
+        
+        nameLabel.textColor = Colors.minorTextColor
+        nameLabel.font = Fonts.main
+        
+        priceUSDLabel.textColor = Colors.majorTextColor
+        priceUSDLabel.font = Fonts.title
+        
+        priceBTCLabel.textColor = Colors.majorTextColor
+        priceBTCLabel.font = Fonts.subtitle
+        
+        [percentChange1hLabel, percentChange24hLabel, percentChange7dLabel].forEach { $0?.font = Fonts.description }
+        
+        [hourChangeDescription, dayChangeDescription, weekChangeDescription].forEach {
+            $0?.font = Fonts.smallDescription
+            $0?.textColor = Colors.minorTextColor
+        }
     }
     
     override func prepareForReuse() {
@@ -33,9 +52,9 @@ final class TickerTableViewCell: UITableViewCell {
         percentChange24hLabel.text = Default.noInfo
         percentChange7dLabel.text = Default.noInfo
         
-        percentChange1hLabel.textColor = .lightGray
-        percentChange24hLabel.textColor = .lightGray
-        percentChange7dLabel.textColor = .lightGray
+        percentChange1hLabel.textColor = Colors.minorTextColor
+        percentChange24hLabel.textColor = Colors.minorTextColor
+        percentChange7dLabel.textColor = Colors.minorTextColor
     }
     
     func configure(ticker: Ticker) {
@@ -60,11 +79,13 @@ final class TickerTableViewCell: UITableViewCell {
     @IBOutlet private var nameLabel: UILabel!
     @IBOutlet private var symbolLabel: UILabel!
     @IBOutlet private var priceUSDLabel: UILabel!
+    @IBOutlet private var priceBTCLabel: UILabel!
     @IBOutlet private var percentChange1hLabel: UILabel!
     @IBOutlet private var percentChange24hLabel: UILabel!
     @IBOutlet private var percentChange7dLabel: UILabel!
-    @IBOutlet private var priceBTCLabel: UILabel!
-    
+    @IBOutlet private var hourChangeDescription: UILabel!
+    @IBOutlet private var dayChangeDescription: UILabel!
+    @IBOutlet private var weekChangeDescription: UILabel!
 }
 
 fileprivate extension TickerTableViewCell {
@@ -81,6 +102,9 @@ fileprivate extension TickerTableViewCell {
         } else if val < 0 {
             setNumber(label: label, value: value, suffix: "%")
             label.textColor = Colors.negativeGrow
+        } else {
+            label.text = "---"
+            label.textColor = Colors.minorTextColor
         }
     }
     

@@ -17,9 +17,6 @@
 /* Class = "UITextField"; placeholder = "Search"; ObjectID = "5ig-HQ-hoK"; */
 "5ig-HQ-hoK.placeholder" = "Поиск";
 
-/* Class = "UILabel"; text = "Converter"; ObjectID = "ARe-XY-cM4"; */
-"ARe-XY-cM4.text" = "Конвертер";
-
 /* Class = "UILabel"; text = "Profit:"; ObjectID = "DIn-EC-JqG"; */
 "DIn-EC-JqG.text" = "Прибыль:";
 
@@ -68,9 +65,6 @@
 /* Class = "UITabBarItem"; title = "Portfolio"; ObjectID = "cPa-gy-q4n"; */
 "cPa-gy-q4n.title" = "Портфель";
 
-/* Class = "UILabel"; text = "Portfolio"; ObjectID = "gjA-tG-Baq"; */
-"gjA-tG-Baq.text" = "Портфель";
-
 /* Class = "UITextField"; placeholder = "Cost, $"; ObjectID = "gqZ-nD-CaB"; */
 "gqZ-nD-CaB.placeholder" = "Стоимость, $";
 
@@ -92,9 +86,6 @@
 /* Class = "UIButton"; normalTitle = "Done"; ObjectID = "pt6-rJ-4sE"; */
 "pt6-rJ-4sE.normalTitle" = "Готово";
 
-/* Class = "UILabel"; text = "Coins"; ObjectID = "spm-kz-Ief"; */
-"spm-kz-Ief.text" = "Монеты";
-
 /* Class = "UITabBarItem"; title = "Subscription"; ObjectID = "tdI-7z-lb4"; */
 "tdI-7z-lb4.title" = "Подписка";
 
@@ -109,9 +100,3 @@
 
 /* Class = "UITabBarItem"; title = "News"; ObjectID = "i7V-qG-GpW"; */
 "i7V-qG-GpW.title" = "Новости";
-
-/* Class = "UILabel"; text = "News"; ObjectID = "hNZ-J6-pbE"; */
-"hNZ-J6-pbE.text" = "Новости";
-
-/* Class = "UILabel"; text = "Article"; ObjectID = "smy-0I-Rb3"; */
-"smy-0I-Rb3.text" = "Статья";

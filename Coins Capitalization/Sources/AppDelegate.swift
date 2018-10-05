@@ -17,6 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         SKPaymentQueue.default().add(storeManager)
+        
+        if let tabBarController = window?.rootViewController as? UITabBarController {
+            tabBarController.tabBar.items?.forEach { $0.imageInsets = Insets.tabBarItemInsets }
+        }
+        
         return true
     }
 

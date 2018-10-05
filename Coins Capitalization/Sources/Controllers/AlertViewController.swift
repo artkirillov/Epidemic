@@ -106,7 +106,7 @@ extension UIViewController {
         var handler: (() -> Void)?
         
         init(title: String, handler: (() -> Void)?) {
-            self.title = title
+            self.title = title.uppercased()
             self.handler = handler
         }
     }

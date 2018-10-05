@@ -81,7 +81,7 @@ final class ChartView: UIView {
         let context = UIGraphicsGetCurrentContext()!
         let colors = [Colors.controlEnabled.cgColor, Colors.controlDisabled.cgColor, UIColor.clear.cgColor]
         let colorSpace = CGColorSpaceCreateDeviceRGB()
-        let colorLocations: [CGFloat] = [0.0, 0.2, 1.0]
+        let colorLocations: [CGFloat] = [0.0, 0.3, 1.0]
         let gradient = CGGradient(colorsSpace: colorSpace,
                                   colors: colors as CFArray,
                                   locations: colorLocations)!
@@ -107,7 +107,7 @@ final class ChartView: UIView {
         priceLabel.textColor = .white
         
         dateLabel.font = UIFont.systemFont(ofSize: 10.0)
-        dateLabel.textColor = .lightGray
+        dateLabel.textColor = Colors.minorTextColor
         
         pointView.backgroundColor = .white
         lineView.backgroundColor = Colors.bubbleBackground
@@ -149,7 +149,7 @@ final class ChartView: UIView {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         handle(touches: touches)
-        showBubble(true)
+        showBubble(!points.isEmpty)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {

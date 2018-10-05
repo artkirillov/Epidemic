@@ -28,19 +28,27 @@ final class ConverterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = Colors.backgroundColor
-        
         if let coins = Storage.coins(), coins.count > 1 {
             leftCoin = coins[0]
             rightCoin = coins[1]
         }
-        leftButton.setTitle(leftCoin?.symbol, for: .normal)
-        rightButton.setTitle(rightCoin?.symbol, for: .normal)
+        
         leftCoinAmount = 1.0
         convert(side: .right)
         
-        animation.duration = 0.2
-        animation.type = kCATransitionFade
+        view.backgroundColor = Colors.backgroundColor
+        titleLabel.attributedText = NSAttributedString.attributedTitle(string: NSLocalizedString("Converter", comment: "").uppercased())
+        
+        leftButton.setTitle(leftCoin?.symbol, for: .normal)
+        leftButton.setTitleColor(Colors.lightBlueColor, for: .normal)
+        leftButton.titleLabel?.font = Fonts.title
+        
+        rightButton.setTitle(rightCoin?.symbol, for: .normal)
+        rightButton.setTitleColor(Colors.lightBlueColor, for: .normal)
+        rightButton.titleLabel?.font = Fonts.title
+        
+        leftTextField.font = Fonts.title
+        rightTextField.font = Fonts.title
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         view.addGestureRecognizer(tapGestureRecognizer)
@@ -70,16 +78,16 @@ final class ConverterViewController: UIViewController {
     // MARK: - Private properties
     
     private let numberFormatter = NumberFormatter()
-    private let animation = CATransition()
     private var side = Side.left
     private var leftCoin: Coin?
     private var rightCoin: Coin?
     private var leftCoinAmount = 0.0
     private var rightCoinAmount = 0.0
-    @IBOutlet weak var leftButton: UIButton!
-    @IBOutlet weak var rightButton: UIButton!
-    @IBOutlet weak var leftTextField: UITextField!
-    @IBOutlet weak var rightTextField: UITextField!
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var leftButton: UIButton!
+    @IBOutlet private var rightButton: UIButton!
+    @IBOutlet private var leftTextField: UITextField!
+    @IBOutlet private var rightTextField: UITextField!
     
 }
 

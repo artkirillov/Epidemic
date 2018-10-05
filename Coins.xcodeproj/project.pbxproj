@@ -17,6 +17,8 @@
 		212317332059169300F23540 /* SubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212317322059169300F23540 /* SubscriptionViewController.swift */; };
 		2125F5272067BA5B001EDACD /* CoinsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2125F5262067BA5B001EDACD /* CoinsUITests.swift */; };
 		2125F52F2067BB41001EDACD /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2125F52E2067BB41001EDACD /* SnapshotHelper.swift */; };
+		212CDE9C2157E9B60068E0C2 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212CDE9B2157E9B60068E0C2 /* Fonts.swift */; };
+		212CDE9E2157FC3D0068E0C2 /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212CDE9D2157FC3D0068E0C2 /* NSAttributedString.swift */; };
 		212F6D182042C83A0091B723 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 212F6D172042C83A0091B723 /* Assets.xcassets */; };
 		2135FB8521031F3400234E31 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2135FB8421031F3400234E31 /* Reachability.swift */; };
 		21361D5B211F11260023FAA6 /* TickerListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21361D5A211F11260023FAA6 /* TickerListCollectionViewCell.swift */; };
@@ -27,6 +29,7 @@
 		2154CD9A20DA5543002FA475 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2154CD9920DA5543002FA475 /* ArticleViewController.swift */; };
 		215A1FFD2048009F005ABDB8 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1FFC2048009F005ABDB8 /* Coin.swift */; };
 		215A1FFF204804DA005ABDB8 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1FFE204804DA005ABDB8 /* Storage.swift */; };
+		215A76E721636687009D56A6 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A76E621636687009D56A6 /* MessageView.swift */; };
 		2173EC282017D4CD004BDECE /* Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2173EC272017D4CD004BDECE /* Ticker.swift */; };
 		2173EC2C2017E16B004BDECE /* TickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2173EC2B2017E16B004BDECE /* TickerTableViewCell.swift */; };
 		2186E10E204C162C000374A6 /* ReduceCoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2186E10D204C162C000374A6 /* ReduceCoinViewController.swift */; };
@@ -45,6 +48,7 @@
 		21BAD60E20177F7A0065D700 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21BAD60C20177F7A0065D700 /* Main.storyboard */; };
 		21BAD61320177F7A0065D700 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21BAD61120177F7A0065D700 /* LaunchScreen.storyboard */; };
 		21D4D2A42137E65A0071B3FB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D4D2A32137E65A0071B3FB /* StoreKit.framework */; };
+		21DF46E6216215A200CCBDB7 /* Insets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF46E5216215A200CCBDB7 /* Insets.swift */; };
 		21E78BC6204AC5CB000B7398 /* CoinItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E78BC5204AC5CB000B7398 /* CoinItemTableViewCell.swift */; };
 		21E78BC8204AC6B0000B7398 /* CoinsCatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E78BC7204AC6B0000B7398 /* CoinsCatalogViewController.swift */; };
 		21E78BCA204AE48D000B7398 /* PortfolioTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E78BC9204AE48D000B7398 /* PortfolioTableHeaderView.swift */; };
@@ -79,6 +83,8 @@
 		2125F5262067BA5B001EDACD /* CoinsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsUITests.swift; sourceTree = "<group>"; };
 		2125F5282067BA5B001EDACD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2125F52E2067BB41001EDACD /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
+		212CDE9B2157E9B60068E0C2 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		212CDE9D2157FC3D0068E0C2 /* NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
 		212F6D172042C83A0091B723 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2135FB8421031F3400234E31 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		21361D5A211F11260023FAA6 /* TickerListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerListCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -92,6 +98,7 @@
 		2157F75220671E9B00263AE0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		215A1FFC2048009F005ABDB8 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		215A1FFE204804DA005ABDB8 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		215A76E621636687009D56A6 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		2173EC272017D4CD004BDECE /* Ticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticker.swift; sourceTree = "<group>"; };
 		2173EC2B2017E16B004BDECE /* TickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerTableViewCell.swift; sourceTree = "<group>"; };
 		2186E10D204C162C000374A6 /* ReduceCoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReduceCoinViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +119,7 @@
 		21BAD61220177F7A0065D700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		21BAD61420177F7A0065D700 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21D4D2A32137E65A0071B3FB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		21DF46E5216215A200CCBDB7 /* Insets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insets.swift; sourceTree = "<group>"; };
 		21E78BC5204AC5CB000B7398 /* CoinItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinItemTableViewCell.swift; sourceTree = "<group>"; };
 		21E78BC7204AC6B0000B7398 /* CoinsCatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsCatalogViewController.swift; sourceTree = "<group>"; };
 		21E78BC9204AE48D000B7398 /* PortfolioTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioTableHeaderView.swift; sourceTree = "<group>"; };
@@ -163,6 +171,9 @@
 			children = (
 				2119D0C8204B2325000FE804 /* Colors.swift */,
 				21B07FCA205650C400A09B48 /* Formatter.swift */,
+				212CDE9B2157E9B60068E0C2 /* Fonts.swift */,
+				212CDE9D2157FC3D0068E0C2 /* NSAttributedString.swift */,
+				21DF46E5216215A200CCBDB7 /* Insets.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -175,6 +186,24 @@
 				2125F5282067BA5B001EDACD /* Info.plist */,
 			);
 			path = CoinsUITests;
+			sourceTree = "<group>";
+		};
+		214A2A29216363650020030C /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				218CB6D3204C5A8000EDF550 /* SegmentControl.swift */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
+		214A2A2A216363790020030C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				21E78BC9204AE48D000B7398 /* PortfolioTableHeaderView.swift */,
+				218CB6D1204C58B100EDF550 /* ChartView.swift */,
+				215A76E621636687009D56A6 /* MessageView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		2173EC262017D32B004BDECE /* Models */ = {
@@ -194,10 +223,9 @@
 		2173EC292017E144004BDECE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				21E78BC9204AE48D000B7398 /* PortfolioTableHeaderView.swift */,
+				214A2A2A216363790020030C /* Views */,
+				214A2A29216363650020030C /* Controls */,
 				2173EC2A2017E14D004BDECE /* Cells */,
-				218CB6D1204C58B100EDF550 /* ChartView.swift */,
-				218CB6D3204C5A8000EDF550 /* SegmentControl.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -443,6 +471,7 @@
 				21361D5B211F11260023FAA6 /* TickerListCollectionViewCell.swift in Sources */,
 				218CB6D0204C555A00EDF550 /* CoinDetailsViewController.swift in Sources */,
 				215A1FFF204804DA005ABDB8 /* Storage.swift in Sources */,
+				212CDE9E2157FC3D0068E0C2 /* NSAttributedString.swift in Sources */,
 				2119D0C9204B2325000FE804 /* Colors.swift in Sources */,
 				21B07FCB205650C400A09B48 /* Formatter.swift in Sources */,
 				21E78BC8204AC6B0000B7398 /* CoinsCatalogViewController.swift in Sources */,
@@ -453,6 +482,8 @@
 				21AA7BD82101C051009967E0 /* AlertViewController.swift in Sources */,
 				218CB6CE204C513000EDF550 /* ChartData.swift in Sources */,
 				2154CD9220DA45A5002FA475 /* NewsViewController.swift in Sources */,
+				212CDE9C2157E9B60068E0C2 /* Fonts.swift in Sources */,
+				215A76E721636687009D56A6 /* MessageView.swift in Sources */,
 				2173EC2C2017E16B004BDECE /* TickerTableViewCell.swift in Sources */,
 				219FA193201E444C00094B67 /* API.swift in Sources */,
 				2173EC282017D4CD004BDECE /* Ticker.swift in Sources */,
@@ -468,6 +499,7 @@
 				21E78BC6204AC5CB000B7398 /* CoinItemTableViewCell.swift in Sources */,
 				21BAD60920177F7A0065D700 /* CoinsViewController.swift in Sources */,
 				214B0D4520DCFF76007234C1 /* RSS.swift in Sources */,
+				21DF46E6216215A200CCBDB7 /* Insets.swift in Sources */,
 				2135FB8521031F3400234E31 /* Reachability.swift in Sources */,
 				212317332059169300F23540 /* SubscriptionViewController.swift in Sources */,
 				21ED700A208295E9002CD41E /* CustomViewControllerAnimator.swift in Sources */,
@@ -691,7 +723,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Coins Capitalization/Sources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ru.appsaucekitchen.Coins;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.appsaucekitchen.Coins2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -709,7 +741,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Coins Capitalization/Sources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ru.appsaucekitchen.Coins;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.appsaucekitchen.Coins2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

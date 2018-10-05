@@ -14,7 +14,19 @@ final class AssetTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        containerView.backgroundColor = Colors.cellBackgroundColor
         containerView.layer.cornerRadius = 14.0
+        
+        nameLabel.textColor = Colors.majorTextColor
+        nameLabel.font = Fonts.title
+        
+        amountLabel.textColor = Colors.minorTextColor
+        amountLabel.font = Fonts.main
+        
+        totalCostLabel.textColor = Colors.majorTextColor
+        totalCostLabel.font = Fonts.title
+        
     }
     
     override func prepareForReuse() {
@@ -33,8 +45,8 @@ final class AssetTableViewCell: UITableViewCell {
         guard asset.currentPrice != nil else {
             totalCostLabel.text = NSLocalizedString("No info", comment: "")
             profitLabel.text = NSLocalizedString("No info", comment: "")
-            totalCostLabel.textColor = .lightGray
-            profitLabel.textColor = .lightGray
+            totalCostLabel.textColor = Colors.minorTextColor
+            profitLabel.textColor = Colors.minorTextColor
             return
         }
         

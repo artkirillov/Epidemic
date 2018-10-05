@@ -23,6 +23,8 @@ final class PortfolioViewController: UIViewController {
         
         view.backgroundColor = Colors.backgroundColor
         
+        titleLabel.attributedText = NSAttributedString.attributedTitle(string: NSLocalizedString("Portfolio", comment: "").uppercased())
+        
         items.sort(by: {$0.currentTotalCost > $1.currentTotalCost })
         
         tableView.tableFooterView = UIView()
@@ -125,6 +127,7 @@ final class PortfolioViewController: UIViewController {
     
     // MARK: - Private Properties
     
+    @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var tableView: UITableView!
     private var tableHeaderView: PortfolioTableHeaderView?
     
@@ -169,8 +172,8 @@ extension PortfolioViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: false)
         
         if let controller = storyboard?.instantiateViewController(withIdentifier: "CoinDetailsViewController") as? CoinDetailsViewController, let cell = tableView.cellForRow(at: indexPath) {
-            controller.symbol = items[indexPath.row].symbol
-            controller.name = items[indexPath.row].name
+            
+            controller.coin = Storage.coins()?.first { $0.symbol == items[indexPath.row].symbol }
             
             let height = cell.frame.height
             let width = view.frame.width * height / view.frame.height
@@ -207,16 +210,11 @@ private extension PortfolioViewController {
         
         items = Storage.assets() ?? []
         
-        if items.isEmpty {
-            let noItemsLabel = UILabel()
-            noItemsLabel.text = NSLocalizedString("You haven't added any assets to the portfolio", comment: "")
-            noItemsLabel.numberOfLines = 0
-            noItemsLabel.textColor = .lightGray
-            noItemsLabel.textAlignment = .center
-            tableView.backgroundView = noItemsLabel
-        } else {
-            tableView.backgroundView = nil
-        }
+        let image = UIImage(imageLiteralResourceName: "noAssets")
+        let title = NSLocalizedString("Empty portfolio title", comment: "")
+        let message = NSLocalizedString("Empty portfolio message", comment: "")
+        tableView.backgroundView = items.isEmpty ?
+            MessageView(image: image, title: title, message: message, alignment: .center) : nil
         tableView.reloadData()
         
         var currentValue: Double = 0.0
@@ -228,4 +226,5 @@ private extension PortfolioViewController {
         tableHeaderView?.configure(total: currentValue, value: value, currentValue: currentValue)
         tableView.refreshControl?.endRefreshing()
     }
+    
 }

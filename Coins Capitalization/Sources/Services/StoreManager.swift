@@ -45,7 +45,7 @@ class StoreManager: NSObject {
 extension StoreManager: SKProductsRequestDelegate {
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         unlimitedPortfolioProduct = response.products.first(where: { $0.productIdentifier == unlimitedPortfolioProductIdentifier })
-        assert(response.invalidProductIdentifiers.isEmpty)
+        //assert(response.invalidProductIdentifiers.isEmpty)
     }
 }
 

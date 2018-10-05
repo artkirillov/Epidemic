@@ -70,6 +70,10 @@ final class CoinsCatalogViewController: UIViewController {
     private var items: [Coin] = []
     private var filteredItems: [Coin] = [] {
         didSet {
+            let image = UIImage(imageLiteralResourceName: "noSearchResults")
+            let title = NSLocalizedString("Empty search results title", comment: "")
+            let message = NSLocalizedString("Empty search results message", comment: "")
+            tableView.backgroundView = filteredItems.isEmpty ? MessageView(image: image, title: title, message: message) : nil
             tableView.reloadData()
         }
     }
@@ -129,19 +133,7 @@ extension CoinsCatalogViewController: UITextFieldDelegate {
     }
     
     private func updateItems(withSearchText searchText: String) {
-        let filteredItems = items.filter { $0.name.lowercased().range(of: searchText.lowercased()) != nil || $0.symbol.lowercased().range(of: searchText.lowercased()) != nil }
-        
-        if filteredItems.isEmpty {
-            let noItemsLabel = UILabel()
-            noItemsLabel.text = NSLocalizedString("Can't find any coins", comment: "")
-            noItemsLabel.numberOfLines = 0
-            noItemsLabel.textColor = .lightGray
-            noItemsLabel.textAlignment = .center
-            tableView.backgroundView = noItemsLabel
-        } else {
-            tableView.backgroundView = nil
-        }
-        self.filteredItems = filteredItems
+        filteredItems = items.filter { $0.name.lowercased().range(of: searchText.lowercased()) != nil || $0.symbol.lowercased().range(of: searchText.lowercased()) != nil }
     }
     
 }

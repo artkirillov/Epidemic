@@ -23,8 +23,14 @@ final class CoinsViewController: UIViewController {
         
         view.backgroundColor = Colors.backgroundColor
         
-        searchTextField.leftViewMode = .always
-        searchTextField.leftView = UIImageView(image: #imageLiteral(resourceName: "search"))
+        titleLabel.attributedText = NSAttributedString.attributedTitle(string: NSLocalizedString("Cryptocurrencies", comment: "").uppercased())
+        
+        searchTextField.attributedPlaceholder = NSAttributedString(
+            string: NSLocalizedString("Search", comment: ""),
+            attributes: [
+                .font: Fonts.messageText,
+                .foregroundColor: Colors.minorTextColor]
+        )
         
         let clearButton = UIButton(type: .custom)
         clearButton.setImage(#imageLiteral(resourceName: "clear"), for: .normal)
@@ -47,8 +53,6 @@ final class CoinsViewController: UIViewController {
         segmentControl.items = [NSLocalizedString("All", comment: "").uppercased(),
                                 NSLocalizedString("Favorite", comment: "").uppercased()]
         segmentControl.thumb = .line
-        segmentControl.thumbColor = Colors.lightBlueColor
-        segmentControl.itemsFont = UIFont.systemFont(ofSize: 12)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,7 +74,17 @@ final class CoinsViewController: UIViewController {
     }
     
     @IBAction func changeCoinList(_ sender: SegmentedControl) {
-        collectionView.scrollToItem(at: IndexPath(row: sender.selectedIndex, section: 0), at: .centeredHorizontally, animated: true)
+        
+        // If segmented control changed we scroll collection view
+        collectionView.scrollToItem(at: IndexPath(row: sender.selectedIndex, section: 0),
+                                    at: .centeredHorizontally, animated: true)
+        
+        // and update search text fiels visibility
+        let animation = CATransition()
+        animation.duration = 0.2
+        animation.type = kCATransitionFade
+        searchTextField.layer.add(animation, forKey: kCATransition)
+        searchTextField.alpha = sender.selectedIndex == 0 || !favoriteItemsCountIsBig ? 1.0 : 0.0
     }
     
     func updateItems(withSearchText searchText: String) {
@@ -96,8 +110,7 @@ final class CoinsViewController: UIViewController {
     
     // MARK: - Private Properties
     
-    @IBOutlet private weak var marketCapitalizationLabel: UILabel!
-    @IBOutlet private weak var bitcoinDominanceLabel: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var searchTextField: UITextField!
     @IBOutlet private weak var segmentControl: SegmentedControl!
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -132,8 +145,6 @@ extension CoinsViewController: UITextFieldDelegate {
         return true
     }
     
-    
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
         return true
@@ -155,15 +166,23 @@ extension CoinsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TickerListCollectionViewCell", for: indexPath) as! TickerListCollectionViewCell
-        let emptyResultsText = !searchText.isEmpty ? NSLocalizedString("Can't find any coins", comment: "") : ""
+        
+        let emptyResultsTitle = !searchText.isEmpty ? NSLocalizedString("Empty search results title", comment: "") : ""
+        let emptyResultsMessage = !searchText.isEmpty ? NSLocalizedString("Empty search results message", comment: "") : ""
+        let emptyResultsImage = !searchText.isEmpty ? UIImage(imageLiteralResourceName: "noSearchResults") : nil
         
         if indexPath.row == 0 {
-            cell.configure(items: filteredItems, noItemsText: emptyResultsText)
+            cell.configure(items: filteredItems, image: emptyResultsImage,
+                           noItemsTitle: emptyResultsTitle, noItemsMessage: emptyResultsMessage)
         } else if indexPath.row == 1 {
-            let noItemsText = favoriteItems.isEmpty ?
-                NSLocalizedString("You haven't added any coins to favorites", comment: "") :
-                emptyResultsText
-            cell.configure(items: filteredFavoriteItems, noItemsText: noItemsText)
+            let noItemsTitle = favoriteItems.isEmpty ?
+                NSLocalizedString("Empty favorites title", comment: "") :
+                emptyResultsTitle
+            let noItemsMessage = favoriteItems.isEmpty ?
+                NSLocalizedString("Empty favorites message", comment: "") :
+            emptyResultsMessage
+            let image = UIImage(imageLiteralResourceName: "noFavoriteItems")
+            cell.configure(items: filteredFavoriteItems, image: image, noItemsTitle: noItemsTitle, noItemsMessage: noItemsMessage)
         }
         cell.delegate = self
         return cell
@@ -172,10 +191,13 @@ extension CoinsViewController: UICollectionViewDataSource {
 
 // MARK: - UIScrollViewDelegate
 
-extension CoinsViewController {
+extension CoinsViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        segmentControl.thumbProgress = scrollView.contentOffset.x / (scrollView.contentSize.width - collectionView.bounds.width)
+        let progress = scrollView.contentOffset.x / (scrollView.contentSize.width - collectionView.bounds.width)
+        segmentControl.thumbProgress = progress
+        
+        searchTextField.alpha = favoriteItemsCountIsBig ? 1.0 : 1 - progress
     }
     
 }
@@ -205,8 +227,7 @@ extension CoinsViewController: TickerListCollectionViewCellDelegate {
             let controller = storyboard?.instantiateViewController(withIdentifier: "CoinDetailsViewController") as? CoinDetailsViewController {
             let tickers = row == 0 ? filteredItems : filteredFavoriteItems
             
-            controller.symbol = tickers[index].symbol
-            controller.name = tickers[index].name
+            controller.coin = Coin(ticker: tickers[index])
             
             let height = frame.height
             let width = view.frame.width * height / view.frame.height
@@ -270,7 +291,7 @@ private extension CoinsViewController {
                 self?.stopAnimateActivity()
                 self?.showErrorAlert(error)
         })
-        
+/*
         API.requestGlobalData(
             success: { [weak self] globalData in
                 
@@ -282,19 +303,20 @@ private extension CoinsViewController {
                     self?.marketCapitalizationLabel.text = "\(NSLocalizedString("Market Capitalization", comment: "")): $\(text)\(NSLocalizedString("B", comment: ""))"
                     self?.marketCapitalizationLabel.textAlignment = .left
                 } else {
-                    self?.marketCapitalizationLabel.text = NSLocalizedString("Coins", comment: "")
+                    self?.marketCapitalizationLabel.text = NSLocalizedString("Coins", comment: "").uppercased()
                 }
                 
                 if let text = numberFormatter.string(from: globalData.bitcoinPercentageOfMarketCap as NSNumber) {
-                    self?.bitcoinDominanceLabel.text = "\(NSLocalizedString("Bitcoin Dominance", comment: "")): \(text)%"
+                    //self?.bitcoinDominanceLabel.text = "\(NSLocalizedString("Bitcoin Dominance", comment: "")): \(text)%"
                 } else {
-                    self?.bitcoinDominanceLabel.text = nil
+                    //self?.bitcoinDominanceLabel.text = nil
                 }
             },
             failure: { [weak self] error in
                 self?.stopAnimateActivity()
                 self?.showErrorAlert(error)
         })
+ */
         
         API.requestAppStoreData(
             success: { appStoreLookup in
@@ -311,6 +333,10 @@ private extension CoinsViewController {
 
 private extension CoinsViewController {
     
+    var favoriteItemsCountIsBig: Bool {
+        return favoriteItems.count >= 7
+    }
+    
     func stopAnimateActivity() {
         DispatchQueue.main.async { [weak self] in
             self?.activityIndicator?.stopAnimating()
@@ -319,5 +345,5 @@ private extension CoinsViewController {
             }
         }
     }
+    
 }
-

@@ -17,9 +17,6 @@
 /* Class = "UITextField"; placeholder = "Search"; ObjectID = "5ig-HQ-hoK"; */
 "5ig-HQ-hoK.placeholder" = "Search";
 
-/* Class = "UILabel"; text = "Converter"; ObjectID = "ARe-XY-cM4"; */
-"ARe-XY-cM4.text" = "Converter";
-
 /* Class = "UILabel"; text = "Profit:"; ObjectID = "DIn-EC-JqG"; */
 "DIn-EC-JqG.text" = "Profit:";
 
@@ -68,9 +65,6 @@
 /* Class = "UITabBarItem"; title = "Portfolio"; ObjectID = "cPa-gy-q4n"; */
 "cPa-gy-q4n.title" = "Portfolio";
 
-/* Class = "UILabel"; text = "Portfolio"; ObjectID = "gjA-tG-Baq"; */
-"gjA-tG-Baq.text" = "Portfolio";
-
 /* Class = "UITextField"; placeholder = "Cost, $"; ObjectID = "gqZ-nD-CaB"; */
 "gqZ-nD-CaB.placeholder" = "Cost, $";
 
@@ -92,9 +86,6 @@
 /* Class = "UIButton"; normalTitle = "Done"; ObjectID = "pt6-rJ-4sE"; */
 "pt6-rJ-4sE.normalTitle" = "Done";
 
-/* Class = "UILabel"; text = "Coins"; ObjectID = "spm-kz-Ief"; */
-"spm-kz-Ief.text" = "Coins";
-
 /* Class = "UITabBarItem"; title = "Subscription"; ObjectID = "tdI-7z-lb4"; */
 "tdI-7z-lb4.title" = "Subscription";
 
@@ -109,9 +100,3 @@
 
 /* Class = "UITabBarItem"; title = "News"; ObjectID = "i7V-qG-GpW"; */
 "i7V-qG-GpW.title" = "News";
-
-/* Class = "UILabel"; text = "News"; ObjectID = "hNZ-J6-pbE"; */
-"hNZ-J6-pbE.text" = "News";
-
-/* Class = "UILabel"; text = "Article"; ObjectID = "smy-0I-Rb3"; */
-"smy-0I-Rb3.text" = "Article";

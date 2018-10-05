@@ -32,9 +32,6 @@ final class ReduceCoinViewController: UIViewController {
         totalAmount = asset?.totalAmount ?? 0.0
         assetLabel.text = "\(asset?.symbol ?? "") \(asset?.name ?? "")"
         
-        animation.duration = 0.2
-        animation.type = kCATransitionFade
-        
         cancelButton.layer.cornerRadius = 4.0
         
         doneButton.isEnabled = false
@@ -97,7 +94,6 @@ final class ReduceCoinViewController: UIViewController {
     
     private var totalAmount: Double = 0.0
     private let accuracy: Double = 10e-10
-    private let animation = CATransition()
     
     @IBOutlet weak var assetLabel: UILabel!
     @IBOutlet weak var amountTextField: UITextField!

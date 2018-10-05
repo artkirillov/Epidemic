@@ -53,20 +53,11 @@ class TickerListCollectionViewCell: UICollectionViewCell {
         tableView.frame = bounds
     }
     
-    func configure(items: [Ticker], noItemsText: String) {
+    func configure(items: [Ticker], image: UIImage?, noItemsTitle: String?, noItemsMessage: String?) {
         self.items = items
-        
-        if items.isEmpty {
-            let noItemsLabel = UILabel()
-            noItemsLabel.text = noItemsText
-            noItemsLabel.numberOfLines = 0
-            noItemsLabel.textColor = .lightGray
-            noItemsLabel.textAlignment = .center
-            tableView.backgroundView = noItemsLabel
-        } else {
-            tableView.backgroundView = nil
-        }
-        
+
+        tableView.backgroundView = items.isEmpty ?
+            MessageView(image: image, title: noItemsTitle, message: noItemsMessage) : nil
         tableView.reloadData()
         stopRefreshing()
     }

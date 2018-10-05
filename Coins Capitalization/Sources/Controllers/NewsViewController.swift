@@ -24,6 +24,8 @@ final class NewsViewController: UIViewController {
         
         view.backgroundColor = Colors.backgroundColor
         
+        titleLabel.attributedText = NSAttributedString.attributedTitle(string: NSLocalizedString("News", comment: "").uppercased())
+        
         tableView.tableFooterView = UIView()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 135.5
@@ -46,6 +48,7 @@ final class NewsViewController: UIViewController {
     
     // MARK: - Private Properties
     
+    @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var tableView: UITableView!
     private var activityIndicator: UIActivityIndicatorView?
     private var items: [Article] = []

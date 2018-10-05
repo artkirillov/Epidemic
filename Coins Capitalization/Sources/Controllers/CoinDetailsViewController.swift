@@ -12,8 +12,8 @@ final class CoinDetailsViewController: UIViewController {
     
     // MARK: - Public Properties
     
-    var symbol: String?
-    var name: String?
+    var coin: Coin?
+    
     var isFavorite: Bool = false {
         didSet {
             favoriteButton.setImage(isFavorite ? #imageLiteral(resourceName: "heart_full") : #imageLiteral(resourceName: "heart_empty"), for: .normal)
@@ -36,11 +36,18 @@ final class CoinDetailsViewController: UIViewController {
         
         view.backgroundColor = Colors.backgroundColor
         
-        nameLabel.text = name
+        priceLabel.font = Fonts.portfolioPrice
+        priceLabel.textColor = Colors.majorTextColor
+        
+        nameLabel.attributedText = coin.flatMap { NSAttributedString.attributedTitle(string: $0.name.uppercased()) }
+        priceLabel.text = coin?.priceUSD.flatMap { Double($0).flatMap { String(format: "$ %.2f", $0) } }
+        
         segmentedControl.selectedIndex = 0
         noDataView.layer.cornerRadius = noDataView.bounds.height / 2
         
         addButton.layer.cornerRadius = 4.0
+        addButton.backgroundColor = Colors.lightBlueColor
+        
         reduceButton.layer.cornerRadius = 4.0
         reduceButton.setTitleColor(Colors.controlTextEnabled, for: .normal)
         reduceButton.setTitleColor(Colors.controlTextDisabled, for: .disabled)
@@ -52,7 +59,7 @@ final class CoinDetailsViewController: UIViewController {
         activityIndicator.isHidden = false
         noDataView.isHidden = true
         
-        isFavorite = Storage.favoriteCoins().contains(symbol ?? "")
+        isFavorite = Storage.favoriteCoins().contains(coin?.symbol ?? "")
         
         requestData(for: .day)
         updateAssetInfo()
@@ -71,9 +78,9 @@ final class CoinDetailsViewController: UIViewController {
         var favoriteCoins = Storage.favoriteCoins()
         
         if isFavorite {
-            symbol.flatMap { favoriteCoins.append($0) }
+            if let symbol = coin?.symbol { favoriteCoins.append(symbol) }
         } else {
-            favoriteCoins = favoriteCoins.filter { $0 != symbol }
+            favoriteCoins = favoriteCoins.filter { $0 != coin?.symbol }
         }
         
         Storage.save(favoriteCoins: favoriteCoins)
@@ -107,7 +114,7 @@ final class CoinDetailsViewController: UIViewController {
     @IBAction func addButtonTapped(_ sender: UIButton) {
         if let controller = storyboard?.instantiateViewController(withIdentifier: "AddCoinViewController") as? AddCoinViewController {
             controller.delegate = self
-            controller.coin = Storage.coins()?.first { $0.symbol == symbol }
+            controller.coin = Storage.coins()?.first { $0.symbol == coin?.symbol }
             present(controller, animated: true, completion: nil)
         }
     }
@@ -121,6 +128,7 @@ final class CoinDetailsViewController: UIViewController {
     @IBOutlet private weak var favoriteButton: UIButton!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var priceLabel: UILabel!
     @IBOutlet private weak var changeLabel: UILabel!
     @IBOutlet private weak var chartView: ChartView!
     @IBOutlet private weak var noDataView: UIView!
@@ -155,7 +163,7 @@ extension CoinDetailsViewController: ReduceCoinViewControllerDelegate {
 private extension CoinDetailsViewController {
     
     func requestData(for type: API.EndPoint.ChartType) {
-        guard let symbol = symbol else { return }
+        guard let symbol = coin?.symbol else { return }
         API.requestChartData(type: type, for: symbol,
                              success: { [weak self] chartData in
                                 guard let slf = self else { return }
@@ -177,14 +185,13 @@ private extension CoinDetailsViewController {
                                 slf.activityIndicator.stopAnimating()
                                 slf.activityIndicator.isHidden = true
                                 slf.noDataView.isHidden = false
-                                slf.showErrorAlert(error)
         })
     }
     
     func updateAssetInfo() {
-        asset = Storage.assets()?.first(where: { $0.symbol == symbol } )
+        asset = Storage.assets()?.first(where: { $0.symbol == coin?.symbol } )
         
-        guard let symbol = symbol, let asset = asset else {
+        guard let symbol = coin?.symbol, let asset = asset else {
             showInfoContainer(false)
             reduceButton.isEnabled = false
             return
