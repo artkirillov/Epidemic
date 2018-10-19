@@ -33,7 +33,7 @@ final class Formatter {
         if let cost = Formatter.format(value, maximumFractionDigits: maximumFractionDigits) { label.text = "$\(cost)" }
     }
     
-    static func formatProfit(label: UILabel, firstValue: Double?, lastValue: Double?, maximumFractionDigits: Int = 2) {
+    static func formatProfit(label: UILabel, firstValue: Double?, lastValue: Double?) {
         guard let firstValue = firstValue, let lastValue = lastValue, firstValue != 0 || lastValue != 0 else {
             label.text = ""
             return
@@ -42,7 +42,7 @@ final class Formatter {
         let absoluteProfit = lastValue - firstValue
         let relativeProfit = absoluteProfit / firstValue * 100
         
-        guard let profitText = Formatter.format(absoluteProfit, maximumFractionDigits: maximumFractionDigits),
+        guard let profitText = Formatter.format(absoluteProfit, maximumFractionDigits: absoluteProfit >= 0.1 ? 2 : 5),
             let percentText = Formatter.format(relativeProfit) else {
             label.text = ""
             return

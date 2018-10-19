@@ -32,6 +32,7 @@
 		215A76E721636687009D56A6 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A76E621636687009D56A6 /* MessageView.swift */; };
 		2173EC282017D4CD004BDECE /* Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2173EC272017D4CD004BDECE /* Ticker.swift */; };
 		2173EC2C2017E16B004BDECE /* TickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2173EC2B2017E16B004BDECE /* TickerTableViewCell.swift */; };
+		217DBFB0216B49B600B8C06D /* ChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217DBFAF216B49B600B8C06D /* ChartTableViewCell.swift */; };
 		2186E10E204C162C000374A6 /* ReduceCoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2186E10D204C162C000374A6 /* ReduceCoinViewController.swift */; };
 		218CB6CE204C513000EDF550 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218CB6CD204C513000EDF550 /* ChartData.swift */; };
 		218CB6D0204C555A00EDF550 /* CoinDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218CB6CF204C555A00EDF550 /* CoinDetailsViewController.swift */; };
@@ -56,6 +57,7 @@
 		21F0AD0D2068FD7800021E7B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21F4B013206729B600C37688 /* Localizable.strings */; };
 		21F4B0112067280F00C37688 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21F4B00F2067280F00C37688 /* InfoPlist.strings */; };
 		21F4B015206729B600C37688 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21F4B013206729B600C37688 /* Localizable.strings */; };
+		21F7AEAD216DE7BF00742425 /* CoinInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F7AEAC216DE7BF00742425 /* CoinInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +103,7 @@
 		215A76E621636687009D56A6 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		2173EC272017D4CD004BDECE /* Ticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticker.swift; sourceTree = "<group>"; };
 		2173EC2B2017E16B004BDECE /* TickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerTableViewCell.swift; sourceTree = "<group>"; };
+		217DBFAF216B49B600B8C06D /* ChartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTableViewCell.swift; sourceTree = "<group>"; };
 		2186E10D204C162C000374A6 /* ReduceCoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReduceCoinViewController.swift; sourceTree = "<group>"; };
 		218CB6CD204C513000EDF550 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
 		218CB6CF204C555A00EDF550 /* CoinDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailsViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +131,7 @@
 		21F4B0122067284000C37688 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ../../Resources/ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		21F4B014206729B600C37688 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		21F4B016206729BC00C37688 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		21F7AEAC216DE7BF00742425 /* CoinInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoinInfoViewController.swift; path = "Coins Capitalization/Sources/Controllers/CoinInfoViewController.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +242,7 @@
 				21E78BC5204AC5CB000B7398 /* CoinItemTableViewCell.swift */,
 				2154CD9320DA4753002FA475 /* ArticleTableViewCell.swift */,
 				21361D5A211F11260023FAA6 /* TickerListCollectionViewCell.swift */,
+				217DBFAF216B49B600B8C06D /* ChartTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -261,6 +266,7 @@
 				21AA7BD72101C051009967E0 /* AlertViewController.swift */,
 				21BAD60820177F7A0065D700 /* CoinsViewController.swift */,
 				218CB6CF204C555A00EDF550 /* CoinDetailsViewController.swift */,
+				21F7AEAC216DE7BF00742425 /* CoinInfoViewController.swift */,
 				219FBFCC202E340800A8771A /* PortfolioViewController.swift */,
 				210FB85A203A18F000AD4557 /* AddCoinViewController.swift */,
 				2186E10D204C162C000374A6 /* ReduceCoinViewController.swift */,
@@ -489,6 +495,7 @@
 				2173EC282017D4CD004BDECE /* Ticker.swift in Sources */,
 				219FA197201E4C9600094B67 /* GlobalData.swift in Sources */,
 				219FBFCD202E340800A8771A /* PortfolioViewController.swift in Sources */,
+				217DBFB0216B49B600B8C06D /* ChartTableViewCell.swift in Sources */,
 				215A1FFD2048009F005ABDB8 /* Coin.swift in Sources */,
 				21AA82D7213AFB34003872AC /* StoreManager.swift in Sources */,
 				2186E10E204C162C000374A6 /* ReduceCoinViewController.swift in Sources */,
@@ -501,6 +508,7 @@
 				214B0D4520DCFF76007234C1 /* RSS.swift in Sources */,
 				21DF46E6216215A200CCBDB7 /* Insets.swift in Sources */,
 				2135FB8521031F3400234E31 /* Reachability.swift in Sources */,
+				21F7AEAD216DE7BF00742425 /* CoinInfoViewController.swift in Sources */,
 				212317332059169300F23540 /* SubscriptionViewController.swift in Sources */,
 				21ED700A208295E9002CD41E /* CustomViewControllerAnimator.swift in Sources */,
 				2119D0CB204B36A8000FE804 /* ConverterViewController.swift in Sources */,
@@ -726,7 +734,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.appsaucekitchen.Coins2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -744,7 +752,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.appsaucekitchen.Coins2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

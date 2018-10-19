@@ -63,8 +63,8 @@ final class API {
     
     // MARK: - Public Methods
     
-    /// Requests coins data from Coin Market Cap API
-    static func requestCoinsData(success: @escaping ([Ticker]) -> Void, failure: @escaping (Error) -> Void) {
+    /// Requests tickers data from Coin Market Cap API
+    static func requestTickersData(success: @escaping ([Ticker]) -> Void, failure: @escaping (Error) -> Void) {
         request(endpoint: .ticker, parameters: EndPoint.ticker.parameters, success: success, failure: failure)
     }
     
@@ -94,47 +94,45 @@ final class API {
         failure: @escaping (Error) -> Void
         )
     {
-        if let cahcedData: T = Storage.getCache(for: endpoint) {
-            success(cahcedData)
-            return
-        }
-        
-        guard var urlComponents = endpoint.urlComponents else { return }
-        
-        if let parameters = parameters {
-            urlComponents.queryItems = parameters.map { URLQueryItem(name: $0.key, value: $0.value) }
-        }
-        
-        guard let url = urlComponents.url else { return }
-        
-        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
-            guard error == nil else {
-                print("ERROR: \(error!.localizedDescription)")
-                failure(error!)
+        DispatchQueue.global().async {
+            if let cachedData: T = Storage.getCache(for: endpoint) {
+                DispatchQueue.main.async { success(cachedData) }
                 return
             }
             
-            guard let data = data else {
-                print("NO DATA")
-                return
+            guard var urlComponents = endpoint.urlComponents else { return }
+            
+            if let parameters = parameters {
+                urlComponents.queryItems = parameters.map { URLQueryItem(name: $0.key, value: $0.value) }
             }
             
-            Storage.saveToCache(for: endpoint, data: data)
+            guard let url = urlComponents.url else { return }
             
-            let jsonDecoder = JSONDecoder()
-            
-            do {
-                let object = try jsonDecoder.decode(T.self, from: data)
-                DispatchQueue.main.async {
-                    success(object)
+            let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
+                guard error == nil else {
+                    print("ERROR: \(error!.localizedDescription)")
+                    failure(error!)
+                    return
                 }
-            } catch {
-                DispatchQueue.main.async {
-                    failure(error)
+                
+                guard let data = data else {
+                    print("NO DATA")
+                    return
+                }
+                
+                Storage.saveToCache(for: endpoint, data: data)
+                
+                let jsonDecoder = JSONDecoder()
+                
+                do {
+                    let object = try jsonDecoder.decode(T.self, from: data)
+                    DispatchQueue.main.async { success(object) }
+                } catch {
+                    DispatchQueue.main.async { failure(error) }
                 }
             }
+            
+            task.resume()
         }
-        
-        task.resume()
     }
 }

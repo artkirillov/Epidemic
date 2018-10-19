@@ -13,8 +13,9 @@ final class Storage {
     // MARK: - Public Nested
     
     struct Filename {
-        static let coins  = "Coins.txt"
-        static let assets = "Assets.txt"
+        static let coins   = "Coins.txt"
+        static let tickers = "Tickers.txt"
+        static let assets  = "Assets.txt"
     }
     
     struct UserDefaultsKeys {
@@ -51,6 +52,11 @@ final class Storage {
         return get(from: Filename.coins)
     }
     
+    /// Gets tickers from storage
+    static func tickers() -> [Ticker]? {
+        return get(from: Filename.tickers)
+    }
+    
     /// Gets assets from storage
     static func assets() -> [Asset]? {
         return get(from: Filename.assets)
@@ -74,6 +80,11 @@ final class Storage {
     /// Saves coins to storage
     static func save(coins: [Coin]) {
         save(coins, in: Filename.coins)
+    }
+    
+    /// Saves tickers to storage
+    static func save(tickers: [Ticker]) {
+        save(tickers, in: Filename.tickers)
     }
     
     /// Saves assets to storage

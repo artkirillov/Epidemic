@@ -177,8 +177,7 @@ private extension CoinDetailsViewController {
                                 
                                 Formatter.formatProfit(label: slf.changeLabel,
                                                        firstValue: prices[0][1],
-                                                       lastValue: prices[prices.count - 2][1],
-                                                       maximumFractionDigits: 5)
+                                                       lastValue: prices[prices.count - 2][1])
             },
                              failure: { [weak self] error in
                                 guard let slf = self else { return }

@@ -21,8 +21,13 @@ final class CoinsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = Colors.backgroundColor
+        // Initial state from storage
+        items = Storage.tickers() ?? []
+        favoriteItems = favoriteTickers(fromTickers: items)
+        filteredItems = items
+        filteredFavoriteItems = favoriteItems
         
+        view.backgroundColor = Colors.backgroundColor
         titleLabel.attributedText = NSAttributedString.attributedTitle(string: NSLocalizedString("Cryptocurrencies", comment: "").uppercased())
         
         searchTextField.attributedPlaceholder = NSAttributedString(
@@ -41,12 +46,6 @@ final class CoinsViewController: UIViewController {
         searchTextField.rightViewMode = .always
         searchTextFieldClearButton = clearButton
         searchTextFieldClearButton?.isHidden = true
-        
-        let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .white)
-        view.addSubview(activityIndicatorView)
-        activityIndicator = activityIndicatorView
-        activityIndicator?.center = view.center
-        activityIndicator?.startAnimating()
         
         collectionView.register(TickerListCollectionViewCell.self, forCellWithReuseIdentifier: "TickerListCollectionViewCell")
         
@@ -116,7 +115,6 @@ final class CoinsViewController: UIViewController {
     @IBOutlet private weak var collectionView: UICollectionView!
     
     private var searchTextFieldClearButton: UIButton?
-    private var activityIndicator: UIActivityIndicatorView?
     
     private var items: [Ticker] = []
     private var filteredItems: [Ticker] = []
@@ -224,7 +222,7 @@ extension CoinsViewController: TickerListCollectionViewCellDelegate {
     
     func tickerListCollectionViewCell(cell: TickerListCollectionViewCell, didSelectRowAt index: Int, frame: CGRect) {
         if let row = collectionView.indexPath(for: cell)?.row,
-            let controller = storyboard?.instantiateViewController(withIdentifier: "CoinDetailsViewController") as? CoinDetailsViewController {
+            let controller = storyboard?.instantiateViewController(withIdentifier: "CoinInfoViewController") as? CoinInfoViewController {
             let tickers = row == 0 ? filteredItems : filteredFavoriteItems
             
             controller.coin = Coin(ticker: tickers[index])
@@ -247,10 +245,9 @@ extension CoinsViewController: TickerListCollectionViewCellDelegate {
 private extension CoinsViewController {
     
     func requestData() {
-        API.requestCoinsData(
+        API.requestTickersData(
             success: { [weak self] tickers in
-                let favoriteCoins = Storage.favoriteCoins()
-                let favoriteTickers = tickers.filter { favoriteCoins.contains($0.symbol) }
+                let favoriteTickers = self?.favoriteTickers(fromTickers: tickers) ?? []
                 
                 self?.items = tickers
                 self?.favoriteItems = favoriteTickers
@@ -263,10 +260,11 @@ private extension CoinsViewController {
                 }
                 
                 self?.collectionView.reloadData()
-                self?.activityIndicator?.stopAnimating()
                 
                 DispatchQueue.global().async {
-                    let coins = tickers.map { Coin(id: $0.id, name: $0.name, symbol: $0.symbol, priceUSD: $0.priceUSD) }
+                    Storage.save(tickers: tickers)
+                    
+                    let coins = tickers.map { Coin(ticker: $0) }
                     Storage.save(coins: coins)
                     
                     var assets = Storage.assets() ?? []
@@ -339,11 +337,15 @@ private extension CoinsViewController {
     
     func stopAnimateActivity() {
         DispatchQueue.main.async { [weak self] in
-            self?.activityIndicator?.stopAnimating()
             self?.collectionView.visibleCells.forEach {
                 if let tableCell = $0 as? TickerListCollectionViewCell { tableCell.stopRefreshing() }
             }
         }
+    }
+    
+    func favoriteTickers(fromTickers tickers: [Ticker]) -> [Ticker] {
+        let favoriteCoins = Storage.favoriteCoins()
+        return tickers.filter { favoriteCoins.contains($0.symbol) }
     }
     
 }

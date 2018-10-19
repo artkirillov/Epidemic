@@ -95,6 +95,8 @@ final class ChartView: UIView {
     override func didMoveToWindow() {
         super.didMoveToWindow()
         
+        backgroundColor = .clear
+        
         guard needsSetViews else { return }
         
         [lineView, bubbleView, pointView].forEach { addSubview($0) }
@@ -157,6 +159,10 @@ final class ChartView: UIView {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        showBubble(false)
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         showBubble(false)
     }
     

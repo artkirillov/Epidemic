@@ -19,10 +19,15 @@ final class PortfolioTableHeaderView: UIView {
         totalLabel.textColor = Colors.majorTextColor
     }
     
+    func clear() {
+        totalLabel.text = nil
+        profitLabel.text = nil
+    }
+    
     func configure(total: Double, value: Double, currentValue: Double) {
         Formatter.formatProfit(label: profitLabel, firstValue: value, lastValue: currentValue)
         
-        if currentValue > 0, let text = Formatter.format(currentValue) {
+        if currentValue > 0, let text = Formatter.format(currentValue, maximumFractionDigits: currentValue >= 0.1 ? 2 : 5) {
             totalLabel.text = "$\(text)"
         } else {
             totalLabel.text = nil

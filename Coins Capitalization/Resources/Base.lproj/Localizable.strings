@@ -23,6 +23,7 @@
 "ALL" = "ALL";
 
 "No info" = "No info";
+"No data available" = "No data available";
 
 "Free trial alert" = "Trial portoflio volume is three assets";
 "Free trial message" = "If you would like to track up to 5 coins for free, leave us a review in AppStore";
@@ -47,10 +48,10 @@
 "Empty search results message" = "Try to check and change request";
 
 "Empty favorites title" = "No favorites";
-"Empty favorites message" = "To add any coin to favorites open its page and press button in the right top corner";
+"Empty favorites message" = "To add any coin to favorites open its page and press heart in the right top corner";
 
 "Empty portfolio title" = "Portfolio is empty";
-"Empty portfolio message" = "To added any assets to the portfolio tap plus in the right top corner";
+"Empty portfolio message" = "To added someting into it tap plus in the right top corner";
 
 "Buy" = "Buy";
 "Sell" = "Sell";

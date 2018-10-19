@@ -65,8 +65,10 @@ final class TickerTableViewCell: UITableViewCell {
         nameLabel.text = ticker.name
         symbolLabel.text = ticker.symbol
         
+        let priceUSD = Double(ticker.priceUSD ?? "") ?? 0.0
+        
         setNumber(label: priceBTCLabel, value: ticker.priceBTC ?? "", suffix: " BTC", maximumFractionDigits: 10)
-        setNumber(label: priceUSDLabel, value: ticker.priceUSD ?? "", prefix: "$")
+        setNumber(label: priceUSDLabel, value: ticker.priceUSD ?? "", prefix: "$", maximumFractionDigits: priceUSD >= 0.1 ? 2 : 5)
         
         setPercent(label: percentChange1hLabel, value: ticker.percentChange1h ?? Default.noInfo)
         setPercent(label: percentChange24hLabel, value: ticker.percentChange24h ?? Default.noInfo)
@@ -108,7 +110,8 @@ fileprivate extension TickerTableViewCell {
         }
     }
     
-    func setNumber(label: UILabel, value: String, prefix: String? = nil, suffix: String? = nil, maximumFractionDigits: Int = 5) {
+    func setNumber(label: UILabel, value: String, prefix: String? = nil, suffix: String? = nil,
+                   maximumFractionDigits: Int = 2, minimumFractionDigits: Int = 2) {
         guard let val = Double(value) else {
             label.text = Default.noInfo
             return
@@ -117,6 +120,7 @@ fileprivate extension TickerTableViewCell {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
         numberFormatter.maximumFractionDigits = maximumFractionDigits
+        numberFormatter.minimumFractionDigits = 2
         let text = numberFormatter.string(from: val as NSNumber)
         
         label.text = "\(prefix ?? "")\(text ?? "")\(suffix ?? "")"

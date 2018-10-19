@@ -25,7 +25,7 @@ final class MessageView: UIView {
     
     init(image: UIImage?, title: String?, message: String?, alignment: Alighment = .standard) {
         
-        super.init(frame: .zero)
+        super.init(frame: CGRect(x: 0.0, y: 0.0, width: 320.0, height: 500.0))
         
         imageView.image = image
         titleLabel.text = title
@@ -40,8 +40,6 @@ final class MessageView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Public Methods
-    
     // MARK: - Private Properties
     
     private let imageView = UIImageView()
@@ -51,8 +49,6 @@ final class MessageView: UIView {
 }
 
 private extension MessageView {
-    
-    // MARK: - Private Nested
     
     // MARK: - Private Methods
     
