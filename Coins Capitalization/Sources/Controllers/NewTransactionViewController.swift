@@ -18,6 +18,7 @@ final class NewTransactionViewController: UIViewController {
         case totalCost(title: String, value: String)
         case button(title: String)
         case dateTime(date: String, time: String)
+        case notes(placeholder: String, text: String?)
     }
     
     // MARK: - Public Properties
@@ -35,7 +36,7 @@ final class NewTransactionViewController: UIViewController {
         .textField(title: NSLocalizedString("Quantity", comment: ""), placeholder: "---", text: ""),
         .totalCost(title: NSLocalizedString("Total cost", comment: ""), value: "$ 120.00"),
         .dateTime(date: "01.01.2018", time: "12:12"),
-        .textField(title: NSLocalizedString("Notes", comment: ""), placeholder: "---", text: ""),
+        .notes(placeholder: "Notes", text: NSLocalizedString("Notes", comment: "")),
         .button(title: "Approve")
     ]
     
@@ -51,12 +52,12 @@ final class NewTransactionViewController: UIViewController {
         
         tableView.keyboardDismissMode = .onDrag
         tableView.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: view.bounds.width, height: 30.0))
-        tableView.register(SegmentControlTableViewCell.self, forCellReuseIdentifier: SegmentControlTableViewCell.identifier)
         tableView.register(UINib(nibName: OptionCell.identifier, bundle: nil), forCellReuseIdentifier: OptionCell.identifier)
         tableView.register(UINib(nibName: TextFieldCell.identifier, bundle: nil), forCellReuseIdentifier: TextFieldCell.identifier)
         tableView.register(UINib(nibName: ButtonCell.identifier, bundle: nil), forCellReuseIdentifier: ButtonCell.identifier)
         tableView.register(UINib(nibName: TotalCostCell.identifier, bundle: nil), forCellReuseIdentifier: TotalCostCell.identifier)
         tableView.register(UINib(nibName: DateTimeCell.identifier, bundle: nil), forCellReuseIdentifier: DateTimeCell.identifier)
+        tableView.register(UINib(nibName: NotesCell.identifier, bundle: nil), forCellReuseIdentifier: NotesCell.identifier)
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 150.0
         
@@ -144,6 +145,12 @@ extension NewTransactionViewController: UITableViewDataSource {
                 else { return UITableViewCell() }
             cell.configure(datetitle: date, timeTitle: time, delegate: self)
             return cell
+            
+        case .notes(let placeholder, let text):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: NotesCell.identifier, for: indexPath) as? NotesCell
+                else { return UITableViewCell() }
+            cell.configure(placeholder: placeholder, text: text)
+            return cell
         }
     }
     
@@ -161,7 +168,7 @@ extension NewTransactionViewController: UITableViewDelegate {
             guard let cell = tableView.cellForRow(at: indexPath) as? TextFieldCell else { return }
             cell.beginEdit()
             
-        case .button, .totalCost, .dateTime: break
+        case .button, .totalCost, .dateTime, .notes: break
         }
     }
     
