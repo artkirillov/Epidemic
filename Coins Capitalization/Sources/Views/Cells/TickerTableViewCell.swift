@@ -54,7 +54,7 @@ final class TickerTableViewCell: UITableViewCell {
         nameLabel.text = coin.long
         symbolLabel.text = coin.short
         
-        iconView.image = UIImage(named: coin.long)?.withRenderingMode(.alwaysTemplate)
+        iconView.image = UIImage(named: coin.long.lowercased())?.withRenderingMode(.alwaysTemplate)
         setNumber(label: priceLabel, value: coin.price, prefix: "$", maximumFractionDigits: Formatter.maximumFractionDigits(for: coin.price))
         setPercent(label: percentLabel, value: coin.cap24hrChange)
     }
