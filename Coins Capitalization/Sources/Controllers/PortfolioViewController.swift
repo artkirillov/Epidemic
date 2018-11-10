@@ -23,7 +23,8 @@ final class PortfolioViewController: UIViewController {
         
         view.backgroundColor = Colors.backgroundColor
         
-        titleLabel.attributedText = NSAttributedString.attributedTitle(string: NSLocalizedString("Portfolio", comment: "").uppercased())
+        let titleString = NSLocalizedString("Portfolio", comment: "").uppercased()
+        titleLabel.attributedText = NSAttributedString.attributedTitle(string: titleString)
         
         items.sort(by: {$0.currentTotalCost > $1.currentTotalCost })
         
@@ -171,9 +172,9 @@ extension PortfolioViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "CoinDetailsViewController") as? CoinDetailsViewController, let cell = tableView.cellForRow(at: indexPath) {
+        if let controller = storyboard?.instantiateViewController(withIdentifier: CoinDetailsViewController.identifier) as? CoinDetailsViewController, let cell = tableView.cellForRow(at: indexPath) {
             
-            controller.coin = Storage.coins()?.first { $0.symbol == items[indexPath.row].symbol }
+            controller.coin = Storage.coins()?.first { $0.short == items[indexPath.row].symbol }
             
             let height = cell.frame.height
             let width = view.frame.width * height / view.frame.height
@@ -195,7 +196,7 @@ extension PortfolioViewController: UITableViewDelegate {
             currentValue += $0.currentTotalCost
             value += $0.totalCost
         }
-        tableHeaderView?.configure(total: currentValue, value: value, currentValue: currentValue)
+        tableHeaderView?.configure(value: value, currentValue: currentValue)
         Storage.save(assets: items)
     }
 }
@@ -223,7 +224,7 @@ private extension PortfolioViewController {
             currentValue += $0.currentTotalCost
             value += $0.totalCost
         }
-        tableHeaderView?.configure(total: currentValue, value: value, currentValue: currentValue)
+        tableHeaderView?.configure(value: value, currentValue: currentValue)
         tableView.refreshControl?.endRefreshing()
     }
     

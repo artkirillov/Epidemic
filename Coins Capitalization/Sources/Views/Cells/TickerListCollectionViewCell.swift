@@ -34,6 +34,7 @@ class TickerListCollectionViewCell: UICollectionViewCell {
         tableView.tableFooterView = UIView()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 110.0
+        tableView.keyboardDismissMode = .onDrag
         
         tableView.register(UINib(nibName: "TickerCell", bundle: nil), forCellReuseIdentifier: "TickerTableViewCell")
         
@@ -53,13 +54,13 @@ class TickerListCollectionViewCell: UICollectionViewCell {
         tableView.frame = bounds
     }
     
-    func configure(items: [Ticker], image: UIImage?, noItemsTitle: String?, noItemsMessage: String?) {
+    func configure(items: [Coin], image: UIImage?, noItemsTitle: String?, noItemsMessage: String?) {
+        stopRefreshing()
+        
         self.items = items
-
         tableView.backgroundView = items.isEmpty ?
             MessageView(image: image, title: noItemsTitle, message: noItemsMessage) : nil
         tableView.reloadData()
-        stopRefreshing()
     }
     
     @objc func updateData() {
@@ -73,7 +74,7 @@ class TickerListCollectionViewCell: UICollectionViewCell {
     // MARK: - Private Properties
     
     private let tableView = UITableView(frame: .zero, style: .plain)
-    private var items: [Ticker] = []
+    private var items: [Coin] = []
     
 }
 
@@ -87,7 +88,7 @@ extension TickerListCollectionViewCell: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TickerTableViewCell", for: indexPath) as! TickerTableViewCell
-        cell.configure(ticker: items[indexPath.row])
+        cell.configure(coin: items[indexPath.row])
         return cell
     }
     

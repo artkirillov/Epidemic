@@ -19,8 +19,8 @@ final class CoinItemTableViewCell: UITableViewCell {
     }
     
     func configure(coin: Coin) {
-        symbolLabel.text = coin.symbol
-        nameLabel.text = coin.name
+        symbolLabel.text = coin.short
+        nameLabel.text = coin.long
     }
     
     // MARK: - Private Properties

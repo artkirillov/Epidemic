@@ -26,7 +26,8 @@ final class ArticleViewController: UIViewController {
         
         view.backgroundColor = Colors.backgroundColor
         
-        headerLabel.text = host ?? NSLocalizedString("Article", comment: "")
+        let titleString = (host ?? NSLocalizedString("Article", comment: "")).uppercased()
+        headerLabel.attributedText = NSAttributedString.attributedTitle(string: titleString)
         
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
         if let activityIndicatorView = activityIndicator { view.addSubview(activityIndicatorView) }

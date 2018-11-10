@@ -100,9 +100,9 @@ final class AddCoinViewController: UIViewController {
     }
     
     func setAsset(with coin: Coin) {
-        asset.name = coin.name
-        asset.symbol = coin.symbol
-        asset.currentPrice = Double(coin.priceUSD ?? "")
+        asset.name = coin.long
+        asset.symbol = coin.short
+        asset.currentPrice = coin.price
         chooseButton.setTitle("\(asset.symbol) \(asset.name)", for: .normal)
         chooseButton.setTitleColor(Colors.controlTextEnabled, for: .normal)
     }

@@ -14,7 +14,6 @@ final class Storage {
     
     struct Filename {
         static let coins   = "Coins.txt"
-        static let tickers = "Tickers.txt"
         static let assets  = "Assets.txt"
     }
     
@@ -52,11 +51,6 @@ final class Storage {
         return get(from: Filename.coins)
     }
     
-    /// Gets tickers from storage
-    static func tickers() -> [Ticker]? {
-        return get(from: Filename.tickers)
-    }
-    
     /// Gets assets from storage
     static func assets() -> [Asset]? {
         return get(from: Filename.assets)
@@ -80,11 +74,6 @@ final class Storage {
     /// Saves coins to storage
     static func save(coins: [Coin]) {
         save(coins, in: Filename.coins)
-    }
-    
-    /// Saves tickers to storage
-    static func save(tickers: [Ticker]) {
-        save(tickers, in: Filename.tickers)
     }
     
     /// Saves assets to storage
@@ -183,10 +172,10 @@ final class Storage {
     private static func filename(for endPoint: API.EndPoint) -> String {
         var filename = ""
         switch endPoint {
-        case .ticker:     filename = "TickersCache.txt"
-        case .globalData: filename = "GlobalDataCahce.txt"
-        case .chart(let type, let symbol): filename = "\(type.rawValue)ChartDataCache\(symbol).txt"
-        case .appStore:   filename = "AppStoreLookUp.txt"
+        case .coins:                       filename = "AllCoinsCache.txt"
+        case .coinDetails(let symbol):     filename = "CoinDetailsCache\(symbol).txt"
+        case .chart(let type, let symbol): filename = "ChartDataCache\(symbol)\(type.rawValue).txt"
+        case .appStore:                    filename = "AppStoreLookUp.txt"
         }
         return filename
     }

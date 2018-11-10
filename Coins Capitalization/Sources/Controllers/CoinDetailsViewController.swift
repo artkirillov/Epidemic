@@ -1,8 +1,8 @@
 //
 //  CoinDetailsViewController.swift
-//  Coins Capitalization
+//  Coins
 //
-//  Created by Artem Kirillov on 04.03.18.
+//  Created by Artem Kirillov on 10.10.2018.
 //  Copyright © 2018 ASK LLC. All rights reserved.
 //
 
@@ -10,7 +10,23 @@ import UIKit
 
 final class CoinDetailsViewController: UIViewController {
     
+    // MARK: - Public Nested
+    
+    enum Row {
+        case chart
+        case infoHeader(text: String)
+        case singleInfo(title: String, value: String)
+        case doubleInfo(titleOne: String, valueOne: String, titleTwo: String, valueTwo: String)
+        case button(title: String)
+    }
+    
     // MARK: - Public Properties
+    
+    static let identifier = String(describing: CoinDetailsViewController.self)
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     var coin: Coin?
     
@@ -20,51 +36,43 @@ final class CoinDetailsViewController: UIViewController {
         }
     }
     
-    weak var delegate: ReduceCoinViewControllerDelegate?
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
+    var rows: [Row] = [.chart]
     
     // Custom Transition parameters
     
     var originFrame = CGRect.zero
     
-    // MARK: Public Methods
+    // MARK: - Public Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        isFavorite = Storage.favoriteCoins().contains(coin?.short ?? "")
+        
         view.backgroundColor = Colors.backgroundColor
         
-        priceLabel.font = Fonts.portfolioPrice
-        priceLabel.textColor = Colors.majorTextColor
+        titleLabel.attributedText = coin.flatMap { NSAttributedString.attributedTitle(string: $0.long.uppercased()) }
         
-        nameLabel.attributedText = coin.flatMap { NSAttributedString.attributedTitle(string: $0.name.uppercased()) }
-        priceLabel.text = coin?.priceUSD.flatMap { Double($0).flatMap { String(format: "$ %.2f", $0) } }
-        
-        segmentedControl.selectedIndex = 0
-        noDataView.layer.cornerRadius = noDataView.bounds.height / 2
-        
-        addButton.layer.cornerRadius = 4.0
-        addButton.backgroundColor = Colors.lightBlueColor
-        
-        reduceButton.layer.cornerRadius = 4.0
-        reduceButton.setTitleColor(Colors.controlTextEnabled, for: .normal)
-        reduceButton.setTitleColor(Colors.controlTextDisabled, for: .disabled)
-        
-        animation.duration = 0.2
-        animation.type = kCATransitionFade
-        
-        activityIndicator.startAnimating()
-        activityIndicator.isHidden = false
-        noDataView.isHidden = true
-        
-        isFavorite = Storage.favoriteCoins().contains(coin?.symbol ?? "")
-        
-        requestData(for: .day)
-        updateAssetInfo()
+        tableHeaderView = tableView.tableHeaderView as? PortfolioTableHeaderView
+        coin.flatMap { tableHeaderView?.configure(value: nil, currentValue: $0.price) }
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: view.bounds.width, height: 30.0))
+        tableView.register(ChartTableViewCell.self, forCellReuseIdentifier: ChartTableViewCell.identifier)
+        tableView.register(UINib(nibName: InfoHeaderCell.identifier, bundle: nil), forCellReuseIdentifier: InfoHeaderCell.identifier)
+        tableView.register(UINib(nibName: SingleInfoCell.identifier, bundle: nil), forCellReuseIdentifier: SingleInfoCell.identifier)
+        tableView.register(UINib(nibName: DoubleInfoCell.identifier, bundle: nil), forCellReuseIdentifier: DoubleInfoCell.identifier)
+        tableView.register(UINib(nibName: ButtonCell.identifier, bundle: nil), forCellReuseIdentifier: ButtonCell.identifier)
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 150.0
         
         transitioningDelegate = self
+        
+        requestData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.refreshControl?.endRefreshing()
     }
     
     @IBAction func backButtonTapped(_ sender: Any) {
@@ -78,140 +86,73 @@ final class CoinDetailsViewController: UIViewController {
         var favoriteCoins = Storage.favoriteCoins()
         
         if isFavorite {
-            if let symbol = coin?.symbol { favoriteCoins.append(symbol) }
+            if let symbol = coin?.short { favoriteCoins.append(symbol) }
         } else {
-            favoriteCoins = favoriteCoins.filter { $0 != coin?.symbol }
+            favoriteCoins = favoriteCoins.filter { $0 != coin?.short }
         }
         
         Storage.save(favoriteCoins: favoriteCoins)
     }
     
-    @IBAction func changeChartType(_ sender: SegmentedControl) {
-        activityIndicator.startAnimating()
-        activityIndicator.isHidden = false
-        noDataView.isHidden = true
-        switch sender.selectedIndex {
-        case 0: requestData(for: .day)
-        case 1: requestData(for: .week)
-        case 2: requestData(for: .month)
-        case 3: requestData(for: .threeMonths)
-        case 4: requestData(for: .halfYear)
-        case 5: requestData(for: .year)
-        case 6: requestData(for: .all)
-        default: break
-        }
-    }
     
-    @IBAction func reduceButtonTapped(_ sender: UIButton) {
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "ReduceCoinViewController") as? ReduceCoinViewController,
-            let asset = asset {
-            controller.delegate = self
-            controller.asset = asset
-            present(controller, animated: true, completion: nil)
-        }
-    }
     
-    @IBAction func addButtonTapped(_ sender: UIButton) {
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "AddCoinViewController") as? AddCoinViewController {
-            controller.delegate = self
-            controller.coin = Storage.coins()?.first { $0.symbol == coin?.symbol }
-            present(controller, animated: true, completion: nil)
-        }
-    }
+    // MARK: - Private Properties
     
-    // MARK: - Private properties
-    
-    private var asset: Asset?
-    private let animation = CATransition()
     private let feedBackGenerator = UIImpactFeedbackGenerator()
+    private var tableHeaderView: PortfolioTableHeaderView?
     
-    @IBOutlet private weak var favoriteButton: UIButton!
-    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet private weak var nameLabel: UILabel!
-    @IBOutlet private weak var priceLabel: UILabel!
-    @IBOutlet private weak var changeLabel: UILabel!
-    @IBOutlet private weak var chartView: ChartView!
-    @IBOutlet private weak var noDataView: UIView!
-    @IBOutlet private weak var segmentedControl: SegmentedControl!
-    @IBOutlet private weak var amountLabel: UILabel!
-    @IBOutlet private weak var costLabel: UILabel!
-    @IBOutlet private weak var profitLabel: UILabel!
-    @IBOutlet private weak var reduceButton: UIButton!
-    @IBOutlet private weak var addButton: UIButton!
-    @IBOutlet private weak var infoContainer: UIView!
-    @IBOutlet private weak var infoContainerHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private var favoriteButton: UIButton!
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var tableView: UITableView!
+    
+    private var lastContentOffset: CGFloat = 0.0
+    private let contentOffsetThreshold: CGFloat = 37.0
+    private let animation: CATransition = {
+        let animation = CATransition()
+        animation.duration = 0.2
+        animation.type = kCATransitionFade
+        return animation
+    }()
+    
 }
 
-// MARK: - AddCoinViewControllerDelegate
+// MARK: - UITableViewDataSource
 
-extension CoinDetailsViewController: AddCoinViewControllerDelegate {
-    func addCoinViewController(controller: AddCoinViewController, didAdd asset: Asset) {
-        updateAssetInfo()
-    }
-}
-
-// MARK: - ReduceCoinViewControllerDelegate
-
-extension CoinDetailsViewController: ReduceCoinViewControllerDelegate {
-    func reduceCoinViewController(controller: ReduceCoinViewController, didChange asset: Asset) {
-        updateAssetInfo()
-    }
-}
-
-// MARK: - Network Requests
-
-private extension CoinDetailsViewController {
+extension CoinDetailsViewController: UITableViewDataSource {
     
-    func requestData(for type: API.EndPoint.ChartType) {
-        guard let symbol = coin?.symbol else { return }
-        API.requestChartData(type: type, for: symbol,
-                             success: { [weak self] chartData in
-                                guard let slf = self else { return }
-                                slf.chartView.layer.add(slf.animation, forKey: kCATransition)
-                                slf.chartView.data = chartData.price.map { $0 }
-                                slf.activityIndicator.stopAnimating()
-                                slf.activityIndicator.isHidden = true
-                                slf.noDataView.isHidden = true
-                                
-                                let prices = chartData.price
-                                
-                                Formatter.formatProfit(label: slf.changeLabel,
-                                                       firstValue: prices[0][1],
-                                                       lastValue: prices[prices.count - 2][1])
-            },
-                             failure: { [weak self] error in
-                                guard let slf = self else { return }
-                                slf.activityIndicator.stopAnimating()
-                                slf.activityIndicator.isHidden = true
-                                slf.noDataView.isHidden = false
-        })
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return rows.count
     }
     
-    func updateAssetInfo() {
-        asset = Storage.assets()?.first(where: { $0.symbol == coin?.symbol } )
-        
-        guard let symbol = coin?.symbol, let asset = asset else {
-            showInfoContainer(false)
-            reduceButton.isEnabled = false
-            return
-        }
-        
-        Formatter.formatCost(label: costLabel, value: asset.currentTotalCost)
-        Formatter.formatAmount(label: amountLabel, value: asset.totalAmount, symbol: symbol)
-        Formatter.formatProfit(label: profitLabel, firstValue: asset.totalCost, lastValue: asset.currentTotalCost)
-        showInfoContainer(true)
-        reduceButton.isEnabled = true
-    }
-    
-    func showInfoContainer(_ show: Bool) {
-        if show {
-            infoContainer.isHidden = false
-            infoContainerHeightConstraint.constant = 90
-        } else {
-            infoContainer.isHidden = true
-            infoContainerHeightConstraint.constant = 0
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch rows[indexPath.row] {
+        case .chart:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ChartTableViewCell.identifier, for: indexPath) as? ChartTableViewCell, let coin = coin else { return UITableViewCell() }
+            cell.configure(coin: coin, delegate: self)
+            return cell
+            
+        case .infoHeader(let text):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: InfoHeaderCell.identifier, for: indexPath) as? InfoHeaderCell else { return UITableViewCell() }
+            cell.configure(text: text)
+            return cell
+            
+        case .singleInfo(let title, let value):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SingleInfoCell.identifier, for: indexPath) as? SingleInfoCell else { return UITableViewCell() }
+            cell.configure(title: title, value: value)
+            return cell
+            
+        case .doubleInfo(let titleOne, let valueOne, let titleTwo, let valueTwo):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: DoubleInfoCell.identifier, for: indexPath) as? DoubleInfoCell else { return UITableViewCell() }
+            cell.configure(titleOne: titleOne, valueOne: valueOne, titleTwo: titleTwo, valueTwo: valueTwo)
+            return cell
+            
+        case .button(let title):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.identifier, for: indexPath) as? ButtonCell else { return UITableViewCell() }
+            cell.configure(title: title, delegate: self)
+            return cell
         }
     }
+    
 }
 
 // MARK: - UIViewControllerTransitioningDelegate
@@ -226,4 +167,130 @@ extension CoinDetailsViewController: UIViewControllerTransitioningDelegate {
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return CustomViewControllerAnimator(duration: 0.2, isPresenting: false, originFrame: originFrame)
     }
+}
+
+// MARK: - ChartTableViewCellDelegate
+
+extension CoinDetailsViewController: ChartTableViewCellDelegate {
+    
+    func chartTableViewCell(cell: ChartTableViewCell, changedPeriodWithMinPrice value: Double, maxPrice currentValue: Double) {
+        guard let currentPrice = coin?.price else { return }
+        tableHeaderView?.configure(value: value, currentValue: currentPrice)
+    }
+    
+}
+
+// MARK: - ButtonCellDelegate
+
+extension CoinDetailsViewController: ButtonCellDelegate {
+    
+    func buttonCellDidTouched(cell: ButtonCell) {
+        if let controller = storyboard?.instantiateViewController(withIdentifier: NewTransactionViewController.identifier) as? NewTransactionViewController {
+            
+            present(controller, animated: true, completion: nil)
+        }
+    }
+    
+}
+
+// MARK: - UIScrollViewDelegate
+
+extension CoinDetailsViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (scrollView.contentOffset.y - contentOffsetThreshold) * (lastContentOffset - contentOffsetThreshold) <= 0 {
+            titleLabel.layer.add(animation, forKey: kCATransition)
+            titleLabel.attributedText = coin.flatMap {
+                if let price = Formatter.format($0.price, maximumFractionDigits: Formatter.maximumFractionDigits(for: $0.price)) {
+                    let title = scrollView.contentOffset.y > contentOffsetThreshold ? "\($0.long) - $\(price)" : $0.long
+                    return NSAttributedString.attributedTitle(string: title.uppercased())
+                } else {
+                    return NSAttributedString.attributedTitle(string: $0.long.uppercased())
+                }
+            }
+        }
+        
+        lastContentOffset = scrollView.contentOffset.y
+    }
+    
+}
+
+// MARK: - Network Requests
+
+private extension CoinDetailsViewController {
+    
+    func makeRows(coinDetails: CoinDetails) -> [Row] {
+        
+        let marketCapValue = Formatter
+            .format(coinDetails.marketCap, maximumFractionDigits: Formatter.maximumFractionDigits(for: coinDetails.marketCap))
+            .flatMap { "$ \($0)" }
+        
+        let volumeValue = Formatter.format(coinDetails.volume, maximumFractionDigits: 0).flatMap { "\($0) \(coin?.short ?? "")" }
+        let supplyValue = Formatter.format(coinDetails.supply, maximumFractionDigits: 0).flatMap { "\($0) \(coin?.short ?? "")" }
+        
+        var rows: [Row] = [
+            .chart,
+            .infoHeader(text: NSLocalizedString("Statistics", comment: "")),
+            .singleInfo(title: NSLocalizedString("Market Capitalization", comment: ""),
+                        value: marketCapValue ?? ""),
+            .singleInfo(title: NSLocalizedString("Volume", comment: ""),
+                        value: volumeValue ?? ""),
+            .singleInfo(title: NSLocalizedString("Supply", comment: ""),
+                        value: supplyValue ?? ""),
+        ]
+        
+        if let coin = coin, let asset = Storage.assets()?.first(where: { $0.symbol == coin.short }) {
+            
+            let amountValue = Formatter.format(asset.totalAmount, maximumFractionDigits: 5).flatMap { "\($0) \(coin.short)" }
+            let costValue = Formatter
+                .format(asset.currentTotalCost, maximumFractionDigits: Formatter.maximumFractionDigits(for: asset.currentTotalCost))
+                .flatMap { "$ \($0)" }
+            
+            var assetRows: [Row] = [
+                .infoHeader(text: NSLocalizedString("Portfolio", comment: "")),
+                .doubleInfo(titleOne: NSLocalizedString("Quantity", comment: ""),
+                           valueOne: amountValue ?? "",
+                           titleTwo: NSLocalizedString("Cost", comment: ""),
+                           valueTwo: costValue ?? "")
+            ]
+                
+            let absoluteProfit = asset.currentTotalCost - asset.totalCost
+            let relativeProfit = absoluteProfit / asset.totalCost * 100
+            
+            if let profitText = Formatter.format(absoluteProfit, maximumFractionDigits: Formatter.maximumFractionDigits(for: absoluteProfit)),
+                let percentText = Formatter.format(relativeProfit) {
+                
+                let symbol = absoluteProfit == 0 ? "" : absoluteProfit > 0 ? "↑" : "↓"
+                assetRows.append(.singleInfo(title: NSLocalizedString("24HChange", comment: ""),
+                                             value: "\(symbol) $\(profitText) (\(percentText)%)"))
+            }
+            
+            rows.append(contentsOf: assetRows)
+        }
+        
+        rows.append(.button(title: NSLocalizedString("New Transaction", comment: "")))
+        
+        return rows
+    }
+    
+    func requestData() {
+        guard let coin = coin else { return }
+        API.requestCoinDetails(
+            for: coin.short,
+            success: { [weak self] coinDetails in
+                guard let slf = self else { return }
+                slf.rows = slf.makeRows(coinDetails: coinDetails)
+                slf.tableView.layer.add(slf.animation, forKey: kCATransition)
+                slf.tableView.reloadData()
+        },
+            failure: { [weak self] error in
+                guard let slf = self else { return }
+                //slf.showErrorAlert(error)
+                slf.rows = [.chart, .button(title: NSLocalizedString("New Transaction", comment: ""))]
+                slf.tableView.layer.add(slf.animation, forKey: kCATransition)
+                slf.tableView.reloadData()
+                print("ERROR requestCoinDetails: \(error)")
+        })
+    }
+    
 }

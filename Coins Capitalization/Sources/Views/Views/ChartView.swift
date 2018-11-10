@@ -25,11 +25,14 @@ final class ChartView: UIView {
                 points[i] = data[index][1]
                 dates[i] = dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(data[index][0] / 1000)))
             }
-            if k < 1 { points[points.count - 1] = data[data.count - 2][1] }
+            
+            if k < 1, data.count > 1, data[data.count - 2].count > 0 {
+                points[points.count - 1] = data[data.count - 2][1]
+            }
             
             // for layout bubble view
             let value = points.first ?? 0
-            Formatter.formatCost(label: priceLabel, value: value, maximumFractionDigits: value > 1.0 ? 2 : 5)
+            Formatter.formatCost(label: priceLabel, value: value, maximumFractionDigits: Formatter.maximumFractionDigits(for: value))
             
             setNeedsDisplay()
         }
@@ -48,8 +51,8 @@ final class ChartView: UIView {
             return height - y + topPadding
         }
         
-        Colors.controlHighlighted.setFill()
-        Colors.controlHighlighted.setStroke()
+        Colors.lightBlueColor.setFill()
+        Colors.lightBlueColor.setStroke()
         
         // Line
         
@@ -79,7 +82,7 @@ final class ChartView: UIView {
         let graphStartPoint = CGPoint(x: 0, y: 0)
         let graphEndPoint = CGPoint(x: 0, y: height)
         let context = UIGraphicsGetCurrentContext()!
-        let colors = [Colors.controlEnabled.cgColor, Colors.controlDisabled.cgColor, UIColor.clear.cgColor]
+        let colors = [Colors.lightBlueColor.cgColor, Colors.blueColor.cgColor, UIColor.clear.cgColor]
         let colorSpace = CGColorSpaceCreateDeviceRGB()
         let colorLocations: [CGFloat] = [0.0, 0.3, 1.0]
         let gradient = CGGradient(colorsSpace: colorSpace,
@@ -112,8 +115,8 @@ final class ChartView: UIView {
         dateLabel.textColor = Colors.minorTextColor
         
         pointView.backgroundColor = .white
-        lineView.backgroundColor = Colors.bubbleBackground
-        bubbleView.backgroundColor = Colors.bubbleBackground
+        lineView.backgroundColor = Colors.cellBackgroundColor
+        bubbleView.backgroundColor = Colors.cellBackgroundColor
         bubbleView.layer.cornerRadius = 5.0
         pointView.layer.cornerRadius = 2.5
         
@@ -213,7 +216,7 @@ private extension ChartView {
         
         dateLabel.text = dates[index]
         let value = points[index]
-        Formatter.formatCost(label: priceLabel, value: value, maximumFractionDigits: value > 1.0 ? 2 : 5)
+        Formatter.formatCost(label: priceLabel, value: value, maximumFractionDigits: Formatter.maximumFractionDigits(for: value))
         
         pointViewconstraint?.constant = yCoordinates[index] - pointView.bounds.width / 2
         lineViewconstraint?.constant = xPoint - lineView.bounds.width / 2
@@ -235,7 +238,7 @@ private extension ChartView {
         
         dateLabel.text = dates[index]
         let value = points[index]
-        Formatter.formatCost(label: priceLabel, value: value, maximumFractionDigits: value > 1.0 ? 2 : 5)
+        Formatter.formatCost(label: priceLabel, value: value, maximumFractionDigits: Formatter.maximumFractionDigits(for: value))
         layoutIfNeeded()
         pointViewconstraint?.constant = yCoordinates[index] - pointView.bounds.width / 2
         lineViewconstraint?.constant = xPoint - lineView.bounds.width / 2

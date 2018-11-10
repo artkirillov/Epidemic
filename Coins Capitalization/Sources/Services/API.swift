@@ -18,8 +18,8 @@ final class API {
     
     enum EndPoint {
         
-        case ticker
-        case globalData
+        case coins
+        case coinDetails(symbol: String)
         case chart(type: ChartType, symbol: String)
         case appStore
         
@@ -35,8 +35,8 @@ final class API {
         
         var urlComponents: URLComponents? {
             switch self {
-            case .ticker:                      return URLComponents(string: "https://api.coinmarketcap.com/v1/ticker/")
-            case .globalData:                  return URLComponents(string: "https://api.coinmarketcap.com/v1/global/")
+            case .coins:                       return URLComponents(string: "https://coincap.io/front")
+            case .coinDetails(let symbol):     return URLComponents(string: "https://coincap.io/page/\(symbol)")
             case .chart(let type, let symbol):
                 if type == .all {              return URLComponents(string: "https://coincap.io/history/\(symbol)") }
                 else {                         return URLComponents(string: "https://coincap.io/history/\(type.rawValue)/\(symbol)") }
@@ -46,7 +46,6 @@ final class API {
         
         var parameters: [String: String]? {
             switch self {
-            case .ticker:     return ["limit": "0"]
             case .appStore:   return ["bundleId": Bundle.main.bundleIdentifier ?? ""]
             default: return nil
             }
@@ -54,8 +53,8 @@ final class API {
         
         var cacheExpirationInSeconds: Int {
             switch self {
-            case .ticker, .globalData: return 10
-            case .chart:               return 30
+            case .coins, .coinDetails: return 10
+            case .chart:               return 60
             case .appStore:            return Int.max
             }
         }
@@ -63,14 +62,14 @@ final class API {
     
     // MARK: - Public Methods
     
-    /// Requests tickers data from Coin Market Cap API
-    static func requestTickersData(success: @escaping ([Ticker]) -> Void, failure: @escaping (Error) -> Void) {
-        request(endpoint: .ticker, parameters: EndPoint.ticker.parameters, success: success, failure: failure)
+    /// Requests all coins data from Coin Cap IO API
+    static func requestCoinsData(success: @escaping ([Coin]) -> Void, failure: @escaping (Error) -> Void) {
+        request(endpoint: .coins, success: success, failure: failure)
     }
     
-    /// Requests global market info from Coin Market Cap API
-    static func requestGlobalData(success: @escaping (GlobalData) -> Void, failure: @escaping (Error) -> Void) {
-        request(endpoint: .globalData, success: success, failure: failure)
+    /// Requests coin details from Coin Cap IO API
+    static func requestCoinDetails(for symbol: String, success: @escaping (CoinDetails) -> Void, failure: @escaping (Error) -> Void) {
+        request(endpoint: .coinDetails(symbol: symbol), success: success, failure: failure)
     }
     
     /// Requests chart data from Coin Cap IO API
@@ -82,6 +81,10 @@ final class API {
     /// Requests AppStore appId
     static func requestAppStoreData(success: @escaping (AppStoreLookup) -> Void, failure: @escaping (Error) -> Void) {
         request(endpoint: .appStore, parameters: EndPoint.appStore.parameters, success: success, failure: failure)
+    }
+    
+    static func cancelAllTasks() {
+        URLSession.shared.invalidateAndCancel()
     }
     
     // MARK: - Private Methods
@@ -110,7 +113,7 @@ final class API {
             
             let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
                 guard error == nil else {
-                    print("ERROR: \(error!.localizedDescription)")
+                    print("ERROR: \(String(describing: error))")
                     failure(error!)
                     return
                 }
@@ -129,7 +132,10 @@ final class API {
                     DispatchQueue.main.async { success(object) }
                 } catch {
                     DispatchQueue.main.async { failure(error) }
+                    print("ERROR: \(String(describing: error))")
                 }
+                
+                
             }
             
             task.resume()

@@ -10,7 +10,8 @@
 "Portfolio" = "Portfolio";
 "News" = "News";
 "Article" = "Article";
-"Converter" = "Converter";
+"New Transaction" = "New Transaction";
+"Analytics" = "Analytics";
 
 "B" = "B";
 
@@ -21,6 +22,11 @@
 "6M" = "6M";
 "1Y" = "1Y";
 "ALL" = "ALL";
+
+"Statistics" = "Statistics";
+"Market Capitalization" = "Market Capitalization";
+"Volume" = "Volume";
+"Supply" = "Supply";
 
 "No info" = "No info";
 "No data available" = "No data available";
@@ -53,11 +59,25 @@
 "Empty portfolio title" = "Portfolio is empty";
 "Empty portfolio message" = "To added someting into it tap plus in the right top corner";
 
+"Analytics title" = "Analytics soon...";
+"Analytics message" = "We're working on analytical system to help you make better investments. Hope to release it soon";
+
 "Buy" = "Buy";
 "Sell" = "Sell";
+"Transfer" = "Transfer";
 
-"Amount" = "Amount";
-"Cost, $" = "Cost, $";
+"Exchange" = "Exchange";
+"Traiding pair" = "Traiding pair";
+"Price" = "Price";
+"Quantity" = "Quantity";
+"Cost" = "Cost";
+"Total cost" = "Total cost";
+"24HChange" = "24 hours change";
+"Profit" = "Profit";
+"Date" = "Date";
+"Time" = "Time";
+"Notes" = "Notes";
+"Approve" = "Approve";
 
 "day" = "day";
 "severalDays" = "days";

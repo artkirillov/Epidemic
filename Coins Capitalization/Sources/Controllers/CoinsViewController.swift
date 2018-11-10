@@ -22,20 +22,18 @@ final class CoinsViewController: UIViewController {
         super.viewDidLoad()
         
         // Initial state from storage
-        items = Storage.tickers() ?? []
-        favoriteItems = favoriteTickers(fromTickers: items)
+        items = Storage.coins() ?? []
+        favoriteItems = favoriteCoins(from: items)
         filteredItems = items
         filteredFavoriteItems = favoriteItems
         
         view.backgroundColor = Colors.backgroundColor
-        titleLabel.attributedText = NSAttributedString.attributedTitle(string: NSLocalizedString("Cryptocurrencies", comment: "").uppercased())
         
-        searchTextField.attributedPlaceholder = NSAttributedString(
-            string: NSLocalizedString("Search", comment: ""),
-            attributes: [
-                .font: Fonts.messageText,
-                .foregroundColor: Colors.minorTextColor]
-        )
+        let titleString = NSLocalizedString("Cryptocurrencies", comment: "").uppercased()
+        titleLabel.attributedText = NSAttributedString.attributedTitle(string: titleString)
+        
+        let placeholderString = NSLocalizedString("Search", comment: "")
+        searchTextField.attributedPlaceholder = NSAttributedString.attributedTextFieldPlaceholder(string: placeholderString)
         
         let clearButton = UIButton(type: .custom)
         clearButton.setImage(#imageLiteral(resourceName: "clear"), for: .normal)
@@ -44,9 +42,11 @@ final class CoinsViewController: UIViewController {
         clearButton.addTarget(self, action: #selector(clearSearchTextField), for: .touchUpInside)
         searchTextField.rightView = clearButton
         searchTextField.rightViewMode = .always
+        searchTextField.returnKeyType = .search
         searchTextFieldClearButton = clearButton
         searchTextFieldClearButton?.isHidden = true
         
+        collectionView.keyboardDismissMode = .onDrag
         collectionView.register(TickerListCollectionViewCell.self, forCellWithReuseIdentifier: "TickerListCollectionViewCell")
         
         segmentControl.items = [NSLocalizedString("All", comment: "").uppercased(),
@@ -96,9 +96,9 @@ final class CoinsViewController: UIViewController {
         }
         
         filteredItems = items
-            .filter { $0.name.lowercased().range(of: searchText.lowercased()) != nil || $0.symbol.lowercased().range(of: searchText.lowercased()) != nil }
-        filteredFavoriteItems = favoriteItems
-            .filter { $0.name.lowercased().range(of: searchText.lowercased()) != nil || $0.symbol.lowercased().range(of: searchText.lowercased()) != nil }
+            .filter { $0.long.lowercased().range(of: searchText.lowercased()) != nil || $0.short.lowercased().range(of: searchText.lowercased()) != nil }
+        filteredFavoriteItems = favoriteItemsCountIsBig ? favoriteItems
+            .filter { $0.long.lowercased().range(of: searchText.lowercased()) != nil || $0.short.lowercased().range(of: searchText.lowercased()) != nil } : favoriteItems
         
         collectionView.reloadData()
     }
@@ -116,11 +116,11 @@ final class CoinsViewController: UIViewController {
     
     private var searchTextFieldClearButton: UIButton?
     
-    private var items: [Ticker] = []
-    private var filteredItems: [Ticker] = []
+    private var items: [Coin] = []
+    private var filteredItems: [Coin] = []
     
-    private var favoriteItems: [Ticker] = []
-    private var filteredFavoriteItems: [Ticker] = []
+    private var favoriteItems: [Coin] = []
+    private var filteredFavoriteItems: [Coin] = []
     
     private var searchText = ""
 }
@@ -136,16 +136,17 @@ extension CoinsViewController: UITextFieldDelegate {
             return true
         }
         
-        searchText = string.isEmpty ? String(textFieldText.dropLast()) : textFieldText + string
-        
-        updateItems(withSearchText: searchText)
-        searchTextFieldClearButton?.isHidden = (textFieldText + string).isEmpty
+        updateItems(withSearchText: string.isEmpty ? String(textFieldText.dropLast()) : textFieldText + string)
         return true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
         return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        searchTextFieldClearButton?.isHidden = false
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -207,7 +208,7 @@ extension CoinsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return collectionView.bounds.size
+        return collectionView.bounds.size // height 20
     }
     
 }
@@ -222,10 +223,10 @@ extension CoinsViewController: TickerListCollectionViewCellDelegate {
     
     func tickerListCollectionViewCell(cell: TickerListCollectionViewCell, didSelectRowAt index: Int, frame: CGRect) {
         if let row = collectionView.indexPath(for: cell)?.row,
-            let controller = storyboard?.instantiateViewController(withIdentifier: "CoinInfoViewController") as? CoinInfoViewController {
-            let tickers = row == 0 ? filteredItems : filteredFavoriteItems
+            let controller = storyboard?.instantiateViewController(withIdentifier: CoinDetailsViewController.identifier) as? CoinDetailsViewController {
+            let coins = row == 0 ? filteredItems : filteredFavoriteItems
             
-            controller.coin = Coin(ticker: tickers[index])
+            controller.coin = coins[index]
             
             let height = frame.height
             let width = view.frame.width * height / view.frame.height
@@ -245,33 +246,29 @@ extension CoinsViewController: TickerListCollectionViewCellDelegate {
 private extension CoinsViewController {
     
     func requestData() {
-        API.requestTickersData(
-            success: { [weak self] tickers in
-                let favoriteTickers = self?.favoriteTickers(fromTickers: tickers) ?? []
+        API.requestCoinsData(
+            success: { [weak self] coins in
+                let favoriteCoins = self?.favoriteCoins(from: coins) ?? []
                 
-                self?.items = tickers
-                self?.favoriteItems = favoriteTickers
+                self?.items = coins
+                self?.favoriteItems = favoriteCoins
                 
                 if let searchText = self?.searchTextField.text, !searchText.isEmpty {
                     self?.updateItems(withSearchText: searchText)
                 } else {
-                    self?.filteredItems = tickers
-                    self?.filteredFavoriteItems = favoriteTickers
+                    self?.filteredItems = coins
+                    self?.filteredFavoriteItems = favoriteCoins
                 }
                 
                 self?.collectionView.reloadData()
                 
                 DispatchQueue.global().async {
-                    Storage.save(tickers: tickers)
-                    
-                    let coins = tickers.map { Coin(ticker: $0) }
                     Storage.save(coins: coins)
                     
                     var assets = Storage.assets() ?? []
                     assets.enumerated().forEach { index, asset in
-                        if let coin = coins.first(where: { coin in return coin.symbol == asset.symbol }),
-                            let priceUSD = coin.priceUSD {
-                            assets[index].currentPrice = Double(priceUSD)
+                        if let coin = coins.first(where: { coin in return coin.short == asset.symbol }) {
+                            assets[index].currentPrice = coin.price
                         }
                     }
                     Storage.save(assets: assets)
@@ -289,32 +286,6 @@ private extension CoinsViewController {
                 self?.stopAnimateActivity()
                 self?.showErrorAlert(error)
         })
-/*
-        API.requestGlobalData(
-            success: { [weak self] globalData in
-                
-                let numberFormatter = NumberFormatter()
-                numberFormatter.numberStyle = .decimal
-                numberFormatter.maximumFractionDigits = 2
-                
-                if let text = numberFormatter.string(from: round(Double(globalData.totalMarketCapUSD) / 1000000000) as NSNumber) {
-                    self?.marketCapitalizationLabel.text = "\(NSLocalizedString("Market Capitalization", comment: "")): $\(text)\(NSLocalizedString("B", comment: ""))"
-                    self?.marketCapitalizationLabel.textAlignment = .left
-                } else {
-                    self?.marketCapitalizationLabel.text = NSLocalizedString("Coins", comment: "").uppercased()
-                }
-                
-                if let text = numberFormatter.string(from: globalData.bitcoinPercentageOfMarketCap as NSNumber) {
-                    //self?.bitcoinDominanceLabel.text = "\(NSLocalizedString("Bitcoin Dominance", comment: "")): \(text)%"
-                } else {
-                    //self?.bitcoinDominanceLabel.text = nil
-                }
-            },
-            failure: { [weak self] error in
-                self?.stopAnimateActivity()
-                self?.showErrorAlert(error)
-        })
- */
         
         API.requestAppStoreData(
             success: { appStoreLookup in
@@ -343,9 +314,9 @@ private extension CoinsViewController {
         }
     }
     
-    func favoriteTickers(fromTickers tickers: [Ticker]) -> [Ticker] {
+    func favoriteCoins(from coins: [Coin]) -> [Coin] {
         let favoriteCoins = Storage.favoriteCoins()
-        return tickers.filter { favoriteCoins.contains($0.symbol) }
+        return coins.filter { favoriteCoins.contains($0.short) }
     }
     
 }

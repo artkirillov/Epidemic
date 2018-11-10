@@ -9,6 +9,7 @@
 import Foundation
 
 extension NSAttributedString {
+    
     static func attributedTitle(string: String) -> NSAttributedString {
         return NSAttributedString(
             string: string,
@@ -18,4 +19,14 @@ extension NSAttributedString {
                 .kern: 2.0]
         )
     }
+    
+    static func attributedTextFieldPlaceholder(string: String) -> NSAttributedString {
+        return NSAttributedString(
+            string: string,
+            attributes: [
+                .font: Fonts.messageText,
+                .foregroundColor: Colors.minorTextColor]
+        )
+    }
+    
 }

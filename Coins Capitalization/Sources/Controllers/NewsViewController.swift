@@ -24,7 +24,8 @@ final class NewsViewController: UIViewController {
         
         view.backgroundColor = Colors.backgroundColor
         
-        titleLabel.attributedText = NSAttributedString.attributedTitle(string: NSLocalizedString("News", comment: "").uppercased())
+        let titleString = NSLocalizedString("News", comment: "").uppercased()
+        titleLabel.attributedText = NSAttributedString.attributedTitle(string: titleString)
         
         tableView.tableFooterView = UIView()
         tableView.rowHeight = UITableViewAutomaticDimension

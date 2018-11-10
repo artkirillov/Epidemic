@@ -28,51 +28,35 @@ final class TickerTableViewCell: UITableViewCell {
         nameLabel.textColor = Colors.minorTextColor
         nameLabel.font = Fonts.main
         
-        priceUSDLabel.textColor = Colors.majorTextColor
-        priceUSDLabel.font = Fonts.title
+        priceLabel.textColor = Colors.majorTextColor
+        priceLabel.font = Fonts.title
         
-        priceBTCLabel.textColor = Colors.majorTextColor
-        priceBTCLabel.font = Fonts.subtitle
+        percentLabel.textColor = Colors.minorTextColor
+        percentLabel.font = Fonts.subtitle
         
-        [percentChange1hLabel, percentChange24hLabel, percentChange7dLabel].forEach { $0?.font = Fonts.description }
-        
-        [hourChangeDescription, dayChangeDescription, weekChangeDescription].forEach {
-            $0?.font = Fonts.smallDescription
-            $0?.textColor = Colors.minorTextColor
-        }
+        iconView.tintColor = Colors.lightBlueColor
+        coinImageView.tintColor = Colors.lightBlueColor
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         nameLabel.text = ""
         symbolLabel.text = ""
-        priceUSDLabel.text = ""
-        priceBTCLabel.text = ""
-        percentChange1hLabel.text = Default.noInfo
-        percentChange24hLabel.text = Default.noInfo
-        percentChange7dLabel.text = Default.noInfo
-        
-        percentChange1hLabel.textColor = Colors.minorTextColor
-        percentChange24hLabel.textColor = Colors.minorTextColor
-        percentChange7dLabel.textColor = Colors.minorTextColor
+        priceLabel.text = ""
+        percentLabel.text = ""
     }
     
-    func configure(ticker: Ticker) {
+    func configure(coin: Coin) {
         
         selectionStyle = .none
         backgroundColor = .clear
         
-        nameLabel.text = ticker.name
-        symbolLabel.text = ticker.symbol
+        nameLabel.text = coin.long
+        symbolLabel.text = coin.short
         
-        let priceUSD = Double(ticker.priceUSD ?? "") ?? 0.0
-        
-        setNumber(label: priceBTCLabel, value: ticker.priceBTC ?? "", suffix: " BTC", maximumFractionDigits: 10)
-        setNumber(label: priceUSDLabel, value: ticker.priceUSD ?? "", prefix: "$", maximumFractionDigits: priceUSD >= 0.1 ? 2 : 5)
-        
-        setPercent(label: percentChange1hLabel, value: ticker.percentChange1h ?? Default.noInfo)
-        setPercent(label: percentChange24hLabel, value: ticker.percentChange24h ?? Default.noInfo)
-        setPercent(label: percentChange7dLabel, value: ticker.percentChange7d ?? Default.noInfo)
+        iconView.image = UIImage(named: coin.long)?.withRenderingMode(.alwaysTemplate)
+        setNumber(label: priceLabel, value: coin.price, prefix: "$", maximumFractionDigits: Formatter.maximumFractionDigits(for: coin.price))
+        setPercent(label: percentLabel, value: coin.cap24hrChange)
     }
     
     // MARK: - Private Properties
@@ -80,29 +64,20 @@ final class TickerTableViewCell: UITableViewCell {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet private var nameLabel: UILabel!
     @IBOutlet private var symbolLabel: UILabel!
-    @IBOutlet private var priceUSDLabel: UILabel!
-    @IBOutlet private var priceBTCLabel: UILabel!
-    @IBOutlet private var percentChange1hLabel: UILabel!
-    @IBOutlet private var percentChange24hLabel: UILabel!
-    @IBOutlet private var percentChange7dLabel: UILabel!
-    @IBOutlet private var hourChangeDescription: UILabel!
-    @IBOutlet private var dayChangeDescription: UILabel!
-    @IBOutlet private var weekChangeDescription: UILabel!
+    @IBOutlet private var priceLabel: UILabel!
+    @IBOutlet private var percentLabel: UILabel!
+    @IBOutlet weak var iconView: UIImageView!
+    @IBOutlet weak var coinImageView: UIImageView!
 }
 
 fileprivate extension TickerTableViewCell {
     
-    func setPercent(label: UILabel, value: String) {
-        guard let val = Double(value) else {
-            label.text = Default.noInfo
-            return
-        }
-        
-        if val > 0 {
-            setNumber(label: label, value: value, prefix: "+", suffix: "%")
+    func setPercent(label: UILabel, value: Double) {
+        if value > 0 {
+            setNumber(label: label, value: value, prefix: "↑ ", suffix: "%")
             label.textColor = Colors.positiveGrow
-        } else if val < 0 {
-            setNumber(label: label, value: value, suffix: "%")
+        } else if value < 0 {
+            setNumber(label: label, value: abs(value), prefix: "↓ ", suffix: "%")
             label.textColor = Colors.negativeGrow
         } else {
             label.text = "---"
@@ -110,18 +85,14 @@ fileprivate extension TickerTableViewCell {
         }
     }
     
-    func setNumber(label: UILabel, value: String, prefix: String? = nil, suffix: String? = nil,
+    func setNumber(label: UILabel, value: Double, prefix: String? = nil, suffix: String? = nil,
                    maximumFractionDigits: Int = 2, minimumFractionDigits: Int = 2) {
-        guard let val = Double(value) else {
-            label.text = Default.noInfo
-            return
-        }
         
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
         numberFormatter.maximumFractionDigits = maximumFractionDigits
         numberFormatter.minimumFractionDigits = 2
-        let text = numberFormatter.string(from: val as NSNumber)
+        let text = numberFormatter.string(from: value as NSNumber)
         
         label.text = "\(prefix ?? "")\(text ?? "")\(suffix ?? "")"
     }

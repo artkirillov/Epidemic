@@ -26,14 +26,16 @@ final class CoinsCatalogViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = Colors.backgroundColor
-        
-        let coins = Storage.coins() ?? []
-        items = coins.sorted(by: { $0.symbol < $1.symbol })
+        items = Storage.coins() ?? []
         filteredItems = items
         
-        searchTextField.leftViewMode = .always
-        searchTextField.leftView = UIImageView(image: #imageLiteral(resourceName: "search"))
+        view.backgroundColor = Colors.backgroundColor
+        
+        let titleString = NSLocalizedString("Coins Catalog", comment: "").uppercased()
+        titleLabel.attributedText = NSAttributedString.attributedTitle(string: titleString)
+        
+        let placeholderString = NSLocalizedString("Search", comment: "")
+        searchTextField.attributedPlaceholder = NSAttributedString.attributedTextFieldPlaceholder(string: placeholderString)
         
         let clearButton = UIButton(type: .custom)
         clearButton.setImage(#imageLiteral(resourceName: "clear"), for: .normal)
@@ -42,9 +44,11 @@ final class CoinsCatalogViewController: UIViewController {
         clearButton.addTarget(self, action: #selector(clearSearchTextField), for: .touchUpInside)
         searchTextField.rightView = clearButton
         searchTextField.rightViewMode = .always
+        searchTextField.returnKeyType = .search
         searchTextFieldClearButton = clearButton
         searchTextFieldClearButton?.isHidden = true
         
+        tableView.keyboardDismissMode = .onDrag
         tableView.tableFooterView = UIView()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 40.0
@@ -63,6 +67,7 @@ final class CoinsCatalogViewController: UIViewController {
     
     // MARK: - Private Properties
     
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet private weak var searchTextField: UITextField!
     @IBOutlet private var tableView: UITableView!
     private var searchTextFieldClearButton: UIButton?
@@ -119,7 +124,6 @@ extension CoinsCatalogViewController: UITextFieldDelegate {
         }
         
         updateItems(withSearchText: string.isEmpty ? String(textFieldText.dropLast()) : textFieldText + string)
-        searchTextFieldClearButton?.isHidden = (textFieldText + string).isEmpty
         return true
     }
     
@@ -128,12 +132,16 @@ extension CoinsCatalogViewController: UITextFieldDelegate {
         return true
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        searchTextFieldClearButton?.isHidden = false
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         searchTextFieldClearButton?.isHidden = textField.text?.isEmpty ?? true
     }
     
     private func updateItems(withSearchText searchText: String) {
-        filteredItems = items.filter { $0.name.lowercased().range(of: searchText.lowercased()) != nil || $0.symbol.lowercased().range(of: searchText.lowercased()) != nil }
+        filteredItems = items.filter { $0.long.lowercased().range(of: searchText.lowercased()) != nil || $0.short.lowercased().range(of: searchText.lowercased()) != nil }
     }
     
 }

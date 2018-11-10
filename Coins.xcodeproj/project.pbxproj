@@ -12,9 +12,7 @@
 		210F68A02120528100403E79 /* TickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 210F68A22120528100403E79 /* TickerCell.xib */; };
 		210FB85B203A18F000AD4557 /* AddCoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210FB85A203A18F000AD4557 /* AddCoinViewController.swift */; };
 		2119D0C9204B2325000FE804 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2119D0C8204B2325000FE804 /* Colors.swift */; };
-		2119D0CB204B36A8000FE804 /* ConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2119D0CA204B36A8000FE804 /* ConverterViewController.swift */; };
 		2123173120590DF300F23540 /* AppStoreLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2123173020590DF300F23540 /* AppStoreLookup.swift */; };
-		212317332059169300F23540 /* SubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212317322059169300F23540 /* SubscriptionViewController.swift */; };
 		2125F5272067BA5B001EDACD /* CoinsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2125F5262067BA5B001EDACD /* CoinsUITests.swift */; };
 		2125F52F2067BB41001EDACD /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2125F52E2067BB41001EDACD /* SnapshotHelper.swift */; };
 		212CDE9C2157E9B60068E0C2 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212CDE9B2157E9B60068E0C2 /* Fonts.swift */; };
@@ -22,24 +20,37 @@
 		212F6D182042C83A0091B723 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 212F6D172042C83A0091B723 /* Assets.xcassets */; };
 		2135FB8521031F3400234E31 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2135FB8421031F3400234E31 /* Reachability.swift */; };
 		21361D5B211F11260023FAA6 /* TickerListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21361D5A211F11260023FAA6 /* TickerListCollectionViewCell.swift */; };
+		213887532183BA9B004F0371 /* OptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 213887512183BA9B004F0371 /* OptionCell.xib */; };
+		213887552183BB98004F0371 /* OptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213887542183BB98004F0371 /* OptionCell.swift */; };
+		213887572183BBC5004F0371 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213887562183BBC5004F0371 /* ButtonCell.swift */; };
+		213C50DA217F066800DDA8F3 /* AnalyticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213C50D9217F066800DDA8F3 /* AnalyticsViewController.swift */; };
+		213C50DD217F111F00DDA8F3 /* InfoHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 213C50DB217F111F00DDA8F3 /* InfoHeaderCell.xib */; };
+		213C50DF217F128200DDA8F3 /* InfoHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213C50DE217F128200DDA8F3 /* InfoHeaderCell.swift */; };
+		21430DD821861C2F0072C856 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21430DD721861C2F0072C856 /* Transaction.swift */; };
 		214B0D4520DCFF76007234C1 /* RSS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214B0D4420DCFF76007234C1 /* RSS.swift */; };
 		2154CD9020DA3C4D002FA475 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2154CD8F20DA3C4D002FA475 /* Article.swift */; };
 		2154CD9220DA45A5002FA475 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2154CD9120DA45A5002FA475 /* NewsViewController.swift */; };
 		2154CD9420DA4753002FA475 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2154CD9320DA4753002FA475 /* ArticleTableViewCell.swift */; };
 		2154CD9A20DA5543002FA475 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2154CD9920DA5543002FA475 /* ArticleViewController.swift */; };
-		215A1FFD2048009F005ABDB8 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1FFC2048009F005ABDB8 /* Coin.swift */; };
 		215A1FFF204804DA005ABDB8 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1FFE204804DA005ABDB8 /* Storage.swift */; };
 		215A76E721636687009D56A6 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A76E621636687009D56A6 /* MessageView.swift */; };
-		2173EC282017D4CD004BDECE /* Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2173EC272017D4CD004BDECE /* Ticker.swift */; };
+		2160A1B32197379600409A0A /* TotalCostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2160A1B12197379600409A0A /* TotalCostCell.xib */; };
+		2160A1B5219738BA00409A0A /* TotalCostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2160A1B4219738BA00409A0A /* TotalCostCell.swift */; };
+		216F349B21805C6500D4E5AF /* SingleInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216F349921805C6500D4E5AF /* SingleInfoCell.xib */; };
+		216F349E21805FFB00D4E5AF /* DoubleInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216F349C21805FFB00D4E5AF /* DoubleInfoCell.xib */; };
+		216F34A02180624000D4E5AF /* SingleInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F349F2180624000D4E5AF /* SingleInfoCell.swift */; };
+		216F34A22180625700D4E5AF /* DoubleInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F34A12180625700D4E5AF /* DoubleInfoCell.swift */; };
+		2173EC282017D4CD004BDECE /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2173EC272017D4CD004BDECE /* Coin.swift */; };
 		2173EC2C2017E16B004BDECE /* TickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2173EC2B2017E16B004BDECE /* TickerTableViewCell.swift */; };
+		21748CF821956A26002259F1 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21748CF721956A26002259F1 /* TextFieldCell.swift */; };
 		217DBFB0216B49B600B8C06D /* ChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217DBFAF216B49B600B8C06D /* ChartTableViewCell.swift */; };
 		2186E10E204C162C000374A6 /* ReduceCoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2186E10D204C162C000374A6 /* ReduceCoinViewController.swift */; };
+		21881B40219745CF0055FA86 /* DateTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21881B3E219745CF0055FA86 /* DateTimeCell.xib */; };
+		21881B4221974C7B0055FA86 /* DateTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21881B4121974C7B0055FA86 /* DateTimeCell.swift */; };
 		218CB6CE204C513000EDF550 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218CB6CD204C513000EDF550 /* ChartData.swift */; };
-		218CB6D0204C555A00EDF550 /* CoinDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218CB6CF204C555A00EDF550 /* CoinDetailsViewController.swift */; };
 		218CB6D2204C58B100EDF550 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218CB6D1204C58B100EDF550 /* ChartView.swift */; };
 		218CB6D4204C5A8000EDF550 /* SegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218CB6D3204C5A8000EDF550 /* SegmentControl.swift */; };
 		219FA193201E444C00094B67 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219FA192201E444C00094B67 /* API.swift */; };
-		219FA197201E4C9600094B67 /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219FA196201E4C9600094B67 /* GlobalData.swift */; };
 		219FBFCD202E340800A8771A /* PortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219FBFCC202E340800A8771A /* PortfolioViewController.swift */; };
 		21AA7BD82101C051009967E0 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AA7BD72101C051009967E0 /* AlertViewController.swift */; };
 		21AA82D7213AFB34003872AC /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AA82D6213AFB34003872AC /* StoreManager.swift */; };
@@ -48,7 +59,12 @@
 		21BAD60920177F7A0065D700 /* CoinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BAD60820177F7A0065D700 /* CoinsViewController.swift */; };
 		21BAD60E20177F7A0065D700 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21BAD60C20177F7A0065D700 /* Main.storyboard */; };
 		21BAD61320177F7A0065D700 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21BAD61120177F7A0065D700 /* LaunchScreen.storyboard */; };
+		21BD3B3521941CFF00DE6661 /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21BD3B3321941CFF00DE6661 /* TextFieldCell.xib */; };
+		21C0F3472189A2120066798A /* SegmentControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C0F3462189A2120066798A /* SegmentControlTableViewCell.swift */; };
+		21CE2D0A2181A747004E8732 /* CoinDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CE2D092181A747004E8732 /* CoinDetails.swift */; };
 		21D4D2A42137E65A0071B3FB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D4D2A32137E65A0071B3FB /* StoreKit.framework */; };
+		21DC61E62182FE29007CB8EF /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21DC61E42182FE29007CB8EF /* ButtonCell.xib */; };
+		21DC61E82183077C007CB8EF /* NewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DC61E72183077C007CB8EF /* NewTransactionViewController.swift */; };
 		21DF46E6216215A200CCBDB7 /* Insets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF46E5216215A200CCBDB7 /* Insets.swift */; };
 		21E78BC6204AC5CB000B7398 /* CoinItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E78BC5204AC5CB000B7398 /* CoinItemTableViewCell.swift */; };
 		21E78BC8204AC6B0000B7398 /* CoinsCatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E78BC7204AC6B0000B7398 /* CoinsCatalogViewController.swift */; };
@@ -57,7 +73,7 @@
 		21F0AD0D2068FD7800021E7B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21F4B013206729B600C37688 /* Localizable.strings */; };
 		21F4B0112067280F00C37688 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21F4B00F2067280F00C37688 /* InfoPlist.strings */; };
 		21F4B015206729B600C37688 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21F4B013206729B600C37688 /* Localizable.strings */; };
-		21F7AEAD216DE7BF00742425 /* CoinInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F7AEAC216DE7BF00742425 /* CoinInfoViewController.swift */; };
+		21F7AEAD216DE7BF00742425 /* CoinDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F7AEAC216DE7BF00742425 /* CoinDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,9 +94,7 @@
 		210F68A6212052B000403E79 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/TickerCell.strings; sourceTree = "<group>"; };
 		210FB85A203A18F000AD4557 /* AddCoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoinViewController.swift; sourceTree = "<group>"; };
 		2119D0C8204B2325000FE804 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		2119D0CA204B36A8000FE804 /* ConverterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterViewController.swift; sourceTree = "<group>"; };
 		2123173020590DF300F23540 /* AppStoreLookup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreLookup.swift; sourceTree = "<group>"; };
-		212317322059169300F23540 /* SubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionViewController.swift; sourceTree = "<group>"; };
 		2125F5242067BA5B001EDACD /* CoinsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoinsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2125F5262067BA5B001EDACD /* CoinsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsUITests.swift; sourceTree = "<group>"; };
 		2125F5282067BA5B001EDACD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -90,6 +104,13 @@
 		212F6D172042C83A0091B723 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2135FB8421031F3400234E31 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		21361D5A211F11260023FAA6 /* TickerListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerListCollectionViewCell.swift; sourceTree = "<group>"; };
+		213887522183BA9B004F0371 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OptionCell.xib; sourceTree = "<group>"; };
+		213887542183BB98004F0371 /* OptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCell.swift; sourceTree = "<group>"; };
+		213887562183BBC5004F0371 /* ButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
+		213C50D9217F066800DDA8F3 /* AnalyticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewController.swift; sourceTree = "<group>"; };
+		213C50DC217F111F00DDA8F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/InfoHeaderCell.xib; sourceTree = "<group>"; };
+		213C50DE217F128200DDA8F3 /* InfoHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoHeaderCell.swift; sourceTree = "<group>"; };
+		21430DD721861C2F0072C856 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		214B0D4420DCFF76007234C1 /* RSS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSS.swift; sourceTree = "<group>"; };
 		2154CD8F20DA3C4D002FA475 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		2154CD9120DA45A5002FA475 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
@@ -98,19 +119,25 @@
 		2154CD9920DA5543002FA475 /* ArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		2157F75120671E9B00263AE0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		2157F75220671E9B00263AE0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		215A1FFC2048009F005ABDB8 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		215A1FFE204804DA005ABDB8 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		215A76E621636687009D56A6 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
-		2173EC272017D4CD004BDECE /* Ticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticker.swift; sourceTree = "<group>"; };
+		2160A1B22197379600409A0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TotalCostCell.xib; sourceTree = "<group>"; };
+		2160A1B4219738BA00409A0A /* TotalCostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalCostCell.swift; sourceTree = "<group>"; };
+		216F349A21805C6500D4E5AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SingleInfoCell.xib; sourceTree = "<group>"; };
+		216F349D21805FFB00D4E5AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DoubleInfoCell.xib; sourceTree = "<group>"; };
+		216F349F2180624000D4E5AF /* SingleInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleInfoCell.swift; sourceTree = "<group>"; };
+		216F34A12180625700D4E5AF /* DoubleInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleInfoCell.swift; sourceTree = "<group>"; };
+		2173EC272017D4CD004BDECE /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		2173EC2B2017E16B004BDECE /* TickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerTableViewCell.swift; sourceTree = "<group>"; };
+		21748CF721956A26002259F1 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		217DBFAF216B49B600B8C06D /* ChartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTableViewCell.swift; sourceTree = "<group>"; };
 		2186E10D204C162C000374A6 /* ReduceCoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReduceCoinViewController.swift; sourceTree = "<group>"; };
+		21881B3F219745CF0055FA86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DateTimeCell.xib; sourceTree = "<group>"; };
+		21881B4121974C7B0055FA86 /* DateTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeCell.swift; sourceTree = "<group>"; };
 		218CB6CD204C513000EDF550 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
-		218CB6CF204C555A00EDF550 /* CoinDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailsViewController.swift; sourceTree = "<group>"; };
 		218CB6D1204C58B100EDF550 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		218CB6D3204C5A8000EDF550 /* SegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentControl.swift; sourceTree = "<group>"; };
 		219FA192201E444C00094B67 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		219FA196201E4C9600094B67 /* GlobalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalData.swift; sourceTree = "<group>"; };
 		219FBFCC202E340800A8771A /* PortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
 		21AA7BD72101C051009967E0 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		21AA82D6213AFB34003872AC /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
@@ -121,7 +148,12 @@
 		21BAD60D20177F7A0065D700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		21BAD61220177F7A0065D700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		21BAD61420177F7A0065D700 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		21BD3B3421941CFF00DE6661 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TextFieldCell.xib; sourceTree = "<group>"; };
+		21C0F3462189A2120066798A /* SegmentControlTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentControlTableViewCell.swift; sourceTree = "<group>"; };
+		21CE2D092181A747004E8732 /* CoinDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetails.swift; sourceTree = "<group>"; };
 		21D4D2A32137E65A0071B3FB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		21DC61E52182FE29007CB8EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ButtonCell.xib; sourceTree = "<group>"; };
+		21DC61E72183077C007CB8EF /* NewTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTransactionViewController.swift; sourceTree = "<group>"; };
 		21DF46E5216215A200CCBDB7 /* Insets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insets.swift; sourceTree = "<group>"; };
 		21E78BC5204AC5CB000B7398 /* CoinItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinItemTableViewCell.swift; sourceTree = "<group>"; };
 		21E78BC7204AC6B0000B7398 /* CoinsCatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsCatalogViewController.swift; sourceTree = "<group>"; };
@@ -131,7 +163,7 @@
 		21F4B0122067284000C37688 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ../../Resources/ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		21F4B014206729B600C37688 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		21F4B016206729BC00C37688 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		21F7AEAC216DE7BF00742425 /* CoinInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoinInfoViewController.swift; path = "Coins Capitalization/Sources/Controllers/CoinInfoViewController.swift"; sourceTree = SOURCE_ROOT; };
+		21F7AEAC216DE7BF00742425 /* CoinDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoinDetailsViewController.swift; path = "Coins Capitalization/Sources/Controllers/CoinDetailsViewController.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +189,14 @@
 			isa = PBXGroup;
 			children = (
 				210F68A22120528100403E79 /* TickerCell.xib */,
+				213C50DB217F111F00DDA8F3 /* InfoHeaderCell.xib */,
+				216F349921805C6500D4E5AF /* SingleInfoCell.xib */,
+				216F349C21805FFB00D4E5AF /* DoubleInfoCell.xib */,
+				21DC61E42182FE29007CB8EF /* ButtonCell.xib */,
+				213887512183BA9B004F0371 /* OptionCell.xib */,
+				21BD3B3321941CFF00DE6661 /* TextFieldCell.xib */,
+				2160A1B12197379600409A0A /* TotalCostCell.xib */,
+				21881B3E219745CF0055FA86 /* DateTimeCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -213,13 +253,13 @@
 		2173EC262017D32B004BDECE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2173EC272017D4CD004BDECE /* Ticker.swift */,
-				219FA196201E4C9600094B67 /* GlobalData.swift */,
+				2173EC272017D4CD004BDECE /* Coin.swift */,
+				21CE2D092181A747004E8732 /* CoinDetails.swift */,
 				2101993D2030BE7000EA8D37 /* Asset.swift */,
-				215A1FFC2048009F005ABDB8 /* Coin.swift */,
 				218CB6CD204C513000EDF550 /* ChartData.swift */,
 				2123173020590DF300F23540 /* AppStoreLookup.swift */,
 				2154CD8F20DA3C4D002FA475 /* Article.swift */,
+				21430DD721861C2F0072C856 /* Transaction.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -237,12 +277,21 @@
 		2173EC2A2017E14D004BDECE /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				213887562183BBC5004F0371 /* ButtonCell.swift */,
 				2173EC2B2017E16B004BDECE /* TickerTableViewCell.swift */,
 				210199412030CA2700EA8D37 /* AssetTableViewCell.swift */,
 				21E78BC5204AC5CB000B7398 /* CoinItemTableViewCell.swift */,
 				2154CD9320DA4753002FA475 /* ArticleTableViewCell.swift */,
 				21361D5A211F11260023FAA6 /* TickerListCollectionViewCell.swift */,
 				217DBFAF216B49B600B8C06D /* ChartTableViewCell.swift */,
+				21C0F3462189A2120066798A /* SegmentControlTableViewCell.swift */,
+				213C50DE217F128200DDA8F3 /* InfoHeaderCell.swift */,
+				216F349F2180624000D4E5AF /* SingleInfoCell.swift */,
+				216F34A12180625700D4E5AF /* DoubleInfoCell.swift */,
+				213887542183BB98004F0371 /* OptionCell.swift */,
+				21748CF721956A26002259F1 /* TextFieldCell.swift */,
+				2160A1B4219738BA00409A0A /* TotalCostCell.swift */,
+				21881B4121974C7B0055FA86 /* DateTimeCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -265,16 +314,15 @@
 				21ED70082082959A002CD41E /* Utils */,
 				21AA7BD72101C051009967E0 /* AlertViewController.swift */,
 				21BAD60820177F7A0065D700 /* CoinsViewController.swift */,
-				218CB6CF204C555A00EDF550 /* CoinDetailsViewController.swift */,
-				21F7AEAC216DE7BF00742425 /* CoinInfoViewController.swift */,
+				21F7AEAC216DE7BF00742425 /* CoinDetailsViewController.swift */,
 				219FBFCC202E340800A8771A /* PortfolioViewController.swift */,
 				210FB85A203A18F000AD4557 /* AddCoinViewController.swift */,
 				2186E10D204C162C000374A6 /* ReduceCoinViewController.swift */,
-				2119D0CA204B36A8000FE804 /* ConverterViewController.swift */,
 				21E78BC7204AC6B0000B7398 /* CoinsCatalogViewController.swift */,
-				212317322059169300F23540 /* SubscriptionViewController.swift */,
 				2154CD9120DA45A5002FA475 /* NewsViewController.swift */,
 				2154CD9920DA5543002FA475 /* ArticleViewController.swift */,
+				213C50D9217F066800DDA8F3 /* AnalyticsViewController.swift */,
+				21DC61E72183077C007CB8EF /* NewTransactionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -446,10 +494,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				213887532183BA9B004F0371 /* OptionCell.xib in Resources */,
 				21F4B015206729B600C37688 /* Localizable.strings in Resources */,
+				2160A1B32197379600409A0A /* TotalCostCell.xib in Resources */,
+				216F349B21805C6500D4E5AF /* SingleInfoCell.xib in Resources */,
 				21BAD61320177F7A0065D700 /* LaunchScreen.storyboard in Resources */,
+				216F349E21805FFB00D4E5AF /* DoubleInfoCell.xib in Resources */,
+				21881B40219745CF0055FA86 /* DateTimeCell.xib in Resources */,
+				213C50DD217F111F00DDA8F3 /* InfoHeaderCell.xib in Resources */,
+				21BD3B3521941CFF00DE6661 /* TextFieldCell.xib in Resources */,
 				21F4B0112067280F00C37688 /* InfoPlist.strings in Resources */,
 				212F6D182042C83A0091B723 /* Assets.xcassets in Resources */,
+				21DC61E62182FE29007CB8EF /* ButtonCell.xib in Resources */,
 				210F68A02120528100403E79 /* TickerCell.xib in Resources */,
 				21BAD60E20177F7A0065D700 /* Main.storyboard in Resources */,
 			);
@@ -475,16 +531,20 @@
 				218CB6D4204C5A8000EDF550 /* SegmentControl.swift in Sources */,
 				2101993E2030BE7000EA8D37 /* Asset.swift in Sources */,
 				21361D5B211F11260023FAA6 /* TickerListCollectionViewCell.swift in Sources */,
-				218CB6D0204C555A00EDF550 /* CoinDetailsViewController.swift in Sources */,
 				215A1FFF204804DA005ABDB8 /* Storage.swift in Sources */,
 				212CDE9E2157FC3D0068E0C2 /* NSAttributedString.swift in Sources */,
 				2119D0C9204B2325000FE804 /* Colors.swift in Sources */,
 				21B07FCB205650C400A09B48 /* Formatter.swift in Sources */,
 				21E78BC8204AC6B0000B7398 /* CoinsCatalogViewController.swift in Sources */,
+				216F34A02180624000D4E5AF /* SingleInfoCell.swift in Sources */,
 				21BAD60720177F7A0065D700 /* AppDelegate.swift in Sources */,
+				213C50DA217F066800DDA8F3 /* AnalyticsViewController.swift in Sources */,
 				2154CD9420DA4753002FA475 /* ArticleTableViewCell.swift in Sources */,
+				21881B4221974C7B0055FA86 /* DateTimeCell.swift in Sources */,
 				218CB6D2204C58B100EDF550 /* ChartView.swift in Sources */,
+				21430DD821861C2F0072C856 /* Transaction.swift in Sources */,
 				2154CD9A20DA5543002FA475 /* ArticleViewController.swift in Sources */,
+				213887572183BBC5004F0371 /* ButtonCell.swift in Sources */,
 				21AA7BD82101C051009967E0 /* AlertViewController.swift in Sources */,
 				218CB6CE204C513000EDF550 /* ChartData.swift in Sources */,
 				2154CD9220DA45A5002FA475 /* NewsViewController.swift in Sources */,
@@ -492,26 +552,30 @@
 				215A76E721636687009D56A6 /* MessageView.swift in Sources */,
 				2173EC2C2017E16B004BDECE /* TickerTableViewCell.swift in Sources */,
 				219FA193201E444C00094B67 /* API.swift in Sources */,
-				2173EC282017D4CD004BDECE /* Ticker.swift in Sources */,
-				219FA197201E4C9600094B67 /* GlobalData.swift in Sources */,
+				2173EC282017D4CD004BDECE /* Coin.swift in Sources */,
+				21DC61E82183077C007CB8EF /* NewTransactionViewController.swift in Sources */,
 				219FBFCD202E340800A8771A /* PortfolioViewController.swift in Sources */,
 				217DBFB0216B49B600B8C06D /* ChartTableViewCell.swift in Sources */,
-				215A1FFD2048009F005ABDB8 /* Coin.swift in Sources */,
 				21AA82D7213AFB34003872AC /* StoreManager.swift in Sources */,
 				2186E10E204C162C000374A6 /* ReduceCoinViewController.swift in Sources */,
 				210FB85B203A18F000AD4557 /* AddCoinViewController.swift in Sources */,
+				216F34A22180625700D4E5AF /* DoubleInfoCell.swift in Sources */,
 				2123173120590DF300F23540 /* AppStoreLookup.swift in Sources */,
+				21748CF821956A26002259F1 /* TextFieldCell.swift in Sources */,
 				210199422030CA2700EA8D37 /* AssetTableViewCell.swift in Sources */,
 				2154CD9020DA3C4D002FA475 /* Article.swift in Sources */,
+				21C0F3472189A2120066798A /* SegmentControlTableViewCell.swift in Sources */,
 				21E78BC6204AC5CB000B7398 /* CoinItemTableViewCell.swift in Sources */,
+				213887552183BB98004F0371 /* OptionCell.swift in Sources */,
 				21BAD60920177F7A0065D700 /* CoinsViewController.swift in Sources */,
 				214B0D4520DCFF76007234C1 /* RSS.swift in Sources */,
 				21DF46E6216215A200CCBDB7 /* Insets.swift in Sources */,
 				2135FB8521031F3400234E31 /* Reachability.swift in Sources */,
-				21F7AEAD216DE7BF00742425 /* CoinInfoViewController.swift in Sources */,
-				212317332059169300F23540 /* SubscriptionViewController.swift in Sources */,
+				2160A1B5219738BA00409A0A /* TotalCostCell.swift in Sources */,
+				21CE2D0A2181A747004E8732 /* CoinDetails.swift in Sources */,
+				21F7AEAD216DE7BF00742425 /* CoinDetailsViewController.swift in Sources */,
 				21ED700A208295E9002CD41E /* CustomViewControllerAnimator.swift in Sources */,
-				2119D0CB204B36A8000FE804 /* ConverterViewController.swift in Sources */,
+				213C50DF217F128200DDA8F3 /* InfoHeaderCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,6 +600,54 @@
 			name = TickerCell.xib;
 			sourceTree = "<group>";
 		};
+		213887512183BA9B004F0371 /* OptionCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				213887522183BA9B004F0371 /* Base */,
+			);
+			name = OptionCell.xib;
+			sourceTree = "<group>";
+		};
+		213C50DB217F111F00DDA8F3 /* InfoHeaderCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				213C50DC217F111F00DDA8F3 /* Base */,
+			);
+			name = InfoHeaderCell.xib;
+			sourceTree = "<group>";
+		};
+		2160A1B12197379600409A0A /* TotalCostCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2160A1B22197379600409A0A /* Base */,
+			);
+			name = TotalCostCell.xib;
+			sourceTree = "<group>";
+		};
+		216F349921805C6500D4E5AF /* SingleInfoCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				216F349A21805C6500D4E5AF /* Base */,
+			);
+			name = SingleInfoCell.xib;
+			sourceTree = "<group>";
+		};
+		216F349C21805FFB00D4E5AF /* DoubleInfoCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				216F349D21805FFB00D4E5AF /* Base */,
+			);
+			name = DoubleInfoCell.xib;
+			sourceTree = "<group>";
+		};
+		21881B3E219745CF0055FA86 /* DateTimeCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				21881B3F219745CF0055FA86 /* Base */,
+			);
+			name = DateTimeCell.xib;
+			sourceTree = "<group>";
+		};
 		21BAD60C20177F7A0065D700 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -553,6 +665,22 @@
 				2157F75220671E9B00263AE0 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		21BD3B3321941CFF00DE6661 /* TextFieldCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				21BD3B3421941CFF00DE6661 /* Base */,
+			);
+			name = TextFieldCell.xib;
+			sourceTree = "<group>";
+		};
+		21DC61E42182FE29007CB8EF /* ButtonCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				21DC61E52182FE29007CB8EF /* Base */,
+			);
+			name = ButtonCell.xib;
 			sourceTree = "<group>";
 		};
 		21F4B00F2067280F00C37688 /* InfoPlist.strings */ = {

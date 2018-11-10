@@ -16,7 +16,7 @@ class ChartTableViewCell: UITableViewCell {
     
     // MARK: - Public Properties
     
-    static let identifier = "\(ChartTableViewCell.self)"
+    static let identifier = String(describing: ChartTableViewCell.self)
     
     var delegate: ChartTableViewCellDelegate?
     
@@ -106,6 +106,7 @@ private extension ChartTableViewCell {
         noDataLabel.isHidden = true
         
         segmentedControl.selectedIndex = 0
+        segmentedControl.thumbColor = Colors.blueColor
         segmentedControl.addTarget(self, action: #selector(changeChartType), for: .valueChanged)
         
         activityIndicator.startAnimating()
@@ -149,7 +150,7 @@ private extension ChartTableViewCell {
 private extension ChartTableViewCell {
     
     func requestData(for type: API.EndPoint.ChartType) {
-        guard let symbol = coin?.symbol else { return }
+        guard let symbol = coin?.short else { return }
         
         API.requestChartData(type: type, for: symbol,
                              success: { [weak self] chartData in

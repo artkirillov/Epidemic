@@ -37,9 +37,9 @@ final class AlertViewController: UIViewController {
         // MARK: - Public Methods
         
         func setupUI() {
-            backgroundColor = Colors.actionButtonBackground
+            backgroundColor = Colors.cellBackgroundColor
             setTitleColor(.white, for: .normal)
-            titleLabel?.font = UIFont.systemFont(ofSize: 16.0, weight: .medium)
+            titleLabel?.font = Fonts.title
             heightAnchor.constraint(equalToConstant: 44.0).isActive = true
         }
         
@@ -69,6 +69,7 @@ final class AlertViewController: UIViewController {
         super.viewDidLoad()
         
         alertView.layer.cornerRadius = 10.0
+        alertView.backgroundColor = Colors.cellBackgroundColor
         titleLabel.text = header
         descriptionLabel.text = message
         imageView.image = image

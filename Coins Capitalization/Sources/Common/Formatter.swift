@@ -18,8 +18,13 @@ final class Formatter {
         return formatter
     }()
     
+    static func maximumFractionDigits(for value: Double) -> Int {
+        return abs(value) > 0.1 ? 2 : abs(value) > 0.00001 ? 5 : 10
+    }
+    
     static func format(_ number: Double, maximumFractionDigits: Int = 2) -> String? {
         numberFormatter.maximumFractionDigits = maximumFractionDigits
+        numberFormatter.minimumFractionDigits = 2
         return numberFormatter.string(from: abs(number) as NSNumber)
     }
     
@@ -41,8 +46,7 @@ final class Formatter {
         
         let absoluteProfit = lastValue - firstValue
         let relativeProfit = absoluteProfit / firstValue * 100
-        
-        guard let profitText = Formatter.format(absoluteProfit, maximumFractionDigits: absoluteProfit >= 0.1 ? 2 : 5),
+        guard let profitText = Formatter.format(absoluteProfit, maximumFractionDigits: Formatter.maximumFractionDigits(for: absoluteProfit)),
             let percentText = Formatter.format(relativeProfit) else {
             label.text = ""
             return

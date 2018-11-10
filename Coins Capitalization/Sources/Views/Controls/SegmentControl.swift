@@ -42,7 +42,7 @@ final class SegmentedControl: UIControl {
         didSet {
             guard !isHandlingTap else { return }
             
-            if (lastThumbProgress - 0.5) * (thumbProgress - 0.5) < 0 {
+            if (lastThumbProgress - 0.5) * (thumbProgress - 0.5) <= 0 {
                 feedBackGenerator?.selectionChanged()
             }
             
