@@ -17,6 +17,7 @@ final class NewTransactionViewController: UIViewController {
         case textField(title: String, placeholder: String, text: String?)
         case totalCost(title: String, value: String)
         case button(title: String)
+        case dateTime(date: String, time: String)
     }
     
     // MARK: - Public Properties
@@ -33,8 +34,7 @@ final class NewTransactionViewController: UIViewController {
         .textField(title: NSLocalizedString("Price", comment: ""), placeholder: "---", text: ""),
         .textField(title: NSLocalizedString("Quantity", comment: ""), placeholder: "---", text: ""),
         .totalCost(title: NSLocalizedString("Total cost", comment: ""), value: "$ 120.00"),
-        .textField(title: NSLocalizedString("Date", comment: ""), placeholder: "---", text: ""),
-        .textField(title: NSLocalizedString("Time", comment: ""), placeholder: "---", text: ""),
+        .dateTime(date: "01.01.2018", time: "12:12"),
         .textField(title: NSLocalizedString("Notes", comment: ""), placeholder: "---", text: ""),
         .button(title: "Approve")
     ]
@@ -56,6 +56,7 @@ final class NewTransactionViewController: UIViewController {
         tableView.register(UINib(nibName: TextFieldCell.identifier, bundle: nil), forCellReuseIdentifier: TextFieldCell.identifier)
         tableView.register(UINib(nibName: ButtonCell.identifier, bundle: nil), forCellReuseIdentifier: ButtonCell.identifier)
         tableView.register(UINib(nibName: TotalCostCell.identifier, bundle: nil), forCellReuseIdentifier: TotalCostCell.identifier)
+        tableView.register(UINib(nibName: DateTimeCell.identifier, bundle: nil), forCellReuseIdentifier: DateTimeCell.identifier)
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 150.0
         
@@ -129,13 +130,19 @@ extension NewTransactionViewController: UITableViewDataSource {
             
         case .button(let title):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.identifier, for: indexPath) as? ButtonCell else { return UITableViewCell() }
-            cell.configure(title: title, delegate: nil)
+            cell.configure(title: title, delegate: self)
             return cell
             
         case .totalCost(let title, let value):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TotalCostCell.identifier, for: indexPath) as? TotalCostCell
                 else { return UITableViewCell() }
             cell.configure(title: title, value: value)
+            return cell
+        
+        case .dateTime(let date, let time):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: DateTimeCell.identifier, for: indexPath) as? DateTimeCell
+                else { return UITableViewCell() }
+            cell.configure(datetitle: date, timeTitle: time, delegate: self)
             return cell
         }
     }
@@ -154,8 +161,7 @@ extension NewTransactionViewController: UITableViewDelegate {
             guard let cell = tableView.cellForRow(at: indexPath) as? TextFieldCell else { return }
             cell.beginEdit()
             
-        case .button: break
-        case .totalCost: break
+        case .button, .totalCost, .dateTime: break
         }
     }
     
@@ -182,6 +188,30 @@ extension NewTransactionViewController: TextFieldCellDelegate {
     
     func textFieldCell(cell: TextFieldCell, didChangeText text: String?) {
         print("--- new text \(text ?? "")")
+    }
+    
+}
+
+// MARK: - DateTimeCellDelegate
+
+extension NewTransactionViewController: DateTimeCellDelegate {
+    
+    func dateTimeCellDidRequestNewDate(cell: DateTimeCell) {
+        print("--- open date picker")
+    }
+    
+    func dateTimeCellDidRequestNewTime(cell: DateTimeCell) {
+        print("--- open time picker")
+    }
+    
+}
+
+// MARK: - ButtonCellDelegate
+
+extension NewTransactionViewController: ButtonCellDelegate {
+    
+    func buttonCellDidTouched(cell: ButtonCell) {
+        print("--- approve")
     }
     
 }

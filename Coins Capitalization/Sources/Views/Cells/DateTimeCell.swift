@@ -54,13 +54,20 @@ final class DateTimeCell: UITableViewCell {
         timeLabel.text = nil
     }
     
-    func configure(datetitle: String, timeTitle: String) {
+    func configure(datetitle: String, timeTitle: String, delegate: DateTimeCellDelegate?) {
         dateLabel.text = datetitle
         timeLabel.text = timeTitle
+        
+        self.delegate = delegate
     }
     
+    @IBAction func dateButtonTapped(_ sender: UIButton) {
+        delegate?.dateTimeCellDidRequestNewDate(cell: self)
+    }
     
-    
+    @IBAction func timeButtonTapped(_ sender: UIButton) {
+        delegate?.dateTimeCellDidRequestNewTime(cell: self)
+    }
     
     // MARK: - Private Properties
     
