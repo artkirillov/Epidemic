@@ -21,6 +21,8 @@ final class API {
         case coins
         case coinDetails(symbol: String)
         case chart(type: ChartType, symbol: String)
+        case exchanges
+        case markets(exchangeId: String?, baseSymbol: String?)
         case appStore
         
         enum ChartType: String {
@@ -40,12 +42,19 @@ final class API {
             case .chart(let type, let symbol):
                 if type == .all {              return URLComponents(string: "https://coincap.io/history/\(symbol)") }
                 else {                         return URLComponents(string: "https://coincap.io/history/\(type.rawValue)/\(symbol)") }
+            case .exchanges:                   return URLComponents(string: "https://api.coincap.io/v2/exchanges")
+            case .markets:                     return URLComponents(string: "https://api.coincap.io/v2/markets")
             case .appStore:                    return URLComponents(string: "https://itunes.apple.com/lookup")
             }
         }
         
         var parameters: [String: String]? {
             switch self {
+            case .markets(let exchangeId, let baseSymbol):
+                var params: [String: String] = [:]
+                exchangeId.flatMap { params["exchangeId"] = $0 }
+                baseSymbol.flatMap { params["baseSymbol"] = $0 }
+                return params
             case .appStore:   return ["bundleId": Bundle.main.bundleIdentifier ?? ""]
             default: return nil
             }
@@ -54,7 +63,8 @@ final class API {
         var cacheExpirationInSeconds: Int {
             switch self {
             case .coins, .coinDetails: return 10
-            case .chart:               return 60
+            case .chart:               return 600
+            case .exchanges, .markets: return 3600
             case .appStore:            return Int.max
             }
         }
@@ -83,6 +93,18 @@ final class API {
         request(endpoint: .appStore, parameters: EndPoint.appStore.parameters, success: success, failure: failure)
     }
     
+    /// Requests exchanges from Coin Cap IO API
+    static func requestExchanges(success: @escaping (CoinDetails) -> Void, failure: @escaping (Error) -> Void) {
+        request(endpoint: .exchanges, success: success, failure: failure)
+    }
+    
+    /// Requests markets from Coin Cap IO API
+    static func requestMarkets(exchangeId: String?, baseSymbol: String?, success: @escaping (CoinDetails) -> Void, failure: @escaping (Error) -> Void) {
+        let endPoint = EndPoint.markets(exchangeId: exchangeId, baseSymbol: baseSymbol)
+        request(endpoint: endPoint, parameters: endPoint.parameters, success: success, failure: failure)
+    }
+    
+    /// Cancel all active tasks
     static func cancelAllTasks() {
         URLSession.shared.invalidateAndCancel()
     }

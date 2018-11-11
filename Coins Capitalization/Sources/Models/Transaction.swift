@@ -20,14 +20,13 @@ struct Transaction: Codable {
     
     var kind: String
     var exchange: String
-    var shortName: String
-    var tradingPair: String
+    var baseSymbol: String
+    var quoteSymbol: String
     var price: Double
-    var priceUSD: Double
     var quantity: Double
     var date: Date
     var commision: Double?
-    var notes: String
+    var notes: String?
     
 }
 

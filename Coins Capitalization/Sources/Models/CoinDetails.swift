@@ -10,7 +10,6 @@ struct CoinDetails: Codable {
     
     var short: String
     var long: String
-    var type: String
     var price: Double
     var priceBTC: Double
     var cap24hrChange: Double
@@ -21,7 +20,6 @@ struct CoinDetails: Codable {
     private enum CodingKeys: String, CodingKey {
         case short = "id"
         case long = "display_name"
-        case type
         case price
         case priceBTC = "price_btc"
         case cap24hrChange

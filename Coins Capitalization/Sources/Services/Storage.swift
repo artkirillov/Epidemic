@@ -13,8 +13,9 @@ final class Storage {
     // MARK: - Public Nested
     
     struct Filename {
-        static let coins   = "Coins.txt"
-        static let assets  = "Assets.txt"
+        static let coins         = "Coins.txt"
+        static let assets        = "Assets.txt"
+        static let transactions  = "Transactions.txt"
     }
     
     struct UserDefaultsKeys {
@@ -56,6 +57,11 @@ final class Storage {
         return get(from: Filename.assets)
     }
     
+    /// Gets transactions from storage
+    static func transactions() -> [Transaction]? {
+        return get(from: Filename.transactions)
+    }
+    
     /// Saves AppStore appId to storage
     static func save(appId: Int) {
         UserDefaults.standard.set(appId, forKey: UserDefaultsKeys.appId)
@@ -79,6 +85,11 @@ final class Storage {
     /// Saves assets to storage
     static func save(assets: [Asset]) {
         save(assets, in: Filename.assets)
+    }
+    
+    /// Saves transactions to storage
+    static func save(transactions: [Transaction]) {
+        save(transactions, in: Filename.transactions)
     }
     
     /// Generic method for saving API data to cache
@@ -176,6 +187,9 @@ final class Storage {
         case .coinDetails(let symbol):     filename = "CoinDetailsCache\(symbol).txt"
         case .chart(let type, let symbol): filename = "ChartDataCache\(symbol)\(type.rawValue).txt"
         case .appStore:                    filename = "AppStoreLookUp.txt"
+        case .exchanges:                   filename = "ExchangesCache.txt"
+        case .markets(let exchangeId, let baseSymbol):
+                                           filename = "MarketsCache\(exchangeId ?? "")\(baseSymbol ?? "").txt"
         }
         return filename
     }
