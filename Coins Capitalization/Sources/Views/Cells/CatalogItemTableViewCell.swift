@@ -1,5 +1,5 @@
 //
-//  CoinItemTableViewCell.swift
+//  CatalogItemTableViewCell.swift
 //  Coins Capitalization
 //
 //  Created by Artem Kirillov on 03.03.18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class CoinItemTableViewCell: UITableViewCell {
+final class CatalogItemTableViewCell: UITableViewCell {
     
     // MARK: - Public Methods
     
@@ -18,9 +18,9 @@ final class CoinItemTableViewCell: UITableViewCell {
         nameLabel.text = ""
     }
     
-    func configure(coin: Coin) {
-        symbolLabel.text = coin.short
-        nameLabel.text = coin.long
+    func configure(title: String, subtitle: String? = nil) {
+        symbolLabel.text = title
+        nameLabel.text = subtitle
     }
     
     // MARK: - Private Properties

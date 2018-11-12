@@ -87,6 +87,7 @@ extension NewsViewController: UITableViewDelegate {
         controller.urlString = items[indexPath.row].url
         controller.host = items[indexPath.row].source.name
         
+        controller.modalTransitionStyle = .flipHorizontal
         present(controller, animated: true, completion: nil)
     }
 }

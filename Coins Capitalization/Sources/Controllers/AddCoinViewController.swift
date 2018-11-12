@@ -66,11 +66,6 @@ final class AddCoinViewController: UIViewController {
     }
     
     @IBAction func chooseButtonTapped(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        if let controller = storyboard.instantiateViewController(withIdentifier: "CoinsCatalogViewController") as? CoinsCatalogViewController {
-            controller.delegate = self
-            present(controller, animated: true, completion: nil)
-        }
     }
     
     @IBAction func cancelButtonTapped(sender: UIButton) {
@@ -116,15 +111,6 @@ final class AddCoinViewController: UIViewController {
     @IBOutlet weak var chooseButton: UIButton!
     @IBOutlet private weak var cancelButton: UIButton!
     @IBOutlet private weak var doneButton: UIButton!
-}
-
-// MARK: - CoinsCatalogViewControllerDelegate
-
-extension AddCoinViewController: CoinsCatalogViewControllerDelegate {
-    
-    func coinsCatalogViewController(controller: CoinsCatalogViewController, didSelect coin: Coin) {
-        setAsset(with: coin)
-    }
 }
 
 // MARK: - UITextFieldDelegate

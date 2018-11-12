@@ -13,7 +13,7 @@ final class NewTransactionViewController: UIViewController {
     // MARK: - Public Nested
     
     enum Row {
-        case option(title: String, value: String, disclosureImage: UIImage?)
+        case option(title: String, value: String)
         case textField(title: String, placeholder: String, text: String?)
         case totalCost(title: String, value: String)
         case button(title: String)
@@ -29,21 +29,14 @@ final class NewTransactionViewController: UIViewController {
         return .lightContent
     }
     
-    var rows: [Row] = [
-        .option(title: NSLocalizedString("Exchange", comment: ""), value: "Poloniex", disclosureImage: UIImage(imageLiteralResourceName: "disclosure")),
-        .option(title: NSLocalizedString("Traiding pair", comment: ""), value: "BTC/ETH", disclosureImage: UIImage(imageLiteralResourceName: "disclosure")),
-        .textField(title: NSLocalizedString("Price", comment: ""), placeholder: "---", text: ""),
-        .textField(title: NSLocalizedString("Quantity", comment: ""), placeholder: "---", text: ""),
-        .totalCost(title: NSLocalizedString("Total cost", comment: ""), value: "$ 120.00"),
-        .dateTime(date: "01.01.2018", time: "12:12"),
-        .notes(placeholder: "Notes", text: NSLocalizedString("Notes", comment: "")),
-        .button(title: "Approve")
-    ]
+    var rows: [Row] = []
     
     // MARK: - Public Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        rows = makeRows(exchange: nil, market: nil, price: nil, quantity: nil, date: nil, notes: nil)
         
         view.backgroundColor = Colors.backgroundColor
         
@@ -89,6 +82,10 @@ final class NewTransactionViewController: UIViewController {
     
     // MARK: - Private Properties
     
+    private var transaction = Transaction(kind: Transaction.Kind.buy.rawValue)
+    private var exchange: Exchange?
+    private var market: Market?
+    
     private let feedBackGenerator = UIImpactFeedbackGenerator()
     private var tableHeaderView: PortfolioTableHeaderView?
     
@@ -117,10 +114,10 @@ extension NewTransactionViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch rows[indexPath.row] {
-        case .option(let title, let value, let disclosureImage):
+        case .option(let title, let value):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: OptionCell.identifier, for: indexPath) as? OptionCell
                 else { return UITableViewCell() }
-            cell.configure(title: title, value: value, disclosureImage: disclosureImage)
+            cell.configure(title: title, value: value)
             return cell
             
         case .textField(let title, let placeholder, let text):
@@ -162,7 +159,13 @@ extension NewTransactionViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch rows[indexPath.row] {
-        case .option(let title, _, _): print("--- open menu for \(title)")
+        case .option:
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "CatalogViewController") as? CatalogViewController {
+            controller.delegate = self
+            controller.exchangeId = exchange?.exchangeId
+            controller.elements = indexPath.row == 0 ? .exchanges(exchanges: []) : .markets(markets: [])
+            present(controller, animated: true, completion: nil)
+            }
             
         case .textField:
             guard let cell = tableView.cellForRow(at: indexPath) as? TextFieldCell else { return }
@@ -187,6 +190,22 @@ extension NewTransactionViewController: UIScrollViewDelegate {
         lastContentOffset = scrollView.contentOffset.y
     }
     
+}
+
+// MARK: - CatalogViewControllerDelegate
+
+extension NewTransactionViewController: CatalogViewControllerDelegate {
+    func catalogViewController(controller: CatalogViewController, didSelectExchange exchange: Exchange) {
+        self.exchange = exchange
+        rows = makeRows(exchange: exchange, market: nil, price: nil, quantity: nil, date: Date(), notes: nil)
+        tableView.reloadData()
+    }
+    
+    func catalogViewController(controller: CatalogViewController, didSelectMarket market: Market) {
+        self.market = market
+        rows = makeRows(exchange: exchange, market: market, price: market.priceQuote, quantity: nil, date: Date(), notes: nil)
+        tableView.reloadData()
+    }
 }
 
 // MARK: - TextFieldCellDelegate
@@ -227,8 +246,30 @@ extension NewTransactionViewController: ButtonCellDelegate {
 
 private extension NewTransactionViewController {
     
-    func makeRows(coinDetails: CoinDetails) -> [Row] {
-        let rows: [Row] = []
+    func makeRows(exchange: Exchange?, market: Market?, price: String?, quantity: String?, date: Date?, notes: String?) -> [Row] {
+        
+        var rows: [Row] = [.option(title: NSLocalizedString("Exchange", comment: ""), value: exchange?.name ?? "---")]
+        
+        if let _ = exchange, let market = market {
+            rows += [
+                .option(title: NSLocalizedString("Traiding pair", comment: ""), value: "\(market.baseSymbol)/\(market.quoteSymbol)"),
+                .textField(title: NSLocalizedString("Price", comment: ""), placeholder: "---", text: market.priceQuote)
+            ]
+        } else {
+            rows += [
+                .option(title: NSLocalizedString("Traiding pair", comment: ""), value: "---"),
+                .textField(title: NSLocalizedString("Price", comment: ""), placeholder: "---", text: price)
+            ]
+        }
+        
+        rows += [
+            .textField(title: NSLocalizedString("Quantity", comment: ""), placeholder: "---", text: quantity),
+            .totalCost(title: NSLocalizedString("Total cost", comment: ""), value: "---"),
+            .dateTime(date: "01.01.2018", time: "12:12"),
+            .notes(placeholder: "Notes", text: NSLocalizedString("Notes", comment: "")),
+            .button(title: NSLocalizedString("Done", comment: ""))
+        ]
+        
         return rows
     }
     

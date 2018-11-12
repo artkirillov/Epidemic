@@ -94,12 +94,12 @@ final class API {
     }
     
     /// Requests exchanges from Coin Cap IO API
-    static func requestExchanges(success: @escaping (CoinDetails) -> Void, failure: @escaping (Error) -> Void) {
+    static func requestExchanges(success: @escaping (Exchanges) -> Void, failure: @escaping (Error) -> Void) {
         request(endpoint: .exchanges, success: success, failure: failure)
     }
     
     /// Requests markets from Coin Cap IO API
-    static func requestMarkets(exchangeId: String?, baseSymbol: String?, success: @escaping (CoinDetails) -> Void, failure: @escaping (Error) -> Void) {
+    static func requestMarkets(exchangeId: String?, baseSymbol: String?, success: @escaping (Markets) -> Void, failure: @escaping (Error) -> Void) {
         let endPoint = EndPoint.markets(exchangeId: exchangeId, baseSymbol: baseSymbol)
         request(endpoint: endPoint, parameters: endPoint.parameters, success: success, failure: failure)
     }

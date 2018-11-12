@@ -36,7 +36,7 @@ final class OptionCell: UITableViewCell {
         disclosure.image = nil
     }
     
-    func configure(title: String, value: String, disclosureImage: UIImage? = nil) {
+    func configure(title: String, value: String, disclosureImage: UIImage? = UIImage(imageLiteralResourceName: "disclosure")) {
         titleLabel.text = title.uppercased()
         valueLabel.text = value
         disclosure.image = disclosureImage

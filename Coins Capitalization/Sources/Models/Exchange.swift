@@ -6,9 +6,13 @@
 //  Copyright © 2018 ASK LLC. All rights reserved.
 //
 
+struct Exchanges: Codable {
+    var data: [Exchange]
+}
+
 struct Exchange: Codable {
     
-    var id: String
+    var exchangeId: String
     var name: String
     
 }

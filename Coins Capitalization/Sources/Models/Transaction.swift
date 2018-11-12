@@ -18,6 +18,8 @@ struct Transaction: Codable {
         case transfer
     }
     
+    // MARK: - Public Properties
+    
     var kind: String
     var exchange: String
     var baseSymbol: String
@@ -27,6 +29,29 @@ struct Transaction: Codable {
     var date: Date
     var commision: Double?
     var notes: String?
+    
+    // MARK: - Constructors
+    
+    init(kind: String = "",
+        exchange: String = "",
+        baseSymbol: String = "",
+        quoteSymbol: String = "",
+        price: Double = 0.0,
+        quantity: Double = 0.0,
+        date: Date = Date(),
+        commision: Double? = nil,
+        notes: String? = nil)
+    {
+        self.kind = kind
+        self.exchange = exchange
+        self.baseSymbol = baseSymbol
+        self.quoteSymbol = baseSymbol
+        self.price = price
+        self.quantity = quantity
+        self.date = date
+        self.commision = commision
+        self.notes = notes
+    }
     
 }
 

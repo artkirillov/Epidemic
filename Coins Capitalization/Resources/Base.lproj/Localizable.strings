@@ -11,6 +11,7 @@
 "News" = "News";
 "Article" = "Article";
 "New Transaction" = "New Transaction";
+"Catalog" = "Catalog";
 "Analytics" = "Analytics";
 
 "B" = "B";
@@ -77,7 +78,7 @@
 "Date" = "Date";
 "Time" = "Time";
 "Notes" = "Notes";
-"Approve" = "Approve";
+"Done" = "Done";
 
 "day" = "day";
 "severalDays" = "days";

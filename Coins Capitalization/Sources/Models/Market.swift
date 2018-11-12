@@ -6,6 +6,10 @@
 //  Copyright © 2018 ASK LLC. All rights reserved.
 //
 
+struct Markets: Codable {
+    var data: [Market]
+}
+
 struct Market: Codable {
     
     var exchangeId: String
@@ -13,7 +17,7 @@ struct Market: Codable {
     var baseId: String
     var quoteSymbol: String
     var quoteId: String
-    var priceQuote: Double
-    var priceUsd: Double
+    var priceQuote: String
+    var priceUsd: String
     
 }
