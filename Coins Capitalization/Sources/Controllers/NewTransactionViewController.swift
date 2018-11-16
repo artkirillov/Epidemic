@@ -160,12 +160,15 @@ extension NewTransactionViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch rows[indexPath.row] {
         case .option:
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "CatalogViewController") as? CatalogViewController {
-            controller.delegate = self
-            controller.exchangeId = exchange?.exchangeId
-            controller.elements = indexPath.row == 0 ? .exchanges(exchanges: []) : .markets(markets: [])
-            present(controller, animated: true, completion: nil)
-            }
+//            if let controller = storyboard?.instantiateViewController(withIdentifier: "CatalogViewController") as? CatalogViewController {
+//                controller.delegate = self
+//                controller.exchangeId = exchange?.exchangeId
+//                controller.elements = indexPath.row == 0 ? .exchanges(exchanges: []) : .markets(markets: [])
+//                present(controller, animated: true, completion: nil)
+//            }
+            let controller = PickerViewController(element: .date)
+            controller.modalPresentationStyle = .overCurrentContext
+            present(controller, animated: false, completion: nil)
             
         case .textField:
             guard let cell = tableView.cellForRow(at: indexPath) as? TextFieldCell else { return }

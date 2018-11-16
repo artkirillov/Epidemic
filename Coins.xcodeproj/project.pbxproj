@@ -42,6 +42,7 @@
 		216F349E21805FFB00D4E5AF /* DoubleInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216F349C21805FFB00D4E5AF /* DoubleInfoCell.xib */; };
 		216F34A02180624000D4E5AF /* SingleInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F349F2180624000D4E5AF /* SingleInfoCell.swift */; };
 		216F34A22180625700D4E5AF /* DoubleInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F34A12180625700D4E5AF /* DoubleInfoCell.swift */; };
+		217280F5219966DF00A3C23F /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217280F4219966DF00A3C23F /* PickerViewController.swift */; };
 		2173EC282017D4CD004BDECE /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2173EC272017D4CD004BDECE /* Coin.swift */; };
 		2173EC2C2017E16B004BDECE /* TickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2173EC2B2017E16B004BDECE /* TickerTableViewCell.swift */; };
 		21748CF821956A26002259F1 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21748CF721956A26002259F1 /* TextFieldCell.swift */; };
@@ -128,6 +129,7 @@
 		216F349D21805FFB00D4E5AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DoubleInfoCell.xib; sourceTree = "<group>"; };
 		216F349F2180624000D4E5AF /* SingleInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleInfoCell.swift; sourceTree = "<group>"; };
 		216F34A12180625700D4E5AF /* DoubleInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleInfoCell.swift; sourceTree = "<group>"; };
+		217280F4219966DF00A3C23F /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		2173EC272017D4CD004BDECE /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		2173EC2B2017E16B004BDECE /* TickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerTableViewCell.swift; sourceTree = "<group>"; };
 		21748CF721956A26002259F1 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 				2154CD9920DA5543002FA475 /* ArticleViewController.swift */,
 				213C50D9217F066800DDA8F3 /* AnalyticsViewController.swift */,
 				21DC61E72183077C007CB8EF /* NewTransactionViewController.swift */,
+				217280F4219966DF00A3C23F /* PickerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -551,6 +554,7 @@
 				21881B4221974C7B0055FA86 /* DateTimeCell.swift in Sources */,
 				218CB6D2204C58B100EDF550 /* ChartView.swift in Sources */,
 				21430DD821861C2F0072C856 /* Transaction.swift in Sources */,
+				217280F5219966DF00A3C23F /* PickerViewController.swift in Sources */,
 				2154CD9A20DA5543002FA475 /* ArticleViewController.swift in Sources */,
 				213887572183BBC5004F0371 /* ButtonCell.swift in Sources */,
 				21AA7BD82101C051009967E0 /* AlertViewController.swift in Sources */,
