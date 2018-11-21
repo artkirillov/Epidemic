@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol PickerViewControllerDelegate: class {
+    func pickerViewController(controller: PickerViewController, didSelectExchange exchange: Exchange)
+    func pickerViewController(controller: PickerViewController, didSelectMarket market: Market)
+}
+
 final class PickerViewController: UIViewController {
     
     // MARK: - Public Nested
@@ -16,12 +21,14 @@ final class PickerViewController: UIViewController {
         case date
         case time
         case exchange
-        case traidingPair
+        case market(exchangeId: String?, baseSymbol: String?)
     }
     
     // MARK: - Public Properties
     
     static let identifier = String(describing: PickerViewController.self)
+    
+    weak var delegate: PickerViewControllerDelegate?
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -34,13 +41,17 @@ final class PickerViewController: UIViewController {
         self.element = element
         
         switch element {
-        case .date:         picker = UIPickerView()
-        case .time:         picker = UIPickerView()
-        case .exchange:     picker = UIPickerView()
-        case .traidingPair: picker = UIPickerView()
+        case .date:     picker = UIPickerView()
+        case .time:     picker = UIPickerView()
+        case .exchange: picker = UIPickerView()
+        case .market:   picker = UIPickerView()
         }
         
         super.init(nibName: nil, bundle: nil)
+        
+        setupViews()
+        setupConstraints()
+        requestData()
         
         picker.dataSource = self
         picker.delegate = self
@@ -51,15 +62,6 @@ final class PickerViewController: UIViewController {
     }
     
     // MARK: - Public Methods
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupViews()
-        setupConstraints()
-        
-        containerView.alpha = 0.0
-    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -77,6 +79,8 @@ final class PickerViewController: UIViewController {
     
     // MARK: - Private Properties
     
+    private var items: Items = .exchanges([])
+    
     private let element: Element
     private let picker: UIPickerView
     private let effectView = UIVisualEffectView()
@@ -90,15 +94,20 @@ final class PickerViewController: UIViewController {
 
 extension PickerViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 2
+        return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 20
+        return items.rows.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "\(component) - \(row)"
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        return NSAttributedString(
+            string: items.rows[row],
+            attributes: [
+                .font: Fonts.title,
+                .foregroundColor: Colors.majorTextColor]
+        )
     }
     
 }
@@ -108,11 +117,29 @@ extension PickerViewController: UIPickerViewDataSource {
 extension PickerViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print("--- select \(component) - \(row)")
+        switch items {
+        case .exchanges(let exchanges): delegate?.pickerViewController(controller: self, didSelectExchange: exchanges[row])
+        case .markets(let markets): delegate?.pickerViewController(controller: self, didSelectMarket: markets[row])
+        }
     }
+    
 }
 
 private extension PickerViewController {
+    
+    // MARK: - Private Nested
+    
+    enum Items {
+        case exchanges([Exchange])
+        case markets([Market])
+        
+        var rows: [String] {
+            switch self {
+            case .exchanges(let exchanges): return exchanges.map { $0.name }
+            case .markets(let markets):     return markets.map { "\($0.baseSymbol)/\($0.quoteSymbol)" }
+            }
+        }
+    }
     
     // MARK: - Private Methods
     
@@ -121,6 +148,7 @@ private extension PickerViewController {
         view.backgroundColor = .clear
         
         view.addSubview(containerView)
+        containerView.alpha = 0.0
         
         containerView.addSubview(effectView)
         effectView.effect = UIBlurEffect(style: .dark)
@@ -130,7 +158,8 @@ private extension PickerViewController {
         containerView.addSubview(picker)
         
         picker.tintColor = Colors.majorTextColor
-        picker.backgroundColor = Colors.pickerBackgroundColor
+        picker.backgroundColor = .clear
+        picker.tintColor = .white
         
         cancelButton.setTitle(NSLocalizedString("Cancel", comment: ""), for: .normal)
         cancelButton.setTitleColor(Colors.majorTextColor, for: .normal)
@@ -158,14 +187,14 @@ private extension PickerViewController {
         cancelButton.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
         cancelButton.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
         cancelButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        cancelButton.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
+        cancelButton.heightAnchor.constraint(equalToConstant: 44.0).isActive = true
         
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         doneButton.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
         doneButton.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
         doneButton.bottomAnchor.constraint(equalTo: picker.topAnchor).isActive = true
         doneButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        doneButton.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
+        doneButton.heightAnchor.constraint(equalToConstant: 44.0).isActive = true
         
         picker.translatesAutoresizingMaskIntoConstraints = false
         picker.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
@@ -186,6 +215,49 @@ private extension PickerViewController {
     
     @objc func doneButtonTapped() {
         dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+// MARK: - Network Requests
+
+private extension PickerViewController {
+    
+    func requestData() {
+        switch element {
+        case .exchange:
+            
+            API.requestExchanges(
+                success: { [weak self] response in
+                    guard let slf = self else { return }
+                    
+                    let exchanges = response.data.sorted { $0.name < $1.name }
+                    slf.items = .exchanges(exchanges)
+                    slf.picker.reloadAllComponents()
+                },
+                failure: { [weak self] error in self?.showErrorAlert(error) }
+            )
+        
+        case .market(let exchangeId, let baseSymbol):
+            
+            API.requestMarkets(
+                exchangeId: exchangeId,
+                baseSymbol: baseSymbol,
+                success: { [weak self] response in
+                    guard let slf = self else { return }
+                    
+                    let markets = response.data.sorted { "\($0.baseSymbol)/\($0.quoteSymbol)" < "\($1.baseSymbol)/\($1.quoteSymbol)" }
+                    slf.items = .markets(markets)
+                    slf.picker.reloadAllComponents()
+                },
+                failure: { [weak self] error in
+                    self?.showErrorAlert(error)
+            })
+            
+            
+        default: break
+            
+        }
     }
     
 }

@@ -93,7 +93,6 @@ final class NewTransactionViewController: UIViewController {
     @IBOutlet weak var segmentedControl: SegmentedControl!
     @IBOutlet private var tableView: UITableView!
     
-    private var lastContentOffset: CGFloat = 0.0
     private let contentOffsetThreshold: CGFloat = 37.0
     private let animation: CATransition = {
         let animation = CATransition()
@@ -158,15 +157,15 @@ extension NewTransactionViewController: UITableViewDataSource {
 extension NewTransactionViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        
         switch rows[indexPath.row] {
         case .option:
-//            if let controller = storyboard?.instantiateViewController(withIdentifier: "CatalogViewController") as? CatalogViewController {
-//                controller.delegate = self
-//                controller.exchangeId = exchange?.exchangeId
-//                controller.elements = indexPath.row == 0 ? .exchanges(exchanges: []) : .markets(markets: [])
-//                present(controller, animated: true, completion: nil)
-//            }
-            let controller = PickerViewController(element: .date)
+            let element = indexPath.row == 0 ?
+                PickerViewController.Element.exchange :
+                PickerViewController.Element.market(exchangeId: exchange?.exchangeId, baseSymbol: nil)
+            let controller = PickerViewController(element: element)
+            controller.delegate = self
             controller.modalPresentationStyle = .overCurrentContext
             present(controller, animated: false, completion: nil)
             
@@ -180,35 +179,22 @@ extension NewTransactionViewController: UITableViewDelegate {
     
 }
 
-// MARK: - UIScrollViewDelegate
-
-extension NewTransactionViewController: UIScrollViewDelegate {
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if (scrollView.contentOffset.y - contentOffsetThreshold) * (lastContentOffset - contentOffsetThreshold) <= 0 {
-            titleLabel.layer.add(animation, forKey: kCATransition)
-            
-        }
-        
-        lastContentOffset = scrollView.contentOffset.y
-    }
-    
-}
-
 // MARK: - CatalogViewControllerDelegate
 
-extension NewTransactionViewController: CatalogViewControllerDelegate {
-    func catalogViewController(controller: CatalogViewController, didSelectExchange exchange: Exchange) {
+extension NewTransactionViewController: PickerViewControllerDelegate {
+    
+    func pickerViewController(controller: PickerViewController, didSelectExchange exchange: Exchange) {
         self.exchange = exchange
         rows = makeRows(exchange: exchange, market: nil, price: nil, quantity: nil, date: Date(), notes: nil)
         tableView.reloadData()
     }
     
-    func catalogViewController(controller: CatalogViewController, didSelectMarket market: Market) {
+    func pickerViewController(controller: PickerViewController, didSelectMarket market: Market) {
         self.market = market
         rows = makeRows(exchange: exchange, market: market, price: market.priceQuote, quantity: nil, date: Date(), notes: nil)
         tableView.reloadData()
     }
+    
 }
 
 // MARK: - TextFieldCellDelegate

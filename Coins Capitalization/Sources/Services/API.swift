@@ -136,7 +136,7 @@ final class API {
             let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
                 guard error == nil else {
                     print("ERROR: \(String(describing: error))")
-                    failure(error!)
+                    DispatchQueue.main.async { failure(error!) }
                     return
                 }
                 
