@@ -11,6 +11,7 @@ import UIKit
 protocol PickerViewControllerDelegate: class {
     func pickerViewController(controller: PickerViewController, didSelectExchange exchange: Exchange)
     func pickerViewController(controller: PickerViewController, didSelectMarket market: Market)
+    func pickerViewController(controller: PickerViewController, didSelectDate date: Date)
 }
 
 final class PickerViewController: UIViewController {
@@ -18,8 +19,7 @@ final class PickerViewController: UIViewController {
     // MARK: - Public Nested
     
     enum Element {
-        case date
-        case time
+        case dateTime(Date?, isDate: Bool)
         case exchange
         case market(exchangeId: String?, baseSymbol: String?)
     }
@@ -37,24 +37,24 @@ final class PickerViewController: UIViewController {
     // MARK: - Constructors
     
     init(element: Element) {
-        
         self.element = element
         
-        switch element {
-        case .date:     picker = UIPickerView()
-        case .time:     picker = UIPickerView()
-        case .exchange: picker = UIPickerView()
-        case .market:   picker = UIPickerView()
-        }
-        
         super.init(nibName: nil, bundle: nil)
+        
+        switch element {
+        case .dateTime(let date, let isDate):
+            setDatePicker(date: date, isDate: isDate)
+            
+        case .exchange, .market:
+            let picker = UIPickerView()
+            picker.dataSource = self
+            picker.delegate = self
+            self.picker = picker
+        }
         
         setupViews()
         setupConstraints()
         requestData()
-        
-        picker.dataSource = self
-        picker.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -82,11 +82,10 @@ final class PickerViewController: UIViewController {
     private var items: Items = .exchanges([])
     
     private let element: Element
-    private let picker: UIPickerView
+    private var picker = UIView()
     private let effectView = UIVisualEffectView()
     private let containerView = UIView()
     private let doneButton = UIButton(type: .system)
-    private let cancelButton = UIButton(type: .system)
     
 }
 
@@ -118,8 +117,13 @@ extension PickerViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch items {
-        case .exchanges(let exchanges): delegate?.pickerViewController(controller: self, didSelectExchange: exchanges[row])
-        case .markets(let markets): delegate?.pickerViewController(controller: self, didSelectMarket: markets[row])
+        case .exchanges(let exchanges):
+            guard exchanges.count > 0 else { return }
+            delegate?.pickerViewController(controller: self, didSelectExchange: exchanges[row])
+            
+        case .markets(let markets):
+            guard markets.count > 0 else { return }
+            delegate?.pickerViewController(controller: self, didSelectMarket: markets[row])
         }
     }
     
@@ -143,8 +147,17 @@ private extension PickerViewController {
     
     // MARK: - Private Methods
     
+    func setDatePicker(date: Date?, isDate: Bool) {
+        let picker = UIDatePicker()
+        picker.datePickerMode = isDate ? .date : .time
+        picker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
+        picker.setValue(Colors.majorTextColor, forKey: "textColor")
+        date.flatMap { picker.setDate($0, animated: false) }
+        self.picker = picker
+    }
+    
     func setupViews() {
-        
+     
         view.backgroundColor = .clear
         
         view.addSubview(containerView)
@@ -153,21 +166,22 @@ private extension PickerViewController {
         containerView.addSubview(effectView)
         effectView.effect = UIBlurEffect(style: .dark)
         
-        containerView.addSubview(cancelButton)
-        containerView.addSubview(doneButton)
         containerView.addSubview(picker)
+        containerView.addSubview(doneButton)
         
         picker.tintColor = Colors.majorTextColor
         picker.backgroundColor = .clear
         picker.tintColor = .white
         
-        cancelButton.setTitle(NSLocalizedString("Cancel", comment: ""), for: .normal)
-        cancelButton.setTitleColor(Colors.majorTextColor, for: .normal)
-        cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
-        
-        doneButton.setTitle(NSLocalizedString("Done", comment: ""), for: .normal)
-        doneButton.setTitleColor(Colors.majorTextColor, for: .normal)
         doneButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
+        doneButton.setTitle(NSLocalizedString("Done", comment: ""), for: .normal)
+        doneButton.layer.cornerRadius = Layout.buttonHeight / 2
+        doneButton.backgroundColor = Colors.blueColor
+        doneButton.setTitleColor(Colors.minorTextColor, for: .highlighted)
+        doneButton.setTitleColor(Colors.majorTextColor, for: .normal)
+        doneButton.titleLabel?.font = Fonts.buttonTitle
+        
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
     }
     
     func setupConstraints() {
@@ -183,18 +197,12 @@ private extension PickerViewController {
         effectView.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
         effectView.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
         
-        cancelButton.translatesAutoresizingMaskIntoConstraints = false
-        cancelButton.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
-        cancelButton.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
-        cancelButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        cancelButton.heightAnchor.constraint(equalToConstant: 44.0).isActive = true
-        
         doneButton.translatesAutoresizingMaskIntoConstraints = false
-        doneButton.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
-        doneButton.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
-        doneButton.bottomAnchor.constraint(equalTo: picker.topAnchor).isActive = true
-        doneButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        doneButton.heightAnchor.constraint(equalToConstant: 44.0).isActive = true
+        doneButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: Layout.smallMargin).isActive = true
+        doneButton.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: Layout.bigMargin).isActive = true
+        doneButton.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -Layout.bigMargin).isActive = true
+        doneButton.bottomAnchor.constraint(equalTo: picker.topAnchor, constant: Layout.smallMargin).isActive = true
+        doneButton.heightAnchor.constraint(equalToConstant: Layout.buttonHeight).isActive = true
         
         picker.translatesAutoresizingMaskIntoConstraints = false
         picker.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
@@ -203,21 +211,44 @@ private extension PickerViewController {
         containerView.transform = CGAffineTransform(translationX: 0.0, y: containerView.bounds.height)
     }
     
-    @objc func cancelButtonTapped() {
-        
+    @objc func handleTap() {
+        dismissPicker(animated: true, completion: nil)
+    }
+    
+    @objc func doneButtonTapped() {
+        dismissPicker(animated: true, completion: nil)
+    }
+    
+    @objc func dateChanged(_ picker: UIDatePicker) {
+        delegate?.pickerViewController(controller: self, didSelectDate: picker.date)
+    }
+    
+}
+
+private extension PickerViewController {
+    
+    // MARK: - Private Nested
+    
+    struct Layout {
+        static let buttonHeight: CGFloat = 44.0
+        static let smallMargin: CGFloat = 8.0
+        static let bigMargin: CGFloat = 50.0
+        static let margin: CGFloat = 20.0
+    }
+    
+    // MARK: - Private Methods
+    
+    func dismissPicker(animated: Bool, completion: (() -> Void)?) {
         UIView.animate(
-            withDuration: 0.3,
+            withDuration: animated ? 0.3 : 0.0,
             delay: 0.0,
             options: .curveEaseOut,
             animations: { self.containerView.transform = CGAffineTransform(translationX: 0.0, y: self.containerView.bounds.height) },
             completion: { _ in self.dismiss(animated: false, completion: nil) })
     }
     
-    @objc func doneButtonTapped() {
-        dismiss(animated: true, completion: nil)
-    }
-    
 }
+
 
 // MARK: - Network Requests
 
@@ -233,7 +264,7 @@ private extension PickerViewController {
                     
                     let exchanges = response.data.sorted { $0.name < $1.name }
                     slf.items = .exchanges(exchanges)
-                    slf.picker.reloadAllComponents()
+                    (slf.picker as? UIPickerView)?.reloadAllComponents()
                 },
                 failure: { [weak self] error in self?.showErrorAlert(error) }
             )
@@ -248,7 +279,7 @@ private extension PickerViewController {
                     
                     let markets = response.data.sorted { "\($0.baseSymbol)/\($0.quoteSymbol)" < "\($1.baseSymbol)/\($1.quoteSymbol)" }
                     slf.items = .markets(markets)
-                    slf.picker.reloadAllComponents()
+                    (slf.picker as? UIPickerView)?.reloadAllComponents()
                 },
                 failure: { [weak self] error in
                     self?.showErrorAlert(error)

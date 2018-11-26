@@ -36,7 +36,7 @@ final class NewTransactionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        rows = makeRows(exchange: nil, market: nil, price: nil, quantity: nil, date: nil, notes: nil)
+        rows = makeRows(exchange: nil, market: nil, price: nil, quantity: nil, date: date, notes: nil)
         
         view.backgroundColor = Colors.backgroundColor
         
@@ -85,6 +85,7 @@ final class NewTransactionViewController: UIViewController {
     private var transaction = Transaction(kind: Transaction.Kind.buy.rawValue)
     private var exchange: Exchange?
     private var market: Market?
+    private var date = Date()
     
     private let feedBackGenerator = UIImpactFeedbackGenerator()
     private var tableHeaderView: PortfolioTableHeaderView?
@@ -158,6 +159,7 @@ extension NewTransactionViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+        tableView.endEditing(true)
         
         switch rows[indexPath.row] {
         case .option:
@@ -185,13 +187,41 @@ extension NewTransactionViewController: PickerViewControllerDelegate {
     
     func pickerViewController(controller: PickerViewController, didSelectExchange exchange: Exchange) {
         self.exchange = exchange
-        rows = makeRows(exchange: exchange, market: nil, price: nil, quantity: nil, date: Date(), notes: nil)
+        self.market = nil
+        rows = makeRows(
+            exchange: exchange,
+            market: market,
+            price: market?.priceQuote,
+            quantity: nil,
+            date: date,
+            notes: nil
+        )
         tableView.reloadData()
     }
     
     func pickerViewController(controller: PickerViewController, didSelectMarket market: Market) {
         self.market = market
-        rows = makeRows(exchange: exchange, market: market, price: market.priceQuote, quantity: nil, date: Date(), notes: nil)
+        rows = makeRows(
+            exchange: exchange,
+            market: market,
+            price: market.priceQuote,
+            quantity: nil,
+            date: date,
+            notes: nil
+        )
+        tableView.reloadData()
+    }
+    
+    func pickerViewController(controller: PickerViewController, didSelectDate date: Date) {
+        self.date = date
+        rows = makeRows(
+            exchange: exchange,
+            market: market,
+            price: market?.priceQuote,
+            quantity: nil,
+            date: date,
+            notes: nil
+        )
         tableView.reloadData()
     }
     
@@ -200,6 +230,11 @@ extension NewTransactionViewController: PickerViewControllerDelegate {
 // MARK: - TextFieldCellDelegate
 
 extension NewTransactionViewController: TextFieldCellDelegate {
+    
+    func textFieldCellDoneButtonTapped(cell: TextFieldCell) {
+        view.endEditing(true)
+    }
+    
     
     func textFieldCell(cell: TextFieldCell, didChangeText text: String?) {
         print("--- new text \(text ?? "")")
@@ -212,11 +247,17 @@ extension NewTransactionViewController: TextFieldCellDelegate {
 extension NewTransactionViewController: DateTimeCellDelegate {
     
     func dateTimeCellDidRequestNewDate(cell: DateTimeCell) {
-        print("--- open date picker")
+        let controller = PickerViewController(element: .dateTime(date, isDate: true))
+        controller.delegate = self
+        controller.modalPresentationStyle = .overCurrentContext
+        present(controller, animated: false, completion: nil)
     }
     
     func dateTimeCellDidRequestNewTime(cell: DateTimeCell) {
-        print("--- open time picker")
+        let controller = PickerViewController(element: .dateTime(date, isDate: false))
+        controller.delegate = self
+        controller.modalPresentationStyle = .overCurrentContext
+        present(controller, animated: false, completion: nil)
     }
     
 }
@@ -235,14 +276,17 @@ extension NewTransactionViewController: ButtonCellDelegate {
 
 private extension NewTransactionViewController {
     
-    func makeRows(exchange: Exchange?, market: Market?, price: String?, quantity: String?, date: Date?, notes: String?) -> [Row] {
+    func makeRows(exchange: Exchange?, market: Market?, price: String?, quantity: String?, date: Date, notes: String?) -> [Row] {
         
         var rows: [Row] = [.option(title: NSLocalizedString("Exchange", comment: ""), value: exchange?.name ?? "---")]
         
         if let _ = exchange, let market = market {
+            let priceTitle = String(format: NSLocalizedString("Price in %@", comment: ""), market.quoteSymbol)
+            let price = Double(market.priceQuote)
+            let priceString = price.flatMap { Formatter.format($0, maximumFractionDigits: Formatter.maximumFractionDigits(for: $0)) }
             rows += [
                 .option(title: NSLocalizedString("Traiding pair", comment: ""), value: "\(market.baseSymbol)/\(market.quoteSymbol)"),
-                .textField(title: NSLocalizedString("Price", comment: ""), placeholder: "---", text: market.priceQuote)
+                .textField(title: priceTitle, placeholder: "---", text: priceString)
             ]
         } else {
             rows += [
@@ -251,15 +295,29 @@ private extension NewTransactionViewController {
             ]
         }
         
+        let (dateString, timeString) = dateTime(from: date)
+        
         rows += [
             .textField(title: NSLocalizedString("Quantity", comment: ""), placeholder: "---", text: quantity),
             .totalCost(title: NSLocalizedString("Total cost", comment: ""), value: "---"),
-            .dateTime(date: "01.01.2018", time: "12:12"),
+            .dateTime(date: dateString, time: timeString),
             .notes(placeholder: "Notes", text: NSLocalizedString("Notes", comment: "")),
             .button(title: NSLocalizedString("Done", comment: ""))
         ]
         
         return rows
+    }
+    
+    func dateTime(from date: Date) -> (String, String) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        let dateString = dateFormatter.string(from: date)
+        
+        dateFormatter.dateStyle = .none
+        dateFormatter.timeStyle = .short
+        let timeString = dateFormatter.string(from: date)
+        
+        return (dateString, timeString)
     }
     
 }

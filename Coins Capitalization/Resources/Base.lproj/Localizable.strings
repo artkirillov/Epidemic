@@ -70,6 +70,7 @@
 "Exchange" = "Exchange";
 "Traiding pair" = "Traiding pair";
 "Price" = "Price";
+"Price in %@" = "Price in %@";
 "Quantity" = "Quantity";
 "Cost" = "Cost";
 "Total cost" = "Total cost";

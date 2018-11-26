@@ -23,10 +23,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sts-An-RkD">
-                    <rect key="frame" x="15" y="29" width="100" height="25"/>
+                    <rect key="frame" x="15" y="29" width="200" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="gPI-n4-s60"/>
-                        <constraint firstAttribute="width" constant="100" id="mDf-DG-Ioc"/>
+                        <constraint firstAttribute="width" constant="200" id="mDf-DG-Ioc"/>
                     </constraints>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>

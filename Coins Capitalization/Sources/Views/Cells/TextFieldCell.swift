@@ -10,6 +10,7 @@ import UIKit
 
 protocol TextFieldCellDelegate: class {
     func textFieldCell(cell: TextFieldCell, didChangeText text: String?)
+    func textFieldCellDoneButtonTapped(cell: TextFieldCell)
 }
 
 final class TextFieldCell: UITableViewCell {
@@ -36,6 +37,10 @@ final class TextFieldCell: UITableViewCell {
         textField.delegate = self
         textField.keyboardType = .decimalPad
         textField.keyboardAppearance = .dark
+        
+        let buttonView = ButtonInputAccessoryView(title: NSLocalizedString("Done", comment: ""))
+        buttonView.delegate = self
+        textField.inputAccessoryView = buttonView
     }
     
     override func prepareForReuse() {
@@ -59,6 +64,10 @@ final class TextFieldCell: UITableViewCell {
     
     func beginEdit() {
         textField.becomeFirstResponder()
+    }
+    
+    @objc func buttonTapped() {
+        
     }
     
     // MARK: - Private Properties
@@ -89,3 +98,12 @@ extension TextFieldCell: UITextFieldDelegate {
     
 }
 
+// MARK: - ButtonInputAccessoryViewDelegate
+
+extension TextFieldCell: ButtonInputAccessoryViewDelegate {
+    
+    func buttonInputAccessoryViewDidTap(view: ButtonInputAccessoryView) {
+        delegate?.textFieldCellDoneButtonTapped(cell: self)
+    }
+    
+}
