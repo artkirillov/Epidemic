@@ -29,7 +29,7 @@ final class ArticleViewController: UIViewController {
         let titleString = (host ?? NSLocalizedString("Article", comment: "")).uppercased()
         headerLabel.attributedText = NSAttributedString.attributedTitle(string: titleString)
         
-        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        activityIndicator = UIActivityIndicatorView(style: .white)
         if let activityIndicatorView = activityIndicator { view.addSubview(activityIndicatorView) }
         activityIndicator?.center = view.center
         activityIndicator?.startAnimating()

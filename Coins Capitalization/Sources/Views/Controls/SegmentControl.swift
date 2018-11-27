@@ -92,7 +92,7 @@ final class SegmentedControl: UIControl {
         backgroundColor = .clear
         setupLabels()
         addSubview(thumbView)
-        sendSubview(toBack: thumbView)
+        sendSubviewToBack(thumbView)
         feedBackGenerator = feedbackGeneratorIsOn ? UISelectionFeedbackGenerator() : nil
     }
     

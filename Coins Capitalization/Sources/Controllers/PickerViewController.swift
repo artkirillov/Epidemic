@@ -80,6 +80,7 @@ final class PickerViewController: UIViewController {
     // MARK: - Private Properties
     
     private var items: Items = .exchanges([])
+    private var didSelectItem = false
     
     private let element: Element
     private var picker = UIView()
@@ -116,15 +117,8 @@ extension PickerViewController: UIPickerViewDataSource {
 extension PickerViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        switch items {
-        case .exchanges(let exchanges):
-            guard exchanges.count > 0 else { return }
-            delegate?.pickerViewController(controller: self, didSelectExchange: exchanges[row])
-            
-        case .markets(let markets):
-            guard markets.count > 0 else { return }
-            delegate?.pickerViewController(controller: self, didSelectMarket: markets[row])
-        }
+        pickItem(inRow: row)
+        didSelectItem = true
     }
     
 }
@@ -216,11 +210,13 @@ private extension PickerViewController {
     }
     
     @objc func doneButtonTapped() {
+        if !didSelectItem, picker is UIPickerView { pickItem(inRow: 0) }
         dismissPicker(animated: true, completion: nil)
     }
     
     @objc func dateChanged(_ picker: UIDatePicker) {
         delegate?.pickerViewController(controller: self, didSelectDate: picker.date)
+        didSelectItem = true
     }
     
 }
@@ -245,6 +241,18 @@ private extension PickerViewController {
             options: .curveEaseOut,
             animations: { self.containerView.transform = CGAffineTransform(translationX: 0.0, y: self.containerView.bounds.height) },
             completion: { _ in self.dismiss(animated: false, completion: nil) })
+    }
+    
+    func pickItem(inRow row: Int) {
+        switch items {
+        case .exchanges(let exchanges):
+            guard exchanges.count > 0 else { return }
+            delegate?.pickerViewController(controller: self, didSelectExchange: exchanges[row])
+            
+        case .markets(let markets):
+            guard markets.count > 0 else { return }
+            delegate?.pickerViewController(controller: self, didSelectMarket: markets[row])
+        }
     }
     
 }

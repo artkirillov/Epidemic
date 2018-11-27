@@ -61,7 +61,7 @@ final class CoinDetailsViewController: UIViewController {
         tableView.register(UINib(nibName: SingleInfoCell.identifier, bundle: nil), forCellReuseIdentifier: SingleInfoCell.identifier)
         tableView.register(UINib(nibName: DoubleInfoCell.identifier, bundle: nil), forCellReuseIdentifier: DoubleInfoCell.identifier)
         tableView.register(UINib(nibName: ButtonCell.identifier, bundle: nil), forCellReuseIdentifier: ButtonCell.identifier)
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 150.0
         
         transitioningDelegate = self
@@ -110,7 +110,7 @@ final class CoinDetailsViewController: UIViewController {
     private let animation: CATransition = {
         let animation = CATransition()
         animation.duration = 0.2
-        animation.type = kCATransitionFade
+        animation.type = CATransitionType.fade
         return animation
     }()
     

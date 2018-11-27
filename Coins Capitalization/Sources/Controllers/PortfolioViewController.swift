@@ -65,12 +65,12 @@ final class PortfolioViewController: UIViewController {
                     title: NSLocalizedString("Go to AppStore", comment: ""),
                     handler: { [weak controller] in
                         if let appId = Storage.appId(), let url = URL(string: "https://itunes.apple.com/app/id\(appId)") {
-                            UIApplication.shared.open(url, options: [:], completionHandler: { _ in
+                            UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: { _ in
                                 Storage.save(maxPortfolioVolume: 5)
                                 controller?.dismiss(animated: true, completion: nil)
                             })
                         } else if let url = URL(string: "https://www.apple.com/itunes/") {
-                            UIApplication.shared.open(url, options: [:], completionHandler: { _ in
+                            UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: { _ in
                                 Storage.save(maxPortfolioVolume: 5)
                                 controller?.dismiss(animated: true, completion: nil)
                             })
@@ -187,7 +187,7 @@ extension PortfolioViewController: UITableViewDelegate {
         }
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         items.remove(at: indexPath.row)
         tableView.reloadData()
         var currentValue: Double = 0.0
@@ -228,4 +228,9 @@ private extension PortfolioViewController {
         tableView.refreshControl?.endRefreshing()
     }
     
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

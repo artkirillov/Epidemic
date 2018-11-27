@@ -28,14 +28,14 @@ final class NewsViewController: UIViewController {
         titleLabel.attributedText = NSAttributedString.attributedTitle(string: titleString)
         
         tableView.tableFooterView = UIView()
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 135.5
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
         tableView.refreshControl = refreshControl
         
-        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        activityIndicator = UIActivityIndicatorView(style: .white)
         if let activityIndicatorView = activityIndicator { view.addSubview(activityIndicatorView) }
         activityIndicator?.center = view.center
         activityIndicator?.startAnimating()

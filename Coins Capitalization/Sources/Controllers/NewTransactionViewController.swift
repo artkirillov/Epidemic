@@ -51,7 +51,7 @@ final class NewTransactionViewController: UIViewController {
         tableView.register(UINib(nibName: TotalCostCell.identifier, bundle: nil), forCellReuseIdentifier: TotalCostCell.identifier)
         tableView.register(UINib(nibName: DateTimeCell.identifier, bundle: nil), forCellReuseIdentifier: DateTimeCell.identifier)
         tableView.register(UINib(nibName: NotesCell.identifier, bundle: nil), forCellReuseIdentifier: NotesCell.identifier)
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 150.0
         
         segmentedControl.items = [
@@ -98,7 +98,7 @@ final class NewTransactionViewController: UIViewController {
     private let animation: CATransition = {
         let animation = CATransition()
         animation.duration = 0.2
-        animation.type = kCATransitionFade
+        animation.type = CATransitionType.fade
         return animation
     }()
     

@@ -81,7 +81,7 @@ final class CoinsViewController: UIViewController {
         // and update search text fiels visibility
         let animation = CATransition()
         animation.duration = 0.2
-        animation.type = kCATransitionFade
+        animation.type = CATransitionType.fade
         searchTextField.layer.add(animation, forKey: kCATransition)
         searchTextField.alpha = sender.selectedIndex == 0 || !favoriteItemsCountIsBig ? 1.0 : 0.0
     }

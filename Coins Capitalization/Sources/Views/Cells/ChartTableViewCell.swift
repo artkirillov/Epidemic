@@ -22,7 +22,7 @@ class ChartTableViewCell: UITableViewCell {
     
     // MARK: - Constructors
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     
         setupViews()
@@ -66,7 +66,7 @@ class ChartTableViewCell: UITableViewCell {
     private let animation: CATransition = {
         let animation = CATransition()
         animation.duration = 0.2
-        animation.type = kCATransitionFade
+        animation.type = CATransitionType.fade
         return animation
     }()
     

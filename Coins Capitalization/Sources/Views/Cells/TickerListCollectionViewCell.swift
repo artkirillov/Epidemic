@@ -32,7 +32,7 @@ class TickerListCollectionViewCell: UICollectionViewCell {
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 110.0
         tableView.keyboardDismissMode = .onDrag
         
