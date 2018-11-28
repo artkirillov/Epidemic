@@ -16,9 +16,8 @@ final class NewTransactionViewController: UIViewController {
         case option(title: String, value: String)
         case textField(title: String, placeholder: String, text: String?)
         case totalCost(title: String, value: String)
-        case button(title: String)
         case dateTime(date: String, time: String)
-        case notes(placeholder: String, text: String?)
+        case button(title: String)
     }
     
     // MARK: - Public Properties
@@ -50,7 +49,6 @@ final class NewTransactionViewController: UIViewController {
         tableView.register(UINib(nibName: ButtonCell.identifier, bundle: nil), forCellReuseIdentifier: ButtonCell.identifier)
         tableView.register(UINib(nibName: TotalCostCell.identifier, bundle: nil), forCellReuseIdentifier: TotalCostCell.identifier)
         tableView.register(UINib(nibName: DateTimeCell.identifier, bundle: nil), forCellReuseIdentifier: DateTimeCell.identifier)
-        tableView.register(UINib(nibName: NotesCell.identifier, bundle: nil), forCellReuseIdentifier: NotesCell.identifier)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 150.0
         
@@ -60,6 +58,9 @@ final class NewTransactionViewController: UIViewController {
             NSLocalizedString("Transfer", comment: "").uppercased()
         ]
         segmentedControl.thumb = .line
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,12 +81,25 @@ final class NewTransactionViewController: UIViewController {
         view.endEditing(true)
     }
     
+    @objc func keyboardWillShow(notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            keyboardHeight = keyboardSize.height
+            tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardHeight, right: 0.0)
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        tableView.contentInset = UIEdgeInsets.zero
+    }
+    
     // MARK: - Private Properties
     
     private var transaction = Transaction(kind: Transaction.Kind.buy.rawValue)
     private var exchange: Exchange?
     private var market: Market?
     private var date = Date()
+    private var quantity = 0.0
+    private var notes = ""
     
     private let feedBackGenerator = UIImpactFeedbackGenerator()
     private var tableHeaderView: PortfolioTableHeaderView?
@@ -94,13 +108,7 @@ final class NewTransactionViewController: UIViewController {
     @IBOutlet weak var segmentedControl: SegmentedControl!
     @IBOutlet private var tableView: UITableView!
     
-    private let contentOffsetThreshold: CGFloat = 37.0
-    private let animation: CATransition = {
-        let animation = CATransition()
-        animation.duration = 0.2
-        animation.type = CATransitionType.fade
-        return animation
-    }()
+    private var keyboardHeight: CGFloat = 0.0
     
 }
 
@@ -142,12 +150,6 @@ extension NewTransactionViewController: UITableViewDataSource {
                 else { return UITableViewCell() }
             cell.configure(datetitle: date, timeTitle: time, delegate: self)
             return cell
-            
-        case .notes(let placeholder, let text):
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: NotesCell.identifier, for: indexPath) as? NotesCell
-                else { return UITableViewCell() }
-            cell.configure(placeholder: placeholder, text: text)
-            return cell
         }
     }
     
@@ -175,7 +177,7 @@ extension NewTransactionViewController: UITableViewDelegate {
             guard let cell = tableView.cellForRow(at: indexPath) as? TextFieldCell else { return }
             cell.beginEdit()
             
-        case .button, .totalCost, .dateTime, .notes: break
+        case .button, .totalCost, .dateTime: break
         }
     }
     
@@ -301,7 +303,6 @@ private extension NewTransactionViewController {
             .textField(title: NSLocalizedString("Quantity", comment: ""), placeholder: "---", text: quantity),
             .totalCost(title: NSLocalizedString("Total cost", comment: ""), value: "---"),
             .dateTime(date: dateString, time: timeString),
-            .notes(placeholder: "Notes", text: NSLocalizedString("Notes", comment: "")),
             .button(title: NSLocalizedString("Done", comment: ""))
         ]
         

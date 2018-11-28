@@ -50,8 +50,6 @@
 		2186E10E204C162C000374A6 /* ReduceCoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2186E10D204C162C000374A6 /* ReduceCoinViewController.swift */; };
 		21881B40219745CF0055FA86 /* DateTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21881B3E219745CF0055FA86 /* DateTimeCell.xib */; };
 		21881B4221974C7B0055FA86 /* DateTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21881B4121974C7B0055FA86 /* DateTimeCell.swift */; };
-		21881B4521975A830055FA86 /* NotesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21881B4321975A830055FA86 /* NotesCell.xib */; };
-		21881B4721975BE10055FA86 /* NotesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21881B4621975BE10055FA86 /* NotesCell.swift */; };
 		218CB6CE204C513000EDF550 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218CB6CD204C513000EDF550 /* ChartData.swift */; };
 		218CB6D2204C58B100EDF550 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218CB6D1204C58B100EDF550 /* ChartView.swift */; };
 		218CB6D4204C5A8000EDF550 /* SegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218CB6D3204C5A8000EDF550 /* SegmentControl.swift */; };
@@ -136,8 +134,6 @@
 		2186E10D204C162C000374A6 /* ReduceCoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReduceCoinViewController.swift; sourceTree = "<group>"; };
 		21881B3F219745CF0055FA86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DateTimeCell.xib; sourceTree = "<group>"; };
 		21881B4121974C7B0055FA86 /* DateTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeCell.swift; sourceTree = "<group>"; };
-		21881B4421975A830055FA86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NotesCell.xib; sourceTree = "<group>"; };
-		21881B4621975BE10055FA86 /* NotesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesCell.swift; sourceTree = "<group>"; };
 		218CB6CD204C513000EDF550 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
 		218CB6D1204C58B100EDF550 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		218CB6D3204C5A8000EDF550 /* SegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentControl.swift; sourceTree = "<group>"; };
@@ -200,7 +196,6 @@
 				21BD3B3321941CFF00DE6661 /* TextFieldCell.xib */,
 				2160A1B12197379600409A0A /* TotalCostCell.xib */,
 				21881B3E219745CF0055FA86 /* DateTimeCell.xib */,
-				21881B4321975A830055FA86 /* NotesCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -298,7 +293,6 @@
 				21748CF721956A26002259F1 /* TextFieldCell.swift */,
 				2160A1B4219738BA00409A0A /* TotalCostCell.swift */,
 				21881B4121974C7B0055FA86 /* DateTimeCell.swift */,
-				21881B4621975BE10055FA86 /* NotesCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -505,7 +499,6 @@
 			files = (
 				213887532183BA9B004F0371 /* OptionCell.xib in Resources */,
 				21F4B015206729B600C37688 /* Localizable.strings in Resources */,
-				21881B4521975A830055FA86 /* NotesCell.xib in Resources */,
 				2160A1B32197379600409A0A /* TotalCostCell.xib in Resources */,
 				216F349B21805C6500D4E5AF /* SingleInfoCell.xib in Resources */,
 				21BAD61320177F7A0065D700 /* LaunchScreen.storyboard in Resources */,
@@ -564,7 +557,6 @@
 				215A76E721636687009D56A6 /* MessageView.swift in Sources */,
 				2173EC2C2017E16B004BDECE /* TickerTableViewCell.swift in Sources */,
 				219FA193201E444C00094B67 /* API.swift in Sources */,
-				21881B4721975BE10055FA86 /* NotesCell.swift in Sources */,
 				2173EC282017D4CD004BDECE /* Coin.swift in Sources */,
 				2131470721985E570052A056 /* Market.swift in Sources */,
 				21DC61E82183077C007CB8EF /* NewTransactionViewController.swift in Sources */,
@@ -657,14 +649,6 @@
 				21881B3F219745CF0055FA86 /* Base */,
 			);
 			name = DateTimeCell.xib;
-			sourceTree = "<group>";
-		};
-		21881B4321975A830055FA86 /* NotesCell.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				21881B4421975A830055FA86 /* Base */,
-			);
-			name = NotesCell.xib;
 			sourceTree = "<group>";
 		};
 		21BAD60C20177F7A0065D700 /* Main.storyboard */ = {

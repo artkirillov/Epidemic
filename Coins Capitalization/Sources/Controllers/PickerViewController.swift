@@ -195,7 +195,7 @@ private extension PickerViewController {
         doneButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: Layout.smallMargin).isActive = true
         doneButton.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: Layout.bigMargin).isActive = true
         doneButton.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -Layout.bigMargin).isActive = true
-        doneButton.bottomAnchor.constraint(equalTo: picker.topAnchor, constant: Layout.smallMargin).isActive = true
+        doneButton.bottomAnchor.constraint(equalTo: picker.topAnchor).isActive = true
         doneButton.heightAnchor.constraint(equalToConstant: Layout.buttonHeight).isActive = true
         
         picker.translatesAutoresizingMaskIntoConstraints = false
