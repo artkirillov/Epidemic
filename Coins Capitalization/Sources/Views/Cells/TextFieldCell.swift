@@ -9,7 +9,7 @@
 import UIKit
 
 protocol TextFieldCellDelegate: class {
-    func textFieldCell(cell: TextFieldCell, didChangeText text: String?)
+    func textFieldCell(type: TextFiledType, didChangeText text: String?)
     func textFieldCellDoneButtonTapped(cell: TextFieldCell)
 }
 
@@ -35,7 +35,6 @@ final class TextFieldCell: UITableViewCell {
         textField.textColor = Colors.majorTextColor
         textField.font = Fonts.title
         textField.delegate = self
-        textField.keyboardType = .decimalPad
         textField.keyboardAppearance = .dark
         
         let buttonView = ButtonInputAccessoryView(title: NSLocalizedString("Done", comment: ""))
@@ -49,15 +48,18 @@ final class TextFieldCell: UITableViewCell {
         textField.text = nil
     }
     
-    func configure(title: String, placeholder: String, text: String?, delegate: TextFieldCellDelegate?) {
-        titleLabel.text = title.uppercased()
+    func configure(type: TextFiledType, placeholder: String, keyboardType: UIKeyboardType = .decimalPad, delegate: TextFieldCellDelegate?)
+    {
+        self.type = type
+        titleLabel.text = type.title.uppercased()
         textField.attributedPlaceholder = NSAttributedString(
             string: placeholder,
             attributes: [
                 .font: Fonts.buttonTitle,
                 .foregroundColor: Colors.majorTextColor]
         )
-        textField.text = text
+        textField.text = type.text
+        textField.keyboardType = keyboardType
         
         self.delegate = delegate
     }
@@ -74,6 +76,8 @@ final class TextFieldCell: UITableViewCell {
     
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var textField: UITextField!
+    
+    private var type: TextFiledType = .price(nil, nil)
     
 }
 
@@ -93,7 +97,7 @@ extension TextFieldCell: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        delegate?.textFieldCell(cell: self, didChangeText: textField.text)
+        delegate?.textFieldCell(type: type, didChangeText: textField.text)
     }
     
 }

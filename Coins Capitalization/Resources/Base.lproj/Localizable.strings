@@ -71,9 +71,11 @@
 "Traiding pair" = "Traiding pair";
 "Price" = "Price";
 "Price in %@" = "Price in %@";
+"Transaction price" = "Transaction price";
+"Transaction price in %@" = "Transaction price in %@";
 "Quantity" = "Quantity";
 "Cost" = "Cost";
-"Total cost" = "Total cost";
+"In total" = "In total";
 "24HChange" = "24 hours change";
 "Profit" = "Profit";
 "Date" = "Date";

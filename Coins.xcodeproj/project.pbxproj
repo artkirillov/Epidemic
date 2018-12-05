@@ -50,6 +50,7 @@
 		2186E10E204C162C000374A6 /* ReduceCoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2186E10D204C162C000374A6 /* ReduceCoinViewController.swift */; };
 		21881B40219745CF0055FA86 /* DateTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21881B3E219745CF0055FA86 /* DateTimeCell.xib */; };
 		21881B4221974C7B0055FA86 /* DateTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21881B4121974C7B0055FA86 /* DateTimeCell.swift */; };
+		21890A4721B7E7780006973B /* CellModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21890A4621B7E7780006973B /* CellModels.swift */; };
 		218CB6CE204C513000EDF550 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218CB6CD204C513000EDF550 /* ChartData.swift */; };
 		218CB6D2204C58B100EDF550 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218CB6D1204C58B100EDF550 /* ChartView.swift */; };
 		218CB6D4204C5A8000EDF550 /* SegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218CB6D3204C5A8000EDF550 /* SegmentControl.swift */; };
@@ -134,6 +135,7 @@
 		2186E10D204C162C000374A6 /* ReduceCoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReduceCoinViewController.swift; sourceTree = "<group>"; };
 		21881B3F219745CF0055FA86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DateTimeCell.xib; sourceTree = "<group>"; };
 		21881B4121974C7B0055FA86 /* DateTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeCell.swift; sourceTree = "<group>"; };
+		21890A4621B7E7780006973B /* CellModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellModels.swift; sourceTree = "<group>"; };
 		218CB6CD204C513000EDF550 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
 		218CB6D1204C58B100EDF550 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		218CB6D3204C5A8000EDF550 /* SegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentControl.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 				21748CF721956A26002259F1 /* TextFieldCell.swift */,
 				2160A1B4219738BA00409A0A /* TotalCostCell.swift */,
 				21881B4121974C7B0055FA86 /* DateTimeCell.swift */,
+				21890A4621B7E7780006973B /* CellModels.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -577,6 +580,7 @@
 				2135FB8521031F3400234E31 /* Reachability.swift in Sources */,
 				2160A1B5219738BA00409A0A /* TotalCostCell.swift in Sources */,
 				21CE2D0A2181A747004E8732 /* CoinDetails.swift in Sources */,
+				21890A4721B7E7780006973B /* CellModels.swift in Sources */,
 				2131470521985D180052A056 /* Exchange.swift in Sources */,
 				21F7AEAD216DE7BF00742425 /* CoinDetailsViewController.swift in Sources */,
 				21ED700A208295E9002CD41E /* CustomViewControllerAnimator.swift in Sources */,

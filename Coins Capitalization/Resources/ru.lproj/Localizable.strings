@@ -71,9 +71,11 @@
 "Traiding pair" = "Торговая пара";
 "Price" = "Цена";
 "Price in %@" = "Цена в %@";
+"Transaction price" = "Коммиссия";
+"Transaction price in %@" = "Коммиссия в %@";
 "Quantity" = "Количество";
 "Cost" = "Стоимость";
-"Total cost" = "Полная стоимость";
+"In total" = "Итого";
 "24HChange" = "Изменение за 24 часа";
 "Profit" = "Прибыль";
 "Date" = "Дата";
