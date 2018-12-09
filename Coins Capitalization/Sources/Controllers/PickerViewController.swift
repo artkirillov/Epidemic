@@ -87,6 +87,8 @@ final class PickerViewController: UIViewController {
     private let effectView = UIVisualEffectView()
     private let containerView = UIView()
     private let doneButton = UIButton(type: .system)
+    private let noDataBackground = UIView()
+    private let noDataLabel = UILabel()
     
 }
 
@@ -167,6 +169,18 @@ private extension PickerViewController {
         picker.backgroundColor = .clear
         picker.tintColor = .white
         
+        containerView.addSubview(noDataBackground)
+        noDataBackground.addSubview(noDataLabel)
+        
+        noDataBackground.backgroundColor = Colors.cellBackgroundColor
+        noDataBackground.layer.cornerRadius = 14.0
+        noDataBackground.isHidden = true
+        
+        noDataLabel.textColor = Colors.minorTextColor
+        noDataLabel.font = Fonts.subtitle
+        noDataLabel.textAlignment = .center
+        noDataLabel.text = NSLocalizedString("No data available", comment: "")
+        
         doneButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
         doneButton.setTitle(NSLocalizedString("Done", comment: ""), for: .normal)
         doneButton.layer.cornerRadius = Layout.buttonHeight / 2
@@ -203,6 +217,16 @@ private extension PickerViewController {
         picker.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
         picker.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
         containerView.transform = CGAffineTransform(translationX: 0.0, y: containerView.bounds.height)
+        
+        noDataBackground.translatesAutoresizingMaskIntoConstraints = false
+        noDataBackground.centerYAnchor.constraint(equalTo: picker.centerYAnchor).isActive = true
+        noDataBackground.centerXAnchor.constraint(equalTo: picker.centerXAnchor).isActive = true
+        
+        noDataLabel.translatesAutoresizingMaskIntoConstraints = false
+        noDataLabel.topAnchor.constraint(equalTo: noDataBackground.topAnchor, constant: 7.0).isActive = true
+        noDataLabel.bottomAnchor.constraint(equalTo: noDataBackground.bottomAnchor, constant: -7.0).isActive = true
+        noDataLabel.leadingAnchor.constraint(equalTo: noDataBackground.leadingAnchor, constant: 20.0).isActive = true
+        noDataLabel.trailingAnchor.constraint(equalTo: noDataBackground.trailingAnchor, constant: -20.0).isActive = true
     }
     
     @objc func handleTap() {
@@ -288,8 +312,10 @@ private extension PickerViewController {
                     let markets = response.data.sorted { "\($0.baseSymbol)/\($0.quoteSymbol)" < "\($1.baseSymbol)/\($1.quoteSymbol)" }
                     slf.items = .markets(markets)
                     (slf.picker as? UIPickerView)?.reloadAllComponents()
+                    slf.noDataBackground.isHidden = !markets.isEmpty
                 },
                 failure: { [weak self] error in
+                    self?.noDataBackground.isHidden = false
                     self?.showErrorAlert(error)
             })
             

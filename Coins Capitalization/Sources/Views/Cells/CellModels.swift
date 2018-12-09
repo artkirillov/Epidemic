@@ -33,7 +33,7 @@ enum TextFiledType {
     
     var text: String? {
         switch self {
-        case .price(_, let value): return value.flatMap { Formatter.format($0, maximumFractionDigits: Formatter.maximumFractionDigits(for: $0)) }
+        case .price(_, let value): return value.flatMap { String($0) }
         case .quantity(let value), .fee(_, let value): return value.flatMap { String($0) }
         }
     }

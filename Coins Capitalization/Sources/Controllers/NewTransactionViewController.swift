@@ -250,10 +250,14 @@ extension NewTransactionViewController: TextFieldCellDelegate {
     
     
     func textFieldCell(type: TextFiledType, didChangeText text: String?) {
+        
+        let numberText = text?.replacingOccurrences(of: ",", with: ".")
+        let number = numberText.flatMap { Double($0) }
+        
         switch type {
-        case .price:    price = text.flatMap { Double($0) }
-        case .quantity: quantity = text.flatMap { Double($0) }
-        case .fee:      fee = text.flatMap { Double($0) }
+        case .price:    price = number
+        case .quantity: quantity = number
+        case .fee:      fee = number
         }
         
         rows = makeRows(
@@ -313,20 +317,26 @@ private extension NewTransactionViewController {
             rows += [.option(title: NSLocalizedString("Traiding pair", comment: ""), value: "---")]
         }
         
+        let (dateString, timeString) = dateTime(from: date)
+        
         rows += [
             .textField(type: .price(market?.quoteSymbol, price), placeholder: "---"),
             .textField(type: .quantity(quantity), placeholder: "---"),
-            .textField(type: .fee(market?.quoteSymbol, fee), placeholder: "---")
+            .textField(type: .fee(market?.quoteSymbol, fee), placeholder: "---"),
+            .dateTime(date: dateString, time: timeString)
         ]
         
-        if let market = market, let price = price, let quantity = quantity, let fee = fee {
-            rows.append(.totalCost(title: NSLocalizedString("In total", comment: ""), value: "\(price * quantity + fee) \(market.quoteSymbol)"))
-        } else {
-            rows.append(.totalCost(title: NSLocalizedString("In total", comment: ""), value: "---"))
+        var valueText = "---"
+        let value = (price ?? 0.0) * (quantity ?? 0.0) + (fee ?? 0.0)
+        if value > 0, let market = market {
+            let valueFormatted = Formatter.format(value, maximumFractionDigits: Formatter.maximumFractionDigits(for: value))
+            valueText = valueFormatted.flatMap { "\($0) \(market.quoteSymbol)" } ?? "---"
         }
         
-        let (dateString, timeString) = dateTime(from: date)
-        rows += [.dateTime(date: dateString, time: timeString), .button(title: NSLocalizedString("Done", comment: ""))]
+        rows += [
+            .totalCost(title: NSLocalizedString("In total", comment: ""), value: valueText),
+            .button(title: NSLocalizedString("Done", comment: ""))
+        ]
         
         return rows
     }

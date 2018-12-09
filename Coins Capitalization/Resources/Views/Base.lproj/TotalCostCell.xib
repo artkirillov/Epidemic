@@ -17,16 +17,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nao-He-Gb2">
-                    <rect key="frame" x="50" y="0.0" width="275" height="92.5"/>
+                    <rect key="frame" x="10" y="0.0" width="355" height="92.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL COST" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bWV-FK-0zW">
-                            <rect key="frame" x="20" y="20" width="235" height="14.5"/>
+                            <rect key="frame" x="20" y="20" width="315" height="14.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 120.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="keE-cu-sQO">
-                            <rect key="frame" x="20" y="39.5" width="235" height="43"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 120.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="keE-cu-sQO">
+                            <rect key="frame" x="20" y="39.5" width="315" height="43"/>
                             <fontDescription key="fontDescription" type="system" pointSize="36"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -46,9 +46,9 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="nao-He-Gb2" secondAttribute="trailing" constant="50" id="Bf5-mr-2rI"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="nao-He-Gb2" secondAttribute="trailing" constant="10" id="Bf5-mr-2rI"/>
                 <constraint firstItem="nao-He-Gb2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="JWV-i0-0KY"/>
-                <constraint firstItem="nao-He-Gb2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="50" id="RfQ-db-18x"/>
+                <constraint firstItem="nao-He-Gb2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="RfQ-db-18x"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="nao-He-Gb2" secondAttribute="bottom" id="hlR-4h-b9X"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
