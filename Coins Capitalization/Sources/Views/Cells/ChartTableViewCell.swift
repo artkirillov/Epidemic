@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ChartTableViewCellDelegate {
-    func chartTableViewCell(cell: ChartTableViewCell, changedPeriodWithMinPrice: Double, maxPrice: Double)
+    func chartTableViewCell(cell: ChartTableViewCell, changedPeriodWithPrice: Double?)
 }
 
 class ChartTableViewCell: UITableViewCell {
@@ -155,16 +155,22 @@ private extension ChartTableViewCell {
         API.requestChartData(type: type, for: symbol,
                              success: { [weak self] chartData in
                                 guard let slf = self else { return }
-                                slf.chartView.layer.add(slf.animation, forKey: kCATransition)
-                                slf.chartView.data = chartData.price.map { $0 }
+                                
                                 slf.activityIndicator.stopAnimating()
                                 slf.activityIndicator.isHidden = true
+                                slf.chartView.layer.add(slf.animation, forKey: kCATransition)
                                 
                                 let prices = chartData.price
-                                slf.delegate?.chartTableViewCell(
-                                    cell: slf,
-                                    changedPeriodWithMinPrice: prices[0][1],
-                                    maxPrice: prices[prices.count - 2][1])
+                                
+                                if prices.count > 1, let price = prices.first?.last {
+                                    slf.chartView.data = prices
+                                    slf.delegate?.chartTableViewCell(cell: slf, changedPeriodWithPrice: price)
+                                } else {
+                                    slf.chartView.data = []
+                                    slf.delegate?.chartTableViewCell(cell: slf, changedPeriodWithPrice: nil)
+                                    slf.noDataBackground.isHidden = false
+                                    slf.noDataLabel.isHidden = false
+                                }
             },
                              failure: { [weak self] error in
                                 guard let slf = self else { return }

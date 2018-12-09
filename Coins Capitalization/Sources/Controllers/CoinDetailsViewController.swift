@@ -173,7 +173,7 @@ extension CoinDetailsViewController: UIViewControllerTransitioningDelegate {
 
 extension CoinDetailsViewController: ChartTableViewCellDelegate {
     
-    func chartTableViewCell(cell: ChartTableViewCell, changedPeriodWithMinPrice value: Double, maxPrice currentValue: Double) {
+    func chartTableViewCell(cell: ChartTableViewCell, changedPeriodWithPrice value: Double?) {
         guard let currentPrice = coin?.price else { return }
         tableHeaderView?.configure(value: value, currentValue: currentPrice)
     }

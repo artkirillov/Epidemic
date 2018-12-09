@@ -14,6 +14,14 @@ final class ChartView: UIView {
     
     var data: [[Double]] = [] {
         didSet {
+            guard !data.isEmpty else {
+                points = []
+                yCoordinates = []
+                dates = []
+                setNeedsDisplay()
+                return
+            }
+            
             let numberOfPoints = Int(bounds.width)
             points = [Double](repeating: 0.0, count: numberOfPoints)
             yCoordinates = [CGFloat](repeating: 0.0, count: numberOfPoints)
