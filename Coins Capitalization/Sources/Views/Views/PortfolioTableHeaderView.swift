@@ -24,12 +24,11 @@ final class PortfolioTableHeaderView: UIView {
         profitLabel.text = nil
     }
     
-    func configure(value: Double?, currentValue: Double) {
+    func configure(value: Double?, currentValue: Double?) {
         clear()
-        Formatter.format(currentValue, maximumFractionDigits: Formatter.maximumFractionDigits(for: currentValue))
-            .flatMap { totalLabel.text = "$\($0)" }
-        
         value.flatMap { Formatter.formatProfit(label: profitLabel, firstValue: $0, lastValue: currentValue) }
+        currentValue.flatMap { Formatter.format($0, maximumFractionDigits: Formatter.maximumFractionDigits(for: $0))
+            .flatMap { totalLabel.text = "$\($0)" } }
     }
     
     // MARK: - Private Properties

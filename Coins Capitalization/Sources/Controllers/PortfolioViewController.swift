@@ -51,8 +51,7 @@ final class PortfolioViewController: UIViewController {
         let maxFreeVolume = Storage.maxPortfolioVolume()
         
         if items.count < maxFreeVolume {
-            if let controller = storyboard?.instantiateViewController(withIdentifier: "AddCoinViewController") as? AddCoinViewController {
-                controller.delegate = self
+            if let controller = storyboard?.instantiateViewController(withIdentifier: "NewTransactionViewController") as? NewTransactionViewController {
                 present(controller, animated: true, completion: nil)
             }
         } else if maxFreeVolume == 3 {
@@ -224,7 +223,7 @@ private extension PortfolioViewController {
             currentValue += $0.currentTotalCost
             value += $0.totalCost
         }
-        tableHeaderView?.configure(value: value, currentValue: currentValue)
+        tableHeaderView?.configure(value: value, currentValue: items.isEmpty ? nil : currentValue)
         tableView.refreshControl?.endRefreshing()
     }
     
