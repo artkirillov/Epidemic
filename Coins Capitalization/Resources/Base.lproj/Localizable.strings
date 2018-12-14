@@ -67,7 +67,9 @@
 "Sell" = "Sell";
 "Transfer" = "Transfer";
 
+"Coin" = "Coin";
 "Exchange" = "Exchange";
+"No exchange" = "No exchange";
 "Traiding pair" = "Traiding pair";
 "Price" = "Price";
 "Price in %@" = "Price in %@";

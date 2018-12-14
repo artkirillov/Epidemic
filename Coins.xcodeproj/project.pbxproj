@@ -35,7 +35,6 @@
 		2154CD9A20DA5543002FA475 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2154CD9920DA5543002FA475 /* ArticleViewController.swift */; };
 		215A1FFF204804DA005ABDB8 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A1FFE204804DA005ABDB8 /* Storage.swift */; };
 		215A76E721636687009D56A6 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215A76E621636687009D56A6 /* MessageView.swift */; };
-		215E5F2521A567EB002C7EFA /* AddCoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E5F2421A567EB002C7EFA /* AddCoinViewController.swift */; };
 		2160A1B32197379600409A0A /* TotalCostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2160A1B12197379600409A0A /* TotalCostCell.xib */; };
 		2160A1B5219738BA00409A0A /* TotalCostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2160A1B4219738BA00409A0A /* TotalCostCell.swift */; };
 		216F349B21805C6500D4E5AF /* SingleInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 216F349921805C6500D4E5AF /* SingleInfoCell.xib */; };
@@ -47,7 +46,6 @@
 		2173EC2C2017E16B004BDECE /* TickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2173EC2B2017E16B004BDECE /* TickerTableViewCell.swift */; };
 		21748CF821956A26002259F1 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21748CF721956A26002259F1 /* TextFieldCell.swift */; };
 		217DBFB0216B49B600B8C06D /* ChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217DBFAF216B49B600B8C06D /* ChartTableViewCell.swift */; };
-		2186E10E204C162C000374A6 /* ReduceCoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2186E10D204C162C000374A6 /* ReduceCoinViewController.swift */; };
 		21881B40219745CF0055FA86 /* DateTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21881B3E219745CF0055FA86 /* DateTimeCell.xib */; };
 		21881B4221974C7B0055FA86 /* DateTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21881B4121974C7B0055FA86 /* DateTimeCell.swift */; };
 		21890A4721B7E7780006973B /* CellModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21890A4621B7E7780006973B /* CellModels.swift */; };
@@ -120,7 +118,6 @@
 		2154CD9920DA5543002FA475 /* ArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		215A1FFE204804DA005ABDB8 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		215A76E621636687009D56A6 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
-		215E5F2421A567EB002C7EFA /* AddCoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCoinViewController.swift; sourceTree = "<group>"; };
 		2160A1B22197379600409A0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TotalCostCell.xib; sourceTree = "<group>"; };
 		2160A1B4219738BA00409A0A /* TotalCostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalCostCell.swift; sourceTree = "<group>"; };
 		216F349A21805C6500D4E5AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SingleInfoCell.xib; sourceTree = "<group>"; };
@@ -132,7 +129,6 @@
 		2173EC2B2017E16B004BDECE /* TickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerTableViewCell.swift; sourceTree = "<group>"; };
 		21748CF721956A26002259F1 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		217DBFAF216B49B600B8C06D /* ChartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTableViewCell.swift; sourceTree = "<group>"; };
-		2186E10D204C162C000374A6 /* ReduceCoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReduceCoinViewController.swift; sourceTree = "<group>"; };
 		21881B3F219745CF0055FA86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DateTimeCell.xib; sourceTree = "<group>"; };
 		21881B4121974C7B0055FA86 /* DateTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeCell.swift; sourceTree = "<group>"; };
 		21890A4621B7E7780006973B /* CellModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellModels.swift; sourceTree = "<group>"; };
@@ -320,8 +316,6 @@
 				21BAD60820177F7A0065D700 /* CoinsViewController.swift */,
 				21F7AEAC216DE7BF00742425 /* CoinDetailsViewController.swift */,
 				219FBFCC202E340800A8771A /* PortfolioViewController.swift */,
-				215E5F2421A567EB002C7EFA /* AddCoinViewController.swift */,
-				2186E10D204C162C000374A6 /* ReduceCoinViewController.swift */,
 				2154CD9120DA45A5002FA475 /* NewsViewController.swift */,
 				2154CD9920DA5543002FA475 /* ArticleViewController.swift */,
 				213C50D9217F066800DDA8F3 /* AnalyticsViewController.swift */,
@@ -556,7 +550,6 @@
 				218CB6CE204C513000EDF550 /* ChartData.swift in Sources */,
 				2154CD9220DA45A5002FA475 /* NewsViewController.swift in Sources */,
 				212CDE9C2157E9B60068E0C2 /* Fonts.swift in Sources */,
-				215E5F2521A567EB002C7EFA /* AddCoinViewController.swift in Sources */,
 				215A76E721636687009D56A6 /* MessageView.swift in Sources */,
 				2173EC2C2017E16B004BDECE /* TickerTableViewCell.swift in Sources */,
 				219FA193201E444C00094B67 /* API.swift in Sources */,
@@ -566,7 +559,6 @@
 				219FBFCD202E340800A8771A /* PortfolioViewController.swift in Sources */,
 				217DBFB0216B49B600B8C06D /* ChartTableViewCell.swift in Sources */,
 				21AA82D7213AFB34003872AC /* StoreManager.swift in Sources */,
-				2186E10E204C162C000374A6 /* ReduceCoinViewController.swift in Sources */,
 				216F34A22180625700D4E5AF /* DoubleInfoCell.swift in Sources */,
 				2123173120590DF300F23540 /* AppStoreLookup.swift in Sources */,
 				21748CF821956A26002259F1 /* TextFieldCell.swift in Sources */,

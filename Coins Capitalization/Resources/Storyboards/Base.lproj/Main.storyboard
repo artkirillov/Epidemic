@@ -873,9 +873,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="fqG-Ic-T5u"/>
                                 </constraints>
-                                <connections>
-                                    <action selector="segmentedControlChanged:" destination="BPJ-1s-fwD" eventType="valueChanged" id="E3k-uO-ciF"/>
-                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.10980392160000001" green="0.1215686275" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

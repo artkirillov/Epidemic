@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol NewTransactionViewControllerDelegate: class {
+    func newTransactionViewControllerDidEndEditing(controller: NewTransactionViewController)
+}
+
 final class NewTransactionViewController: UIViewController {
     
     // MARK: - Public Nested
@@ -28,14 +32,15 @@ final class NewTransactionViewController: UIViewController {
         return .lightContent
     }
     
-    var rows: [Row] = []
+    weak var delegate: NewTransactionViewControllerDelegate?
+    var coin: Coin?
     
     // MARK: - Public Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        rows = makeRows(exchange: nil, market: nil, price: nil, quantity: nil, fee: nil, date: date)
+        rows = makeRows()
         
         view.backgroundColor = Colors.backgroundColor
         
@@ -63,23 +68,9 @@ final class NewTransactionViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        tableView.refreshControl?.endRefreshing()
-    }
-    
     @IBAction func backButtonTapped(_ sender: Any) {
         view.endEditing(true)
         dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func segmentedControlChanged(_ sender: SegmentedControl) {
-        print("--- New segment \(sender.selectedIndex)")
-    }
-    
-    @objc func handleTap() {
-        view.endEditing(true)
     }
     
     @objc func keyboardWillShow(notification: Notification) {
@@ -95,15 +86,15 @@ final class NewTransactionViewController: UIViewController {
     
     // MARK: - Private Properties
     
-    private var transaction = Transaction(kind: Transaction.Kind.buy.rawValue)
+    private var rows: [Row] = []
     private var exchange: Exchange?
     private var market: Market?
-    private var date = Date()
     private var quantity: Double?
     private var price: Double?
+    private var priceUSD: Double?
     private var fee: Double?
+    private var date = Date()
     
-    private let feedBackGenerator = UIImpactFeedbackGenerator()
     private var tableHeaderView: PortfolioTableHeaderView?
     
     @IBOutlet private var titleLabel: UILabel!
@@ -168,8 +159,9 @@ extension NewTransactionViewController: UITableViewDelegate {
         switch rows[indexPath.row] {
         case .option:
             let element = indexPath.row == 0 ?
-                PickerViewController.Element.exchange :
-                PickerViewController.Element.market(exchangeId: exchange?.exchangeId, baseSymbol: nil)
+                PickerViewController.Element.coin : indexPath.row == 1 ?
+                    PickerViewController.Element.exchange :
+                    PickerViewController.Element.market(exchangeId: exchange?.id, baseSymbol: coin?.short)
             let controller = PickerViewController(element: element)
             controller.delegate = self
             controller.modalPresentationStyle = .overCurrentContext
@@ -188,53 +180,43 @@ extension NewTransactionViewController: UITableViewDelegate {
 // MARK: - CatalogViewControllerDelegate
 
 extension NewTransactionViewController: PickerViewControllerDelegate {
+    func pickerViewController(controller: PickerViewController, didSelectCoin coin: Coin) {
+        self.coin = coin
+        market = nil
+        
+        rows = makeRows()
+        tableView.reloadData()
+    }
+    
     
     func pickerViewController(controller: PickerViewController, didSelectExchange exchange: Exchange) {
-        self.exchange = exchange
-        market = nil
-        price = nil
-        quantity = nil
-        fee = nil
+        if self.exchange != nil || !exchange.id.isEmpty {
+            market = nil
+            price = nil
+            quantity = nil
+            fee = nil
+        }
         
-        rows = makeRows(
-            exchange: exchange,
-            market: market,
-            price: price,
-            quantity: quantity,
-            fee: fee,
-            date: date
-        )
+        self.exchange = exchange
+        rows = makeRows()
         tableView.reloadData()
     }
     
     func pickerViewController(controller: PickerViewController, didSelectMarket market: Market) {
         self.market = market
         price = Double(market.priceQuote)
+        priceUSD = Double(market.priceUsd)
         quantity = nil
         fee = nil
         
-        rows = makeRows(
-            exchange: exchange,
-            market: market,
-            price: price,
-            quantity: quantity,
-            fee: fee,
-            date: date
-        )
+        rows = makeRows()
         tableView.reloadData()
     }
     
     func pickerViewController(controller: PickerViewController, didSelectDate date: Date) {
         self.date = date
         
-        rows = makeRows(
-            exchange: exchange,
-            market: market,
-            price: price,
-            quantity: quantity,
-            fee: fee,
-            date: date
-        )
+        rows = makeRows()
         tableView.reloadData()
     }
     
@@ -248,26 +230,19 @@ extension NewTransactionViewController: TextFieldCellDelegate {
         view.endEditing(true)
     }
     
-    
     func textFieldCell(type: TextFiledType, didChangeText text: String?) {
-        
         let numberText = text?.replacingOccurrences(of: ",", with: ".")
         let number = numberText.flatMap { Double($0) }
         
         switch type {
-        case .price:    price = number
+        case .price:
+            price = number
+            priceUSD = (exchange?.id.isEmpty ?? true) && (market?.quoteSymbol ?? "") == "USD" ? number : nil
         case .quantity: quantity = number
         case .fee:      fee = number
         }
         
-        rows = makeRows(
-            exchange: exchange,
-            market: market,
-            price: price,
-            quantity: quantity,
-            fee: fee,
-            date: date
-        )
+        rows = makeRows()
         tableView.reloadData()
     }
     
@@ -298,7 +273,90 @@ extension NewTransactionViewController: DateTimeCellDelegate {
 extension NewTransactionViewController: ButtonCellDelegate {
     
     func buttonCellDidTouched(cell: ButtonCell) {
-        print("--- SAVE TRANSACTION")
+        
+        let kind: Transaction.Kind
+        switch segmentedControl.selectedIndex {
+        case 0: kind = .buy
+        case 1: kind = .sell
+        default: kind = .transfer
+        }
+        
+        if let market = market, let price = price, let priceUSD = priceUSD, let quantity = quantity {
+            let transaction = Transaction(
+                kind: kind,
+                exchange: exchange,
+                baseSymbol: market.baseSymbol,
+                quoteSymbol: market.quoteSymbol,
+                price: price,
+                priceUsd: priceUSD,
+                quantity: quantity,
+                fee: fee ?? 0.0,
+                date: date)
+
+                var transactions = Storage.transactions() ?? []
+                transactions.append(transaction)
+                Storage.save(transactions: transactions)
+                
+                var assets = Storage.assets() ?? []
+                
+                switch kind {
+                case .buy:
+                    let volume = Volume(amount: quantity, price: priceUSD)
+                    if let index = assets.index(where: { $0.symbol == market.baseSymbol }) {
+                        assets[index].volume.append(volume)
+                    } else {
+                        let coins = Storage.coins() ?? []
+                        let name = coins.first(where: { $0.short == market.baseSymbol })?.long ?? market.baseSymbol
+                        assets.append(Asset(name: name, symbol: market.baseSymbol, volume: [volume], currentPrice: price))
+                    }
+                    Storage.save(assets: assets)
+                    
+                case .sell:
+                    var newVolume: [Volume] = []
+                    
+                    if let index = assets.index(where: { $0.symbol == market.baseSymbol }), assets[index].totalAmount >= quantity  {
+                        let totalAmount = assets[index].totalAmount
+                        assets[index].volume.forEach {
+                            newVolume.append(Volume(amount: $0.amount - quantity * $0.amount / totalAmount, price: $0.price))
+                        }
+                        assets[index].volume = newVolume
+                        
+                        if assets[index].totalAmount < 10e-10 { assets.remove(at: index) }
+                        Storage.save(assets: assets)
+                    } else {
+                        showErrorAlert(title: "Мало", message: "Не хватает")
+                    }
+                    
+                case .transfer:
+                    var newVolume: [Volume] = []
+                    
+                    if let index = assets.index(where: { $0.symbol == market.baseSymbol }), assets[index].totalAmount >= quantity  {
+                        let totalAmount = assets[index].totalAmount
+                        assets[index].volume.forEach {
+                            newVolume.append(Volume(amount: $0.amount - quantity * $0.amount / totalAmount, price: $0.price))
+                        }
+                        assets[index].volume = newVolume
+                        
+                        if assets[index].totalAmount < 10e-10 { assets.remove(at: index) }
+                        Storage.save(assets: assets)
+                    } else {
+                        showErrorAlert(title: "Мало", message: "Не хватает")
+                    }
+                    
+                    let volume = Volume(amount: price * quantity + (fee ?? 0.0), price: priceUSD)
+                    if let index = assets.index(where: { $0.symbol == market.quoteSymbol }) {
+                        assets[index].volume.append(volume)
+                    } else {
+                        let coins = Storage.coins() ?? []
+                        let name = coins.first(where: { $0.short == market.quoteSymbol })?.long ?? market.quoteSymbol
+                        assets.append(Asset(name: name, symbol: market.quoteSymbol, volume: [volume], currentPrice: price))
+                    }
+                    Storage.save(assets: assets)
+                }
+                
+                delegate?.newTransactionViewControllerDidEndEditing(controller: self)
+            dismiss(animated: true, completion: nil)
+            }
     }
     
 }
@@ -307,30 +365,29 @@ extension NewTransactionViewController: ButtonCellDelegate {
 
 private extension NewTransactionViewController {
     
-    func makeRows(exchange: Exchange?, market: Market?, price: Double?, quantity: Double?, fee: Double?, date: Date) -> [Row] {
+    func makeRows() -> [Row] {
+        let defaultPlaceholder = "---"
         
-        var rows: [Row] = [.option(title: NSLocalizedString("Exchange", comment: ""), value: exchange?.name ?? "---")]
-        
-        if let market = market {
-            rows += [.option(title: NSLocalizedString("Traiding pair", comment: ""), value: "\(market.baseSymbol)/\(market.quoteSymbol)")]
-        } else {
-            rows += [.option(title: NSLocalizedString("Traiding pair", comment: ""), value: "---")]
-        }
+        var rows: [Row] = [
+            .option(title: NSLocalizedString("Coin", comment: ""), value: coin?.short ?? defaultPlaceholder),
+            .option(title: NSLocalizedString("Exchange", comment: ""), value: exchange?.name ?? defaultPlaceholder),
+            .option(title: NSLocalizedString("Traiding pair", comment: ""), value: market?.quoteSymbol ?? defaultPlaceholder)
+        ]
         
         let (dateString, timeString) = dateTime(from: date)
         
         rows += [
-            .textField(type: .price(market?.quoteSymbol, price), placeholder: "---"),
-            .textField(type: .quantity(quantity), placeholder: "---"),
-            .textField(type: .fee(market?.quoteSymbol, fee), placeholder: "---"),
+            .textField(type: .price(market?.quoteSymbol, price), placeholder: defaultPlaceholder),
+            .textField(type: .quantity(quantity), placeholder: defaultPlaceholder),
+            .textField(type: .fee(market?.quoteSymbol, fee), placeholder: defaultPlaceholder),
             .dateTime(date: dateString, time: timeString)
         ]
         
-        var valueText = "---"
+        var valueText = defaultPlaceholder
         let value = (price ?? 0.0) * (quantity ?? 0.0) + (fee ?? 0.0)
         if value > 0, let market = market {
             let valueFormatted = Formatter.format(value, maximumFractionDigits: Formatter.maximumFractionDigits(for: value))
-            valueText = valueFormatted.flatMap { "\($0) \(market.quoteSymbol)" } ?? "---"
+            valueText = valueFormatted.flatMap { "\($0) \(market.quoteSymbol)" } ?? defaultPlaceholder
         }
         
         rows += [

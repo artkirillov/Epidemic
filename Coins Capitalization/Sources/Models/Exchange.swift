@@ -11,8 +11,16 @@ struct Exchanges: Codable {
 }
 
 struct Exchange: Codable {
-    
-    var exchangeId: String
+    var id: String
     var name: String
     
+    init(id: String, name: String) {
+        self.id = id
+        self.name = name
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case id = "exchangeId"
+        case name
+    }
 }

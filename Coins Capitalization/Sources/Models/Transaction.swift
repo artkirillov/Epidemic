@@ -12,7 +12,7 @@ struct Transaction: Codable {
     
     // MARK: - Public Nested
     
-    enum Kind: String {
+    enum Kind: String, Codable {
         case buy
         case sell
         case transfer
@@ -20,37 +20,37 @@ struct Transaction: Codable {
     
     // MARK: - Public Properties
     
-    var kind: String
-    var exchange: String
+    var kind: Kind
+    var exchange: Exchange?
     var baseSymbol: String
     var quoteSymbol: String
     var price: Double
+    var priceUsd: Double
     var quantity: Double
+    var fee: Double
     var date: Date
-    var commision: Double?
-    var notes: String?
     
     // MARK: - Constructors
     
-    init(kind: String = "",
-        exchange: String = "",
+    init(kind: Kind = .buy,
+        exchange: Exchange? = nil,
         baseSymbol: String = "",
         quoteSymbol: String = "",
         price: Double = 0.0,
+        priceUsd: Double = 0.0,
         quantity: Double = 0.0,
-        date: Date = Date(),
-        commision: Double? = nil,
-        notes: String? = nil)
+        fee: Double = 0.0,
+        date: Date = Date())
     {
         self.kind = kind
         self.exchange = exchange
         self.baseSymbol = baseSymbol
         self.quoteSymbol = baseSymbol
         self.price = price
+        self.priceUsd = priceUsd
         self.quantity = quantity
+        self.fee = fee
         self.date = date
-        self.commision = commision
-        self.notes = notes
     }
     
 }

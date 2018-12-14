@@ -51,7 +51,8 @@ final class PortfolioViewController: UIViewController {
         let maxFreeVolume = Storage.maxPortfolioVolume()
         
         if items.count < maxFreeVolume {
-            if let controller = storyboard?.instantiateViewController(withIdentifier: "NewTransactionViewController") as? NewTransactionViewController {
+            if let controller = storyboard?.instantiateViewController(withIdentifier: NewTransactionViewController.identifier) as? NewTransactionViewController {
+                controller.delegate = self
                 present(controller, animated: true, completion: nil)
             }
         } else if maxFreeVolume == 3 {
@@ -143,8 +144,8 @@ final class PortfolioViewController: UIViewController {
 
 // MARK: - AddCoinViewControllerDelegate
 
-extension PortfolioViewController: AddCoinViewControllerDelegate {
-    func addCoinViewController(controller: AddCoinViewController, didAdd asset: Asset) {
+extension PortfolioViewController: NewTransactionViewControllerDelegate {
+    func newTransactionViewControllerDidEndEditing(controller: NewTransactionViewController) {
         updateInfo()
     }
 }

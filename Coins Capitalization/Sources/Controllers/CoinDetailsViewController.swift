@@ -186,7 +186,7 @@ extension CoinDetailsViewController: ButtonCellDelegate {
     
     func buttonCellDidTouched(cell: ButtonCell) {
         if let controller = storyboard?.instantiateViewController(withIdentifier: NewTransactionViewController.identifier) as? NewTransactionViewController {
-            
+            controller.coin = coin
             present(controller, animated: true, completion: nil)
         }
     }

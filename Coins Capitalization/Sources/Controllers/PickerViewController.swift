@@ -11,6 +11,7 @@ import UIKit
 protocol PickerViewControllerDelegate: class {
     func pickerViewController(controller: PickerViewController, didSelectExchange exchange: Exchange)
     func pickerViewController(controller: PickerViewController, didSelectMarket market: Market)
+    func pickerViewController(controller: PickerViewController, didSelectCoin coin: Coin)
     func pickerViewController(controller: PickerViewController, didSelectDate date: Date)
 }
 
@@ -19,9 +20,10 @@ final class PickerViewController: UIViewController {
     // MARK: - Public Nested
     
     enum Element {
-        case dateTime(Date?, isDate: Bool)
+        case coin
         case exchange
         case market(exchangeId: String?, baseSymbol: String?)
+        case dateTime(Date?, isDate: Bool)
     }
     
     // MARK: - Public Properties
@@ -43,9 +45,14 @@ final class PickerViewController: UIViewController {
         
         switch element {
         case .dateTime(let date, let isDate):
-            setDatePicker(date: date, isDate: isDate)
+            let picker = UIDatePicker()
+            picker.datePickerMode = isDate ? .date : .time
+            picker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
+            picker.setValue(Colors.majorTextColor, forKey: "textColor")
+            date.flatMap { picker.setDate($0, animated: false) }
+            self.picker = picker
             
-        case .exchange, .market:
+        case .exchange, .market, .coin:
             let picker = UIPickerView()
             picker.dataSource = self
             picker.delegate = self
@@ -103,15 +110,6 @@ extension PickerViewController: UIPickerViewDataSource {
         return items.rows.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(
-            string: items.rows[row],
-            attributes: [
-                .font: Fonts.title,
-                .foregroundColor: Colors.majorTextColor]
-        )
-    }
-    
 }
 
 // MARK: - UIPickerViewDelegate
@@ -123,6 +121,15 @@ extension PickerViewController: UIPickerViewDelegate {
         didSelectItem = true
     }
     
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        return NSAttributedString(
+            string: items.rows[row],
+            attributes: [
+                .font: Fonts.title,
+                .foregroundColor: Colors.majorTextColor]
+        )
+    }
+    
 }
 
 private extension PickerViewController {
@@ -130,27 +137,20 @@ private extension PickerViewController {
     // MARK: - Private Nested
     
     enum Items {
+        case coins([Coin])
         case exchanges([Exchange])
         case markets([Market])
         
         var rows: [String] {
             switch self {
+            case .coins(let coins): return coins.map { $0.short }
             case .exchanges(let exchanges): return exchanges.map { $0.name }
-            case .markets(let markets):     return markets.map { "\($0.baseSymbol)/\($0.quoteSymbol)" }
+            case .markets(let markets):     return markets.map { $0.quoteSymbol }
             }
         }
     }
     
     // MARK: - Private Methods
-    
-    func setDatePicker(date: Date?, isDate: Bool) {
-        let picker = UIDatePicker()
-        picker.datePickerMode = isDate ? .date : .time
-        picker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
-        picker.setValue(Colors.majorTextColor, forKey: "textColor")
-        date.flatMap { picker.setDate($0, animated: false) }
-        self.picker = picker
-    }
     
     func setupViews() {
      
@@ -269,6 +269,10 @@ private extension PickerViewController {
     
     func pickItem(inRow row: Int) {
         switch items {
+        case .coins(let coins):
+            guard coins.count > 0 else { return }
+            delegate?.pickerViewController(controller: self, didSelectCoin: coins[row])
+            
         case .exchanges(let exchanges):
             guard exchanges.count > 0 else { return }
             delegate?.pickerViewController(controller: self, didSelectExchange: exchanges[row])
@@ -288,17 +292,23 @@ private extension PickerViewController {
     
     func requestData() {
         switch element {
+        case .coin:
+            let coins = (Storage.coins() ?? []).sorted { $0.short < $1.short }
+            items = .coins(coins)
+            (picker as? UIPickerView)?.reloadAllComponents()
+            
         case .exchange:
             
             API.requestExchanges(
                 success: { [weak self] response in
                     guard let slf = self else { return }
                     
-                    let exchanges = response.data.sorted { $0.name < $1.name }
+                    var exchanges = response.data.sorted { $0.name < $1.name }
+                    exchanges.insert(Exchange(id: "", name: "No exchange"), at: 0)
                     slf.items = .exchanges(exchanges)
                     (slf.picker as? UIPickerView)?.reloadAllComponents()
                 },
-                failure: { [weak self] error in self?.showErrorAlert(error) }
+                failure: { [weak self] error in self?.noDataBackground.isHidden = false }
             )
         
         case .market(let exchangeId, let baseSymbol):
@@ -309,14 +319,29 @@ private extension PickerViewController {
                 success: { [weak self] response in
                     guard let slf = self else { return }
                     
-                    let markets = response.data.sorted { "\($0.baseSymbol)/\($0.quoteSymbol)" < "\($1.baseSymbol)/\($1.quoteSymbol)" }
+                    let markets = response.data.sorted { $0.quoteSymbol < $1.quoteSymbol }
                     slf.items = .markets(markets)
                     (slf.picker as? UIPickerView)?.reloadAllComponents()
                     slf.noDataBackground.isHidden = !markets.isEmpty
                 },
                 failure: { [weak self] error in
-                    self?.noDataBackground.isHidden = false
-                    self?.showErrorAlert(error)
+                    if let exchangeId = exchangeId, exchangeId.isEmpty {
+                        let market = Market(
+                            exchangeId: "",
+                            baseSymbol: baseSymbol ?? "",
+                            baseId: baseSymbol ?? "",
+                            quoteSymbol: "USD",
+                            quoteId: "USD",
+                            priceQuote: "",
+                            priceUsd: ""
+                        )
+                        
+                        self?.items = .markets([market])
+                        (self?.picker as? UIPickerView)?.reloadAllComponents()
+                        self?.noDataBackground.isHidden = true
+                    } else {
+                        self?.noDataBackground.isHidden = false
+                    }
             })
             
             
