@@ -114,6 +114,8 @@ final class CoinDetailsViewController: UIViewController {
         return animation
     }()
     
+    private let storeManager = StoreManager()
+    
 }
 
 // MARK: - UITableViewDataSource
@@ -185,9 +187,82 @@ extension CoinDetailsViewController: ChartTableViewCellDelegate {
 extension CoinDetailsViewController: ButtonCellDelegate {
     
     func buttonCellDidTouched(cell: ButtonCell) {
-        if let controller = storyboard?.instantiateViewController(withIdentifier: NewTransactionViewController.identifier) as? NewTransactionViewController {
-            controller.coin = coin
-            present(controller, animated: true, completion: nil)
+        let maxFreeVolume = Storage.maxPortfolioVolume()
+        let assets = Storage.assets() ?? []
+        
+        if !assets.contains(where: { $0.symbol == coin?.short }) || assets.count < maxFreeVolume {
+            if let controller = storyboard?.instantiateViewController(withIdentifier: NewTransactionViewController.identifier) as? NewTransactionViewController {
+                controller.coin = coin
+                present(controller, animated: true, completion: nil)
+            }
+        } else if maxFreeVolume == 3 {
+            if let controller = storyboard?.instantiateViewController(withIdentifier: "AlertViewController") as? AlertViewController {
+                controller.header = NSLocalizedString("Free trial alert", comment: "")
+                controller.message = NSLocalizedString("Free trial message", comment: "")
+                controller.image = #imageLiteral(resourceName: "review")
+                
+                controller.addAction(
+                    title: NSLocalizedString("Go to AppStore", comment: ""),
+                    handler: { [weak controller] in
+                        if let appId = Storage.appId(), let url = URL(string: "https://itunes.apple.com/app/id\(appId)") {
+                            UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: { _ in
+                                Storage.save(maxPortfolioVolume: 5)
+                                controller?.dismiss(animated: true, completion: nil)
+                            })
+                        } else if let url = URL(string: "https://www.apple.com/itunes/") {
+                            UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: { _ in
+                                Storage.save(maxPortfolioVolume: 5)
+                                controller?.dismiss(animated: true, completion: nil)
+                            })
+                        }
+                })
+                
+                controller.addAction(
+                    title: NSLocalizedString("Cancel", comment: ""),
+                    handler: { [weak controller] in controller?.dismiss(animated: true, completion: nil) })
+                
+                present(controller, animated: true, completion: nil)
+            }
+        } else {
+            if let controller = storyboard?.instantiateViewController(withIdentifier: "AlertViewController") as? AlertViewController {
+                controller.header = NSLocalizedString("Pro alert", comment: "")
+                controller.image = #imageLiteral(resourceName: "check")
+                
+                var message: String = ""
+                var okButtonTitle: String = ""
+                var cancelButtonTitle: String = ""
+                if let product = storeManager.unlimitedPortfolioProduct, storeManager.canMakePayments() {
+                    let numberFormatter = NumberFormatter()
+                    numberFormatter.numberStyle = .currency
+                    numberFormatter.locale = product.priceLocale
+                    let formattedPrice = numberFormatter.string(from: product.price) ?? "\(product.price)"
+                    
+                    message = NSLocalizedString("Pro message and payment", comment: "") + " \(formattedPrice)."
+                    okButtonTitle = NSLocalizedString("Let's try it", comment: "")
+                    cancelButtonTitle = NSLocalizedString("No, thanks", comment: "")
+                } else {
+                    message = NSLocalizedString("Pro message", comment: "")
+                    okButtonTitle = NSLocalizedString("Ok", comment: "")
+                    cancelButtonTitle = NSLocalizedString("Cancel", comment: "")
+                }
+                
+                controller.message = message
+                
+                controller.addAction(
+                    title: okButtonTitle,
+                    handler: { [weak self, weak controller] in
+                        self?.storeManager.unlimitedPortfolioProduct.flatMap { self?.storeManager.makePayment(with: $0) }
+                        controller?.dismiss(animated: true, completion: nil)
+                })
+                
+                controller.addAction(
+                    title: cancelButtonTitle,
+                    handler: { [weak controller] in
+                        controller?.dismiss(animated: true, completion: nil)
+                })
+                
+                present(controller, animated: true, completion: nil)
+            }
         }
     }
     
@@ -285,12 +360,16 @@ private extension CoinDetailsViewController {
         },
             failure: { [weak self] error in
                 guard let slf = self else { return }
-                //slf.showErrorAlert(error)
+                
                 slf.rows = [.chart, .button(title: NSLocalizedString("New Transaction", comment: ""))]
                 slf.tableView.layer.add(slf.animation, forKey: kCATransition)
                 slf.tableView.reloadData()
-                print("ERROR requestCoinDetails: \(error)")
         })
     }
     
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+    return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

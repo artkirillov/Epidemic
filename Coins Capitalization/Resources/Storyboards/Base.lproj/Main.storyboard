@@ -383,16 +383,13 @@
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kxl-XC-5ud">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kxl-XC-5ud">
                                         <rect key="frame" x="325" y="-1.5" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="c3A-TC-jKg"/>
                                             <constraint firstAttribute="height" constant="40" id="wLh-Gv-t9U"/>
                                         </constraints>
                                         <state key="normal" image="add"/>
-                                        <connections>
-                                            <action selector="addButtonTapped:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="dHg-ko-vxB"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
