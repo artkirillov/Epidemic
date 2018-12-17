@@ -29,13 +29,16 @@ final class ButtonCell: UITableViewCell {
         
         button.layer.cornerRadius = button.bounds.height / 2
         button.backgroundColor = Colors.blueColor
-        button.setTitleColor(Colors.minorTextColor, for: .highlighted)
+        button.setTitleColor(Colors.minorTextColor, for: .disabled)
         button.setTitleColor(Colors.majorTextColor, for: .normal)
         button.titleLabel?.font = Fonts.buttonTitle
+        
+        selectionStyle = .none
     }
     
-    func configure(title: String, delegate: ButtonCellDelegate?) {
+    func configure(title: String, isEnabled: Bool, delegate: ButtonCellDelegate?) {
         button.setTitle(title, for: .normal)
+        button.isEnabled = isEnabled
         self.delegate = delegate
     }
     

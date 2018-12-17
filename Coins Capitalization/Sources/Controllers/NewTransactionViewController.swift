@@ -21,7 +21,7 @@ final class NewTransactionViewController: UIViewController {
         case textField(type: TextFiledType, placeholder: String)
         case totalCost(title: String, value: String)
         case dateTime(date: String, time: String)
-        case button(title: String)
+        case button(title: String, isEnabled: Bool)
     }
     
     // MARK: - Public Properties
@@ -94,6 +94,9 @@ final class NewTransactionViewController: UIViewController {
     private var priceUSD: Double?
     private var fee: Double?
     private var date = Date()
+    private var buttonEnabled: Bool {
+        return exchange != nil && market != nil && quantity != nil && price != nil
+    }
     
     private var tableHeaderView: PortfolioTableHeaderView?
     
@@ -127,9 +130,9 @@ extension NewTransactionViewController: UITableViewDataSource {
             cell.configure(type: type, placeholder: placeholder, delegate: self)
             return cell
             
-        case .button(let title):
+        case .button(let title, let isEnabled):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.identifier, for: indexPath) as? ButtonCell else { return UITableViewCell() }
-            cell.configure(title: title, delegate: self)
+            cell.configure(title: title, isEnabled: isEnabled, delegate: self)
             return cell
             
         case .totalCost(let title, let value):
@@ -392,7 +395,7 @@ private extension NewTransactionViewController {
         
         rows += [
             .totalCost(title: NSLocalizedString("In total", comment: ""), value: valueText),
-            .button(title: NSLocalizedString("Done", comment: ""))
+            .button(title: NSLocalizedString("Done", comment: ""), isEnabled: buttonEnabled)
         ]
         
         return rows

@@ -150,7 +150,7 @@ extension CoinDetailsViewController: UITableViewDataSource {
             
         case .button(let title):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.identifier, for: indexPath) as? ButtonCell else { return UITableViewCell() }
-            cell.configure(title: title, delegate: self)
+            cell.configure(title: title, isEnabled: true, delegate: self)
             return cell
         }
     }
@@ -190,7 +190,7 @@ extension CoinDetailsViewController: ButtonCellDelegate {
         let maxFreeVolume = Storage.maxPortfolioVolume()
         let assets = Storage.assets() ?? []
         
-        if !assets.contains(where: { $0.symbol == coin?.short }) || assets.count < maxFreeVolume {
+        if assets.contains(where: { $0.symbol == coin?.short }) || assets.count < maxFreeVolume {
             if let controller = storyboard?.instantiateViewController(withIdentifier: NewTransactionViewController.identifier) as? NewTransactionViewController {
                 controller.coin = coin
                 present(controller, animated: true, completion: nil)
