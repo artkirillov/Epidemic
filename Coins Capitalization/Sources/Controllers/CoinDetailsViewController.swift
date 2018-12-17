@@ -336,7 +336,7 @@ private extension CoinDetailsViewController {
                 let percentText = Formatter.format(relativeProfit) {
                 
                 let symbol = absoluteProfit == 0 ? "" : absoluteProfit > 0 ? "↑" : "↓"
-                assetRows.append(.singleInfo(title: NSLocalizedString("24HChange", comment: ""),
+                assetRows.append(.singleInfo(title: NSLocalizedString("Profit", comment: ""),
                                              value: "\(symbol) $\(profitText) (\(percentText)%)"))
             }
             

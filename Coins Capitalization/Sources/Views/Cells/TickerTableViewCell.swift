@@ -54,20 +54,30 @@ final class TickerTableViewCell: UITableViewCell {
         nameLabel.text = coin.long
         symbolLabel.text = coin.short
         
-        iconView.image = UIImage(named: coin.long.lowercased())?.withRenderingMode(.alwaysTemplate)
+        if let image = UIImage(named: coin.long.lowercased())?.withRenderingMode(.alwaysTemplate) {
+            iconView.image = image
+            iconView.isHidden = false
+            iconLabel.isHidden = true
+        } else {
+            iconLabel.text = coin.short
+            iconLabel.isHidden = false
+            iconView.isHidden = true
+        }
+        
         setNumber(label: priceLabel, value: coin.price, prefix: "$", maximumFractionDigits: Formatter.maximumFractionDigits(for: coin.price))
         setPercent(label: percentLabel, value: coin.cap24hrChange)
     }
     
     // MARK: - Private Properties
     
-    @IBOutlet weak var containerView: UIView!
+    @IBOutlet private var containerView: UIView!
     @IBOutlet private var nameLabel: UILabel!
     @IBOutlet private var symbolLabel: UILabel!
     @IBOutlet private var priceLabel: UILabel!
     @IBOutlet private var percentLabel: UILabel!
-    @IBOutlet weak var iconView: UIImageView!
-    @IBOutlet weak var coinImageView: UIImageView!
+    @IBOutlet private var iconView: UIImageView!
+    @IBOutlet private var iconLabel: UILabel!
+    @IBOutlet private var coinImageView: UIImageView!
 }
 
 fileprivate extension TickerTableViewCell {

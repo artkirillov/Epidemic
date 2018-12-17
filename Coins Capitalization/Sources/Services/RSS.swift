@@ -32,7 +32,7 @@ final class RSS: NSObject {
         case forklog            = "https://forklog.com/news/feed/"
         
         static var ru: [Feed] {
-            return [.cryptocurrencyTech, .forklog]
+            return [.cryptocurrencyTech]//, .forklog]
         }
         
         var url: URL? {

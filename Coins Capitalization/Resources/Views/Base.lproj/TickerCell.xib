@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -80,7 +80,7 @@
                                 <constraint firstAttribute="width" constant="32" id="Y9y-8G-gfr"/>
                             </constraints>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="Sb6-EV-1P9">
+                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="Sb6-EV-1P9">
                             <rect key="frame" x="25" y="26.5" width="12" height="12"/>
                             <color key="tintColor" red="0.37647058820000001" green="0.43529411759999997" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -88,17 +88,27 @@
                                 <constraint firstAttribute="width" constant="12" id="YWq-CX-Czc"/>
                             </constraints>
                         </imageView>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PTOY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="4" translatesAutoresizingMaskIntoConstraints="NO" id="cw0-NC-cOA">
+                            <rect key="frame" x="22" y="26.5" width="18" height="12"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="7"/>
+                            <color key="textColor" red="0.37647058820000001" green="0.43529411759999997" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" red="0.14509803921568629" green="0.14509803921568629" blue="0.17647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="6RB-w5-5y7" firstAttribute="centerY" secondItem="rZQ-aM-I1W" secondAttribute="centerY" id="0Ov-eX-pnt"/>
                         <constraint firstItem="Sb6-EV-1P9" firstAttribute="centerY" secondItem="6RB-w5-5y7" secondAttribute="centerY" id="0lh-0J-wyT"/>
+                        <constraint firstItem="cw0-NC-cOA" firstAttribute="bottom" secondItem="Sb6-EV-1P9" secondAttribute="bottom" id="2a3-CM-HCg"/>
                         <constraint firstItem="xd3-GH-ebs" firstAttribute="top" secondItem="INT-xw-JHl" secondAttribute="top" constant="15" id="6c8-cN-ojt"/>
                         <constraint firstAttribute="trailing" secondItem="xd3-GH-ebs" secondAttribute="trailing" constant="15" id="9uv-en-Uwq"/>
                         <constraint firstItem="6RB-w5-5y7" firstAttribute="leading" secondItem="INT-xw-JHl" secondAttribute="leading" constant="15" id="EbW-Tf-P3M"/>
+                        <constraint firstItem="cw0-NC-cOA" firstAttribute="leading" secondItem="Sb6-EV-1P9" secondAttribute="leading" constant="-3" id="LVA-fM-7U1"/>
+                        <constraint firstItem="cw0-NC-cOA" firstAttribute="top" secondItem="Sb6-EV-1P9" secondAttribute="top" id="SLy-nF-agj"/>
                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="rZQ-aM-I1W" secondAttribute="bottom" constant="15" id="dKP-4p-Yqe"/>
                         <constraint firstItem="rZQ-aM-I1W" firstAttribute="top" secondItem="INT-xw-JHl" secondAttribute="top" constant="15" id="fOI-vF-tM0"/>
                         <constraint firstItem="Sb6-EV-1P9" firstAttribute="centerX" secondItem="6RB-w5-5y7" secondAttribute="centerX" id="jEd-Qj-iB5"/>
+                        <constraint firstItem="cw0-NC-cOA" firstAttribute="trailing" secondItem="Sb6-EV-1P9" secondAttribute="trailing" constant="3" id="s4c-Fq-jwJ"/>
                         <constraint firstItem="rZQ-aM-I1W" firstAttribute="leading" secondItem="6RB-w5-5y7" secondAttribute="trailing" constant="10" id="tDE-Yr-sRE"/>
                         <constraint firstItem="xd3-GH-ebs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rZQ-aM-I1W" secondAttribute="trailing" constant="10" id="z39-8o-WzH"/>
                     </constraints>
@@ -116,6 +126,7 @@
             <connections>
                 <outlet property="coinImageView" destination="6RB-w5-5y7" id="DNo-1v-XzZ"/>
                 <outlet property="containerView" destination="INT-xw-JHl" id="9Zl-ZN-Lvr"/>
+                <outlet property="iconLabel" destination="cw0-NC-cOA" id="788-FI-VPs"/>
                 <outlet property="iconView" destination="Sb6-EV-1P9" id="tFd-R7-YtM"/>
                 <outlet property="nameLabel" destination="WgP-zx-LE5" id="1om-16-hvT"/>
                 <outlet property="percentLabel" destination="51y-th-m4b" id="zwf-Dx-U6U"/>

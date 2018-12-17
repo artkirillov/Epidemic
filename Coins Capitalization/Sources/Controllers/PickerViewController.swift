@@ -312,38 +312,35 @@ private extension PickerViewController {
             )
         
         case .market(let exchangeId, let baseSymbol):
-            
-            API.requestMarkets(
-                exchangeId: exchangeId,
-                baseSymbol: baseSymbol,
-                success: { [weak self] response in
-                    guard let slf = self else { return }
-                    
-                    let markets = response.data.sorted { $0.quoteSymbol < $1.quoteSymbol }
-                    slf.items = .markets(markets)
-                    (slf.picker as? UIPickerView)?.reloadAllComponents()
-                    slf.noDataBackground.isHidden = !markets.isEmpty
-                },
-                failure: { [weak self] error in
-                    if let exchangeId = exchangeId, exchangeId.isEmpty {
-                        let market = Market(
-                            exchangeId: "",
-                            baseSymbol: baseSymbol ?? "",
-                            baseId: baseSymbol ?? "",
-                            quoteSymbol: "USD",
-                            quoteId: "USD",
-                            priceQuote: "",
-                            priceUsd: ""
-                        )
+            if let exchangeId = exchangeId, !exchangeId.isEmpty {
+                API.requestMarkets(
+                    exchangeId: exchangeId,
+                    baseSymbol: baseSymbol,
+                    success: { [weak self] response in
+                        guard let slf = self else { return }
                         
-                        self?.items = .markets([market])
-                        (self?.picker as? UIPickerView)?.reloadAllComponents()
-                        self?.noDataBackground.isHidden = true
-                    } else {
-                        self?.noDataBackground.isHidden = false
-                    }
-            })
-            
+                        let markets = response.data.sorted { $0.quoteSymbol < $1.quoteSymbol }
+                        slf.items = .markets(markets)
+                        (slf.picker as? UIPickerView)?.reloadAllComponents()
+                        slf.noDataBackground.isHidden = !markets.isEmpty
+                    },
+                    failure: { [weak self] error in self?.noDataBackground.isHidden = false
+                })
+            } else {
+                let market = Market(
+                    exchangeId: "",
+                    baseSymbol: baseSymbol ?? "",
+                    baseId: baseSymbol ?? "",
+                    quoteSymbol: "USD",
+                    quoteId: "USD",
+                    priceQuote: "",
+                    priceUsd: ""
+                )
+                
+                items = .markets([market])
+                (picker as? UIPickerView)?.reloadAllComponents()
+                noDataBackground.isHidden = true
+            }
             
         default: break
             
