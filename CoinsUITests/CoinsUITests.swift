@@ -28,25 +28,15 @@ class CoinsUITests: XCTestCase {
         let app = XCUIApplication()
         let tabBar = app.tabBars
         
-        app.tables.element.cells.element(boundBy: 0).tap()
-        snapshot("02")
-        app.buttons.element(boundBy: 0).tap()
-        
         tabBar.buttons.element(boundBy: 1).tap()
+        snapshot("02")
+
+        tabBar.buttons.element(boundBy: 2).tap()
         snapshot("03")
         
-        app.buttons.element(boundBy: 4).tap()
-        snapshot("07")
-        app.buttons.element(boundBy: 1).tap()
-        
-        tabBar.buttons.element(boundBy: 2).tap()
+        tabBar.buttons.element(boundBy: 0).tap()
+        app.tables.element.cells.element(boundBy: 0).tap()
         snapshot("04")
-        
-        tabBar.buttons.element(boundBy: 3).tap()
-        snapshot("05")
-        
-        app.buttons.element(boundBy: 4).tap()
-        snapshot("06")
     }
     
 }
