@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Redesigned</string>
+	<string>Epidemic</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -17,11 +17,24 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1.3</string>
+	<string>2.0.0</string>
 	<key>CFBundleVersion</key>
-	<string>19</string>
+	<string>20</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeSearch</string>
+			<key>UIApplicationShortcutItemSubtitle</key>
+			<string>Search for a coin</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Coins</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>SearchAction</string>
+		</dict>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -51,19 +64,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    
-    <key>UIApplicationShortcutItems</key>
-    <array>
-        <dict>
-            <key>UIApplicationShortcutItemType</key>
-            <string>SearchAction</string>
-            <key>UIApplicationShortcutItemIconType</key>
-            <string>UIApplicationShortcutIconTypeSearch</string>
-            <key>UIApplicationShortcutItemTitle</key>
-            <string>Coins</string>
-            <key>UIApplicationShortcutItemSubtitle</key>
-            <string>Search for a coin</string>
-        </dict>
-    </array>
 </dict>
 </plist>
