@@ -85,7 +85,8 @@ extension PortfolioViewController: UITableViewDelegate {
         
         if let controller = storyboard?.instantiateViewController(withIdentifier: CoinDetailsViewController.identifier) as? CoinDetailsViewController, let cell = tableView.cellForRow(at: indexPath) {
             
-            controller.coin = Storage.coins()?.first { $0.short == items[indexPath.row].symbol }
+            guard let coin = Storage.coins()?.first(where: { $0.short == items[indexPath.row].symbol }) else { return }
+            controller.coin = coin
             
             let height = cell.frame.height
             let width = view.frame.width * height / view.frame.height

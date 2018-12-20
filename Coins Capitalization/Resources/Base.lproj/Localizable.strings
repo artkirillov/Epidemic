@@ -63,6 +63,12 @@
 "Analytics title" = "Analytics soon...";
 "Analytics message" = "We're working on analytical system to help you make better investments. Hope to release it soon";
 
+"Not enough title" = "Not enough coins";
+"Not enough message" = "There are no required quantity of coins in your portfolio";
+
+"Exchange required title" = "Exchange required";
+"Exchange required message" = "To make a transfer, please choose an exchange";
+
 "Buy" = "Buy";
 "Sell" = "Sell";
 "Transfer" = "Transfer";

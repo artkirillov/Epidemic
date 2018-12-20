@@ -164,7 +164,7 @@ extension NewTransactionViewController: UITableViewDelegate {
             let element = indexPath.row == 0 ?
                 PickerViewController.Element.coin : indexPath.row == 1 ?
                     PickerViewController.Element.exchange :
-                    PickerViewController.Element.market(exchangeId: exchange?.id, baseSymbol: coin?.short)
+                PickerViewController.Element.market(exchangeId: exchange?.id, baseSymbol: coin?.short)
             let controller = PickerViewController(element: element)
             controller.delegate = self
             controller.modalPresentationStyle = .overCurrentContext
@@ -295,56 +295,73 @@ extension NewTransactionViewController: ButtonCellDelegate {
                 quantity: quantity,
                 fee: fee ?? 0.0,
                 date: date)
-
+            
+            let makeTransaction = { [weak self] in
                 var transactions = Storage.transactions() ?? []
                 transactions.append(transaction)
                 Storage.save(transactions: transactions)
                 
-                var assets = Storage.assets() ?? []
+                guard let slf =  self else { return }
+                slf.delegate?.newTransactionViewControllerDidEndEditing(controller: slf)
+                slf.dismiss(animated: true, completion: nil)
+            }
+            
+            var assets = Storage.assets() ?? []
+            
+            switch kind {
+            case .buy:
+                let volume = Volume(amount: quantity, price: priceUSD)
+                if let index = assets.index(where: { $0.symbol == market.baseSymbol }) {
+                    assets[index].volume.append(volume)
+                } else {
+                    let coins = Storage.coins() ?? []
+                    let name = coins.first(where: { $0.short == market.baseSymbol })?.long ?? market.baseSymbol
+                    assets.append(Asset(name: name, symbol: market.baseSymbol, volume: [volume], currentPrice: price))
+                }
+                Storage.save(assets: assets)
+                makeTransaction()
                 
-                switch kind {
-                case .buy:
-                    let volume = Volume(amount: quantity, price: priceUSD)
-                    if let index = assets.index(where: { $0.symbol == market.baseSymbol }) {
-                        assets[index].volume.append(volume)
-                    } else {
-                        let coins = Storage.coins() ?? []
-                        let name = coins.first(where: { $0.short == market.baseSymbol })?.long ?? market.baseSymbol
-                        assets.append(Asset(name: name, symbol: market.baseSymbol, volume: [volume], currentPrice: price))
+            case .sell:
+                var newVolume: [Volume] = []
+                
+                if let index = assets.index(where: { $0.symbol == market.baseSymbol }), assets[index].totalAmount >= quantity  {
+                    
+                    let totalAmount = assets[index].totalAmount
+                    assets[index].volume.forEach {
+                        newVolume.append(Volume(amount: $0.amount - quantity * $0.amount / totalAmount, price: $0.price))
                     }
+                    assets[index].volume = newVolume
+                    
+                    if assets[index].totalAmount < 10e-10 { assets.remove(at: index) }
                     Storage.save(assets: assets)
-                    
-                case .sell:
-                    var newVolume: [Volume] = []
-                    
-                    if let index = assets.index(where: { $0.symbol == market.baseSymbol }), assets[index].totalAmount >= quantity  {
-                        let totalAmount = assets[index].totalAmount
-                        assets[index].volume.forEach {
-                            newVolume.append(Volume(amount: $0.amount - quantity * $0.amount / totalAmount, price: $0.price))
-                        }
-                        assets[index].volume = newVolume
-                        
-                        if assets[index].totalAmount < 10e-10 { assets.remove(at: index) }
-                        Storage.save(assets: assets)
-                    } else {
-                        showErrorAlert(title: "Мало", message: "Не хватает")
+                    makeTransaction()
+                } else {
+                    showErrorAlert(
+                        title: NSLocalizedString("Not enough title", comment: ""),
+                        message: NSLocalizedString("Not enough message", comment: "")
+                    )
+                }
+                
+            case .transfer:
+                guard let exchangeId = exchange?.id, !exchangeId.isEmpty else {
+                    showErrorAlert(
+                        title: NSLocalizedString("Exchange required title", comment: ""),
+                        message: NSLocalizedString("Exchange required message", comment: "")
+                    )
+                    return
+                }
+                
+                var newVolume: [Volume] = []
+                
+                if let index = assets.index(where: { $0.symbol == market.baseSymbol }), assets[index].totalAmount >= quantity  {
+                    let totalAmount = assets[index].totalAmount
+                    assets[index].volume.forEach {
+                        newVolume.append(Volume(amount: $0.amount - quantity * $0.amount / totalAmount, price: $0.price))
                     }
+                    assets[index].volume = newVolume
                     
-                case .transfer:
-                    var newVolume: [Volume] = []
-                    
-                    if let index = assets.index(where: { $0.symbol == market.baseSymbol }), assets[index].totalAmount >= quantity  {
-                        let totalAmount = assets[index].totalAmount
-                        assets[index].volume.forEach {
-                            newVolume.append(Volume(amount: $0.amount - quantity * $0.amount / totalAmount, price: $0.price))
-                        }
-                        assets[index].volume = newVolume
-                        
-                        if assets[index].totalAmount < 10e-10 { assets.remove(at: index) }
-                        Storage.save(assets: assets)
-                    } else {
-                        showErrorAlert(title: "Мало", message: "Не хватает")
-                    }
+                    if assets[index].totalAmount < 10e-10 { assets.remove(at: index) }
+                    Storage.save(assets: assets)
                     
                     let volume = Volume(amount: price * quantity + (fee ?? 0.0), price: priceUSD)
                     if let index = assets.index(where: { $0.symbol == market.quoteSymbol }) {
@@ -355,11 +372,15 @@ extension NewTransactionViewController: ButtonCellDelegate {
                         assets.append(Asset(name: name, symbol: market.quoteSymbol, volume: [volume], currentPrice: price))
                     }
                     Storage.save(assets: assets)
+                    makeTransaction()
+                } else {
+                    showErrorAlert(
+                        title: NSLocalizedString("Not enough title", comment: ""),
+                        message: NSLocalizedString("Not enough message", comment: "")
+                    )
                 }
-                
-                delegate?.newTransactionViewControllerDidEndEditing(controller: self)
-            dismiss(animated: true, completion: nil)
             }
+        }
     }
     
 }
