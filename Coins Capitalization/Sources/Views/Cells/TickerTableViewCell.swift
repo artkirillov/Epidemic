@@ -90,7 +90,7 @@ fileprivate extension TickerTableViewCell {
             setNumber(label: label, value: abs(value), prefix: "↓ ", suffix: "%")
             label.textColor = Colors.negativeGrow
         } else {
-            label.text = "---"
+            label.text = "$0.00 (0.0%)"
             label.textColor = Colors.minorTextColor
         }
     }

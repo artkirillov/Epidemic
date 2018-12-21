@@ -316,7 +316,7 @@ extension NewTransactionViewController: ButtonCellDelegate {
                 } else {
                     let coins = Storage.coins() ?? []
                     let name = coins.first(where: { $0.short == market.baseSymbol })?.long ?? market.baseSymbol
-                    assets.append(Asset(name: name, symbol: market.baseSymbol, volume: [volume], currentPrice: price))
+                    assets.append(Asset(name: name, symbol: market.baseSymbol, volume: [volume], currentPrice: priceUSD))
                 }
                 Storage.save(assets: assets)
                 makeTransaction()
@@ -352,8 +352,11 @@ extension NewTransactionViewController: ButtonCellDelegate {
                 }
                 
                 var newVolume: [Volume] = []
+                let coins = Storage.coins() ?? []
                 
-                if let index = assets.index(where: { $0.symbol == market.baseSymbol }), assets[index].totalAmount >= quantity  {
+                if let index = assets.index(where: { $0.symbol == market.baseSymbol }), assets[index].totalAmount >= quantity,
+                    let coin = coins.first(where: { $0.short == market.quoteSymbol }) {
+                    
                     let totalAmount = assets[index].totalAmount
                     assets[index].volume.forEach {
                         newVolume.append(Volume(amount: $0.amount - quantity * $0.amount / totalAmount, price: $0.price))
@@ -363,14 +366,19 @@ extension NewTransactionViewController: ButtonCellDelegate {
                     if assets[index].totalAmount < 10e-10 { assets.remove(at: index) }
                     Storage.save(assets: assets)
                     
-                    let volume = Volume(amount: price * quantity + (fee ?? 0.0), price: priceUSD)
+                    let volume = Volume(amount: price * quantity + (fee ?? 0.0), price: coin.price)
                     if let index = assets.index(where: { $0.symbol == market.quoteSymbol }) {
                         assets[index].volume.append(volume)
                     } else {
-                        let coins = Storage.coins() ?? []
-                        let name = coins.first(where: { $0.short == market.quoteSymbol })?.long ?? market.quoteSymbol
-                        assets.append(Asset(name: name, symbol: market.quoteSymbol, volume: [volume], currentPrice: price))
+                        let asset = Asset(
+                            name: coin.long,
+                            symbol: market.quoteSymbol,
+                            volume: [volume],
+                            currentPrice: coin.price
+                        )
+                        assets.append(asset)
                     }
+                    
                     Storage.save(assets: assets)
                     makeTransaction()
                 } else {

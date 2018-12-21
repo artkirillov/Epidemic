@@ -298,7 +298,6 @@ private extension PickerViewController {
             (picker as? UIPickerView)?.reloadAllComponents()
             
         case .exchange:
-            
             API.requestExchanges(
                 success: { [weak self] response in
                     guard let slf = self else { return }
@@ -319,7 +318,11 @@ private extension PickerViewController {
                     success: { [weak self] response in
                         guard let slf = self else { return }
                         
-                        let markets = response.data.sorted { $0.quoteSymbol < $1.quoteSymbol }
+                        let coins = Storage.coins() ?? []
+                        let markets = response.data.filter { market in
+                            return coins.contains(where: { $0.short == market.quoteSymbol })
+                            }.sorted { $0.quoteSymbol < $1.quoteSymbol }
+                        
                         slf.items = .markets(markets)
                         (slf.picker as? UIPickerView)?.reloadAllComponents()
                         slf.noDataBackground.isHidden = !markets.isEmpty

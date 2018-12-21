@@ -58,6 +58,9 @@ final class Formatter {
         } else if absoluteProfit < 0 {
             label.text = "↓ $\(profitText) (\(percentText)%)"
             label.textColor = Colors.negativeGrow
+        } else {
+            label.text = "$0.00 (0.0%)"
+            label.textColor = Colors.minorTextColor
         }
     }
     

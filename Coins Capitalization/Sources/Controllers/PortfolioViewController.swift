@@ -83,9 +83,10 @@ extension PortfolioViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         
+        guard let coin = Storage.coins()?.first(where: { $0.short == items[indexPath.row].symbol }) else { return }
+        
         if let controller = storyboard?.instantiateViewController(withIdentifier: CoinDetailsViewController.identifier) as? CoinDetailsViewController, let cell = tableView.cellForRow(at: indexPath) {
             
-            guard let coin = Storage.coins()?.first(where: { $0.short == items[indexPath.row].symbol }) else { return }
             controller.coin = coin
             
             let height = cell.frame.height
