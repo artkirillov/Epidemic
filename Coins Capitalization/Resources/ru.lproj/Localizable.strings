@@ -82,6 +82,7 @@
 "Transaction price" = "Коммиссия";
 "Transaction price in %@" = "Коммиссия в %@";
 "Quantity" = "Количество";
+"Quantity of %@" = "Количество %@";
 "Cost" = "Стоимость";
 "In total" = "Итого";
 "24HChange" = "Изменение за 24 часа";

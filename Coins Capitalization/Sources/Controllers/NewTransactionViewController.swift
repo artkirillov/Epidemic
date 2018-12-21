@@ -409,8 +409,8 @@ private extension NewTransactionViewController {
         let (dateString, timeString) = dateTime(from: date)
         
         rows += [
+            .textField(type: .quantity(market?.baseId, quantity), placeholder: defaultPlaceholder),
             .textField(type: .price(market?.quoteSymbol, price), placeholder: defaultPlaceholder),
-            .textField(type: .quantity(quantity), placeholder: defaultPlaceholder),
             .textField(type: .fee(market?.quoteSymbol, fee), placeholder: defaultPlaceholder),
             .dateTime(date: dateString, time: timeString)
         ]

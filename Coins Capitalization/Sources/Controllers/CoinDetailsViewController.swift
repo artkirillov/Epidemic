@@ -297,7 +297,7 @@ private extension CoinDetailsViewController {
     func makeRows(coinDetails: CoinDetails) -> [Row] {
         
         let marketCapValue = Formatter
-            .format(coinDetails.marketCap, maximumFractionDigits: Formatter.maximumFractionDigits(for: coinDetails.marketCap))
+            .format(coinDetails.marketCap, maximumFractionDigits: 0)
             .flatMap { "$ \($0)" }
         
         let volumeValue = Formatter.format(coinDetails.volume, maximumFractionDigits: 0).flatMap { "\($0) \(coin?.short ?? "")" }
@@ -316,7 +316,9 @@ private extension CoinDetailsViewController {
         
         if let coin = coin, let asset = Storage.assets()?.first(where: { $0.symbol == coin.short }) {
             
-            let amountValue = Formatter.format(asset.totalAmount, maximumFractionDigits: 5).flatMap { "\($0) \(coin.short)" }
+            let amountValueDigits = Formatter.maximumFractionDigits(for: asset.totalAmount)
+            let amountValue = Formatter.format(asset.totalAmount, maximumFractionDigits: amountValueDigits)
+                .flatMap { "\($0) \(coin.short)" }
             let costValue = Formatter
                 .format(asset.currentTotalCost, maximumFractionDigits: Formatter.maximumFractionDigits(for: asset.currentTotalCost))
                 .flatMap { "$ \($0)" }

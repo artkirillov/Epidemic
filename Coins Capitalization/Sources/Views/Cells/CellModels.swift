@@ -10,7 +10,7 @@ import Foundation
 
 enum TextFiledType {
     case price(String?, Double?)
-    case quantity(Double?)
+    case quantity(String?, Double?)
     case fee(String?, Double?)
     
     var title: String {
@@ -21,7 +21,14 @@ enum TextFiledType {
             } else {
                 return NSLocalizedString("Price", comment: "")
             }
-        case .quantity: return NSLocalizedString("Quantity", comment: "")
+            
+        case .quantity(let base, _):
+            if let base = base {
+                return String(format: NSLocalizedString("Quantity of %@", comment: ""), base)
+            } else {
+                return NSLocalizedString("Quantity", comment: "")
+            }
+            
         case .fee(let quote, _):
             if let quote = quote {
                 return String(format: NSLocalizedString("Transaction price in %@", comment: ""), quote)
@@ -34,7 +41,7 @@ enum TextFiledType {
     var text: String? {
         switch self {
         case .price(_, let value): return value.flatMap { String($0) }
-        case .quantity(let value), .fee(_, let value): return value.flatMap { String($0) }
+        case .quantity(_, let value), .fee(_, let value): return value.flatMap { String($0) }
         }
     }
 }

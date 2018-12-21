@@ -82,6 +82,7 @@
 "Transaction price" = "Transaction price";
 "Transaction price in %@" = "Transaction price in %@";
 "Quantity" = "Quantity";
+"Quantity of %@" = "Quantity of %@";
 "Cost" = "Cost";
 "In total" = "In total";
 "24HChange" = "24 hours change";
