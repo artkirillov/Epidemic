@@ -89,7 +89,7 @@ private extension MessageView {
         messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40.0).isActive = true
         
         button.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 20.0).isActive = true
-        button.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor, constant: -20.0).isActive = true
+        button.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor, constant: -20.0).isActive = true
         button.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
