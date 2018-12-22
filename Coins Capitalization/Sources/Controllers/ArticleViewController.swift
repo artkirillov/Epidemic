@@ -34,6 +34,10 @@ final class ArticleViewController: UIViewController {
         activityIndicator?.center = view.center
         activityIndicator?.startAnimating()
         
+        let panGestureRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handlePan))
+        panGestureRecognizer.edges = .left
+        view.addGestureRecognizer(panGestureRecognizer)
+        
         webView.delegate = self
     }
     
@@ -45,6 +49,10 @@ final class ArticleViewController: UIViewController {
     }
     
     @IBAction func closeButtonTap(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func handlePan() {
         dismiss(animated: true, completion: nil)
     }
     
