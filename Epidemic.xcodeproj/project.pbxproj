@@ -135,6 +135,7 @@
 		218CB6CD204C513000EDF550 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
 		218CB6D1204C58B100EDF550 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		218CB6D3204C5A8000EDF550 /* SegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentControl.swift; sourceTree = "<group>"; };
+		2193E4B522E1CAEF00BCFF73 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		219FA192201E444C00094B67 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		219FBFCC202E340800A8771A /* PortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
 		21AA7BD72101C051009967E0 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
@@ -327,6 +328,7 @@
 		21BAD5FA20177F7A0065D700 = {
 			isa = PBXGroup;
 			children = (
+				2193E4B522E1CAEF00BCFF73 /* README.md */,
 				21BAD60520177F7A0065D700 /* Epidemic */,
 				2125F5252067BA5B001EDACD /* EpidemicUITests */,
 				21BAD60420177F7A0065D700 /* Products */,
