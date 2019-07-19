@@ -9,15 +9,29 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "21BAD60220177F7A0065D700"
+               BuildableName = "Epidemic.app"
+               BlueprintName = "Epidemic"
+               ReferencedContainer = "container:Epidemic.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
             buildForProfiling = "NO"
             buildForArchiving = "NO"
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2125F5232067BA5B001EDACD"
-               BuildableName = "CoinsUITests.xctest"
-               BlueprintName = "CoinsUITests"
-               ReferencedContainer = "container:Coins.xcodeproj">
+               BuildableName = "EpidemicUITests.xctest"
+               BlueprintName = "EpidemicUITests"
+               ReferencedContainer = "container:Epidemic.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,12 +47,21 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2125F5232067BA5B001EDACD"
-               BuildableName = "CoinsUITests.xctest"
-               BlueprintName = "CoinsUITests"
-               ReferencedContainer = "container:Coins.xcodeproj">
+               BuildableName = "EpidemicUITests.xctest"
+               BlueprintName = "EpidemicUITests"
+               ReferencedContainer = "container:Epidemic.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "21BAD60220177F7A0065D700"
+            BuildableName = "Epidemic.app"
+            BlueprintName = "Epidemic"
+            ReferencedContainer = "container:Epidemic.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -52,15 +75,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2125F5232067BA5B001EDACD"
-            BuildableName = "CoinsUITests.xctest"
-            BlueprintName = "CoinsUITests"
-            ReferencedContainer = "container:Coins.xcodeproj">
+            BlueprintIdentifier = "21BAD60220177F7A0065D700"
+            BuildableName = "Epidemic.app"
+            BlueprintName = "Epidemic"
+            ReferencedContainer = "container:Epidemic.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -70,15 +94,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2125F5232067BA5B001EDACD"
-            BuildableName = "CoinsUITests.xctest"
-            BlueprintName = "CoinsUITests"
-            ReferencedContainer = "container:Coins.xcodeproj">
+            BlueprintIdentifier = "21BAD60220177F7A0065D700"
+            BuildableName = "Epidemic.app"
+            BlueprintName = "Epidemic"
+            ReferencedContainer = "container:Epidemic.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

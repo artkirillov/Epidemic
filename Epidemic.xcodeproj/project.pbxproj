@@ -12,7 +12,7 @@
 		210F68A02120528100403E79 /* TickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 210F68A22120528100403E79 /* TickerCell.xib */; };
 		2119D0C9204B2325000FE804 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2119D0C8204B2325000FE804 /* Colors.swift */; };
 		2123173120590DF300F23540 /* AppStoreLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2123173020590DF300F23540 /* AppStoreLookup.swift */; };
-		2125F5272067BA5B001EDACD /* CoinsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2125F5262067BA5B001EDACD /* CoinsUITests.swift */; };
+		2125F5272067BA5B001EDACD /* EpidemicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2125F5262067BA5B001EDACD /* EpidemicUITests.swift */; };
 		2125F52F2067BB41001EDACD /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2125F52E2067BB41001EDACD /* SnapshotHelper.swift */; };
 		212CDE9C2157E9B60068E0C2 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212CDE9B2157E9B60068E0C2 /* Fonts.swift */; };
 		212CDE9E2157FC3D0068E0C2 /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212CDE9D2157FC3D0068E0C2 /* NSAttributedString.swift */; };
@@ -45,6 +45,8 @@
 		2173EC282017D4CD004BDECE /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2173EC272017D4CD004BDECE /* Coin.swift */; };
 		2173EC2C2017E16B004BDECE /* TickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2173EC2B2017E16B004BDECE /* TickerTableViewCell.swift */; };
 		21748CF821956A26002259F1 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21748CF721956A26002259F1 /* TextFieldCell.swift */; };
+		2175B14B22E1C00100D2525F /* CoinDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2175B14A22E1C00100D2525F /* CoinDetailsViewController.swift */; };
+		2175B15122E1C7E200D2525F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21F4B013206729B600C37688 /* Localizable.strings */; };
 		217DBFB0216B49B600B8C06D /* ChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217DBFAF216B49B600B8C06D /* ChartTableViewCell.swift */; };
 		21881B40219745CF0055FA86 /* DateTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21881B3E219745CF0055FA86 /* DateTimeCell.xib */; };
 		21881B4221974C7B0055FA86 /* DateTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21881B4121974C7B0055FA86 /* DateTimeCell.swift */; };
@@ -71,10 +73,7 @@
 		21E5F7BE21A7F8B500398D20 /* ButtonInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E5F7BD21A7F8B500398D20 /* ButtonInputAccessoryView.swift */; };
 		21E78BCA204AE48D000B7398 /* PortfolioTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E78BC9204AE48D000B7398 /* PortfolioTableHeaderView.swift */; };
 		21ED700A208295E9002CD41E /* CustomViewControllerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ED7009208295E9002CD41E /* CustomViewControllerAnimator.swift */; };
-		21F0AD0D2068FD7800021E7B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21F4B013206729B600C37688 /* Localizable.strings */; };
-		21F4B0112067280F00C37688 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21F4B00F2067280F00C37688 /* InfoPlist.strings */; };
 		21F4B015206729B600C37688 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21F4B013206729B600C37688 /* Localizable.strings */; };
-		21F7AEAD216DE7BF00742425 /* CoinDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F7AEAC216DE7BF00742425 /* CoinDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,8 +92,8 @@
 		210F68A12120528100403E79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TickerCell.xib; sourceTree = "<group>"; };
 		2119D0C8204B2325000FE804 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		2123173020590DF300F23540 /* AppStoreLookup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreLookup.swift; sourceTree = "<group>"; };
-		2125F5242067BA5B001EDACD /* CoinsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoinsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2125F5262067BA5B001EDACD /* CoinsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsUITests.swift; sourceTree = "<group>"; };
+		2125F5242067BA5B001EDACD /* EpidemicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EpidemicUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2125F5262067BA5B001EDACD /* EpidemicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpidemicUITests.swift; sourceTree = "<group>"; };
 		2125F5282067BA5B001EDACD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2125F52E2067BB41001EDACD /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		212CDE9B2157E9B60068E0C2 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
@@ -128,6 +127,7 @@
 		2173EC272017D4CD004BDECE /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		2173EC2B2017E16B004BDECE /* TickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerTableViewCell.swift; sourceTree = "<group>"; };
 		21748CF721956A26002259F1 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
+		2175B14A22E1C00100D2525F /* CoinDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinDetailsViewController.swift; sourceTree = "<group>"; };
 		217DBFAF216B49B600B8C06D /* ChartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTableViewCell.swift; sourceTree = "<group>"; };
 		21881B3F219745CF0055FA86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DateTimeCell.xib; sourceTree = "<group>"; };
 		21881B4121974C7B0055FA86 /* DateTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeCell.swift; sourceTree = "<group>"; };
@@ -140,7 +140,7 @@
 		21AA7BD72101C051009967E0 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		21AA82D6213AFB34003872AC /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
 		21B07FCA205650C400A09B48 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
-		21BAD60320177F7A0065D700 /* Coins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Coins.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		21BAD60320177F7A0065D700 /* Epidemic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Epidemic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21BAD60620177F7A0065D700 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21BAD60820177F7A0065D700 /* CoinsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsViewController.swift; sourceTree = "<group>"; };
 		21BAD60D20177F7A0065D700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -160,7 +160,6 @@
 		21F4B0122067284000C37688 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ../../Resources/ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		21F4B014206729B600C37688 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		21F4B016206729BC00C37688 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		21F7AEAC216DE7BF00742425 /* CoinDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoinDetailsViewController.swift; path = "Coins Capitalization/Sources/Controllers/CoinDetailsViewController.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,14 +218,14 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		2125F5252067BA5B001EDACD /* CoinsUITests */ = {
+		2125F5252067BA5B001EDACD /* EpidemicUITests */ = {
 			isa = PBXGroup;
 			children = (
-				2125F5262067BA5B001EDACD /* CoinsUITests.swift */,
+				2125F5262067BA5B001EDACD /* EpidemicUITests.swift */,
 				2125F52E2067BB41001EDACD /* SnapshotHelper.swift */,
 				2125F5282067BA5B001EDACD /* Info.plist */,
 			);
-			path = CoinsUITests;
+			path = EpidemicUITests;
 			sourceTree = "<group>";
 		};
 		214A2A29216363650020030C /* Controls */ = {
@@ -314,7 +313,7 @@
 				21ED70082082959A002CD41E /* Utils */,
 				21AA7BD72101C051009967E0 /* AlertViewController.swift */,
 				21BAD60820177F7A0065D700 /* CoinsViewController.swift */,
-				21F7AEAC216DE7BF00742425 /* CoinDetailsViewController.swift */,
+				2175B14A22E1C00100D2525F /* CoinDetailsViewController.swift */,
 				219FBFCC202E340800A8771A /* PortfolioViewController.swift */,
 				2154CD9120DA45A5002FA475 /* NewsViewController.swift */,
 				2154CD9920DA5543002FA475 /* ArticleViewController.swift */,
@@ -328,8 +327,8 @@
 		21BAD5FA20177F7A0065D700 = {
 			isa = PBXGroup;
 			children = (
-				21BAD60520177F7A0065D700 /* Coins Capitalization */,
-				2125F5252067BA5B001EDACD /* CoinsUITests */,
+				21BAD60520177F7A0065D700 /* Epidemic */,
+				2125F5252067BA5B001EDACD /* EpidemicUITests */,
 				21BAD60420177F7A0065D700 /* Products */,
 				21D4D2A22137E65A0071B3FB /* Frameworks */,
 			);
@@ -338,19 +337,19 @@
 		21BAD60420177F7A0065D700 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				21BAD60320177F7A0065D700 /* Coins.app */,
-				2125F5242067BA5B001EDACD /* CoinsUITests.xctest */,
+				21BAD60320177F7A0065D700 /* Epidemic.app */,
+				2125F5242067BA5B001EDACD /* EpidemicUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		21BAD60520177F7A0065D700 /* Coins Capitalization */ = {
+		21BAD60520177F7A0065D700 /* Epidemic */ = {
 			isa = PBXGroup;
 			children = (
 				21BAD61B201780430065D700 /* Resources */,
 				21BAD61A201780340065D700 /* Sources */,
 			);
-			path = "Coins Capitalization";
+			path = Epidemic;
 			sourceTree = "<group>";
 		};
 		21BAD61A201780340065D700 /* Sources */ = {
@@ -398,9 +397,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2125F5232067BA5B001EDACD /* CoinsUITests */ = {
+		2125F5232067BA5B001EDACD /* EpidemicUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2125F52D2067BA5B001EDACD /* Build configuration list for PBXNativeTarget "CoinsUITests" */;
+			buildConfigurationList = 2125F52D2067BA5B001EDACD /* Build configuration list for PBXNativeTarget "EpidemicUITests" */;
 			buildPhases = (
 				2125F5202067BA5B001EDACD /* Sources */,
 				2125F5212067BA5B001EDACD /* Frameworks */,
@@ -411,14 +410,14 @@
 			dependencies = (
 				2125F52A2067BA5B001EDACD /* PBXTargetDependency */,
 			);
-			name = CoinsUITests;
+			name = EpidemicUITests;
 			productName = CoinsUITests;
-			productReference = 2125F5242067BA5B001EDACD /* CoinsUITests.xctest */;
+			productReference = 2125F5242067BA5B001EDACD /* EpidemicUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		21BAD60220177F7A0065D700 /* Coins */ = {
+		21BAD60220177F7A0065D700 /* Epidemic */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 21BAD61720177F7A0065D700 /* Build configuration list for PBXNativeTarget "Coins" */;
+			buildConfigurationList = 21BAD61720177F7A0065D700 /* Build configuration list for PBXNativeTarget "Epidemic" */;
 			buildPhases = (
 				21BAD5FF20177F7A0065D700 /* Sources */,
 				21BAD60020177F7A0065D700 /* Frameworks */,
@@ -428,9 +427,9 @@
 			);
 			dependencies = (
 			);
-			name = Coins;
+			name = Epidemic;
 			productName = "Coins Capitalization";
-			productReference = 21BAD60320177F7A0065D700 /* Coins.app */;
+			productReference = 21BAD60320177F7A0065D700 /* Epidemic.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -461,7 +460,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 21BAD5FE20177F7A0065D700 /* Build configuration list for PBXProject "Coins" */;
+			buildConfigurationList = 21BAD5FE20177F7A0065D700 /* Build configuration list for PBXProject "Epidemic" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -475,8 +474,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				21BAD60220177F7A0065D700 /* Coins */,
-				2125F5232067BA5B001EDACD /* CoinsUITests */,
+				21BAD60220177F7A0065D700 /* Epidemic */,
+				2125F5232067BA5B001EDACD /* EpidemicUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -486,7 +485,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21F0AD0D2068FD7800021E7B /* Localizable.strings in Resources */,
+				2175B15122E1C7E200D2525F /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,7 +502,6 @@
 				21881B40219745CF0055FA86 /* DateTimeCell.xib in Resources */,
 				213C50DD217F111F00DDA8F3 /* InfoHeaderCell.xib in Resources */,
 				21BD3B3521941CFF00DE6661 /* TextFieldCell.xib in Resources */,
-				21F4B0112067280F00C37688 /* InfoPlist.strings in Resources */,
 				212F6D182042C83A0091B723 /* Assets.xcassets in Resources */,
 				21DC61E62182FE29007CB8EF /* ButtonCell.xib in Resources */,
 				210F68A02120528100403E79 /* TickerCell.xib in Resources */,
@@ -518,7 +516,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2125F5272067BA5B001EDACD /* CoinsUITests.swift in Sources */,
+				2125F5272067BA5B001EDACD /* EpidemicUITests.swift in Sources */,
 				2125F52F2067BB41001EDACD /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -550,6 +548,7 @@
 				218CB6CE204C513000EDF550 /* ChartData.swift in Sources */,
 				2154CD9220DA45A5002FA475 /* NewsViewController.swift in Sources */,
 				212CDE9C2157E9B60068E0C2 /* Fonts.swift in Sources */,
+				2175B14B22E1C00100D2525F /* CoinDetailsViewController.swift in Sources */,
 				215A76E721636687009D56A6 /* MessageView.swift in Sources */,
 				2173EC2C2017E16B004BDECE /* TickerTableViewCell.swift in Sources */,
 				219FA193201E444C00094B67 /* API.swift in Sources */,
@@ -574,7 +573,6 @@
 				21CE2D0A2181A747004E8732 /* CoinDetails.swift in Sources */,
 				21890A4721B7E7780006973B /* CellModels.swift in Sources */,
 				2131470521985D180052A056 /* Exchange.swift in Sources */,
-				21F7AEAD216DE7BF00742425 /* CoinDetailsViewController.swift in Sources */,
 				21ED700A208295E9002CD41E /* CustomViewControllerAnimator.swift in Sources */,
 				213C50DF217F128200DDA8F3 /* InfoHeaderCell.swift in Sources */,
 			);
@@ -585,7 +583,7 @@
 /* Begin PBXTargetDependency section */
 		2125F52A2067BA5B001EDACD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 21BAD60220177F7A0065D700 /* Coins */;
+			target = 21BAD60220177F7A0065D700 /* Epidemic */;
 			targetProxy = 2125F5292067BA5B001EDACD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -705,7 +703,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VQ53R95MLS;
-				INFOPLIST_FILE = CoinsUITests/Info.plist;
+				INFOPLIST_FILE = EpidemicUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.appsaucekitchen.CoinsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -721,7 +719,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VQ53R95MLS;
-				INFOPLIST_FILE = CoinsUITests/Info.plist;
+				INFOPLIST_FILE = EpidemicUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.appsaucekitchen.CoinsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -852,7 +850,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = VQ53R95MLS;
-				INFOPLIST_FILE = "$(SRCROOT)/Coins Capitalization/Sources/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Epidemic/Sources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.appsaucekitchen.Coins;
@@ -870,7 +868,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = VQ53R95MLS;
-				INFOPLIST_FILE = "$(SRCROOT)/Coins Capitalization/Sources/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Epidemic/Sources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.appsaucekitchen.Coins;
@@ -884,7 +882,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2125F52D2067BA5B001EDACD /* Build configuration list for PBXNativeTarget "CoinsUITests" */ = {
+		2125F52D2067BA5B001EDACD /* Build configuration list for PBXNativeTarget "EpidemicUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2125F52B2067BA5B001EDACD /* Debug */,
@@ -893,7 +891,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		21BAD5FE20177F7A0065D700 /* Build configuration list for PBXProject "Coins" */ = {
+		21BAD5FE20177F7A0065D700 /* Build configuration list for PBXProject "Epidemic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				21BAD61520177F7A0065D700 /* Debug */,
@@ -902,7 +900,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		21BAD61720177F7A0065D700 /* Build configuration list for PBXNativeTarget "Coins" */ = {
+		21BAD61720177F7A0065D700 /* Build configuration list for PBXNativeTarget "Epidemic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				21BAD61820177F7A0065D700 /* Debug */,
